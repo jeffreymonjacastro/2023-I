@@ -11,30 +11,36 @@ frec_meses = {}
 frec_frecuencias = {}
 d4 = {}
 frec_alertas = {}
+frec_meses_alertas = {}
 
 for i in df.index:
-    categoria = df["CATEGORIA"][i]
-    if categoria in frec_categorias:
-        frec_categorias[categoria] +=1
-    else:
-        frec_categorias[categoria] = 1
+    # categoria = df["CATEGORIA"][i]
+    # if categoria in frec_categorias:
+    #     frec_categorias[categoria] +=1
+    # else:
+    #     frec_categorias[categoria] = 1
+    #
+    # if df["CATEGORIA"][i] == "N1":
+    #     fecha = (df["FECHA"][i]).split(" ")
+    #     mes = int((fecha[0].split("/"))[1])
+    #     if mes in frec_meses:
+    #         frec_meses[mes] += 1
+    #     else:
+    #         frec_meses[mes] = 1
+    #
+    # frequency = df["FRECUENCIA"][i]
+    # if frequency in frec_frecuencias:
+    #     frec_frecuencias[frequency] += 1
+    # else:
+    #     frec_frecuencias[frequency] = 1
 
-    if df["CATEGORIA"][i] == "N1":
-        fecha = (df["FECHA"][i]).split(" ")
-        mes = int((fecha[0].split("/"))[1])
-        if mes in frec_meses:
-            frec_meses[mes] += 1
-        else:
-            frec_meses[mes] = 1
-
-    frequency = df["FRECUENCIA"][i]
-    if frequency in frec_frecuencias:
-        frec_frecuencias[frequency] += 1
-    else:
-        frec_frecuencias[frequency] = 1
+    date = (df["FECHA"][i]).split(" ")
+    month = int((date[0].split("/"))[1])
+    if month not in frec_meses_alertas:
+        frec_meses_alertas[month] = {}
 
 
-
+print(frec_meses_alertas)
 
 # print(df)
 
@@ -60,16 +66,31 @@ for i in df.index:
 
 
 #Pregunta 3
-max_frec = max(list(frec_frecuencias.keys()))
-placa = int()
-
-for i in df.index:
-    if df["FRECUENCIA"][i] == max_frec:
-        placa = int(df["PLACA"][i])
-
-print(frec_frecuencias)
-print(f"Frecuencia máxima: {max_frec}, Placa del vehículo: {placa}")
+# max_frec = max(list(frec_frecuencias.keys()))
+# placa = int()
+#
+# for i in df.index:
+#     if df["FRECUENCIA"][i] == max_frec:
+#         placa = int(df["PLACA"][i])
+#
+# print(frec_frecuencias)
+# print(f"Frecuencia máxima: {max_frec}, Placa del vehículo: {placa}")
 
 # Pregunta 4
 
 # Pregunta 5
+for i in df.index:
+    date = (df["FECHA"][i]).split(" ")
+    month = int((date[0].split("/"))[1])
+    alerta = df["ALERTA"][i]
+
+    if alerta != 0:
+        for j in frec_meses_alertas.keys():
+            if month == j:
+                if month in frec_meses_alertas[j]:
+                    frec_meses_alertas[j][alerta] += 1
+                else:
+                    frec_meses_alertas[j][alerta] = 1
+
+
+print(frec_meses_alertas)
