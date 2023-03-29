@@ -7,3 +7,5 @@ include_directories(.)
 include_directories(progra-3)
 
 add_executable(2023_I progra-3/s1/main.cpp)
+
+add_executable(Cf Codeforces/Watermelon.cpp)
