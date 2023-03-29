@@ -10,7 +10,7 @@ frec_categorias = {}
 frec_meses = {}
 frec_frecuencias = {}
 d4 = {}
-d5 = {}
+frec_alertas = {}
 
 for i in df.index:
     categoria = df["CATEGORIA"][i]
@@ -70,4 +70,6 @@ for i in df.index:
 print(frec_frecuencias)
 print(f"Frecuencia máxima: {max_frec}, Placa del vehículo: {placa}")
 
-#Pregunta 4
+# Pregunta 4
+
+# Pregunta 5
