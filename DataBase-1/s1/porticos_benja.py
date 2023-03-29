@@ -34,13 +34,20 @@ for i in df.index:
     # else:
     #     frec_frecuencias[frequency] = 1
 
-    date = (df["FECHA"][i]).split(" ")
-    month = int((date[0].split("/"))[1])
-    if month not in frec_meses_alertas:
-        frec_meses_alertas[month] = {}
+    alerta = df["ALERTA"][i]
+
+    if alerta in frec_alertas:
+        frec_alertas[alerta] += 1
+    else:
+        frec_alertas[alerta] = 1
+
+    # date = (df["FECHA"][i]).split(" ")
+    # month = int((date[0].split("/"))[1])
+    # if month not in frec_meses_alertas:
+    #     frec_meses_alertas[month] = {}
 
 
-print(frec_meses_alertas)
+print(frec_alertas)
 
 # print(df)
 
@@ -85,12 +92,10 @@ for i in df.index:
     alerta = df["ALERTA"][i]
 
     if alerta != 0:
-        for j in frec_meses_alertas.keys():
-            if month == j:
-                if month in frec_meses_alertas[j]:
-                    frec_meses_alertas[j][alerta] += 1
-                else:
-                    frec_meses_alertas[j][alerta] = 1
+        if month in frec_meses_alertas[month]:
+            frec_meses_alertas[month][alerta] += 1
+        else:
+            frec_meses_alertas[month][alerta] = 1
 
 
 print(frec_meses_alertas)
