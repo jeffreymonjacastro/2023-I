@@ -1,9 +1,9 @@
 import pandas as pd
 
 df = pd.read_csv("Porticos.csv", sep=";")
-
-# Pregunta 1
-
+#
+# # Pregunta 1
+#
 # categoria = df.groupby(["CATEGORIA"]).count()
 #
 # print(categoria["ID"])
@@ -27,15 +27,17 @@ df = pd.read_csv("Porticos.csv", sep=";")
 
 # Pregunta 3
 
-# frec = df[["FRECUENCIA"]].value_counts()
-#
-# # print(frec)
-#
-# filter1 = df[df["FRECUENCIA"] == 23]
-# filter2 = df[df["FRECUENCIA"] == 22]
-#
-# print(filter1[["PLACA"]])
-# print(filter2[["PLACA"]])
+frec = df[["FRECUENCIA"]].value_counts()
+
+print(frec)
+
+print()
+
+filter1 = df[df["FRECUENCIA"] == 23]
+filter2 = df[df["FRECUENCIA"] == 22]
+
+print(filter1[["PLACA"]])
+print(filter2[["PLACA"]])
 
 # Max cantidad de veces que pasó por el pórtico = 23
 
@@ -55,4 +57,4 @@ df = pd.read_csv("Porticos.csv", sep=";")
 
 # alertas = df[df[""]]
 
-print(df.ALERTA.value_counts())
+# print(df.ALERTA.value_counts())
