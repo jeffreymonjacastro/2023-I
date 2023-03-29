@@ -1,16 +1,12 @@
 import pandas as pd
 
+# Pregunta 1
 database = pd.read_csv("Porticos.csv", sep=";")
 
-d = {}
+categoria = database.groupby(["CATEGORIA"]).count()
 
-categorias = list(database["CATEGORIA"])
+print(categoria["ID"])
 
-for i in categorias:
-    d[i] = categorias.count(i)
+print(max(categoria["ID"]))
 
-print(d)
 
-# M1 = database[database["CATEGORIA"] == "M1"]
-#
-# print(M1[["CATEGORIA"]])
