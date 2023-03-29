@@ -12,8 +12,6 @@ frec_frecuencias = {}
 d4 = {}
 d5 = {}
 
-placa = ""
-
 for i in df.index:
     categoria = df["CATEGORIA"][i]
     if categoria in frec_categorias:
@@ -35,10 +33,6 @@ for i in df.index:
     else:
         frec_frecuencias[frequency] = 1
 
-
-    #
-    # if df["FRECUENCIA"][i] == max_frec:
-    #     placa = df["PLACA"][i]
 
 
 
@@ -64,11 +58,16 @@ for i in df.index:
 #         max_rep = frec_meses[i]
 # print(meses[mes_mas_repetido] ,  frec_meses[mes_mas_repetido])
 
+
 #Pregunta 3
 max_frec = max(list(frec_frecuencias.keys()))
+placa = int()
 
 for i in df.index:
     if df["FRECUENCIA"][i] == max_frec:
-        print(int(df["PLACA"][i]))
+        placa = int(df["PLACA"][i])
+
+print(frec_frecuencias)
+print(f"Frecuencia máxima: {max_frec}, Placa del vehículo: {placa}")
 
 #Pregunta 4

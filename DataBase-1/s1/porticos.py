@@ -14,13 +14,13 @@ df = pd.read_csv("Porticos.csv", sep=";")
 
 
 # Pregunta 2
-# filtro = df["CATEGORIA"] == "N1"
-#
-# N1 = df[filtro]
-#
-# N1["FECHA"] = pd.to_datetime(N1["FECHA"])
-#
-# print(N1.FECHA.dt.month.value_counts())
+filtro = df["CATEGORIA"] == "N1"
+
+N1 = df[filtro]
+
+N1["FECHA"] = pd.to_datetime(N1["FECHA"])
+
+print(N1.FECHA.dt.month.value_counts())
 
 # Noviembre
 
