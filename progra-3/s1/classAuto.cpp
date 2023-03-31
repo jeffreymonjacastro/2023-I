@@ -18,6 +18,7 @@ public:
 
     void viajar(int k){
         kilometraje += k;
+        precio -= k;
 
         cout<<"Cantidad de Kilometros recorridos: "<<this->kilometraje<<endl;
         cout<<endl;
