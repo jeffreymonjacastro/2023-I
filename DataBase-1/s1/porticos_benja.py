@@ -13,7 +13,7 @@ d4 = {}
 frec_alertas = {}
 frec_meses_alertas = {}
 
-for i in df.index:
+# for i in df.index:
     # categoria = df["CATEGORIA"][i]
     # if categoria in frec_categorias:
     #     frec_categorias[categoria] +=1
@@ -34,12 +34,12 @@ for i in df.index:
     # else:
     #     frec_frecuencias[frequency] = 1
 
-    alerta = df["ALERTA"][i]
-
-    if alerta in frec_alertas:
-        frec_alertas[alerta] += 1
-    else:
-        frec_alertas[alerta] = 1
+    # alerta = df["ALERTA"][i]
+    #
+    # if alerta in frec_alertas:
+    #     frec_alertas[alerta] += 1
+    # else:
+    #     frec_alertas[alerta] = 1
 
     # date = (df["FECHA"][i]).split(" ")
     # month = int((date[0].split("/"))[1])
@@ -47,7 +47,7 @@ for i in df.index:
     #     frec_meses_alertas[month] = {}
 
 
-print(frec_alertas)
+
 
 # print(df)
 
@@ -86,16 +86,23 @@ print(frec_alertas)
 # Pregunta 4
 
 # Pregunta 5
+
 for i in df.index:
-    date = (df["FECHA"][i]).split(" ")
-    month = int((date[0].split("/"))[1])
-    alerta = df["ALERTA"][i]
-
-    if alerta != 0:
-        if month in frec_meses_alertas[month]:
-            frec_meses_alertas[month][alerta] += 1
+    fecha = (df["FECHA"][i]).split(" ")
+    mes = int((fecha[0].split("/"))[1])
+    if df["ALERTA"][i] != 0:
+        if mes in frec_meses:
+            frec_meses[mes] +=1
         else:
-            frec_meses_alertas[month][alerta] = 1
+            frec_meses[mes]  = 1
 
+max = -1
+mes_max = 0
+for i in frec_meses.keys():
+    if frec_meses[i] > max:
+        mes_max = i
+        max = frec_meses[i]
 
-print(frec_meses_alertas)
+print(frec_meses)
+
+print(meses[mes_max])
