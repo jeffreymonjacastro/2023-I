@@ -20,4 +20,4 @@ button.addEventListener('click', () => {
 
     result.style.display = "flex"
     result.textContent = `Hello ${nombre.value}, your IMC is ${imc.toFixed(2)}`
-})
+});
