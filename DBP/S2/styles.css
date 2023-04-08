@@ -1,0 +1,175 @@
+body {
+    /* Degradado de fondo */
+    background-image: radial-gradient(circle at -20.71% 50%, #00bf9f 0, #00bfac 3.33%, #00bfb8 6.67%, #00bfc5 10%, #00bed1 13.33%, #00bedc 16.67%, #00bce7 20%, #00bbf0 23.33%, #00b8f7 26.67%, #00b6fd 30%, #00b3ff 33.33%, #28b0ff 36.67%, #54acff 40%, #72a7ff 43.33%, #8aa3ff 46.67%, #9f9efc 50%, #b299f6 53.33%, #c294ee 56.67%, #d18fe5 60%, #dd8bda 63.33%, #e887cf 66.67%, #f083c3 70%, #f781b7 73.33%, #fc7faa 76.67%, #fe7f9e 80%, #ff8091 83.33%, #ff8285 86.67%, #fc8579 90%, #f8896e 93.33%, #f38d64 96.67%, #ec915b 100%);
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 2px black;
+    font-size: 1.2em;
+}
+
+.elements {
+    height: 60vh;
+    width: 50vw;
+    background-color: rgb(255,255,255,0.4);
+    padding: 40px 60px;
+    border-radius: 40px;
+    border: 2px solid rgb(0, 0, 0, 0.5);
+    box-shadow: 4px 3px 2px rgb(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.title h2 {
+    margin: 0;
+}
+
+.forms {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+
+.icon {
+    display: flex;
+}
+
+.icon-i {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box label {
+    display: block;
+    padding-left: 10px;
+}
+
+.box input {
+    width: 96%;
+    height: 20px;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.box-name {
+    margin-bottom: 30px;
+}
+
+.box-name input {
+    width: 98.5%;
+}
+
+.space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-stature {
+    width: 49%;
+}
+
+.box-weight {
+    width: 49%;
+}
+
+.enter {
+    display: flex;
+    height: 80px;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-image: radial-gradient(circle at -20.71% 50%, #9f9efc 50%, #b299f6 53.33%, #c294ee 56.67%, #d18fe5 60%, #dd8bda 63.33%, #e887cf 66.67%, #f083c3 70%, #f781b7 73.33%, #fc7faa 76.67%, #fe7f9e 80%, #ff8091 83.33%, #ff8285 86.67%,);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 40%;
+    border-radius: 10px;
+    border: 0.5px solid rgb(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 1px rgb(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(255, 255, 255, 0.5);
+    border: 0;
+    color:rgb(0, 0, 0);
+}
+
+.result {
+    display: none;
+    height: 50px;
+    background-color: rgb(134, 134, 134, 0.5);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+}
+
+.tabla {
+    display: grid;
+    height: 60px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px rgb(0, 0, 0, 0.5);
+}
+
+.tabla-element {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.tabla div:nth-child(1) {
+    background-color: #00b3ff;
+    border-radius: 10px 0 0 10px;
+}
+
+.tabla div:nth-child(2) {
+    background-color: lime;
+}
+
+.tabla div:nth-child(3) {
+    background-color: yellow;
+}
+
+.tabla div:nth-child(4) {
+    background-color: orange;
+}
+
+.tabla div:nth-child(5) {
+    background-color: orangered;
+}
+
+.tabla div:nth-child(6) {
+    background-color: red;
+    border-radius: 0 10px 10px 0;
+}
+
+.text {
+    margin: 5px;
+    font-weight: lighter;
+}

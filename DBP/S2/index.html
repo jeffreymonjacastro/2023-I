@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Para ingresar el icono de pestaña -->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/319187a8a6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="elements">
+            <div class="title">
+                <h2>IMC CALCULATOR</h2>
+            </div>
+
+            <hr>
+
+            <div class="forms">
+                <form>
+                    <div class="box">
+                        <div class="box-name">
+                            <div class="icon">
+                                <div class="icon-i">
+                                    <i class="fa-solid fa-user fa-bounce" style="color: #ffffff;"></i>
+                                </div>
+                                <label for="nombre">Name</label>
+                            </div>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="space">
+                            <div class="box-stature">
+                                <div class="icon">
+                                    <div class="icon-i">
+                                        <i class="fa-solid fa-ruler-vertical fa-bounce" style="color: #ffffff;"></i>
+                                    </div>
+                                    <label for="talla">Stature</label>
+                                </div>
+                                <input type="text" id="talla" name="talla" required>
+                            </div>
+                            
+                            <div class="box-weight">
+                                <div class="icon">
+                                    <div class="icon-i">
+                                        <i class="fa-solid fa-scale-balanced fa-bounce" style="color: #ffffff;"></i>
+                                    </div>
+                                    <label for="peso">Weight</label>
+                                </div>
+                                <input type="text" id="peso" name="peso" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="enter">
+                        <div id="button" class="button">Calculate</div>
+                    </div>
+                </form>
+
+                <div class="result" id="result">
+                    <p></p>
+                </div>
+            </div>
+            
+            <p class="text">Compare your result with this table:</p>
+
+            <div class="tabla">
+                <div class="tabla-element">&lt 18.5</div>
+                <div class="tabla-element">18.5 - 24.9</div>
+                <div class="tabla-element">25 - 29.9</div>
+                <div class="tabla-element">30 - 34.9</div>
+                <div class="tabla-element">35 - 39.9</div>
+                <div class="tabla-element">&gt 40</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
