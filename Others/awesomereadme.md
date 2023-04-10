@@ -4,7 +4,7 @@
 <p><em>Computer Science at <a href="http://www.unb.br">UTEC </a><img src="https://media.giphy.com/media/fYSnHlufseco8Fh93Z/giphy.gif" width="30"></br>Junior Programmer <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
 </em></p>
 
-[![Instagram: jeffrey_amc](https://img.shields.io/twitter/follow/ThaiiBraga?style=social)](https://twitter.com/ThaiiBraga)
+[![Twitter: jeffrey_amc](https://img.shields.io/twitter/follow/jeffrey_amc_?label=Follow%20%40jeffrey_amc_&style=social)](https://twitter.com/jeffrey_amc_)
 [![Linkedin: jeffreymonja](https://img.shields.io/badge/-thaianebraga-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thaianebraga/)](https://www.linkedin.com/in/thaianebraga/)
 [![GitHub Thaiane](https://img.shields.io/github/followers/thaiane?label=follow&style=social)](https://github.com/Thaiane)
 
