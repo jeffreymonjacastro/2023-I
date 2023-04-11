@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -55,6 +56,69 @@ int main(){
 //    else
 //        cout<<"No es triangulo"<<endl;
 
+
+
+//    int a, b, sum = 0;
+//    cout<<"Ingrese primer numero: "<<endl; cin>>a;
+//
+//    while(true){
+//        cout<<"Ingrese segundo numero: "<<endl; cin>>b;
+//
+//        if (b > a)
+//            break;
+//    }
+//
+//    string impares;
+//
+//    for (int i = a; i <= b; ++i) {
+//        if(i % 2 != 0) {
+//            impares += to_string(i) + " ";
+//
+//            if(i != a && i != b)
+//                sum += i;
+//        }
+//    }
+//
+//    cout<<impares<<endl;
+//    cout<<sum<<endl;
+
+
+//    int altura;
+//
+//    while(true){
+//        cout<<"Altura: "<<endl; cin>>altura;
+//
+//        if(altura >= 4 && altura <= 50 && altura % 2 == 0){
+//            break;
+//        }
+//    }
+//
+//    for (int i = 0; i < altura; ++i) {
+//        for (int j = 0; j < altura; ++j) {
+//            if((i + j == altura/2 -1) || (j - i == altura/2) || (i - j == altura/2) || (i + j == altura-1 + altura/2))
+//                cout<<"*";
+//            else
+//                cout<<" ";
+//        }
+//
+//        cout<<endl;
+//    }
+
+    int n, m;
+    cout<<"Filas: "<<endl; cin>>n;
+
+    for (int i = 0; i < n; ++i) {
+        m = 1;
+        for (int j = 0; j < n; ++j) {
+            if(i + j >= n -1) {
+                cout << setw(4) <<  m;
+                m++;
+            } else
+                cout<< setw(4) << " ";
+        }
+
+        cout<<endl;
+    }
 
     return 0;
 }
