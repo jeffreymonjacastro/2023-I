@@ -18,7 +18,7 @@ body {
     height: 60vh;
     width: 50vw;
     background-color: rgb(255,255,255,0.4);
-    padding: 40px 60px;
+    padding: 60px 60px;
     border-radius: 40px;
     border: 2px solid rgb(0, 0, 0, 0.5);
     box-shadow: 4px 3px 2px rgb(0, 0, 0, 0.5);
@@ -37,7 +37,7 @@ body {
 }
 
 .forms {
-    padding-top: 30px;
+    padding-top: 15px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 10px;
@@ -93,7 +93,8 @@ body {
 .enter {
     display: flex;
     height: 80px;
-    padding-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     justify-content: center;
     align-items: center;
 }
@@ -125,6 +126,8 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: lighter;
+    padding: 10px;
+    text-align: center;
 }
 
 .tabla {
@@ -172,4 +175,16 @@ body {
 .text {
     margin: 5px;
     font-weight: lighter;
+}
+
+.alert {
+    display: none;
+    color: rgb(255, 0, 0);
+    margin-top: 5px;
+    height: 15px;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    padding-top: 10px;
+    text-align: center;
 }
