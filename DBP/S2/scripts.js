@@ -5,51 +5,79 @@ var button = document.getElementById("button");
 var result = document.getElementById("result");
 var alerta = document.getElementById("alert");
 
+
 button.addEventListener('click', () => {
     let imc
     let talla = parseFloat(stature.value)
     let peso = parseFloat(weight.value)
     let text
+    let alertas = []
+    let bool = true
     
     if (nombre.value == "") {
-        alerta.style.display = "flex"
-        alerta.textContent = "Write your name"
-    } else {
-        alerta.style.display = "none"
-        alerta.textContent = ""
-    }
-
-    if (stature.value == "") {
-        alerta.style.display = "flex"
-        alerta.textContent += " Put your stature"
-    } else {
-        alerta.style.display = "none"
-        alerta.textContent = ""
-    }
-
-    if (weight.value == "") {
-        alerta.style.display = "flex"
-        alerta.textContent += " Put your weight"
-    } else {
-        alerta.style.display = "none"
-        alerta.textContent = ""
+        alertas.push("Write your name")
+        bool = false
     }
     
+    if(stature.value == "") {
+        alertas.push("Put your stature")
+        bool = false
+    } 
 
-    if (talla > 100) {
-        imc = peso/(Math.pow(talla/100, 2))
-        
+    if (weight.value == "") {
+        alertas.push("Put your weight")
+        bool = false
+    }
+
+    if (talla > 2.2) {
+        if (talla < 100 || talla > 220) {
+            alertas.push("Stature is between 100 - 220 cm")
+            bool = false
+        }
     } else {
-        imc = peso/(talla*talla)
+        if (talla < 1 || talla > 2.2) {
+            alertas.push("Stature is between 1 - 2.2 m")
+            bool = false
+        }
     }
 
-    if (imc < 18.5) {
-        text = "Low"
-    } else if (imc >= 18.5 && imc < 24.9) {
-        text = "Normal"
+    if (peso < 30 || peso > 200) {
+        alertas.push("Weight is between 30 - 200 kg")
+        bool = false
     }
 
-    result.style.display = "flex"
-    result.textContent = `Hello ${nombre.value}, your IMC is ${imc.toFixed(2)}. You have a ${text} IMC`
+    if (bool) {
+        alerta.style.display = "none"
 
+        if (talla > 2.2) {
+            imc = peso/(Math.pow(talla/100, 2))
+            
+        } else {
+            imc = peso/(talla*talla)
+        }
+    
+        if (imc < 18.5) {
+            text = "under weight, consider eating more to regulate your weight."
+        } else if (imc >= 18.5 && imc < 24.9) {
+            text = "a Healthy weight, excellent! :D"
+        } else if (imc >= 24.9 && imc < 29.9) {
+            text = "overweight, be careful, covid mostly affect obese people."
+        } else if (imc >= 29.9 && imc < 34.9) {
+            text = "obesity, watch out, covid can affect you a lot."
+        } else if (imc >= 34.9 && imc < 39.9) {
+            result.style.fontSize = "0.9em"
+            text = "morbid obesity. Go to the doctor or covid could be dangerous"
+        } else if (imc >= 39.9) {
+            result.style.fontSize = "0.9em"
+            text = "extreme obesity. Must visit the doctor or covid will kill you💀"
+        }
+
+        result.style.display = "flex"
+        result.textContent = `Hello ${nombre.value}, your IMC is ${imc.toFixed(2)}. You have ${text}`
+
+    } else {
+        alerta.style.display = "flex"
+        alerta.textContent = alertas.join(", ")
+    }
+    
 });

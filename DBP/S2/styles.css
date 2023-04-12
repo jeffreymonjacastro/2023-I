@@ -120,7 +120,7 @@ body {
 
 .result {
     display: none;
-    height: 50px;
+    height: 60px;
     background-color: rgb(134, 134, 134, 0.5);
     border-radius: 10px;
     justify-content: center;
@@ -187,4 +187,5 @@ body {
     font-weight: lighter;
     padding-top: 10px;
     text-align: center;
+    font-size: 0.8em;
 }
