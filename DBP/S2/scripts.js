@@ -73,7 +73,7 @@ button.addEventListener('click', () => {
         }
 
         result.style.display = "flex"
-        result.textContent = `Hello ${nombre.value}, your IMC is ${imc.toFixed(2)}. You have ${text}`
+        result.textContent = `Hello ${nombre.value}, your BMI is ${imc.toFixed(2)}. You have ${text}`
 
     } else {
         alerta.style.display = "flex"
