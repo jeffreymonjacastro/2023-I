@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 include_directories(progra-3)
 
-add_executable(2023_I Mentoria/S1/codigos1.cpp)
+add_executable(2023_I progra-3/s3_chavez/ejercicio005.cpp)
 
 add_executable(Cf Codeforces/Watermelon.cpp)
