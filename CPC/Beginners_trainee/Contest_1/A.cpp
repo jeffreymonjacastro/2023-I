@@ -1,9 +1,7 @@
 #include <iostream>
 
-using namespace std;
-
-void recursion(int n){
-    cout<<n<<" ";
+void recursion(int &n){
+    std::cout<<n<<" ";
     if(n == 1)
         return;
     else {
@@ -18,10 +16,9 @@ void recursion(int n){
 }
 
 int main(){
-    int n; cin>>n;
+    int n; std::cin>>n;
 
     recursion(n);
-
 
     return 0;
 }
