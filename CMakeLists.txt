@@ -8,6 +8,8 @@ include_directories(progra-3)
 
 add_executable(2023_I progra-3/s3_chavez/Lab_b/ejercicio003.cpp)
 
+add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
+
 add_executable(vjudge CPC/Beginners_trainee/Contest_1/B.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)

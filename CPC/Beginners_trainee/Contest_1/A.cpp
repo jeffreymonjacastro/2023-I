@@ -1,7 +1,9 @@
 #include <iostream>
 
+typedef long long int ll;
+
 int main(){
-    long long int n = 0; std::cin>>n;
+    ll n = 0; std::cin>>n;
 
     while(n > 0){
         std::cout << n << " ";
