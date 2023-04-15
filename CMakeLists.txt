@@ -13,3 +13,5 @@ add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 add_executable(vjudge CPC/Beginners_trainee/Contest_1/B.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
+
+add_executable(mentoria Mentoria/sesion_2/funciones.cpp Mentoria/sesion_2/header.h)
