@@ -1,0 +1,143 @@
+---
+title: "Proyecto PG01 - Racismo++ en Programación: ¿el lenguaje paga?"
+format: html
+editor: visual
+metadata:
+  css: "styles.css"
+---
+
+------------------------------------------------------------------------
+
+## Introducción
+
+Hablar del mundo de la programación es adentrarse en un universo inmenso, lleno de posibilidades y retos. Sin embargo, si nuestro objetivo es adentrarnos en este mundo y conseguir un buen salario, es importante definir cuál sería el mejor camino a seguir.
+
+### Tema Delimitado:
+
+-   La relación entre el lenguaje que usa una persona para trabajar y su salario.
+
+### Pregunta de investigación:
+
+¿Cómo se relacionan los lenguajes de programación con el sueldo que reciben los trabajadores en los últimos años?
+
+-   Variable dependiente: Sueldo de los trabajadores
+-   Variable independiente: lenguaje de programación
+
+### Hipótesis:
+
+"A mayor popularidad del lenguaje de programación que uses será mucho más probable tener un buen sueldo en un trabajo relacionado a las ciencias de la computación"
+
+### Relevancia y factibilidad del tema:
+
+**Relevancia:** - Actualmente se ve una preferencia enorme por las empresas en usar las nuevas tecnologías, por lo que si queremos enfocarnos en este rubro será de mucha utilidad saber cómo es que influyen nuestras preferencias al programar en nuestro sueldo.
+
+**Factibilidad:** - Consideramos que el proyecto es viable ya que usamos bases de datos de fuentes confiables como stackoverflow (la cual es una plataforma abierta y la base de datos resume información pública) y la otra de kaggle (la cual es supervisada por google).
+
+------------------------------------------------------------------------
+
+## Planificación
+
+```{r warning=FALSE}
+
+library(DiagrammeR)
+
+mermaid("
+gantt
+dateFormat  YYYY-MM-DD
+title A Very Nice Gantt Diagram
+
+section Main things
+Preparar PG01:active,first_1,2023-04-15,3d
+Entrega PG01:first_2,2023-04-18,1d
+
+section PG01
+Diagrama de Gantt:active, first_1, 2023-04-15, 12h
+Delimitar tema: active, first_2, after first_1, 12h
+Variables de analisis: first_3, after first_2, 6h
+Limpieza de la base de datos: first_4, after first_2, 12h
+Analizar la factibilidad: first:5, after first_3, 6h
+
+section nothing
+")
+
+
+```
+
+------------------------------------------------------------------------
+
+## Objetivos
+
+### Objetivo principal
+
+1.  Definir cual sería un buen camino (estadisticamente hablando) para empezar, especializarse y, en general, trabajar en el mundo de la programación, así como conseguir un salario bueno.
+
+### Objetivos secundarios:
+
+2.  Encontrar la tendencia de lenguajes de programación en la comunidad de desarrolladores según su nivel de educación y su edad (complejidad).
+
+3.  Encontrar una relación, si es que la hay, entre el lenguaje de programación que usan los desarrolladores con el salario que ganan. En caso contrario buscar un factor externo que lo explique.
+
+## Datos
+
+### Procesos de recolección de datos:
+
+Nuestros datos se basarán en dos bases de datos:
+
+-   Programming language database (kaggle):
+    -   Contiene información acerca de 4000 lenguajes de programación incluyendo su año de creación, el tipo (query, programación, etiquetado, etc), cantidad de usuarios,
+-   Survey_results (StackOverflow):
+    -   Contiene información de una encuesta realizada a desarrolladores de todo el mundo relacionados a la experiencia de programación. Incluyen demografía, educación, puesto de trabajo, lenguaje de programación, satisfacción laboral, entre otros.
+
+```{r warning=FALSE,eval=FALSE}
+library(readr)
+
+#languages = read_csv("https://pldb.com/pldb.csv")
+encuesta = read_csv("survey_results_public.csv");
+
+datos = encuesta[encuesta$MainBranch != "None of these" & complete.cases(encuesta$ConvertedCompYearly),]
+
+
+
+```
+
+### Variables de estudio iniciales
+
+En resumen, en esta sección se registran todas las variables utilizadas a partir de las dos bases de datos debidamente prolijas, con el objetivo de comprender adecuadamente el procesamiento de la información. En un principio, hay un total de `variables` variables.
+
+#### Encuestas de Stakoverflow
+
+**Descripción de la db**
+
+| Nombre de la variable | Tipo de variable   | Descripción                                                        |
+|-----------------------|--------------------|--------------------------------------------------------------------|
+| MainBranch            | Categórica Ordinal | Contiene información sobre el estado profesional del desarrollador |
+| Employment            | Categórica Nominal | El tipo de empleo que tiene le desarrollador                       |
+| RemoteWork            | Categórica Nominal | De que forma ejercen el trabajo remoto                             |
+| CodingActivities      | Categórica Nominal | El modo en que ven a programación                                  |
+| DevType               | Categórica Nominal | Tipo de desarrollador, lista separada por comas                    |
+| Country               | Categórica Nominal | País del desarollador                                              |
+| EdLevel               | Categórica Nominal | Info sobre el nivel de educación                                   |
+| Currency              | Categórica Nominal | El tipo de moneda que usan                                         |
+| ConvertedCompYearly   | Numérica Continua  | Cuanto ganan anualmente                                            |
+| Mental Health         | Categórica Nominal | Como considera que está su salud mental                            |
+| Ethnicity             | Categórica Nominal | Raza del desarrollador                                             |
+| Sexuality             | Categórica Nominal | Sexo del desarrollador                                             |
+| Gender                | Categórica Nominal | Género                                                             |
+| Age                   | Numérica Continua  | Edad                                                               |
+| OpSysProfessional use | Categórica Nominal | Sistema operativo que usan para trabajar profesionalmente          |
+| OpSysPersonal use     | Categórica Nominal | Sistema operativo que usan para ellos mismos                       |
+| LanguagesHaveWorkWith | Categótica Nominal | Lista de los lenguajes que han usado                               |
+
+#### PLDB Lenguajes de Programación
+
+**Descripción de la db**
+
+| Nombre de la variable | Tipo de variable   | Descripción                                                       |
+|-----------------------|--------------------|-------------------------------------------------------------------|
+| Title                 | Categórica Nominal | Nombre original del lenguaje de programación                      |
+| Appeared              | Numérica discreta  | Año en donde apareció por primera vez el lenguaje de programación |
+| Rank                  | Numérica discreta  | Un ranking hecho por PLDB                                         |
+| Type                  | Categórica Nominal | El tipo de lenguaje del que se trata                              |
+| numberOfJobs          | Numérica discreta  | Número de trabajos relacionados al lenguaje de programación       |
+| numberOfUsers         | Numérica discreta  | Número de usuarios que usan el lenguaje                           |
+| Country               | Categórica Nominal | País de creación del lenguaje                                     |
