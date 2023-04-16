@@ -1,0 +1,84 @@
+---
+title: "Carga de Datos"
+format: html
+editor: visual
+metadata:
+  css: "styles.css"
+---
+
+## Carga de datos
+
+Vamos a cargar el conjunto de datos diversos que descargamos previamente en nuestra carpeta de trabajo.
+
+::: callout-tip
+Ojito: Si queremos poner algo con el mismo tipo de letra que se usa para código, deben encerrarlo entre comillas hacia atrás \`\`. p.ej. `X`
+:::
+
+Para esto, vamos a usar la librería `reader`. Como la librería no debe estar instalada en la mayoría de sus computadores, lo primero es instalarla.
+
+Para verificar si una librería está instalada o no, se utiliza el comando `library(<librería>)` en R o la consola.
+
+```{r}
+library(readr)
+```
+
+Ahora vamos a cargar los datos que colocamos previamente en el directorio de trabajo.
+
+::: callout-warning
+```{r, val=FALSE}
+DF <- read_csv("DD20230331.csv")
+```
+:::
+
+Podemos ver los datos cargados, revisando la variable `DF`. Pero eso es una mala práctica.
+
+Para ver un poco de la tabla, podemos usar las funciones `head` y `tail`
+
+::: callout-note
+Por ejemplo aquí podemos ver las seis primeras filas de la tabla `DF`
+
+```{r}
+head(DF)
+```
+:::
+
+Para pedir ayuda, se usa el signo de interrogación o la función help().
+
+```{r}
+? tail
+#| help(tail)
+```
+
+## Una gráfica
+
+Vamos a hacer un histograma de estaturas.
+
+```{r}
+hist(DF$`Estatura (cm)`
+     , col = "#feb123"
+     , breaks = 20
+     , main = "Histograma de Estaturas"
+     , xlab = "Estatura en centimetros"
+     , ylab = "Frecuencia absoluta")
+```
+
+## Otra gráfica
+
+Vamos a graficar la estatura en función del peso
+
+```{r}
+
+# Delimitadores para hacer split a la gráfica
+x <- c(40,100)
+y <- c(140,200)
+
+plot(DF$`Peso (kg)`, DF$`Estatura (cm)`
+     , col = "#ff0000"
+     , main = "Estatura vs. Peso"
+     , xlab = "Peso en kilogramos"
+     , ylab = "Estatura en centimetros"
+     , xlim = x
+     , ylim = y)
+```
+
+Se puede concluir de esta gráfica que las estaturas y los pesos de los estudiantes siguen una relación lineal, es decir, a mayor peso, más alto es el/la estudiante. Además, se puede interpretar que la recta de regresión a la cual se ajusta los datos significa un peso adecuado a la altura del estudiante, por lo que los datos que se alejan de los demás datos son variaciones menos adecuadas de peso y altura.

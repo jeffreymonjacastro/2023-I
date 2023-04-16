@@ -1,0 +1,42 @@
+---
+title: "P03 - Sesion inicial"
+author: "Jeff"
+date: "16/03/2005"
+output: 
+  html_document:
+    toc: TRUE
+    toc_depth:
+    number_sections: TRUE
+    theme: 'yeti'
+---
+
+## Quarto
+
+### quarto
+
+```{r, warning=FALSE}
+1 + 1
+
+
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+*hola* *hola*
+
+***hola***
+
+[obtendré buena nota en C04](obtendré%20buena%20nota%20en%20C04)
+
+~~Hello~~
+
+\`\`\`{r, echo= FALSE, fig.cap="Grafica"}
+
+> Bloque de texto Hello como estan
