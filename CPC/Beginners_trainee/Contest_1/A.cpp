@@ -1,3 +1,5 @@
+// WEIRD ALGORITM
+
 #include <iostream>
 
 typedef long long int ll;
