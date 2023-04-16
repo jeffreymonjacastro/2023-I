@@ -24,6 +24,8 @@ Para visualizar problemas del dataframe
 problems(DF)
 ```
 
+Para saber las filas y columnas de la tabla
+
 ```{r}
 nrow(DF)
 ncol(DF)
