@@ -1,0 +1,237 @@
+---
+title: "Semana3"
+format: html
+editor: visual
+---
+
+## Limpieza de tablas
+
+Primero, verificamos si está la librería `readr`
+
+```{r}
+library(readr)
+```
+
+Luego debemos leer el csv en un dataframe a través del código `read_csv`
+
+```{r}
+DF <- read_csv("DD20230331.csv")
+```
+
+Para visualizar problemas del dataframe
+
+```{r}
+problems(DF)
+```
+
+```{r}
+nrow(DF)
+ncol(DF)
+```
+
+```{r}
+names(DF)
+```
+
+```{r}
+str(DF)
+```
+
+## Clasificación de los tipos de variables
+
+-   Categórica: una categoría, un valor en un conjunto específico.
+
+    -   Nominales: los valores no tienen un orden específico sensato o natural. Por ejemplo, la variable `color`, que puede tomar los valores `amarillo`, `verde` y `azul` es categórica nominal.
+
+    -   Ordinales: los valores tienen un orden natural sensato. \[No necesariamente es un número\]. Por ejemplo, la variable `dolor` con valores posibles `leve`, `moderado`, `intenso`. Podemos contar los valores observados y podemos ordenar los valores observados.
+
+-   Numérica: un número.
+
+    -   Discretas: son números y la variable puede tomar una cantidad contable de valores diferentes. El rango de la variable (el conjunto de todos los valores posibles) se puede colocar en una relación 1:1 con algún subconjunto de los naturales. Esto no significa que la variable solo puede tomar valores enteros. Por ejemplo, `número de hijos`,
+
+    -   Continuas: son números y la variable puede tomar una cantidad incontable de valores diferentes.
+
+```{r}
+install.packages("dplyr")
+```
+
+::: callout-tip
+El operador `%>%` (pipe en inglés) es un operador de composición.
+
+Ejemplo:
+
+`x %>% f %>% g` significa $g(f(x))$.
+:::
+
+```{r}
+table(DF$Edad)
+```
+
+```{r}
+DF %>% select(Edad) %>% group_by(Edad) %>% summarize(n())
+```
+
+¿Cuál es el tamaño de la muestra?
+
+```{r}
+nrow(DF)
+```
+
+¿Cuál es el tamaño efectivo de la muestra para la variable `Edad`?
+
+```{r}
+table(is.na(DF$Edad))
+```
+
+El tamaño efectivo de la muestra para la variable `Edad` es 1880 (antes de limpiar).
+
+¿Qué diablos será ese "-" que vemos en la tabla?
+
+```{r}
+any(DF$Edad == "-")
+```
+
+```{r}
+which(DF$Edad == "-")
+```
+
+```{r}
+DF[1667, ]
+```
+
+Claramente, ese "-" debería ser un dato faltante.
+
+`NA` que significa "not available" (no disponible en inglés) es la forma como se reportan los datos faltantes.
+
+Vamos a colocar un dato faltante allí:
+
+```{r}
+DF$Edad[1667] <- NA
+```
+
+```{r}
+table(is.na(DF$Edad))
+```
+
+¿Terminamos la limpieza de la variable `Edad`?
+
+```{r}
+DF %>% select(Edad) %>% group_by(Edad) %>% summarize(n())
+```
+
+Como la edad debería ser un valor entero, positivo, no muy pequeño y no muy grande podemos tratar de limpiarla viendo si hay violaciones a cualquiera de esas características.
+
+```{r}
+DF$EdadLimpia <- as.numeric(DF$Edad)
+```
+
+Comparemos esas dos columnas:
+
+```{r}
+DF %>% select(Edad, EdadLimpia)
+```
+
+Las funciones `any` y `all` pueden ser útiles en este caso.
+
+```{r}
+any(DF$EdadLimpia < 13)
+```
+
+El problema que tenemos es que los `NA` son contagiosos. Muchas funciones tienen parámetros especiales para lidiar con valores faltantes.
+
+```{r}
+? any
+```
+
+El parámetro `na.rm` sirve para controlar si queremos quitar los valores faltantes o no.
+
+```{r}
+any(DF$EdadLimpia < 13, na.rm = TRUE)
+all(DF$EdadLimpia >= 13, na.rm = TRUE)
+```
+
+Vamos a asegurarnos que todos los valores son enteros. Esto es una forma de limpieza `a ciegas`
+
+Algunos de ustedes argumentan que sería mejor truncar la edad en vez de redondearla
+
+```{r}
+#DF$EdadLimpia <- round(DF$EdadLimpia, digits = 0)
+DF$EdadLimpia <- floor(DF$EdadLimpia)
+```
+
+Veamos si desearíamos descartar como erróneas algunas edades por ser demasiado grandes.
+
+```{r}
+any(DF$EdadLimpia > 99, na.rm = TRUE)
+```
+
+Si quisiéramos convertir a `NA` a todos los datos mayores o iguales a 50, podríamos hacerlo sencillamente.
+
+```{r}
+table(DF$EdadLimpia >= 50, useNA = "ifany")
+```
+
+```{r}
+DF$EdadLimpia[DF$EdadLimpia >= 50] <- NA
+```
+
+```{r}
+table(DF$EdadLimpia >= 50, useNA = "ifany")
+```
+
+El tamaño efectivo de la muestra para la variable `Edad` ahora es `r sum(!is.na(DF$EdadLimpia))`
+
+```{r}
+sum(!is.na(DF$EdadLimpia))
+```
+
+¿Cuántas observaciones completas tenemos?
+
+```{r}
+table(complete.cases(DF), useNA = "ifany")
+```
+
+No tenemos ni una sola observación (fila) completa, esto podría ser problemático.
+
+```{r}
+names(DF)
+```
+
+Vamos a revisar qué son las variables `…19` y `…20`
+
+```{r}
+table(DF$...19)
+table(DF$...20)
+```
+
+¿Son todas las observaciones `NA`?
+
+```{r}
+all(is.na(DF$...19))
+all(is.na(DF$...20))
+```
+
+Vamos a eliminar esas dos variables. Aquí hay dos formas distintas de hacerlo.
+
+```{r}
+DF$...19 <- NULL
+
+```
+
+o podemos usar la función `select`.
+
+```{r}
+DF %>% select(-...20)
+```
+
+Si estamos satisfechos con el resultado, podemos asignar a la variable para confirmarlo.
+
+```{r}
+DF %>% select(-...20) -> DF
+```
+
+Ahora sí, sin esas columnas, sí hay observaciones completas
+
+```{r}
+table(complete.cases(DF), useNA = "ifany")
+```

@@ -1,0 +1,29 @@
+---
+title: "PerusallLC2"
+format: html
+editor: visual
+---
+
+## Ejercicios LC1 - (pág 8)
+
+1.  Lea la ayuda de los comandos `nrow` y `ncol`
+
+    -   Para leer la ayuda, basta con escribir en un chunk de R el comando `help(comando)` o simplemente colocar un signo de interrogación `?` antes del comando.
+
+    -   Posteriormente, se debe dar click a **Run Current Chunk** y aparecerá la ayuda solicitada en la ventana de ayuda de RStudio.
+
+    ```{r}
+    help(nrow)
+    # ? nrow
+
+    #help("ncol")
+    ? ncol
+    ```
+
+2.  Identificar el directorio de trabajo
+
+    ```{r}
+
+    ```
+
+3.  
