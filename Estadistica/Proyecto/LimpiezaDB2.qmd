@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Limpieza de datos 
+## Limpieza de datos
 
 Se procederá a limpiar la base de datos `Programming_languages.csv`.
 
@@ -41,10 +41,27 @@ Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos. Esto 
 names(dataframe[0:20])
 ```
 
-Por ello, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Rank`, `Type`, `numberOfJobs`, `numberOfUsers` y `Country`.
+Por ello, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Type`, `Rank`, `numberOfJobs`, `numberOfUsers` y `Country`.
 
 Vamos a eliminar las columnas que no necesitemos:
 
 ```{r}
-  
+# Columnas a conservar
+columnas_conservar <- c("title", "appeared", "type", "rank", "numberOfJobs", "numberOfUsers", "country")
+
+# Obtener las columnas presentes en la base de datos
+columnas_presentes <- colnames(dataframe)
+
+# Identificar las columnas a eliminar
+columnas_eliminar <- setdiff(columnas_presentes, columnas_conservar)
+
+# Eliminar las columnas no deseadas
+dataframe <- dataframe[, -which(colnames(dataframe) %in% columnas_eliminar)]
+
+```
+
+El resultado de este proceso sería:
+
+```{r}
+names(dataframe)
 ```
