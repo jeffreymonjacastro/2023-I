@@ -9,59 +9,43 @@ using namespace std;
 typedef long long int ll;
 
 int main(){
-    long long int n,m,x;
+    ll n,m;
 
     cin>>n>>m;
 
-    vector<ll> A;
-    vector<ll> B;
-    vector<ll> C;
-    vector<ll> resultA;
-    vector<ll> resultB;
+    vector<ll> A(n);
+    vector<ll> B(m);
+    vector<pair<ll,char>> C(n+m); // OJITO Solución de Alejandro
+    string resultA, resultB;
 
-    for (int i = 0; i < n; ++i) {
-        cin>>x;
-
-        A.push_back(x);
+    for (int i = 0; i < n; i++) {
+        cin>>A[i];
     }
 
-    for (int i = 0; i < m; ++i) {
-        cin>>x;
-
-        B.push_back(x);
+    for (int i = 0; i < m; i++) {
+        cin>>B[i];
     }
 
     for (int i = 0; i < n+m; ++i) {
         if (i < n){
-            C.push_back(A[i]);
+            C[i] = {A[i], 'A'};
         } else {
-            C.push_back(B[i-n]);
+            C[i] = {B[i-n], 'B'};
         }
     }
 
     sort(C.begin(), C.end());
 
     for (int i = 0; i < C.size(); ++i) {
-        for (ll j : A) {
-            if (j == C[i]){
-                resultA.push_back(i+1);
-            }
-        }
-
-        for (ll j : B) {
-            if (j == C[i]) {
-                resultB.push_back(i+1);
-            }
+        if (C[i].second == 'A') {
+            resultA += to_string(i+1)+ " ";
+        } else {
+            resultB += to_string(i+1) + " ";
         }
     }
 
-    for(ll i : resultA){
-        cout<<i<<" ";
-    }
-    cout<<endl;
-    for(ll i : resultB){
-        cout<<i<<" ";
-    }
+    cout<<resultA<<endl;
+    cout<<resultB;
 
     return 0;
 }
