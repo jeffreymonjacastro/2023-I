@@ -65,3 +65,27 @@ El resultado de este proceso sería:
 ```{r}
 names(dataframe)
 ```
+
+Ahora, comprobemos cuántas observaciones completas tenemos:
+
+```{r}
+table(complete.cases(dataframe), useNA = "ifany")
+```
+
+Tenemos un total de 3276 observaciones completas, veremos de qué variable hacen falta datos:
+
+```{r}
+table(is.na(dataframe$country))
+```
+
+Efectivamente faltan datos en la columna `country`. Procederemos a eliminar esas observaciones:
+
+```{r}
+dataframe <- dataframe[!is.na(dataframe$country), ]
+```
+
+Ahora, verificamos que tengamos observaciones completas:
+
+```{r}
+table(complete.cases(dataframe), useNA = "ifany")
+```
