@@ -89,3 +89,13 @@ Ahora, verificamos que tengamos observaciones completas:
 ```{r}
 table(complete.cases(dataframe), useNA = "ifany")
 ```
+
+Continuando con la limpieza, queremos que la columna `type` corresponda a lenguajes de programación `pl`:
+
+```{r}
+dataframe %>% select(type) %>% group_by(type) %>% summarize(n())
+```
+
+```{r}
+dataframe[dataframe$type == "pl" | dataframe$type == "queryLanguage", ]
+```

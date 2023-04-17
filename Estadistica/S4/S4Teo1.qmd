@@ -1,0 +1,118 @@
+---
+title: "S4Teo1"
+format: html
+editor: visual
+---
+
+## Limpieza de la estatura
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("../DD20230331.csv")
+```
+
+```{r}
+nrow(DF)
+```
+
+```{r}
+table(DF$`Estatura (cm)`, useNA = "always")
+```
+
+Para limpiar una variable necesitamos tener claras dos cosas:
+
+-   Política de tratamiento de errores obvios
+
+    -   Invalidar observaciones con errores.
+
+    -   Intentar arreglar los errores obvios:
+
+        -   Re consultar la fuente original.
+
+        -   Suponer que entendemos de alguna manera cómo ocurrió el error (fantasía)
+
+    -   Eliminar el error obvio convirtiéndolo en `NA`
+
+-   Política de tratamiento de datos faltantes
+
+## Vamos a limpiar los datos
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+names(DF)
+```
+
+```{r}
+table(DF$`Estatura (cm)`)
+```
+
+Renombrar los nombres de las columnas que tienen nombres raros
+
+```{r}
+DF %>% rename(Estatura = `Estatura (cm)`) -> DF
+```
+
+Veamos que cosas están fuera de rango.
+
+```{r}
+table(DF$Estatura < 45, useNA = 'ifany') # Si es menor de 45 cm
+table(DF$Estatura > 280, useNA = 'ifany') # Si es mayor a 280 cm
+```
+
+Comenzamos por los pequeños:
+
+```{r}
+DF[DF$Estatura < 45, ]
+```
+
+El displayer esconde los valores `NA` para una mejor limpieza
+
+```{r}
+DF %>% filter(Estatura < 2.8)
+```
+
+Parece que todas las estaturas menores que 45, son menores o iguales a 2.8
+
+Usando R base se puede manejar de manera sencilla.
+
+```{r}
+DF$Estatura[DF$Estatura < 2.8 & !is.na(DF$Estatura)] <- 
+  DF$Estatura[DF$Estatura < 2.8 & !is.na(DF$Estatura)]*100
+```
+
+Comprobamos que haya funcionado la multiplicación
+
+```{r}
+table(DF$Estatura < 45, useNA = 'ifany')
+```
+
+Ahora las demasiado altas
+
+```{r}
+DF %>% filter(Estatura > 280)
+```
+
+Este es irrecuperable (creer en la ficción que este dato está en milímetros es mucha chamba) vamos a meterle un NA
+
+```{r}
+DF$Estatura[which(DF$Estatura > 1000)] <- NA
+```
+
+Veámoslo en un histograma
+
+```{r}
+hist(DF$Estatura)
+```
+
+Interesting...
+
+```{r}
+hist(DF$Estatura, breaks = 115:210, las =3)
+```
