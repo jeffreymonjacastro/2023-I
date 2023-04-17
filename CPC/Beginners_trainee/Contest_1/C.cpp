@@ -9,13 +9,13 @@ int main(){
 
     if (n == 1){
         cout<<n<<" ";
-    } else if (n > 4){
-        m = n;
+    } else if (n > 3){
+        m = n-1;
         for (int i = 0; i < n; ++i) {
             if (m % 2 == 0) {
                 if (m == 2) {
                     cout << m << " ";
-                    m = n - 1;
+                    m = n;
                 } else {
                     cout << m << " ";
                     m -= 2;
@@ -23,7 +23,7 @@ int main(){
             } else {
                 if (m == 1) {
                     cout << m << " ";
-                    m = n - 1;
+                    m = n;
                 } else {
                     cout << m << " ";
                     m -= 2;
