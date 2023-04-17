@@ -16,8 +16,8 @@ library(readr)
 
 Luego, se importa la base de datos con la librería `readr`, asignando a una variable llamada `DF`.
 
-```{r, eval=FALSE}
-DF <- read_csv("Programming_languages.csv")
+```{r, eval=FALSE, warning=FALSE}
+dataframe <- read_csv("Programming_languages.csv")
 ```
 
 Llamaremos la función `problems()` para detectar si hay algún error en el `dataframe`.
@@ -28,8 +28,23 @@ problems()
 
 Como los errores presentados son de variables que no consideramos en este estudio, procedemos a ignorarlos, ya que no serán relevantes.
 
-Luego, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Rank`, `Type`, `numberOfJobs`, `numberOfUsers` y `Country`.
+Luego, veremos cuántas filas y columnas tiene nuestro `dataframe`:
 
 ```{r}
+nrow(dataframe)
+ncol(dataframe)
+```
 
+Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos. Esto se puede ver al ejecutar el comando `names()`. Se muestran las primeros 20:
+
+```{r}
+names(dataframe[0:20])
+```
+
+Por ello, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Rank`, `Type`, `numberOfJobs`, `numberOfUsers` y `Country`.
+
+Vamos a eliminar las columnas que no necesitemos:
+
+```{r}
+  
 ```
