@@ -1,0 +1,35 @@
+---
+title: "DB2_limpieza"
+format: html
+editor: visual
+---
+
+## Limpieza de datos 
+
+Se procederá a limpiar la base de datos `Programming_languages.csv`.
+
+Primero, se verifica que las librerías estén instaladas:
+
+```{r}
+library(readr)
+```
+
+Luego, se importa la base de datos con la librería `readr`, asignando a una variable llamada `DF`.
+
+```{r, eval=FALSE}
+DF <- read_csv("Programming_languages.csv")
+```
+
+Llamaremos la función `problems()` para detectar si hay algún error en el `dataframe`.
+
+```{r, eval=FALSE}
+problems()
+```
+
+Como los errores presentados son de variables que no consideramos en este estudio, procedemos a ignorarlos, ya que no serán relevantes.
+
+Luego, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Rank`, `Type`, `numberOfJobs`, `numberOfUsers` y `Country`.
+
+```{r}
+
+```
