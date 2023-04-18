@@ -12,11 +12,12 @@ Primero, se verifica que las librerías estén instaladas:
 
 ```{r}
 library(readr)
+library(dplyr)
 ```
 
 Luego, se importa la base de datos con la librería `readr`, asignando a una variable llamada `DF`.
 
-```{r, eval=FALSE, warning=FALSE}
+```{r, warning=FALSE}
 dataframe <- read_csv("Programming_languages.csv")
 ```
 
@@ -35,7 +36,7 @@ nrow(dataframe)
 ncol(dataframe)
 ```
 
-Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos. Esto se puede ver al ejecutar el comando `names()`. Se muestran las primeros 20:
+Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos.
 
 Por ello, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Type`, `Rank`, `numberOfJobs`, `numberOfUsers` y `Country`.
 
@@ -59,13 +60,7 @@ Ahora, comprobemos cuántas observaciones completas tenemos:
 table(complete.cases(dataframe), useNA = "ifany")
 ```
 
-Tenemos un total de 3276 observaciones completas, veremos de qué variable hacen falta datos:
-
-```{r}
-table(is.na(dataframe$country))
-```
-
-Efectivamente faltan datos en la columna `country`. Procederemos a eliminar esas observaciones:
+Tenemos un total de 3276 observaciones completas porque faltan datos en la columna `country`. Procederemos a eliminar esas observaciones:
 
 ```{r}
 dataframe <- na.omit(dataframe)
@@ -77,13 +72,7 @@ Ahora, verificamos que tengamos observaciones completas:
 table(complete.cases(dataframe), useNA = "ifany")
 ```
 
-Continuando con la limpieza, queremos que la columna `type` corresponda a lenguajes de programación `pl`:
-
-```{r}
-dataframe %>% select(type) %>% group_by(type) %>% summarize(n())
-```
-
-Se eliminan todos los registros que no sean `pl` (programming languages) o `queryLanguage` (Lenguaje de consulta)
+Continuando con la limpieza, queremos que la columna `type` corresponda a lenguajes de programación `pl` o `queryLanguage`, Por lo que se eliminan todos los registros que no sean `pl` (programming languages) o `queryLanguage` (Lenguaje de consulta)
 
 ```{r}
 dataframe <- dataframe[dataframe$type == "pl" | dataframe$type == "queryLanguage",]
@@ -95,8 +84,26 @@ Como resultado, solo nos quedan registros de:
 dataframe %>% select(type) %>% group_by(type) %>% summarize(n()) 
 ```
 
+Aplicamos el filtro: `appeared >= 1945`:
+
+```{r}
+dataframe <- dataframe[dataframe$appeared >= 1945,]
+```
+
+Ahora, se aplicará la restricción: `numberOfUsers >= 10`:
+
+```{r}
+dataframe <- dataframe[dataframe$numberOfUsers > 10,]
+```
+
 El tamaño efectivo sería:
 
 ```{r}
 nrow(dataframe)
+```
+
+Nuestra base de datos limpia quedaría:
+
+```{r}
+dataframe
 ```
