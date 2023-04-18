@@ -37,26 +37,13 @@ ncol(dataframe)
 
 Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos. Esto se puede ver al ejecutar el comando `names()`. Se muestran las primeros 20:
 
-```{r}
-names(dataframe[0:20])
-```
-
 Por ello, procedemos a limpiar nuestro `dataframe` centrándonos en las columnas que nos interesan, las cuales son: `Title`, `Appeared`, `Type`, `Rank`, `numberOfJobs`, `numberOfUsers` y `Country`.
 
 Vamos a eliminar las columnas que no necesitemos:
 
 ```{r}
 # Columnas a conservar
-columnas_conservar <- c("title", "appeared", "type", "rank", "numberOfJobs", "numberOfUsers", "country")
-
-# Obtener las columnas presentes en la base de datos
-columnas_presentes <- colnames(dataframe)
-
-# Identificar las columnas a eliminar
-columnas_eliminar <- setdiff(columnas_presentes, columnas_conservar)
-
-# Eliminar las columnas no deseadas
-dataframe <- dataframe[, -which(colnames(dataframe) %in% columnas_eliminar)]
+dataframe <- select(dataframe, title, appeared, type, rank, numberOfJobs, numberOfUsers, country)
 
 ```
 
@@ -81,7 +68,7 @@ table(is.na(dataframe$country))
 Efectivamente faltan datos en la columna `country`. Procederemos a eliminar esas observaciones:
 
 ```{r}
-dataframe <- dataframe[!is.na(dataframe$country), ]
+dataframe <- na.omit(dataframe)
 ```
 
 Ahora, verificamos que tengamos observaciones completas:
@@ -96,6 +83,20 @@ Continuando con la limpieza, queremos que la columna `type` corresponda a lengua
 dataframe %>% select(type) %>% group_by(type) %>% summarize(n())
 ```
 
+Se eliminan todos los registros que no sean `pl` (programming languages) o `queryLanguage` (Lenguaje de consulta)
+
 ```{r}
-dataframe[dataframe$type == "pl" | dataframe$type == "queryLanguage", ]
+dataframe <- dataframe[dataframe$type == "pl" | dataframe$type == "queryLanguage",]
+```
+
+Como resultado, solo nos quedan registros de:
+
+```{r}
+dataframe %>% select(type) %>% group_by(type) %>% summarize(n()) 
+```
+
+El tamaño efectivo sería:
+
+```{r}
+nrow(dataframe)
 ```
