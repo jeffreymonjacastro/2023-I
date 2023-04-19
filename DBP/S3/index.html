@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Veterinaria de Mascotas</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Perros</h1>
+        <form action="Registrar_perro.php" method="POST">
+            <p>Sistema de Identificacion Perruno</p>
+            <label>Ingresar Codigo<label><Input name = "Codigo" Type="Text">
+            <label>Ingresar Nombre</label><Input name = "Nombre" Type="Text">
+            <label>Fecha de Nacimiento</label><Input name= "FechNac" Type = "Date">
+            <label>Genero</label>
+                <Input name="Genero" Type = "Radio"> Macho
+                <Input name= "Genero" Type = "Radio"> Hembra
+            <label>Seleccione Raza</label>
+            <Select name = "Raza">
+                <Option value = "Pitbull"> Pitbull
+                <Option value = "Bulldog"> Bulldog
+                <Option value = "Shichu"> Shichu
+                <Option value = "Pequines"> Pequines
+                <Option value = "San Bernardo"> San Bernardo
+                <Option value = "Chiguahua"> Chiguahua
+            </Select>
+            <label>Subir Foto</label>
+            <Input Type = "file" name = "Foto">
+                <Input name= "Registrar" Type = Submit value = "Registrar">
+                <Input Type = Submit value = "Cancelar">
+        </form>
+    </div>
+</body>
+</html>
