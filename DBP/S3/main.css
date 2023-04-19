@@ -1,17 +1,72 @@
+body {
+	margin: 0;
+	font-family: sans-serif;
+	background-color: #c99;
+}
+
+.main {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 60vw;
+	height: 65vh;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	display: grid;
+	grid-template-rows: 20% 80%;
+}
+
+.title{
+	width: 100%;
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.title h1 {
+	margin: 20px 0;
+}
+
+.botones{
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
 .boton {
-	display: inline-block;
-	width: 200px;
-	height: 200px;
-	background-size: cover;
+	position: relative;
+	width:400px;
+	height: 400px;
+}
+
+.imagen {
 	transition: filter 0.3s ease-in-out;
-  }
-  .boton:hover {
-	filter: brightness(80%);
-  }
-  /* Estilos específicos para cada botón */
-  #registro {
-	background-image: url("registro.jpg");
-  }
-  #busqueda {
-	background-image: url("busqueda.jpg");
-  }
+}
+
+.imagen:hover {
+	filter: brightness(50%);
+}
+
+.texto {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: white;
+	transform: translate(-50%, -50%);
+	font-size: 2em;
+	text-shadow: 1px 1px 2px black;
+	text-align: center;
+}
+
+.botones img {
+	display: block;
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+
