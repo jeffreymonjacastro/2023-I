@@ -4,20 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="consulta.css">
     <title>Consultar Perro</title>
 </head>
 <body>
-    <h1>Consulta de Perro</h1>
+    <main class="main">
+        <div class="container">
+            <div class="title">
+                <h1>Consulta de Perro</h1>
+            </div>
 
-    <form action="Consultar_perro.php" method="GET">
-        <p>Sistema de Identificación Perruno</p>
-        <label>Ingresar Nombre a buscar</label>
-        <Input Type = Text name = "Nombre" >
-        <Input Type = Submit value = "Buscar">
-    </form>
+            <div class="formulario">
+                <form action="Consultar_perro.php" method="GET">
+                    <p>Sistema de Identificación Perruno</p>
+                    <label>Ingresar Nombre a buscar</label>
+                    <Input Type = Text name = "Nombre" >
+                    <Input Type = Submit value = "Buscar">
+                </form>
+            </div>
 
-    <div class="button">
-        <a href="index.html">Volver</a>
-    </div>
+            <div class="button">
+                <a href="index.html">Volver</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

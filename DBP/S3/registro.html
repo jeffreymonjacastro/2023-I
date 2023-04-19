@@ -3,37 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="registro.css">
     <title>Veterinaria de Mascotas</title>
 </head>
 <body>
-    <div class="container"> 
-        <h1>Registro de Perross</h1>
-        <form action="Registrar_Perro.php" method="post">
-            <p>Sistema de Identificacion Perruno</p>
-            <label>Ingresar Codigo<label><Input name = "Codigo" Type="Text">
-            <label>Ingresar Nombre</label><Input name = "Nombre" Type="Text">
-            <label>Fecha de Nacimiento</label><Input name= "FechNac" Type = "Date">
-            <label>Genero</label>
-                <Input name="Genero" Type = "Radio"> Macho
-                <Input name= "Genero" Type = "Radio"> Hembra
-            <label>Seleccione Raza</label>
-            <Select name = "Raza">
-                <Option value = "Pitbull"> Pitbull
-                <Option value = "Bulldog"> Bulldog
-                <Option value = "Shichu"> Shichu
-                <Option value = "Pequines"> Pequines
-                <Option value = "San Bernardo"> San Bernardo
-                <Option value = "Chiguahua"> Chiguahua
-            </Select>
-            <label>Subir Foto</label>
-            <Input Type = "file" name = "Foto">
-            <Input name= "Registrar" Type = Submit value = "Registrar">
-            <Input Type = Submit value = "Cancelar">
-        </form>
+    <div class="main">
+        <div class="container">
+            <div class="title">
+                <h1>Registro de Perross</h1>
+            </div>
+            
+            <div class="formulario">
+                <form action="Registrar_Perro.php" method="post">
+                    <p>Sistema de Identificacion Perruno</p>
+                    <label>Ingresar Codigo<label><Input name = "Codigo" Type="Text"><br>
+                    <label>Ingresar Nombre</label><Input name = "Nombre" Type="Text"><br>
+                    <label>Fecha de Nacimiento</label><Input name= "FechNac" Type = "Date"><br>
+                    <label>Genero</label>
+                        <Input name="Genero" Type = "Radio"> Macho
+                        <Input name= "Genero" Type = "Radio"> Hembra
+                    <br>
+                    <label>Seleccione Raza</label>
+                    <Select name = "Raza">
+                        <Option value = "Pitbull"> Pitbull
+                        <Option value = "Bulldog"> Bulldog
+                        <Option value = "Shichu"> Shichu
+                        <Option value = "Pequines"> Pequines
+                        <Option value = "San Bernardo"> San Bernardo
+                        <Option value = "Chiguahua"> Chiguahua
+                    </Select>
+                    <br>
+                    <label>Subir Foto</label>
+                    <Input Type = "file" name = "Foto"><br>
+                    <Input name= "Registrar" Type = Submit value = "Registrar">
+                    <Input Type = Submit value = "Cancelar">
+                </form>
+            </div>
 
-        <div class="button">
-            <a href="consulta.html">Cambiar página</a>
+            <div class="button">
+                <a href="consulta.html">Cambiar página</a>
+            </div>
         </div>
     </div>
 </body>
