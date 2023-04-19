@@ -1,0 +1,17 @@
+.boton {
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	background-size: cover;
+	transition: filter 0.3s ease-in-out;
+  }
+  .boton:hover {
+	filter: brightness(80%);
+  }
+  /* Estilos específicos para cada botón */
+  #registro {
+	background-image: url("registro.jpg");
+  }
+  #busqueda {
+	background-image: url("busqueda.jpg");
+  }

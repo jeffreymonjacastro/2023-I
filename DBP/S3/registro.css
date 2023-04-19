@@ -1,0 +1,29 @@
+body {
+	background-color: #0077be;
+}
+
+.formulario {
+	background-color: #ffffff;
+	border-radius: 10px;
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+h2 {
+	text-align: center;
+}
+
+label {
+	display: inline-block;
+	width: 100px;
+}
+
+input[type="text"], input[type="number"], input[type="file"] {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+input[type="submit"] {
+	margin-top: 10px;
+}
