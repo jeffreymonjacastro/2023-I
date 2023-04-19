@@ -7,9 +7,9 @@
     <title>Veterinaria de Mascotas</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container"> 
         <h1>Registro de Perros</h1>
-        <form action="Registrar_perro.php" method="POST">
+        <form action="Registrar_Perro.php" method="post">
             <p>Sistema de Identificacion Perruno</p>
             <label>Ingresar Codigo<label><Input name = "Codigo" Type="Text">
             <label>Ingresar Nombre</label><Input name = "Nombre" Type="Text">
@@ -28,9 +28,13 @@
             </Select>
             <label>Subir Foto</label>
             <Input Type = "file" name = "Foto">
-                <Input name= "Registrar" Type = Submit value = "Registrar">
-                <Input Type = Submit value = "Cancelar">
+            <Input name= "Registrar" Type = Submit value = "Registrar">
+            <Input Type = Submit value = "Cancelar">
         </form>
+
+        <div class="button">
+            <a href="consulta.html">Cambiar página</a>
+        </div>
     </div>
 </body>
 </html>
