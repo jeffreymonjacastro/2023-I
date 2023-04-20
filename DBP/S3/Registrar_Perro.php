@@ -15,4 +15,5 @@ $sql .= "VALUES ('$v1', '$v2', '$v4', '$v5', '$v3', '$v6' )";
 $result = mysqli_query($link, $sql);
 //Mensaje de conformidad
 echo "<p>Ok, datos ingresados </p>";
+echo "<a href="'index.html'">"
 ?>
