@@ -1,0 +1,20 @@
+---
+title: "S4Lab4"
+format: html
+editor: visual
+---
+
+## Juas
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("DD20230421.csv")
+```
+
+```{r}
+DF[,]
+```
