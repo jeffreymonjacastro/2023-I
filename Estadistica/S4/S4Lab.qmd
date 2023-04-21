@@ -187,7 +187,37 @@ table(DF$Per[grep("[0-9][0-9][0-9][0-9]-[0-2]", DF$Per)])
 ¿Qué cosas no satisfacen el patrón? (podemos ser más estrictos)
 
 ```{r}
-table(DF$Per[-grep("[0-9][0-9][0-9][0-9]-[0-2]", DF$Per)])
+table(DF$Per[-grep("20[1-2][0-9]-[0-2]", DF$Per)])
+```
+
+Vamos a colocar `NA` en esas observaciones (QUÉ FLOJERA ARREGLAR SJJS)
+
+```{r}
+DF$Per[-grep("20[1-2][0-9]-[0-2]", DF$Per)] <- NA
+```
+
+```{r}
+table(DF$Per)
+```
+
+Salvo que quedan dos problemas sutiles, que debemos resolver.
+
+El valor `2023-2` está en el futuro. Claramente es un error.
+
+El otro detalle es que el conjunto de datos diversos se usó por primera vez en `2020-1` , eso quiere decir que hay algunos valores inválidos que debemos eliminar.
+
+```{r}
+DF$Per[DF$Per == "2023-2"] <- NA
+DF$Per[DF$Per == "2013-1"] <- NA
+DF$Per[DF$Per == "2018-2"] <- NA
+DF$Per[DF$Per == "2019-1"] <- NA
+DF$Per[DF$Per == "2019-2"] <- NA
+```
+
+Eliminar estos errores es más delicado, ya que requiere información adicional a la que los datos nos dan.
+
+```{r}
+table(DF$Per)
 ```
 
 ### Sec
