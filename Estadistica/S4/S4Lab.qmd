@@ -16,5 +16,210 @@ DF <- read_csv("DD20230421.csv")
 ```
 
 ```{r}
-DF[,]
+info(DF)
 ```
+
+Recordemos que las columnas 19 y 20 estaban vacías. Vamos a eliminarlas
+
+```{r}
+all(is.na(DF[, c(19,20)]))
+```
+
+En efecto están vacías, vamos a eliminarlas
+
+```{r}
+DF <- DF[,-c(19,20)]
+```
+
+Vamos a hacer lo mismo para las filas. Podría ser que tengamos algunas filas vacías.
+
+::: callout-tip
+En R, los valores `TRUE` y `FALSE` se interpretan como `1` y `0` respectivamente cuando aparecen en operaciones aritméticas. Esto se conoce como *promoción automática de tipos (typecasting)*
+:::
+
+```{r}
+sum(rowSums(is.na(DF)) == 18)
+```
+
+Hay `r sum(rowSums(is.na(DF)) == 18)` filas vacías.
+
+```{r}
+DF <- DF[rowSums(is.na(DF)) < 18,]
+```
+
+Nuestro tamaño de muestra ahora es `r nrow(DF)`
+
+```{r}
+names(DF)
+```
+
+Vamos a cambiar esos nombres
+
+```{r}
+DF %>% rename(Per = Período,
+              Sec = Sección,
+              Estatura = `Estatura (cm)`,
+              Peso = `Peso (kg)`,
+              Signo = `Signo del zodiaco`,
+              Tiempo = `Tiempo de reacción`,
+              Videojuegos = `Juega videojuegos`,
+              Deporte = `Hace deporte`,
+              Color = `Color favorito`,
+              Talla = `Talla de zapato`,
+              Polo = `Talla de polo`,
+              Sistema = `Sistema operativo`,
+              Fecha = `Fecha de nacimiento`) -> DF
+```
+
+## Libreta de códigos
+
+-   Per
+
+-   Sec
+
+-   Ciclo
+
+-   Edad
+
+-   Estatura
+
+-   Peso
+
+-   Signo
+
+-   Sexo
+
+-   Carrera
+
+-   Tiempo
+
+-   Videojuegos
+
+-   Deporte
+
+-   Color
+
+-   Zapato
+
+-   Polo
+
+-   Sistema
+
+-   Fecha
+
+-   Indicaciones
+
+## Limpieza de cada variable
+
+### Per
+
+Veamos qué hay dentro de la variable
+
+```{r}
+table(DF$Per)
+
+```
+
+Claramente hay errores en la representación, pero algunos parecen ser fácil de arreglar
+
+El formato debería ser `YYYY-C` donde `YYYY` corresponde a un año "reciente" y `C` corresponde al ciclo, que puede ser cualquiera de {0,1,2}.
+
+Para ver si podemos rescatar algunos valores vamos a usar la función `grep()` y sus variantes.
+
+```{r}
+grep("2019-1", DF$Per)
+```
+
+La función `grep` retorna los índices del arreglo donde el patrón ocurre
+
+```{r}
+DF[grep("2019-1", DF$Per),]
+```
+
+Deberíamos poder salvar sin mayor problema aqyellos datos que usan "." o " " en vez de "-"
+
+```{r}
+table(gsub("\\.", "-", DF$Per))
+```
+
+```{r}
+DF$Per <- gsub("\\.", "-", DF$Per)
+```
+
+Vamos a sustituir los " " por "-"
+
+```{r}
+table(gsub("\\ ", "-", DF$Per))
+```
+
+```{r}
+DF$Per <- gsub("\\ ", "-", DF$Per)
+```
+
+Vamos a sustituir más de un guión por un solo guión
+
+```{r}
+table(gsub("-*-", "-", DF$Per))
+```
+
+```{r}
+DF$Per <- gsub("-*-", "-", DF$Per)
+```
+
+Vamos a reparar la entrada que tiene un "I" en vez de un "1".
+
+```{r}
+DF$Per <- gsub("I", "1", DF$Per)
+```
+
+La variable está casi limpia. Falta lidiar con cosas que no tenemos idea de cómo arreglar.
+
+```{r}
+table(DF$Per)
+```
+
+Vamos a ver qué cosas satisfacen el patrón
+
+```{r}
+table(DF$Per[grep("[0-9][0-9][0-9][0-9]-[0-2]", DF$Per)])
+```
+
+¿Qué cosas no satisfacen el patrón? (podemos ser más estrictos)
+
+```{r}
+table(DF$Per[-grep("[0-9][0-9][0-9][0-9]-[0-2]", DF$Per)])
+```
+
+### Sec
+
+### Ciclo
+
+### Edad
+
+### Estatura
+
+### Peso
+
+### Signo
+
+### Sexo
+
+### Carrera
+
+### Tiempo
+
+### Videojuegos
+
+### Deporte
+
+### Color
+
+### Zapato
+
+### Polo
+
+### Sistema
+
+### Fecha
+
+### Indicaciones
