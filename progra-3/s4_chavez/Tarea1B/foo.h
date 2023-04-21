@@ -1,25 +1,36 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <type_traits>
 
 using namespace std;
-
-
-
-
 
 class PyList{
 private:
     int length; // El largo de la lista
 
-    std::vector<std::string> myList;
+    vector<string> myList;
+
+    string toString() const {
+        string result = "[";
+        for (const auto& elem : myList) {
+            result += elem + ",";
+        }
+
+        result.back() = ']';
+        return result;
+    }
 
     template<typename T>
     void addToList(T elem) {
         if constexpr (is_same<T, PyList>()) {
             myList.push_back(elem.toString());
         } else {
-            myList.push_back(to_string(elem));
+            if constexpr (is_same<T,const char*>()){
+                myList.push_back(elem);
+            } else {
+                myList.push_back(to_string(elem));
+            }
         }
     }
 
@@ -28,18 +39,13 @@ private:
         if constexpr (is_same<T, PyList>()) {
             myList.push_back(elem.toString());
         } else {
-            myList.push_back(to_string(elem));
+            if constexpr (is_same<T,const char*>()){
+                myList.push_back(elem);
+            } else {
+                myList.push_back(to_string(elem));
+            }
         }
         addToList(rest...);
-    }
-
-    string toString() const {
-        string result = "[";
-        for (const auto& elem : myList) {
-            result += elem + ",";
-        }
-        result.back() = ']';
-        return result;
     }
 
 
@@ -56,33 +62,28 @@ public:
         addToList(args...);
     }
 
-//    template<typename T>
-//    T get(int index) const {
-//        static_assert(myList.size() > index, "Index out of range");
-//        if constexpr (std::is_same<T, int>) {
-//            return std::stoi(myList[index]);
-//        } else if constexpr (std::is_same<T, double>) {
-//            return std::stod(myList[index]);
-//        } else if constexpr (std::is_same<T, char>) {
-//            return myList[index][0];
-//        } else if constexpr (std::is_same<T, const char*>) {
-//            return myList[index].c_str();
-//        } else if constexpr (std::is_same<T, bool>) {
-//            return (myList[index] == "true" || myList[index] == "1");
-//        } else if constexpr (std::is_same<T, PyList>) {
-//            return PyList(myList[index]);
-//        } else {
-//            static_assert(std::is_same<T, void>, "Invalid type");
-//        }
-//    }
-
-    void print() const {
-        for (const auto& elem : myList) {
-            cout << elem << " ";
-        }
-        cout << std::endl;
+    vector<string> getMyList(){
+        return myList;
     }
 
+    template<typename T>
+    T get(int index) const {
+        if constexpr (is_same<T, int>()) {
+            return stoi(myList[index]);
+        } else if constexpr (is_same<T, double>()) {
+            return stod(myList[index]);
+        } else if constexpr (is_same<T, char>()) {
+            return myList[index][0];
+        } else if constexpr (is_same<T, const char*>()) {
+            return myList[index].c_str();
+        } else if constexpr (is_same<T, bool>()) {
+            return (myList[index] == "true" || myList[index] == "1");
+        } else if constexpr (is_same<T, PyList>()) {
+            return PyList(myList[index]);
+        } else {
+            static_assert(is_same<T, void>(), "Invalid type");
+        }
+    }
 
 
     // Método append para agregar elementos

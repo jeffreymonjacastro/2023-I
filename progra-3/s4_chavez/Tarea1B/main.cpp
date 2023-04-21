@@ -27,28 +27,14 @@
 
 
 int main(){
-    PyList l0;
+    PyList l0(1,2,3);
     PyList l1(1,2.2, 'a', "Hello", true, l0);
+    PyList l2 (1, 2.2, 3, l0, l1);
 
-
+    cout<<l1<<endl;
 
     cout << len(l1) <<endl;
 
-
-
-
-
-
-
-
-
-
-
-
-//    auto vect = vectupla(1,2.2,'a',"Hello",true, l1);
-////
-//    for(auto i:){
-//        imprimirTupla(i);
-//    }
+    return 0;
 
 }
