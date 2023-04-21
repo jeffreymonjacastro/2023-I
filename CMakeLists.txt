@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 include_directories(progra-3)
 
-add_executable(2023_I progra-3/s4_chavez/teo.cpp)
+add_executable(2023_I progra-3/s4_chavez/sizeof.cpp)
 
 add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
