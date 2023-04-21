@@ -220,7 +220,46 @@ Eliminar estos errores es más delicado, ya que requiere información adicional 
 table(DF$Per)
 ```
 
-### Sec
+Como la variable `Per` es categórica ordinal, podría ser sensato mostrar un diagrama de barras.
+
+```{r}
+barplot(table(DF$Per))
+```
+
+Podemos notar, tanto en la tabla como en el diagrama, que falta el ciclo `2021-0`, o no se usó datos diversos o no se abrió la materia
+
+Vamos a convertir a la variable `Per` a `factor` (categórica ordinal) y vamos a reflejar todos los niveles que realmente han debido aparecer.
+
+```{r}
+DF$Per <- factor(DF$Per, levels= c("2020-1","2020-2","2021-0","2021-1","2021-2","2022-0","2022-1","2022-2","2023-0","2023-1"), ordered = TRUE)
+```
+
+```{r}
+table(DF$Per, useNA = 'ifany')
+```
+
+```{r}
+barplot(table(DF$Per), las = 3)
+```
+
+```{r}
+barplot(table(DF$Per), 
+        xlab = "Período", 
+        ylab = "Cantidad de Personas", 
+        main = "Número de personas registradas por período", 
+        sub = paste("Total de valores válidos:", 
+                    sum(!is.na(DF$Per)), 
+                    "de una muestra con", 
+                    nrow(DF), "observaciones"),
+        col = c("lightgreen", "lightgreen", "red"), 
+        cex.names = 0.6,)
+leyend("topleft", 
+       legend = c("Ciclo regular", "Veranito"), 
+       fill = c("lightgreen", "red"),
+       bty = "n")
+```
+
+### Sec 
 
 ### Ciclo
 
