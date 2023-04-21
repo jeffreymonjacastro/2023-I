@@ -116,3 +116,53 @@ Interesting...
 ```{r}
 hist(DF$Estatura, breaks = 115:210, las =3)
 ```
+
+Claramente hay un problema con el último dígito de la estatura.
+
+Veamos que ese realmente es el caso.
+
+```{r}
+DF$UltimoDigitoEst <- DF$Estatura - 10*(DF$Estatura %% 10)
+```
+
+```{r}
+hist(DF$UltimoDigitoEst, breaks = 1:10)
+```
+
+Este sesgo inesperado es ***imposibl**e* de arreglar
+
+## Modos de acceso para una tabla
+
+-   Por índices
+
+-   Lógico
+
+-   Por exclusión de índices
+
+-   Por nombre
+
+```{r}
+DFA <- data.frame(A = c(1,2,3), B = c(4,NA,6), C = c(7,8,9), D = c(10,NA,NA))
+```
+
+```{r}
+DFA[,]
+```
+
+Extraer por índices mediante vectores
+
+```{r}
+DFA[c(2,3), c(2,3)]
+```
+
+Evitar algunas columnas mediante sus índices
+
+```{r}
+DFA[-c(3,1), -3]
+```
+
+Subsetting (Se muestra los casos que se cumplan y los NA)
+
+```{r}
+DFA[DFA$A >=2, ]
+```
