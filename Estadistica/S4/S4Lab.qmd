@@ -259,7 +259,13 @@ leyend("topleft",
        bty = "n")
 ```
 
-### Sec 
+Podemos observar que en los ciclos 0 el número de personas reportadas es menor, estos ciclos corresponden a los ciclos de verano mientras que los demás corresponden a ciclos regulares y en ellos se puede apreciar el crecimiento de la universidad.
+
+El ciclo 2021-0 no sabemos si se abrió el curso de Estadística en verano o si habiéndose abierto, no se usó datos diversos. Lo que podemos afirmar es que no se registraron entradas con ese perido.
+
+Esa gráfica está muy lejos de estar perfecta, vamos a mejorarla.
+
+### Sec
 
 ### Ciclo
 
