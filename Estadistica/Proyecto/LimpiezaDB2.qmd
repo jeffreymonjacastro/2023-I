@@ -23,7 +23,7 @@ dataframe <- read_csv("Programming_languages.csv")
 
 Llamaremos la función `problems()` para detectar si hay algún error en el `dataframe`.
 
-```{r, eval=FALSE}
+```{r}
 problems()
 ```
 

@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Juas
+## Lab S4
 
 ```{r}
 library(readr)
@@ -243,6 +243,8 @@ table(DF$Per, useNA = 'ifany')
 barplot(table(DF$Per), las = 3)
 ```
 
+Esa gráfica está muy lejos de estar perfecta, vamos a mejorarla.
+
 ```{r}
 barplot(table(DF$Per), 
         xlab = "Período", 
@@ -262,9 +264,33 @@ leyend("topleft",
 
 Podemos observar que en los ciclos 0 el número de personas reportadas es menor, estos ciclos corresponden a los ciclos de verano mientras que los demás corresponden a ciclos regulares y en ellos se puede apreciar el crecimiento de la universidad.
 
-El ciclo 2021-0 no sabemos si se abrió el curso de Estadística en verano o si habiéndose abierto, no se usó datos diversos. Lo que podemos afirmar es que no se registraron entradas con ese perido.
+El ciclo 2021-0 no sabemos si se abrió el curso de Estadística en verano o si habiéndose abierto, no se usó datos diversos. Lo que podemos afirmar es que no se registraron entradas con ese periodo.
 
-Esa gráfica está muy lejos de estar perfecta, vamos a mejorarla.
+¿Cuál es la moda del ciclo?
+
+Recordemos que el ciclo es categórica ordinal
+
+```{r}
+(table(DF$Per))[table(DF$Per) == max(table(DF$Per))]
+```
+
+::: callout-note
+**Multimodalidad**
+
+```{r}
+X <- c(19,25,19,18,19,25,25,18)
+```
+
+```{r}
+table(X)
+```
+
+```{r}
+which.max(table(X))
+```
+
+Esto no ve que el 25 también tiene frecuencia 3, ya que considera solamente al primero
+:::
 
 ### Sec
 
@@ -273,6 +299,10 @@ Esa gráfica está muy lejos de estar perfecta, vamos a mejorarla.
 ### Edad
 
 ### Estatura
+
+```{r}
+(table(DF$Estatura))[table(DF$Estatura) == max(table(DF$Estatura))]
+```
 
 ### Peso
 
