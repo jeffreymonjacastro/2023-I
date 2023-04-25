@@ -48,10 +48,11 @@ dataframe <- select(dataframe, title, appeared, type, rank, numberOfJobs, number
 
 ```
 
-El resultado de este proceso sería:
+Renombraremos cada variable para su mejor manipulación:
 
 ```{r}
-names(dataframe)
+infor(dataframe)
+
 ```
 
 Ahora, comprobemos cuántas observaciones completas tenemos:
@@ -105,5 +106,5 @@ nrow(dataframe)
 Nuestra base de datos limpia quedaría:
 
 ```{r}
-dataframe
+dataframe %>% select(country) %>% group_by(country) %>% summarize(n()) 
 ```

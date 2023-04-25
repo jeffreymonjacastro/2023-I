@@ -290,6 +290,20 @@ which.max(table(X))
 ```
 
 Esto no ve que el 25 también tiene frecuencia 3, ya que considera solamente al primero
+
+```{r}
+(table(X))[table(X) == max(table(X))]
+```
+
+De aquí podemos concluir que X tiene dos modas (es bimodal) y estas valen 19 y 25
+:::
+
+::: callout-note
+## Ejercicio
+
+Qué pueden decir sobre una variable numérica `Y` tal que toma 7 valores diferentes en 30 observaciones y tiene modas `42` y `96`.
+
+Responder esto es similar a entender un *retrato hablando* como los que salen en las series policiales.
 :::
 
 ### Sec
