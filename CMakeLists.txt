@@ -8,7 +8,7 @@ include_directories(progra-3)
 
 add_executable(2023_I progra-3/s5_chavez/pcs1/Sobrecargas.cpp)
 
-add_executable(pcs progra-3/s5_chavez/pcs1/lab101p2.cpp)
+add_executable(pcs progra-3/s5_chavez/pcs1/lab103p1.cpp)
 
 add_executable(Dayane progra-3/Dayane/main.cpp progra-3/Dayane/foo.h progra-3/Dayane/foo.cpp)
 
