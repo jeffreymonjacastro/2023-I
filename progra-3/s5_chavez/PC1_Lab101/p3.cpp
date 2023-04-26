@@ -9,9 +9,30 @@ using namespace std;
     //    return false;
     //}
 
-template<typename... Ts>
-bool check_sum(Ts... args){
-    return ((args + args == 10) || ...);
+template<typename T1>
+bool check_sum(T1 first, T1 second){
+    if( first + second == 10){
+        return true;
+    }
+    else
+        return false;
+}
+
+
+template<typename T, typename ... Args>
+bool check_sum(T first, Args ... arg){
+    bool vand = false;
+
+    ((first + arg == 10 ? (vand = true) : (arg)), ...);
+
+    if(vand){
+        return true;
+    }
+    else{
+        return check_sum(arg...);
+    }
+
+
 }
 
 int main(){
