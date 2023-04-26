@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(.)
 include_directories(progra-3)
 
-add_executable(2023_I progra-3/s5_chavez/pcs1/Sobrecargas.cpp)
+add_executable(2023_I progra-3/s5_chavez/PC1_Lab101/p3.cpp)
 
 add_executable(pcs progra-3/s5_chavez/pcs1/lab103p1.cpp)
 
