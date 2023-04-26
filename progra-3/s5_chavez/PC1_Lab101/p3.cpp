@@ -15,6 +15,7 @@ bool check_sum(Ts... args){
 }
 
 int main(){
+    cout << check_sum (1,9) << endl;
     cout << check_sum (1 ,2 ,5 ,6 ,7 ,2 ,1 ,3) << endl ;
     cout << check_sum (1 ,2 ,5 ,6 ,7 ,2 ,1 ,1) << endl ;
     cout << check_sum (1 ,2 ,3 ,6 ,6 ,2 ,5 ,5) << endl ;
