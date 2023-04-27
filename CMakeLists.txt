@@ -14,7 +14,7 @@ add_executable(Dayane progra-3/Dayane/main.cpp progra-3/Dayane/foo.h progra-3/Da
 
 add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
-add_executable(vjudge CPC/Beginners_trainee/Contest_1/D.cpp)
+add_executable(vjudge CPC/Beginners_trainee/Clase2/A.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
