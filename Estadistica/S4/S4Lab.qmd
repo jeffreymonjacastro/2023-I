@@ -312,6 +312,23 @@ Responder esto es similar a entender un *retrato hablando* como los que salen en
 
 ### Edad
 
+```{r}
+table(DF$Ciclo)
+```
+
+```{r}
+x <- c(16,30)
+y <- c(0,1000)
+
+plot(DF$Edad, DF$Tiempo
+     , col = "#0000ff"
+     , main = "Edad vs. Tiempo de reacción"
+     , xlab = "Edad (años)"
+     , ylab = "Tiempo de reacción"
+     , xlim = x
+     , ylim = y)
+```
+
 ### Estatura
 
 ```{r}

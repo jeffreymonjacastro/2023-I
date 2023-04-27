@@ -1,0 +1,82 @@
+---
+title: "S5_Teo2704"
+format: html
+editor: visual
+---
+
+## Problemas de cálculo
+
+### R supone que sabes lo que haces
+
+Hay montones de expresiones que **no tienen sentido matemático** pero tienen sentido computacional y R permite usarlas sin ningún problema
+
+```{r}
+#Por ejemplo:
+1:6 + 1:3 + 1:2
+```
+
+What?? Lo que realmente hace R es *reciclar* los elementos del vector más corto hasta llegar al tamaño del vector más largo, de la siguiente forma:\
+\
+(1,2,3,4,5,6) +\
+(1,2,3,1,2,3) \
+(1,2,1,2,1,2)\
+----------------\
+(3,6,7,7,8,11)
+
+Estamos acostumbrados a que la suma es conmutativa, ¿verdad?
+
+```{r}
+1:2 + 1:3 + 1:6
+```
+
+Aquí podemos ver que en R la suma es asociativa a izquierdas. Eso explica la advertencia, el resultado se obtiene por reciclaje (en este caso, incompleto).
+
+(1,2,1) + \
+(1,2,3)\
+--------\
+(2,4,4,2,4,4) +\
+(1,2,3,4,5,6)\
+-----------------\
+(3,6,7,6,9,10)
+
+Operaciones que habitualmente están prohibidas, son perfectamente razonables
+
+```{r}
+# Indeterminaciones
+1/0
+1/Inf
+```
+
+Más contradicciones matemáticas?
+
+```{r}
+# Menos 0 y menos Inf? 
+1/Inf
+1/-Inf
+
+1/(1/Inf)
+1/(1/-Inf)
+
+1/Inf == 1/Inf # 0 es igual a -0
+1/(1/Inf) == 1/(1/-Inf) # Inf NO es igual a -Inf
+```
+
+Algo un poquito más extremo
+
+```{r}
+# Lógico
+a <- 2^52
+b <- a + 1
+a == b
+
+# Ilógico
+a <- 2^53  ##
+b <- a + 1
+a == b
+```
+
+Se cae por el barranco de la insignificancia (2\^53 el máximo) --\> Standard ieee754
+
+```{r}
+(2^53 + 1) - 2^53
+```
