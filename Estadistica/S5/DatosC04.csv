@@ -1,0 +1,551 @@
+Período,Código,Apellido,Nombre,Sección,Ciclo,Edad,Estatura (cm),Peso (kg),Signo del zodiaco,Sexo,Carrera,Tiempo de reacción,Juega videojuegos,Hace deporte,Color favorito,Talla de zapato,Talla de polo
+2020.1,201810606,Teran Panduro,Santiago Nicolas,5,5,18,175,72,Virgo,M,Ing. Mecatronica,289,Si,Si,NA,NA,NA
+2021-2,202010619,Valle Tito,Jan Paul,6,4,18,170,62,Escorpio,M,Ingenieria Industrial,286,si,si,negro,42,S
+2021-2,201910463,Oré Rosales,Danith Yeing,4,3,21,159,68,Virgo,F,Ingeniería Industrial,NA,NA,NA,NA,NA,NA
+2021-2,202010236,Cornejo Moreno,Camila Xiomara,7,4,18,156,45,Sagitario,F,Ingeniería Ambiental,287,No,Sí,Rojo,36,S
+2021-2,NA,Molina,Brígida,NA,NA,NA,170,65,Acuario,F,NA,312,Sí,No,Anaranjado,38,M
+2021-2,202110141,Garcia Moron,Sebastian Jose,5,2,17,172,70,Capricornio,M,Ingeniería Mecánica,250,Si,Si,Azul,44,S
+2021.1,201810699,Sosa Marcelo,Vania,1,7,20,153,51,Aries,F,Bioingenieria,285,Si,No,NA,NA,NA
+2022-1,201910288,Robledo Chuquicusma,Luis,8,5,21,168,64,Piscis,M,Ciencias de la Computacion,224,Si,Si,Azul,42,M
+2022-1,202010570,Perez Gutierrez,Dilan,5,5,21,1.69,70,Escorpio,M,Ing industrial,277,si,si,Plomo,41,L
+2022-1,201910481,Espinoza Evaristo,Kevin,2,3,22,169,59,Piscis,M,Ingeniería Industrial,362,Sí,No,Plomo,38,S
+2021-2,202110641,Rodriguez Pacheco,Frandy,1,2,18,176,82,Piscis,M,Ingenieria Industrial,273,No,Si,Blanco,42,L
+2021-2,202010442,Arróspide González,Eduardo,1,4,22,173,88,Géminis,M,Ciencia de la Computación,225,Sí,No,Verde,44,M
+2022-1,202110269,Picon Abucci,Francesca Cattterina,1,3,18,174,80,Libra,F,Bioingeniería,282,No,Si,Vino,39,M
+2022-1,2019201499,Siche Eusebio,Xiomara Mayela,8,5,21,160,65,tauro,F,Bioingeniería,283,No,No,rojo,37,M
+2021-2,202010111,NA,Adrian David,5,4,20,175,65,Cancer,M,Ingeniería Mecatrónica,244,Si,No,Azul,41,S
+2021-2,201910108,Castillo Prado,Leonardo Humberto,7,3,21,170,70,Leo,M,Ingeniería Mecatrónica,206,No,Sí,Azul,41.5,M
+2021.1,202010349,Pinto Urrutia,Heather,5,3,18,165,70,Escorpio,F,Electrónica,263,Si,Si,NA,NA,NA
+2021-2,202110770,Zelaya Torrejon,Sebastian Martin,1,2,17,180,79,Capricornio,M,Ingeniería industrial,299,Si,Si,Negro,43,L
+2021.1,201820048,Gonzales Guerrero,Cesar Jean Pierre,NA,6,20,181,90,Escorpio,M,NA,NA,NA,NA,NA,NA,NA
+2022-1,202120407,Orihuela Serafin,David Teofilo,11,2,19,1.65,55,Cancer,M,Ing. Industrial,NA,No,No,NA,41,NA
+2022-1,202120164,Chavez Delao,Frank Joseph,8,2,19,172,61,Libra,M,Ing. Industrial,296,Si,Si,Azul noche,41,M
+2021-2,202020158,Ubaqui Solano,Marjory,6,3,17,160,50,Escorpio,F,Ingeniería Civil,222,No,Sí,Negro,37,S
+2021.2,202010444,Del Maestro Yarlaque,Jose Alonso,2,6,23,170,75,Virgo,M,Ingenieria Electronica,NA,Si,Si,Verde,9.5,L
+2021-2,201910176,Garcia Motta,Brayan Scott,5,6,19,165,75,Virgo,M,Ingeniería Civil,205,Si,No,Rojo,43,M
+2022-1,202110768,Vivanco Bernuy,Eddie Josué,9,3,19,1.84,75,Aries,M,Bioingenieria,312,Si,No,Verde,42,L
+2022-1,202110145,Gomero Huerta,Diego Fabio,1,3,18,1.74,76,Libra,M,Ing. Ambiental,268,Sí,Sí,Verde,41,L
+2022-1,202110307,Rivas Chavez,Dimael Antonio,5,3,17,170,70,Tauro,M,Ciencias de la computación,240,si,si,azul,43,L
+2022-0,202010193,Arellano Zapata,Jorge,1,5,19,183,NA,Virgo,M,Ingenieria Electrónica,344,si,si,verde,42,M
+2022-1,202020064,Flores Panduro,Carlos Alonso,8,4,19,NA,NA,Aries,M,Ciencia de la computación,359,si,no,negro,43,L
+2022-1,202110121,Flores Godos,Carlos Gabriel,4,3,18,170,65,Leo,M,Ing. Mecatronica,215,Si,Si,Naranja,43,M
+2022-1,202110217,Mendocilla Pariona,Williams Pascual,1,3,17,1.65,79,Sagitario,M,Ing. Quimica,272,si,si,Verde,42,M
+2022-1,202010149,Montero Huamán,Alvaro Sebastián,4,5,20,169,62,Sagitario,M,Ingeniería Mecánica,261,Sí,Sí,Azul,41,S
+2021.1,201810113,Bailon Causso,Marco,1,7,21,172,74,Picis,M,Ing. Mecanica,249,Si,Si,NA,NA,NA
+2021.1,202010213,Caceres Barrientos,Jose Eduardo,3,3,18,179,68,Libra,M,Ing. Mecatrónica,287,Sí,Sí,NA,NA,NA
+2022-1,201810102,Anhuaman Usaqui,Leonardo Ramon,8,9,20,1.7,65,Libra,M,Ing. Mecatrónica,216,Si,Si,Morado,41,L
+2021.1,201720004,Flores Rimac,Christopher,1,5,23,167,70,Piscis,M,Ciencias de la Computación,263,No,Si,NA,NA,NA
+2022-1,202110476,Supo Mamani,Imanol Felix,11,2,18,175,62,Piscis,M,Ing. Industrial,325,Si,Si,Verde,41,M
+2022-1,202010387,Salazar Alva,Rodrigo Gabriel,3,5,19,1.68,65,Sagitario,M,Computer Science,265,Si,No,Cian,42,M
+NA,NA,Chancan Chanca,Sanders,2,4,20,162,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2021-2,201810396,NA,Eddy Jafetd Jaret,6,3,19,175,67,Libra,M,Ingeniería Electrónica,123,Si,Si,Azul,43,L
+2021-2,20201022,Carruitero Hinojosa,Gonzalo,6,4,18,173,65,Géminis,M,Ingeniería Ambiental,NA,NA,NA,NA,NA,NA
+2021-1,202020140,Saldaña Mas,Jelser Arturo,2,3,19,168,60,virgo,M,Ingeniería Civil,273,Sí,Sí,Verde,42,M
+2020-1,202020001,Achic Maldonado,Pablo,10,4,21,170,58,picis,M,Ingenirieria mecanica,255,no,si,negro,40,M
+2022-0,201820141,Mines Campos,Natali Aide,1,5,21,160,52,Cancer,F,Ingeniería Ambiental,274,no,no,Fucsia,38,S
+2021-2,201710276,Martinez Quispe,Mauricio Alexander,5,4,20,179,79,Sagitario,M,Ingenieria Industrial,NA,NA,NA,NA,NA,NA
+2022-1,202010031,Mora Huamanchay,Angel Obed,1,3,18,164,66,NA,M,Ciencia de la Computación,245,Sí,Sí,Negro,40,M
+2021-2,202010603,Chamorro Torres,Jean Piere,2,4,22,173,80,Tauro,M,Ingeniería Electrónica,363,si,si,Verde Azul,41,M
+2021-2,202110796,Quispe Gonzales,Gerard Franco,5,5,20,170,62,Escorpio,M,Ingeniería Mecatrónica,245,No,Sí,Verde,42,M
+2021-2,202010050,Stern Salvatierra,Nicolas,6,4,18,174,59,Escorpio,M,Ingenieria Industrial,NA,No,Si,Azul,41,S
+2022-1,20182009,Herrera Muro,Francesco,5,7,21,180,65,Piscis,M,Bioingeniería,198,Si,No,Azul,42.5,M
+2021.1,201910226,Mendoza Navarro,Emerson Ademir,2,5,19,175,74,Capricornio,M,Ing. Mecatrónica,249,Sí,SÍ,NA,NA,NA
+2022-1,202120209,Espejo Damas,Eliam Jhemima,11,2,19,155,NA,Escorpio,F,Ing. Industrial,381,No,No,Negro,38,M
+2021-2,202020022,Camargo Antonio,Josue Fabrizio,4,3,18,168,59,Tauro,M,Ingeniería Ambiental,266,Sí,No,Negro,41,M
+2021-2,202020109,Mora Montero,Brayan,3,3,18,160,51,Acuario,M,Ingenieria Civil,256,Si,No,Rojo,NA,M
+2022-1,202110519,Carhuaricra Alania,Maritza Fiorella,6,2,18,1.57,49,Piscis,F,Ing. Industrial,318,no,no,Blanco,36,S
+2020.1,201910293,Rodríguez Yagui,Tomás Alberto,1,3,17,167,81,Tauro,M,Bioingeniería,NA,NA,NA,NA,NA,NA
+2022-1,202110396,Zavala Cuya,Evelyn Catalina,1,3,19,165,60,Escorpio,F,Bioningeniería,226,Si,Si,Azul,38,M
+2022-1,202020544,Sivincha Ccalluchi,Yeny Marisol,3,2,18,1.51,48,Aries,F,Ingenieria Industrial,NA,NA,NA,NA,NA,NA
+2021-2,201810148,Espinoza García,Jonathan Manuel,5,8,20,170,70,Capricornio,M,Ingeniería de la energía,263,Si,Si,Negro,42.5,M
+2021.1,201910302,Serrano Campero,Alonso,3,5,19,179,71,Libra,M,Bioingenieria,NA,Si,Si,NA,NA,NA
+2021.1,202010311,Matos Cangalaya,Jeremy Jeffrey,3,3,18,165,62,Virgo,M,Computer Science,306,No,No,NA,NA,NA
+2021.1,20181067,Calderón Meza,Enrique Mario,1,6,20,169,73,Aries,M,Ing. Mecatrónica,201,Sí,Sí,NA,NA,NA
+2021.1,201810223,Quispe Barriga,Sebastian Andres,3,7,19,178,73,Tauro,M,Computer Science,205,Sí,Si,NA,NA,NA
+2022-1,202010211,Burgos Romero,Manuel Alexander,4,5,18,173,75,Libra,M,Ingenieria Mecatronica,217,Si,Si,Rojo,45,L
+2022-1,202120497,Rojas Chipana,Luzsmith Katherine,11,2,19,157,60,Escorpio,F,Ing.Industrial,275,Si,No,Blanco,36,M
+2022-1,202110379,Vásquez Grahammer,Paolo,6,3,19,173,67,Acuario,M,Ciencia de la Computación,326,Si,Si,Verde,42.5,M
+2022-1,202210419,Vera Bonilla,Ángela Milagros,8,3,19,176,68,Escorpio,F,Ingeniería Mecatrónica,222,Si,Si,Turquesa,37.5,M
+2021-2,202020021,Camacho Valencia,Aaron Arturo,6,2,18,163,73,Libra,M,Ciencia de la Computacion,203,Sí,Sí,Negro,43,L
+2021-2,202020057,Diaz Cordova,Kevin Steven,NA,3,21,165,70,Tauro,M,Ingenieria Mecatronica,NA,si,si,negro,41,NA
+2022-1,201820100,Paretto Castre,Angello Italo Gino,2,6,22,1.84,80,Cancer,M,Ing. Quimica,194,Si,Si,Azul,44,M
+2022-1,201920092,Rivera Paredes,Gonzalo Alejandro,2,6,22,171,78,Leo,M,Ing. Mecatrónica,356,Sí,Sí,Verde Limón,44,M
+2022-1,202120120,Calisaya Delgado,Dai Isabel,1,2,17,1.5,55,Piscis,F,Ing. Industrial,229,No,No,Azul,36,S
+2021.1,201710521,Pucuhuanca Sullca,Junior,4,6,20,176,65,Geminis,M,Ing de la Energía,223,No,Sí,NA,NA,NA
+2020.2,202010393,Sanchez Quispe,Dangelo Alexander,5,2,17,175,60,Capricornio,M,Ing. Mecatronica,255,si,no,NA,NA,NA
+2021-2,202020112,Novoa Salazar,Fabian,6,3,21,167,63,Virgo,M,Ingenieria Civil,214,Si,SI,Blanco,41,M
+2020.1,201910017,Vergani Api,Luciano Matteo,2,3,18,160,65,Leo,M,Ing. Mecatrónica,260,si,si,Cian,9.5,M
+2021-2,201920153,Zarate Manosalva,Estefano Mauricio,6,4,21,173,60,Tauro,M,Ingenieria Mecanica,225,No,No,Negro,43,S
+2022-1,202020182,Condori Tolentino,Renzo Antonio,1,3,19,172,73,Acuario,M,Bioingeniería,361,No,Si,Azul,44,L
+2020.2,201910470,Valera Nuñez,Derkhenz ezer,2,4,18,165,69,Libra,M,Ing. mecatronica,268.2,sí,no,NA,NA,NA
+2021-2,202010336,Ortega Celestino,Alejandra Gianella,2,4,18,167,NA,Tauro,F,Ingeniería Industrial,NA,No,No,Azul,42,NA
+2022-1,202110464,Vidalón Ortiz,Leonardo Alonso,1,3,20,170,55,Escorpio,M,Ing. Mecatrónica,235,si,si,verde,41,S
+2021-2,202010225,Catacora Juanillo,Ayelen Alejandra,2,4,17,162,65,capricornio,F,Bioingeniería,295,Si,No,Azul,37,M
+2022-0,202110019,Arroyo Chávez,Nicolás Mateo,1,3,18,186,72,Sagitario,M,Ciencia de la Computación,203,Sí,No,Verde,42,L
+2020.2,202010578,Siesquen Hidalgo,Camila Araceli,2,2,17,163,NA,virgo,F,Ing. Industrial,311,si,si,NA,NA,NA
+2021-1,202110068,Cernades Ames,Renato Aurelio,2,3,17,177,58,Cáncer,M,Ciencias de la computación,195,no,si,Azul,41,M
+2022-1,201710592,Huamani Gallegos,Edwin,5,7,21,166,64,Piscis,M,Ingenieria Ambiental,271,si,si,verde,39,M
+2021.2,202010159,Pacheco,Diego,6,4,18,180,80,Virgo,M,Ciencia de la Computación,201,Si,Si,Azul,10.5,L
+2021-2,201820013,Murga Villalobos,Leslye Milagros,7,6,20,168,57,Tauro,F,Ingenieria Industrial,NA,Si,No,Blanco,37,S
+2021-2,202020015,Basilio Condezo,Gianfranco,7,3,18,178,78,Acuario,M,Ingeniería Civil,NA,Sí,Sí,Azul,44,M
+2021.1,201910313,Tokumura Yagui,Ignacio German,2,5,19,175,63,geminis,M,Ing. Mecatronica,219,si,si,NA,NA,NA
+2021.1,201810178,Huby Ochoa,José Ignacio,2,8,20,165,47,Piscis,M,Ciencias de la Computación,233,Sí,Sí,NA,NA,NA
+2022-1,202110302,Remon Flores,Juaquin Estefano,8,3,17,NA,NA,Géminis,M,Ciencia de la Computación,216,Sí,No,blanco,41,M
+2021.1,202010259,Garcia Castro,Silvana Nicol,5,3,17,175,80,Pisicis,F,Ingeniería Química,237,Sí,Sí,NA,NA,NA
+2021-2,201910142,Del Olmo Dulong,Juan Ignacio,2,5,20,180,82,Cancer,M,Bioingeniería,261,No,Sí,Rojo,42.5,L
+2022-1,202010090,Sigüeñas Velásquez,Francisco Matías,8,5,18,1.75,74,Géminis,M,Ing. Mecatrónica,229,Sí,No,Verde,43,M
+2021-2,202110381,Vela Lazo,Camila Vela,5,2,17,158,54,Piscis,F,Ingeniería Industrial,275,Sí,Sí,Azul,39,S
+2022-1,202110439,Espinoza Hernández,Gabriel Enrique,6,3,18,170,75,Leo,M,Ciencias de la computación,259,si,si,negro,41,L
+2020.2,201710405,Sanchez Barreto,Angelica,1,5,19,162,54,Acuario,F,Ciencia de la Computación,NA,Si,Si,NA,NA,NA
+2021-2,202010614,Mori Ortiz,Pedro Enrique,1,4,20,170,89,Tauro,M,Ciencia de la Computación,316,SI,NO,Azul,41,M
+2021.1,201820128,Colmenares Vera Portocarrero,Jean Carlos,2,6,21,170,52,Geminis,M,Ing. Quimica,337,No,No,NA,NA,NA
+2021-1,202110403,Chu Lao Orrego,Oscar Ryan,10,3,19,185,63,Libra,M,Ciencia de Datos,245,Sí,Sí,Negro,44,L
+2022-1,202010376,Rojas Cerna,Catalina Rebeca,NA,5,18,168,NA,Tauro,F,Bioingenieria,393,Sí,Sí,Azul,36,S
+2022-1,202010366,Rey,NA,5,5,19,175,78,Géminis,M,Ingeniería civil,238,No,Sí,Blanco,43,M
+2021-2,202010356,Quispe Apaza,Diego Randolp,5,4,18,175,65,Acuario,M,Bioingeniería,288,Si,Si,Rojo,43,M
+2021.2,202010060,Camps Vladerrama,Andrea,5,4,19,165,49,Cancer,F,Ingeniería de la Energía,317,No,No,Verde,38,S
+2020.1,201810699,Sosa Marcelo,Vania,1,6,19,153,51,Aries,F,Bioingenieria,340,Si,No,NA,NA,NA
+2021.1,201610403,Vila Centeno,Lennin Cristopher,2,7,23,170,47,Capricornio,M,Ing Industrial,357,Si,No,NA,NA,NA
+2021-2,202020138,Rosales Valderrama,Josue Daniel,5,3,21,185,80,Capricornio,M,Ingenieria mecatronica,220,Sí,Sí,Azul,44,L
+2022-1,202110374,Valle Quinde,Anthony,1,3,17,1.71,65,Tauro,M,Ing. Mecatrónica,378,Si,No,Amarillo,40,M
+2021.1,201910021,Bustamante Mauricio,Frank Calef,2,5,18,180,72,Cancer,M,Ing. Electrónica,211,Si,Si,NA,NA,NA
+2022-1,202020085,Huaraca Chumpitaz,Matthias Aaron,5,4,20,1.68,54,Leo,M,Ingeniería Electrónica,326,Sí,No,Azul,40,M
+2022-1,202110233,Mucha Campos,Sofía Ximena,6,3,18,1.56,56,Piscis,F,Computer Science,268,Sí,Sí,Negro,38,S
+2022-1,202010078,Martinez Bautista,Daniel,6,4,20,168,55,Acuario,M,Ing. Mecanica,201,Si,Si,Verde,41,S
+2022-1,202110323,Romero Tello,Rodrigo,1,3,18,180,70,Virgo,M,Bioingenieria,NA,sí,sí,Anaranjado,42,L
+2020-2,202010505,Pastor Tantaleán,Sebastián Renzo Andre,6,3,18,NA,NA,Capricornio,M,Ingenieria Mecatrónica,293,Si,No,Verde,42,M
+NA,NA,Renom Andara,José Miguel,NA,NA,53,180,NA,Aries,M,NA,269,Sí,No,Verde,11,XXL
+2022-1,201910365,Castro Sanchez,Mauricio Alexandre,8,5,19,1.72,64,Aries,mM,Ing.Industrial,238,Sí,Sí,Azul,42,S
+2022-1,202110756,Christopher Kevin,Regalado Vara,9,3,18,1.8,80,Virgo,M,Ingenieria Industrial,250,No,Si,Celeste,46,L
+2022-1,202110314,Rodriguez Moncca,Ronald Ivan,8,3,18,176,74,Capricornio,M,Ing.Civil,142,si,si,Azul,42,L
+2020.2,201910511,Yupanqui López,Milagros Valeria,3,4,18,160,49,Libra,F,Ciencia de la Computación,270,Si,Si,NA,NA,NA
+2022-1,202110638,Rincón Tejeda,Yamileth,5,3,18,1.65,55,Escorpio,M,Ciencia de la computación,NA,No,No,Rojo,36,M
+2022-1,202110765,Tabraj Morales,Sebastian,1,3,17,1.7,70,Tauro,M,Ing. electronica,395.8,Si,Si,Azul,43,M
+2022-1,202110454,Saba Hanania,Youssef,5,3,18,180,78,Virgo,M,Ing.mecatronica,288,si,si,Negro,44-45,M
+2021.1,202010177,Villarreal Falcón,Mishelle Stephany,1,3,18,158,63,Virgo,F,Ing. Mecatrónica,293,no,si,NA,NA,NA
+2021-2,202010295,Larco Castillo,Uriel Antonio,6,4,18,180,68,Géminis,M,Ingeniería Mecánica,224,Sí,Sí,Negro,44,S
+2022-1,202010548,Ascarza Guerra,Klauss Jefferson,5,5,18,178,55,Leo,M,Ing Industrial,219,Si,Si,Verde,42,M
+2022-1,201920040,Tenorio Ochoa,Jhon,10,3,19,1.6,59,Tauro,M,Ingeniería Mecatrónica,334,no,sí,Verde,41,S
+2021-2,202020133,Rivera Huidobro,Luis Marcelo,7,3,17,167,70,libra,M,Ingeniería Ambiental,295,Si,Si,Negro,8.5,M
+2022-1,202020062,Farfan La Rosa,Edgar Alonso,8,4,19,166,60,NA,M,Ingenieria Quimica,NA,No,Si,Rojo,41,M
+2021-2,202020110,Neyra Chávez,Jesús Daniel,5,3,19,161,65,Libra,M,Ingeniería Electrónica,NA,Si,No,Rojo,42,NA
+2022.1,201820128,Colmenares Vera Portocarrero,Jean Carlos,2,3,22,171,50,Geminis,M,Ingenieria Quimica,283,no,no,Naranja,40,S
+2021.1,201920049,Hernández Ventocilla,Gary Ernesto,4,4,19,175,78,Sagitario,M,Bioingeniería,285,Si,Si,NA,NA,NA
+2021-2,202010273,Gutierrez Gonzales,Santiago Fabian,7,4,19,175,63,Leo,M,Ingieneria Mecatronica,253,si,si,Lima,42,M
+2022-0,202010140,Gutierrez Calderón,Ariel Antonio,1,5,18,172,77,Aries,M,Ingenieria Mecatronica,264,No,Si,Negro,39,L
+2020.1,201910042,Sotelo Guzman,Carolina,3,3,18,156,53,Escorpio,F,Ing. Ambiental,346,No,No,NA,NA,NA
+2022-1,201410312,Zerpa Medina,Manuel Dayveth,8,6,25,172,75,tauro,M,Ingeniería Química,259,Si,Si,Negro,42,L
+2021-2,202010010,Nicolini Pinto,Mateo Jose,5,4,19,188,75,Geminis,M,Ingenieria Industrial,NA,si,si,azul,44,M
+2022-1,202110214,Medina Díaz,Sebastián,10,3,18,161,66,Piscis,M,Ingeniería Industrial,223,Sí,Sí,Cian,41,S
+2021-2,201810218,Peréz Laura,Beatriz,NA,8,21,162,55,Cancer,F,Ingeniería Industrial,273,No,Sí,Rosado,37,S
+2020.1,202010198,Arteta Flores,Pedro Arteta,3,3,17,165,53,Capricornio,M,Ing. Mecatronica,225,Si,Si,NA,NA,NA
+2021-2,202010056,Basaldúa Cornejo,Jimena Samantha,2,4,18,NA,NA,Escorpio,F,Ingeniería Civil,299,Sí,Sí,Morado,36,S
+2020.1,201910431,Tinco Montoya,Guillermo Sebastian,1,3,18,177,79,Acuario,M,Ing. Química,293,Si,Si,NA,NA,NA
+2022-0,201820062,Saldaña Chuquizuta,Paul Arfaxad,1,7,21,165,60,Geminis,M,Bioingenieria,NA,Si,Si,Negro,40,M
+2021-2,201910147,Díaz Tramontana,Mayra,2,6,19,166,60,Libra,F,Ciencia de la Computación,278,No,Si,Rosado,38,S
+2021.1,201910231,Morales Aquije,Cristopher Angel,1,5,19,163,71,Sagitario,M,Ing. Ambiental,281,Sí,Sí,NA,NA,NA
+2022-1,202110035,Benavente Viacava,Vasco José,3,3,19,190,91,Aries,M,Ingeniería Mecánica,254,Sí,Sí,Azul,45,L
+2022-1,202120096,Asenjo Leiva,Eddinson,9,2,20,1.62,65,Acuario,M,Ing. Mecanica,190,Si,Si,Negro,41,L
+2021-2,202010386,Ruiz de Somocurcio Landa,Cristóbal,3,4,19,168,75,Leo,M,Bioingeniería,264,No,Sí,Rojo,43.5,S
+2020.1,201720068,Lopez Reyna,Miriam,2,7,20,161,53,Geminis,F,Ing. Ambiental,310,No,NA,NA,NA,NA
+2022-1,202110656,Sancho Zavaleta,Leonardo David,10,3,22,1.72,60,Capricornio,M,Ing. Civil,NA,Si,Si,Gris,41,L
+2021-2,202020170,Villalta Tello,Jozias Luis,7,3,19,163,60,Cancer,M,Ingeniería Mecatrónica,215,Sí,No,Negro,40,M
+2021-2,201910193,huaracc del carpio,sebastian andre,3,6,20,170,65,tauro,M,Ingenieria Quimica,218,si,si,negro,41.5,m
+2020.2,202010629,Valderrama Auccacusi,Indira,1,2,28,155,60,Piscis,F,Ing. Electrónica,365,No,Sí,NA,NA,NA
+2022-1,202120133,Carhuaricra Rivera,Daniela Nicole,11,2,18,1.58,57,Sagitario,F,Ing. Industrial,273,SI,SI,Verde,37,M
+2021-2,202020107,Mera Roque,Willy Edward,4,3,22,174,64,Piscis,M,Ingeniería Industrial,222,sí,sí,Rojo,43,M
+2020.2,201810606,Teran Panduro,Santiago Nicolas,4,6,18,176,74,Virgo,M,Ing. Mecatrónica,279,Sí,Sí,NA,NA,NA
+2022-1,201810312,Ortiz Martinez,César Alejandro,2,9,21,179,77,Libra,M,Bioingenieria,234,Si,Si,Azul,42,M
+2022-1,202110427,Flores Bazan,Luis  Alonso,9,3,19,1.83,90,Sagitario,M,Ing.Mecatrónica,173,Si,No,Azul,42,L
+2020.1,202010148,Mesía Perez,Pablo,5,3,18,175,70,Virgo,M,Bioingeniería,NA,No,Sí,NA,NA,NA
+2022-1,202110699,Arenas Higa,Paula Natsumi,4,3,18,1.63,60,Piscis,F,Ing. Química,256,Sí,No,Turqueza,37,M
+2021.1,201820036,Butrón Villena,Mauricio Alejandro,1,7,21,183,75,Geminis,M,Ing. Electrónica,246.6,Si,No,NA,NA,NA
+2022-1,202110695,Chuna Quispe,Marco Antonio Jossue,10,3,20,178,70,aries,M,Ingeniería Industrial,NA,Si,Si,Verde,42,L
+2021.1,201910186,Heredia Silva,Lucía Gabriela,3,5,18,156,50,Cancer,F,Ing. Industrial,309,Si,Si,NA,NA,NA
+2021.1,201820116,Torres Tarazona,Juan Diego,3,6,20,172,79,Sagitario,M,Bioingeniería,276,SI,SI,NA,NA,NA
+2020.2,201920037,Salcedo Espinoza,Jose Maria,1,3,19,160,60,Acuario,M,Ing. Industrial,271,no,sí,NA,NA,NA
+2020.2,201710664,Vereau Sánchez,Kareen,5,4,25,160,52,Leo,F,Ing. Electrónica,340,No,No,NA,NA,NA
+2022-1,202010297,Lizárraga Calderón,Sebasián Andre,1,5,19,168,61,Sagitario,M,Ciencia de la Computación,196,Sí,No,Verde,40,M
+1/1/2019,201910393,Marcas Sánchez,Herbert Ivanou,1,7,22,167,60,Aries,M,Ingenieria Mecáncia,332,si,si,Negro,41,L
+2022-1,202110502,Arteaga Montes,Stuart Diego,1,3,19,165,70,Piscis,M,Ciencia de Datos,334,Si,Si,Morado,41,M
+2022-0,201910247,Ortiz Quispe,Jose Joaquin,1,5,21,163,55,Leo,M,Ingeniería Ambiental,248,Si,No,Verde,NA,NA
+2022-1,202110591,Labajos Tello,Walter Rodrigo,5,3,18,171,54,Aries,M,Ingenieria Industrial,274,si,si,negro,41,S
+2022-1,202120161,Chura Sánchez,Mayk Chura,11,2,18,172,65,Acuario,M,Ingenieria Industrial,276,No,Si,Negro,41,M
+2022-1,201920112,Chacon Arrospide,Edgar Snatos,9,6,20,1.59,NA,Capricornio,M,Computer Science,252,SI,SI,Azul,NA,NA
+2021-2,202010620,Castro Ayala,Fernando Manuel,6,4,19,178,75,Sagitario,M,Ingenieria Civil,NA,Sí,Sí,Negro,44,M
+2021-1,201910169,Flores Flores,Fabiana,1,5,19,156,58,Sagitario,F,Ing. Ambiental,271,Si,Si,NA,NA,NA
+2021-2,202010435,Zaldivar Benavides,Fabio Joaquin,7,4,18,170,72,Tauro,M,Ingeniería Mecatrónica,242,Sí,Sí,Azul,41.5,S
+2021.1,201810482,Ascuña Coa,Victor Enrique,1,7,18,175,75,Cancer,M,Ciencia de la Computación,181,Si,Si,NA,NA,NA
+2021-1,202110741,Jara Palomino,Stephanie Sara,10,3,21,160,55,Picis,F,Ingenieria Ambiental,NA,Si,Si,violeta,37,S
+2022-1,202110706,Mucha Huaman,Angel Gabriel,6,3,19,166,74,Escorpio,M,Computer Science,244,si,si,verde,42,M
+2022-1,202020013,Barzola Quispe,Julio Cesar,8,4,19,169,78,Cáncer,M,Ingeniería Electronica,286,si,si,Negro,42,L
+2022-0,202110216,Méndez Lázaro,Luis,1,3,18,168,57,Leo,M,Ciencia de la Computación,205,Si,Si,Azul,40,M
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2022-1,202110155,Gutierrez Veliz,Mario Jose,10,3,19,175,57,Acuario,M,Ing. Mecatrónica,219,Sí,Sí,Verde Oscuro,40,M
+2022-1,202010250,Espinoza Herrera,Marcela Fernanda,8,3,20,1.58,70,Acuario,F,Ciencia de la computacion,311,No,No,Verde Militar,39,L
+2022-1,202120549,Soncco Yucra,Nataly,3,2,19,1.57,56,Acuario,M,Ingenieria Industrial,NA,No,Si,Celetse,37,M
+2021.1,201910299,Salazar Bravo,Rocío,1,5,18,165,NA,Leo,F,Ing. Mecanica,193,Si,No,NA,NA,NA
+2020-2,202020112,Perez Muñoz,Ibañes Franklin,10,4,19,170,58,Tauro,M,Ciencias de la Computacion,375,No,si,Negro,39,NA
+2022-1,202120530,Santillan Socla,Helen Jadhira,8,2,17,160,53,Leo,F,Ingenieria Industrial,413,No,No,Rosado,37,S
+2022-1,202010223,Castro Huerta,Alejandra Soledad,1,3,18,160,50,Aries,F,Ingenieria Química,244,No,Si,Verde,36,S
+2020-2,202020113,Nuñez Chuchon,Jhon Efrain,5,4,23,163,55,Libra,M,Ingenieria Civil,249,SI,SI,AZUL,40,S
+2021-2,202010237,Cortez Cusicuna,Yusell Martha,7,4,18,154,55,Sagitario,F,Ingenieria Industrial,315,no,no,rojo,37,M
+2022-1,202110419,Perez Bonany Torrealva,Martin Gustavo,6,3,18,173,63,Libra,M,Ciencia de datos,195,Si,Si,Blanco,43,M
+2022-1,202120324,Llontop Vicente,Angie Josseline,11,2,18,157,51,Escorpio,F,Ingeniería Industrial,214,SI,SI,Rojo,38,S
+2022-1,201810438,Cuenca Vargas,Sebastian Andres,3,7,21,1.75,80,Acuario,M,Ing. Mecánica,NA,Sí,Sí,Blanco,43,M
+2021-2,202010275,Guzman Dueñas,Isaac Fernando,2,4,18,185,88,Piscis,M,Ingenieria Industrial,199,si,si,Negro,46,XL
+2021-2,201710044,Ramos Torres,Guido Antonio,2,6,25,170,64,Capricornio,M,Ingeniería Mecanica,272,Si,Si,Azul,41,S
+2022-1,202120555,Sánchez Gallardo,Manuel Alfredo,1,2,17,1.64,58,Geminis,M,Ing. Industrial,283,Si,No,Negro,42,M
+2022-0,202010167,Rodríguez Galarza,Gobzalo Alejandro,1,5,19,172,80,Leo,M,Ingenieria Electrónica,239,Sí,No,Morado,41,L
+2021-2,202020076,Gonzales Godoy,Jhonn Walter,1,3,18,169,65,Escorpio,M,Ingenieria Civil,250,Sí,Sí,Azul,42,M
+2021.1,201910108,Castillo Prado,Leonardo Humberto,2,3,20,170,68,Leo,M,Ing.Mecatrónica,297,Si,Si,NA,NA,NA
+2022-0,202010247,Díaz León,Diego Mateo,1,5,19,171,64,Sagitario,M,Ingeniería Mecatrónica,245,Sí,Sí,Rojo,41,M
+2021-2,202110452,Rondón del Carpio,Santiago Roberto,5,2,21,170,59,Piscis,M,Ingeniería Mecánica,NA,Sí,Sí,Negro,41,M
+2022-1,202110387,Vergara Silva,Luis Alejandro,10,3,18,179,64,Tauro,M,Ingenieria Ambiental,243,Si,Si,Azul,42,S
+2021-2,202020154,Ticona Pineda,Daniel Vicente,6,3,19,176,83,Libra,M,Ingenieria Civil,302,Si,Si,Azul,43,M
+2022-1,202120532,Segura Perez,José Manuel,11,2,17,160,60,Leo,M,Ing. Industrial,343,No,No,Negro,41,M
+2020.1,201910320,Vadillo Villalobos,Alberto Joaquín,3,3,18,169,54,Virgo,M,Ing. Mecatrónica,436,Sí,Sí,NA,NA,NA
+2021.2,202020004,Aique Zelada,Rodrigo Alexander,4,3,18,169,79,Piscis,M,Ingeniería Mecatrónica,289.6,SI,No,Rojo,NA,M
+2020.1,201910293,Rodríguez Yagui,Tomás Alberto,1,3,17,166,79,Tauro,M,Bioingeniería,235,Sí,No,NA,NA,NA
+2022-1,202010508,Pilco Padilla,Cecilia Natali,2,4,22,165,75,Cancer,F,Ciencia de la Computación,422,Sí,Sí,Rosado,38,NA
+2021.1,201810244,Segovia Melgarejo,Andre Sebastian,1,7,20,170,65,Aries,M,Ciencia de la Computación,292,Si,Si,NA,NA,NA
+2022-1,202010102,Alvarez Hurtado,Aixa Lourdes,1,5,19,1.64,58,Acuario,F,Ing. Electrónica,229,No,Sí,Azul,38,M
+2020.2,201710666,Vilcas,Ronald,5,8,21,171,65,Sagitario,M,Ing. Mecatrónica,195,Si,Si,NA,NA,NA
+2021-2,202010317,Mendoza de la Cruz,Nelzy Merli,2,4,18,160,65,Escorpio,F,Bioingeniería,232,No,No,Rosado,37,M
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Sí,No,Negro,39,M
+2022-1,202110443,Huaman Vega,Kevin Abraham,6,3,17,180,65,Libra,M,Computer Science,263,Sí,Sí,Blanco,43,M
+2022-1,202120596,Ventocilla Sanchez,Evelyn Shantal,11,2,20,1.62,57,Tauro,F,Ing. Industrial,229,No,No,Negro,38,M
+2021-1,202110081,Chumbes Diaz,Ana,9,3,18,161,43,Capricornio,F,Ingenieria Industrial,248,Sí,Sí,Gris,38,XS
+2022-1,202020210,Ramirez Vasquez,Cinthia Isabel,9,3,19,156,60,Libra,F,Ing. de la energia,238,Si,Si,Negro,39,S
+2022-1,201910185,Gutierrez Criollo,Diego Alonso,2,5,20,173,74,Piscis,M,Bioingeniería,242,No,Si,Gris,44,M
+2022-1,202110084,Conde Pecho,Maria,8,3,18,1.53,50,Libra,F,Ingeniería ambiental,259,No,No,Negro,36,S
+2021-1,202110562,Gala Noa,Jordan Erick,8,3,18,170,70,tauro,M,ingenieria mecatronica,287,No,si,gris,41,M
+2022-1,202120232,Garro Rojas,Hilda Lourdes,3,2,18,1.62,58,Piscis,M,Ing.Industrial,347,No,Si,Blanco,37,M
+2021-2,201810542,Celedonio Cam,Brandon Wilmer,1,7,20,175,71,piscis,M,Ingenieria Civil,436,Si,Si,Azul,42,M
+2022-0,202010356,Quispe Apaza,Diego Randolp,1,5,18,176,64,Acuario,M,Bioingeniería,284,Si,Si,Rojo,44,L
+2020.2,201810329,Sotelo Otero,Ariana,1,5,19,155,48,Capricornio,F,Ing. Química,344.2,si,Sí,NA,NA,NA
+2022-1,202110639,Rios Chipana,Ruben Bryan,4,3,18,160,65,NA,M,Ingeniería Civil,194,No,Si,Verde claro,41,M
+2021-2,202010105,Astorga Taccsi,Alexander Antonio,1,4,18,176,80,Capricornio,M,Ingeneria Mecatronica,216,si,si,Turquesa,41,M
+2022-0,201910164,Fierro Neyra,Sergio Luis,1,6,20,172,72,Escorpio,M,Ingeniería Meatrónica,404,Si,Si,Rojo,44,M
+2022-1,202010084,Reategui Gutierrez,Roberto Karlo,2,4,19,170,75,Acuario,M,Ingenieria Mecatronica,172,Si,Si,Verde,42.5,M
+2022-1,202110635,Ramos Padin,Yerson Andre,9,3,19,170,80,Sagitario,M,Ingenieria Mecatronica,239,SI,No,Azul,44,L
+2021-2,202020017,Bernaola Gaspar,Maria,6,3,18,164,62,Acuario,F,Ingenieria Mecanica,343,Sí,no,azul,37,M
+2022-1,202010426,Vásquez Grados,Esteban,8,5,19,1.73,56,Piscis,M,Ciencias de la computación,196,Si,Si,Azul,41,S
+2022-1,201710208,Velarde Samanez,Jorge Enrique,9,5,22,1.2,70,Piscis,M,NA,NA,NA,NA,NA,NA,NA
+2021.1,202010351,Ponce Retamozo,Cielo María,5,3,18,156,56,virgo,F,Ingenieria Civil,304,Sí,Sí,NA,NA,NA
+2022-1,202110550,Escobedo López,Adriana Samantha,10,3,18,173,60,Capricornio,F,Ingeniería Ambiental,264,No,Si,Morado,39,M
+NA,201910343,Zegarra Soria,Lidia Del Carmen,NA,6,19,167,58,Aries,F,Ingeniería química,196.6,No,No,Morado,37,M
+2022-1,202010408,Suarez Paz,Alessandra Paula,4,5,19,156,51,Tauro,F,Bioingeniería,262,No,Si,Azul,37,S
+2020.2,202010447,Vizcarra Ruiz,Marco Antonio,2,2,24,180,90,Acuario,M,Bioingeniería,266,Sí,No,NA,NA,NA
+2022-1,202110022,Astulle Zapata,David Alonso,10,3,18,165,65,Escorpio,M,Ingenieria Industrial,230,Si,Si,Verde militar,42,S
+2021-2,202020055,Cuba Candia,Elber Andre,1,3,18,170,60,Leo,M,Ingeniería Mecánica,237,sí,´si,negro,42,S
+2022-1,202110461,Varela García,Piero Enrique,5,3,19,170,68,Capricornio,M,Ing. Química,257,Sí,No,Azul,42,L
+2020.2,201920063,Surco Salas,Marcelo Juan,NA,3,18,183,74,Capricornio,M,Ciencia de la Computación,NA,si,si,NA,NA,NA
+2022-1,202110170,Iturrizaga Torres,Rodrigo José,4,3,19,179,68,Capricornio,M,Ingeniería Mecatrónica,231,Sí,Sí,Negro,43,M
+2022-1,201820119,Zevallos Rocano,Daniel Alejandro,2,5,21,180,78,Leo,M,Bioingeniería,237,SI,Si,Celeste,43,L
+2021.1,201810529,Van Dyck Barba,Nicolás,2,7,20,184,78,Virgo,M,Ing. Mecatrónica,230,No,Sí,NA,NA,NA
+2021-1,202110149,Guardamino Morales,Fabiola Abigail,1,3,18,167,57,Sagitario,F,Ciencia de la Computacion,NA,no,si,Negro,38,S
+2021.1,202010281,Hospinal Loarte,Maribel Lucia,2,3,19,153,45,Acuario,F,Ing. Ambiental,195,No,Sí,NA,NA,NA
+2021-2,202020060,Estrada Palma,Franco Antonio,7,3,18,165,59,Virgo,M,Ingenieria Civil,242,SI,SI,Rojo,41,M
+2022-1,202110341,Santa María,Mateo Esteban,9,3,18,1.84,68,NA,M,Ingeniería Mecánica,255,Si,Si,Negro,42,M
+2022-1,202110069,Chachi Rodriguez,Jose Rafael,5,3,18,164,83,Piscis,M,Computer Science,171,Si,No,Naranja,42,L
+2022-1,201810225,Ramirez Maldonado,Gabriel Omar,3,7,20,1.75,88,Aries,M,Ing. Mecánica,220,si,si,Azul,44,L
+2022-1,202120151,Ccorisoncco Merino,Esmeralda,11,2,19,1.6,57,Tauro,F,Ing. Industrial,254,no,Sí,Rojo,36,S
+2020.2,201920151,Tueros Paz,Jose Adriel,5,3,19,178,72,Capricornio,M,Ing. Mecánica,426,Si,no,NA,NA,NA
+2021-2,201810656,Bustamante,Fernando,1,6,21,174,79,Libra,M,Ingenieria Química,324,Sí,Sí,Verde,43,L
+2021-2,202020067,Gamboa Gutierrez,Renzo Antonio,7,3,18,175,87,Virgo,M,Ingenieria Mecanica,274.2,SI,si,Rojo,42,M
+2020-1,202010587,Ore Rojas,Dafne Valerie,6,4,18,178,70,Capricornio,F,Ciencia de Datos,NA,No,Si,Morado,37,M
+2021.1,202010412,Terrazas Dongo,Leonardo Adolfo,2,3,17,175,65,Tauro,M,Bioingenieria,175,Sí,Sí,NA,NA,NA
+2020.2,202010590,Velasque Chiclla,Tania,3,2,23,159,63,Acuario,F,Ing. Industrial,452,Sí,Si,NA,NA,NA
+2022-1,202110272,Pizarro Jimenez,Alvaro Mauricio,4,3,18,170,55,Leo,M,Mecatrónica,183,Sí,No,Blanco,42,S
+2021-2,202010137,Guerra Chevarría,Diego Eduardo,7,4,18,182,71,Sagitario,M,Ciencia de la Computación,250,Sí,Sí,Verde,46,M
+2022-1,202010326,Nasse Pérez-Godoy,Mateo Alexander,6,5,20,180,75,Virgo,M,Computer Science,215,si,si,Verde,44,M
+2022-1,202020157,Torres Valenzuela,Luis Daniel,2,4,21,173,60,Piscis,M,Ingeniería Civil,243,Si,Si,Rojo,42,S
+2022-1,202120168,Colque Ale,Walther Jesús,8,2,19,168,67,Acuario,M,Ing. Industrial,325,Si,No,Plomo,41,M
+2022-1,202010436,Zaña Ramirez,Katherine,1,3,20,160,80,Sagitario,F,Ing. Mecatrónica,211,si,si,Azul,37,L
+2022-1,202110253,Oyola Feijoo,José Andreé,3,3,18,176,61,Escorpio,M,Bioingeniería,120,Sí,Sí,Azul,42,M
+2022-1,202110455,Salazar Uribe,Gabino Alonso,4,3,19,174,60,Virgo,M,Ingeniería Mecatrónica,229,Sí,Sí,Azul,41,S
+2021-2,202020206,Laban Miranda,Jhordan Gustavo,6,3,18,164,63,Tauro,M,Ingeniería de la Energía,286,Si,No,Verde,39,S
+2022-1,201910173,Galvez,Benjamin,8,6,19,171,62,Capricornio,M,Ingeniería Civil,336,Si,Si,Negro,41,S
+2021.1,201920058,Rodriguez Anicama,Aquiles Sebastian,3,4,18,165,75,Tauro,M,Ing.Industrial,280,Si,No,NA,NA,NA
+2022-1,202110662,Taipe Bendezu,Gabriela Amarilis,10,3,18,157,50,Tauro,F,Ing.Ambiental,245,No,Si,Beige,36,M
+2021-2,202010138,Guerrero Vasquez,Ana Paula,3,4,18,NA,NA,Aries,F,Ingeniería Industrial,263,No,No,Dorado,37,S
+2020.2,201910297,Rosas Melgar,Andrea Celeste,3,4,18,153,47,Sagitario,F,Ing. civil,383,Si,No,NA,NA,NA
+2022-1,202110176,Jordán O'Connor,Joaquín Francisco,2,3,18,175,64,Virgo,M,Ciencia de la Computación,191.6,Sí,Sí,Blanco,42,M
+2022-1,202120163,Chavez Becerra,Jhoyvin,11,2,21,172,70,Capricornio,M,Ingenieria Industrial,225,No,Si,Celeste,39,M
+2022-1,202110207,Mañuico Quequejana,Flavia Ailen,6,3,18,158,46,Capricornio,F,Computer Science,240,No,Si,Azul,36,S
+2022-1,202010363,Raraz Senmache,Adrian Salvador,5,4,19,176,76,Tauro,M,Bioingenieria,473,si,no,turquesa,42,L
+2021.2,201910026,Coronel Nolasco,Nicole Tifanny,2,6,19,154,58,Sagitario,F,Ingeniería Industrial,313,No,No,Lila,6,M
+2021-2,202010296,Laredo Yarma,Juan Diego,2,4,18,166,68,Cancer,M,Ciencia de la Computación,225,Sí,No,Azul,42,S
+2022-1,202110445,Noriega Guevara,María José,5,3,18,162,67,Virgo,F,Bioingeniería,261,no,no,Turquesa,39,M
+2022-1,202010153,Natal Fuentes-Castro,Fabrizio Manuel,10,5,19,175,72,Geminis,M,Ingeniería ambiental,227,Si,Si,Azul,43,S
+2021-2,201910392,Luna Ventocilla,Brighite Sefora,2,5,18,1.56,54,Aries,F,Bioingeniería,NA,NA,NA,NA,NA,NA
+2020.2,201920043,Usaqui Guerrero,Renato Alonzo,2,3,19,175,72,Escorpio,M,Bioingeniería,NA,si,si,NA,NA,NA
+2021-2,201910272,Quiliche Altamirano,Romina Nataly,1,6,19,166,60,Libra,F,Ingeniería Mecánica,235,Si,No,Morado,37,M
+2021-2,202110686,Yucra Miramira,Yenifer,1,2,18,153,48,Libra,F,Ingeniería Industrial,296,No,No,Violeta,37,S
+2022-1,202010480,Gómez Loayza,Camila,10,5,19,165,67,Cancer,F,Bioingenieria,240.8,Si,Si,Azul,40,M
+2021.1,201810381,Sanchez Paredes,Alonso Martin,1,6,19,178,56,Cancer,M,Ing. Civil,239,Si,No,NA,NA,NA
+2022-1,202120550,Sosa Mamani,Leslie Shantall Luciana,10,2,18,164,62,Escorpio,F,Ingenieria industrial,297,si,si,rosado,NA,NA
+2022-1,201910399,Miguel Granza,Angie Victoria,1,3,20,155,58,Capricornio,F,Ingenieria Civil,240,No,Si,Celeste,37,M
+2020.1,201820147,Velásquez Villar,Camilo Marcelo,3,4,19,172,68,Acuario,M,Bioingeniería,405,si,sí,NA,NA,NA
+2020.1,201720107,Sánchez Paredes,Josue,1,5,21,175,108,Cancer,M,Ing. Mecatronica,221,Si,No,NA,NA,NA
+2022-1,202110501,Arroyo More,Karolin Stephany,10,3,18,160,50,Acuario,F,Ingenieria Ambiental,313,no,no,morado,37,S
+2021.1,201910519,Mayta Soria,Eduardo Javier,3,4,19,169,76,Sagitario,M,Ing. Mecanica,NA,Si,Si,NA,NA,NA
+2022-1,202110309,Rivera Cajusol,Carlos Eduardo,6,3,19,177,74,Leo,M,Bioingeniería,297,No,Sí,Azul,43,M
+2022-1,202120632,Chiroque Silva,Andersson,11,2,17,1.67,69,Aries,M,Ing. Industrial,400,Sí,Sí,Celeste,42,M
+2021-2,2020101580,Torres Osorio,Luis David,5,4,21,181,107,Acuario,M,Ciencia de la Computación,305,Si,No,Celeste,10,XL
+2021-2,202020094,Lapa Camargo,Ivan Gregorio,7,3,17,160,70,Capricornio,M,Ingenieria Mecánica,280,Sí,No,Negro,40,M
+2022-0,202010195,Armas Vega,Paolo Sebastian,1,5,18,180,71,Aries,M,Ciencia de la computación,207,Si,Si,Azul,NA,NA
+2022-1,202120552,Suarez Pazos,Elizabeth Antuaneth,3,2,17,1.65,52,Leo,F,Ing. Industrial,292,NO,SI,Gris,39,S
+2022-1,202110013,Antúnez Alfaro,Max Bryam,10,3,19,168,74,Piscis,M,Ciencia de la Computación,247,Si,Si,Rojo,42,L
+2021-2,202020065,Fuentes Zegarra,Fernando Rodrigo,7,3,19,167,67,Sagitatio,M,Bioingeniería,212.6,si,si,Rojo,41,M
+2021-2,202020136,Roman Zacarias,Christhoper,1,3,20,175,70,Acuario,M,Ingenieria mecatronica,244,si,si,Negro,40,M
+2022-0,201910146,Díaz Sánchez,Renato,1,6,20,170,54,Sagitario,M,Ingeniería Mecatrónica,238,Sí,No,Verde,41,S
+2021-1,202110003,Aguinaga Pizarro,Piero Alessandro,2,3,18,170,58,Virgo,M,Ingeniería Electrónica,212,Sí,Sí,Celeste,42,M
+2021-2,201910135,Cuya Chaña,Rodrigo Alexander,NA,6,19,163,53,Piscis,M,Ingeniería Ambiental,246,Si,No,Celeste,41,M
+2022-1,202110528,Cépida Lizana,Lizze Ivonne,5,3,18,NA,NA,Aries,F,Bioingeniería,247,Si,Si,Morado,36,S
+2021-2,202010097,Vergara Pareja,Juan Diego,1,4,19,178,69,Leo,M,Ingeniería Mecatrónica,280,Sí,Sí,Blanco,42,M
+2020.2,201810602,Segami,Ryuji,1,6,20,181,83,Cancer,M,Ing. de la Energía,NA,Si,NA,NA,NA,NA
+2021-2,202020114,Ojeda Vargas,Marcelo Giovanny,2,3,20,170,69,leo,M,Ingenería civil,246,sí,sí,verde,41,M
+2021-2,202020134,Rodríguez Nolberto,Roger Kevin,6,3,19,170,65,Capricornio,M,Ingeniería civil,299,SÍ,Sí,Verde,42,S
+2021.1,202010415,Torres Caro,Carlos,5,3,18,180,95,Tauro,M,Ingenieria Mecatronica,187,Si,No,NA,NA,NA
+2022-1,202110437,Del Pino Rayme,Fernando David,8,3,17,169,59,Cáncer,M,Ing. Civil,170,si,si,verde,41 1/3,S
+2021.1,202010389,Samanez Quintana,Sebastian,1,3,18,170,71,Geminis,M,Ing. Electrónica,301,Sí,Sí,NA,NA,NA
+2021.1,201820051,Izquierdo Campos,Manuel Aldair,2,6,23,155,70,Libra,M,Bioingeniería,241,Si,No,NA,NA,NA
+2022-0,202010054,Ayala Pineda,Marcos Daniel,1,5,19,182,75,Capricornio,M,Ciencia de la Computación,261,Sí,No,Azul,43,L
+2022-1,202010567,Pando Huaman,Paul Cristian,6,3,20,165,50,Libra,M,Ingeniería Química,348,No,No,Verde,40,M
+2021-2,201920070,Córdova Morey,Arturo José,3,5,22,171,74,Aries,M,Ingeniería Industrial,NA,NA,NA,NA,NA,NA
+2021.1,201920060,Rosales Chumpitaz,Ronald Hernán,3,3,19,165,61,Aries,M,Civil,276,Sí,No,NA,NA,NA
+2021.2,201910141,Del Maestro Yarlaque,Cesar Miguel,2,6,19,175,NA,Aries,M,Ingeniería Mecanica,361,Si,Si,Azul,9.5,L
+2021.1,201820089,Elescano Alayo,Alexander,2,5,27,165,68,Leo,M,Ing. Industrial,399,Sí,No,NA,NA,NA
+2021-2,201710664,Vereau Sánchez,Kareen,5,5,25,160,51,Leo,F,Ingeniería Electrónica,252,No,Si,Azul Marino,36.5,S
+2021 - 2,202020180,Zúñiga Nole,Gilmar Gerard,1,2,19,1.69,60,Escorpio,M,Ingeniería Industrial,173,No,Si,Negro,42,S
+2021-2,201310292,Vásquez Del Aguila,Jorge Luis,2,6,25,173,85,Géminis,M,Ciencia de la Computación,232,Sí,Sí,Azul,42.5,L
+2022-1,202120280,Huanca Collanqui,Reyna Milagros,11,2,18,1.65,63,Leo,F,Ing.Industrial,280,No,Si,Palo rosa,38,M
+2021.1,201810580,Gonzalez Jara,Alvaro David,2,6,21,170,70,Capricornio,M,Ing. Industrial,295,Sí,Sí,NA,NA,NA
+2021-2,202020081,Hermitaño Cortavarria,Carmen Isabel,6,3,18,170,68,Acuario,F,Ingeniería Civil,270,No,Sí,Morado,39,M
+2022-1,202120342,Malqui Vicuña,Greysi Nataly,3,2,19,1.55,60,Virgo,F,Ingenieria industrial,256,No,No,Negro,37,M
+2022-0,202010173,Vallebuona Zender,Fabián,1,5,19,175,60,Escorpio,M,Ingeniería Industrial,320,No,Si,Blanco,42,M
+2022-0,201910189,Huallpa Carhuas,Ander Jesus,1,6,19,174,72,Leo,M,Ingeniería Civil,236,Si,No,Azul,43,M
+2021.1,201910205,Loayza Bautista,Sebastian Enrique,1,5,20,171,49,Capricornio,M,Ing. Mecatrónica,231,Sí,Sí,NA,NA,NA
+2020-1,2018020016,rojas suarez,guillermo,2,6,28,1.78,90k,acuario,m,ingenieria ambiental,NA,no,si,plomo,42,l
+2022-1,202110392,Villanueva Torres,Josune Belen,9,3,18,169,NA,Escorpio,F,Ingienería Industrial,232.88000000000002,Sí,Sí,Verde,NA,NA
+2021.1,201910310,Tasayco Guerra,Perla Valentina,3,5,19,165,58,Piscis,F,Ing. Industrial,288,Si,Si,NA,NA,NA
+2021.1,202010079,Minaya Cotrina,Jesús Elias,3,3,18,184,81,Sagitario,M,Ing. Civil,296,Sí,Sí,NA,NA,NA
+2021-2,202010132,Espinoza Gamarra,Luciano Italo,1,4,18,175,56,Géminis,M,Ingenieria Mecatrónica,238,Si,Si,Rojo,42,S
+2021.1,202010262,Garcia Rodriguez,Karol Adriana,1,3,19,161,61,Virgo,F,Ing. Industrial,276,No,Si,NA,NA,NA
+2022-1,202110240,Neyra Arboleda,Jesé Abraham,4,3,18,168,60,Virgo,M,Ing. Mecatrónica,237,Si,Si,Negro,40,S
+2022-1,201910503,Farfan Gonzales,Gabriel Mauricio,8,5,20,1.86,70,Escorpio,M,Ing. Química,104,Si,Si,azul,44,M
+2021-2,201810446,Huamaní Torres,Luis Aldair,1,7,20,167,84,Sagitario,M,Ingeniria Civil,442,Si,Si,Azul,41,L
+2021-2,202010392,Sanchez Pozo,Martin Lauro,1,4,19,175,65,Aries,M,Ingenieria Mecánica,264,Si,Si,Negro,42,M
+2020-2,202020141,Saldivar Saire,Cesar Augusto,NA,4,24,1.59,63,Libra,M,Ing.Civil,NA,NO,No,NA,40,M
+2021-2,202110607,Miranda Jaime,Jorge Enrique,5,NA,NA,179,77,Aries,M,Ciencia de datos,NA,Si,No,azul,42,M
+2022-1,202110194,Loayza Taboada,Marcelo Franco,10,3,18,182,75,Sagitario,M,Ingeniería Electrónica,245,si,si,Azul,44,L
+2022-1,202120660,Rivera Olaza,Abel Jaime,9,2,17,160,NA,Capricornio,M,Ingenieria Industrial,446,No,No,NA,40,NA
+2021-2,202020035,Chávez Ayme,Anthony,1,3,20,160,60,Piscis,M,Ingeniería Electrónica,345,Si,No,Azul,40,L
+2020.1,201910325,Vasquez Chirito,Christoffer Angel,3,3,17,170,71,Cancer,M,Ing. Mecatrónica,245,Si,Si,NA,NA,NA
+2021.1,202110468,Gonzales Cruz,Walter Gonzalo,2,1,19,177,70,Aries,M,Ing. Civil,261,Sí,Sí,NA,NA,NA
+2021-2,201610002,Larach Saba,Ruben Elias,6,3,25,203,90,Geminis,M,Ingenieria Mecanica,266,si,no,Negro,44,L
+2022-1,202110178,Juy Luyo,Delia Katherine,4,3,18,160,NA,Escorpio,F,Bioingenieria,249,Si,Si,Azul,38,M
+2021.1,201820039,Chacchi Guillen,Viviana Maria,3,4,23,162,56,Aries,F,Ing. Civil,250,NO,SI,NA,NA,NA
+2021-1,202110459,Soria Ramos,Lenin,10,3,20,173,78,Virgo,M,Ingenieria Mecatronica,269,Si,Si,Plomo,45,L
+2022-0,202010176,Vigo Nuñez,Mauricio Lucciano,1,5,19,180,69,Virgo,M,Ingeniería Mecatrónica,253,No,Si,Azul,43,M
+2021.1,201910290,Rodríguez Llanos,Renato Sebastián,3,5,18,175,69,Leo,M,Ciencia de la Computación,278,Sí,Sí,NA,NA,NA
+2022-1,202010276,Haag Baca,Valentin,6,3,18,179,64,Leo,M,Ing. Mecánica,271,si,no,azul,42,M
+2022-1,202010009,Flores Teniente,Enrique,3,2,20,NA,NA,virgo,M,Computer Science,244,No,Si,Negro,43,M
+2021.1,202010321,Meza Llamosas,José Francisco,1,3,18,174,64,Aries,M,Bioingeniería,286.6,Si,Si,NA,NA,NA
+2021-2,202020203,Cucho Jordán,Iam André Salvador,2,3,19,176,64,Acuario,M,Bioingeniería,309,Si,Si,Gris,41,S
+2022-1,202120081,Aparicio Molina,Yasuri,8,2,18,1.53,NA,Virgo,F,Ing. Industrial,NA,NA,NA,NA,NA,NA
+2022-0,201910240,Navarro Pizarro,Nayeli,1,5,19,154,51,Escorpio,F,Ingeniería Química,325,si,si,Azul,38,M
+2019-2,201920124,Puerta Diaz,Diego David,5,6,24,1.63,80,Capricornio,M,Ing.Electrónica,1907,Sí,Sí,Marrón,42,XL
+2022-1,202020118,Paitan Alva,Brandon Aldrin,1,4,19,175,73,Capricornio,M,Ingenieria Civil,223,Si,Si,Negro,44,L
+2022-1,202110052,Carlos Zúñiga,Israel Antonio,9,3,17,1.82,70,Géminis,M,Ingenieria Electrónica,249,Sí,Sí,Azul,45,M
+2022-1,202120156,Chambi Mamani,Myriam Alicia,2,2,20,1.55,62,acuario,F,Ingenirería Industrial,NA,No,Sí,Morado,38,M
+2021-2,202020163,Varas Santillan,Leyla Mayerli,6,3,18,152,50,Sagitario,F,Ingeniería Civil,208,No,No,Negro,36,S
+2021-2,202110570,Gomez Garcia,Arleth Deidamia,6,2,17,155,51,Aries,F,Ingenieria Mecanica,270,Si,Si,Negro,38,S
+2020-2,202020023,Camargo Julcapari,Aldo Aldair,1,4,20,1.58,60,Leo,M,Ing. Civil,299,sí,sí,azul,39,M
+2021-2,201920103,Bustillos Espinoza,Shantal Aissa,1,5,21,160,56,Géminis,F,Ingeniería Industrial,270,No,No,Rosado,37,M
+2022-1,202020025,Cárcamo Vargas,Anderson David,6,4,19,160,72,Sagitario,M,Ciencia de la Computación,289,Sí,Sí,Negro,40,M
+2022-1,202120060,Alban Pacherrez,Milagros,11,2,18,1.55,56,Piscis,NA,Ingeniería Industrial,315,Sí,No,Verde,38,S
+2022-1,201910012,Pereda Rodríguez,Javier Alonso,10,7,20,177,73,Cáncer,M,Ingeniería Mecatrónica,230,sí,sí,Rojo,42,L
+2022-0,201810220,Pisfil Cruzado,Epson Jesús,1,6,22,165,58,Libra,M,Ingeniería Química,333,Si,Si,Azul,41,S
+2021-2,202020098,Leon Huaman,Marco Alex,1,3,18,170,60,Géminis,M,Ingeniería Civil,310,Si,Si,Morado,40,M
+2022-1,202110146,Gonzales Nuñez,Fabrizio Leandro,4,3,18,1.74,71,Piscis,M,Ing. Mecatrónica,294,Sí,Sí,Negro,42,M
+2021-2,202110551,espinoza haro,yulizza milagros,1,2,NA,159,56,Escorpio,F,Ingenieria Industrial,NA,NA,SÍ,verde menta,37,s
+2022-1,202010290,Izaguirre Zavaleta,Luis Fernando,8,3,19,170,66,Virgo,M,Ciencia de la Computación,365,Si,No,Negro,43,M
+2021.1,201910329,Velazco Loaiza,Jatzumi Abigail,3,5,18,164,55,Cáncer,F,Ing. Civil,231,No,Sí,NA,NA,NA
+2022-1,202210619,Huarancca Pacheco,Jeydi Fiorela,6,NA,19,162,50,Geminis,M,Ingeneria Industrial,NA,No,Si,Azul,38,S
+2020.1,201810083,Suclupe Navarro,Junior Antony,5,5,22,170,70,Tauro,M,Ing. Mecanica,281,No,si,NA,NA,NA
+2022-1,201920054,Peña Odebret,Emilio Martin,1,6,20,182,80,Libra,M,Ing. Mecanica,NA,NA,NA,NA,NA,NA
+2020.1,201820021,Zevallos García,Rodrigo Martín,5,4,24,176,67,Virgo,M,Ing.Energía,420,No,Si,NA,NA,NA
+2022-1,201710255,Boza Martin,Adrian Anthoni,4,7,22,163,NA,Virgo,M,Computer Science,177,Sí,No,Amarillo,40,S
+2022-1,202110230,Morales Canchuricra,Omar Farid,NA,3,19,1.7,58,Capricornio,M,Ing.Mecatrónica,289,Si,No,Negro,40,M
+2022-1,202110187,Lindo Peña,Ximena Nicolle,1,2,17,164,61,Aries,F,Ciencia de la Computacion,272,Si,Si,Azul,39,M
+2022-1,202110102,Díaz Pierinelli,Diego Alejandro,10,3,18,180,60,Leo,M,Ciencias de la Computación,260,Sí,Sí,Rojo,NA,S
+2021-2,201710359,Jave Tafur,Sergio,6,6,21,175,63,Leo,M,Ingenieria Energia,NA,Si,No,Negro,40,S
+2020.2,201710379,Samanamud Chirinos,Augusto Jiose,3,7,20,176,80,Sagitario,M,Ing. Electrónica,328,Si,No,NA,NA,NA
+2020-2,202010174,Vargas Rios,Massiell Alejandra,6,4,18,150,60,Virgo,F,Ingenería Ambiental,341,No,No,Negro,37,M
+2021.2,201910081,Bernal Flores,Kendra Ysabel,3,6,20,168,NA,Escorpio,F,Ingeniería Industrial,360,No,No,Rosado,8.5,M
+2022-0,201910276,Martinez Quispe,Mauricio,1,5,21,178,77,Sagitario,M,Ingenieria Industrial,256,si,Si,Verde,43,L
+2021-2,202020148,Silva Isidro,Hillary Niccol,4,3,18,162,55,Tauro,F,Ingeniería Civil,273,Sí,Sí,Negro,38,M
+2021.1,NA,Castillón Lucas,Fiorela,NA,NA,25,156,55,Virgo,F,NA,228,Si,Si,NA,NA,NA
+2021-2,202020075,Gomez Urquiza,Jean Dante Claudio,7,3,19,172,73,Sagitario,M,Bioingeniería,246,sí,sí,Negro,42,M
+2022-1,202010002,Alejandro Romero,Daryl Daniel,9,5,19,175,82,Cancer,M,Ciencia de la Computación,245,si,si,Negro,41,L
+2021.1,201910401,Montes Hurtado,Katya,3,5,19,165,62,Tauro,F,Ing. Ambiental,275,si,no,NA,NA,NA
+2022-1,202110090,Cortijo Gonzales,Luis Enrique,3,3,18,185,94,virgo,M,Computer Science,260,Si,Si,Azul,43,XL
+2021-2,201910139,Del Carpio Cheme,Ivan Alejandro,5,6,19,168,70,Libra,M,Ingeniería Mecatrónica,NA,Sí,Sí,Rojo,42,M
+2022-1,202020059,Estela Rojas,Jhonder,3,4,19,175,64,Tauro,F,Bioingeniería,263,si,si,negro,41,L
+2021-2,202020165,Vergaray Cucchi,Sebastian Enrique,7,3,19,165,70,Escorpio,M,Ingeniería Mecatrónica,244,Sí,No,Rojo,41,M
+2021-2,202020119,Paredes Chuna,Antony Abel,7,3,20,154,60,Libra,M,Ingeniería Química,292.6,No,No,Carmesí,40,S
+2020.2,201920150,Tueros Paz,Jose Dulas,5,3,19,178,92,Capricornio,M,Ing. Mecánica,380,Sí,No,NA,NA,NA
+2022-1,202120329,Lucero Gordillo,Giampiero Eduardo,11,2,16,1.62,55,leo,M,Ingeneria Industrial,3024,Si,Si,Blanco,39,M
+2022-1,202110393,Williams Bayly,Daniel Maria,10,3,18,175,NA,Sagitario,M,Ingeniería Ambiental,230,No,Si,Negro,45,M
+NA,201820144,Rosario,Diego,8,6,22,180,81,Libra,NA,Ciencia de la Computación,NA,si,si,verde,40,NA
+2021-2,202020044,Chuquiviguel Zaña,Anshel,1,3,18,160,48,Pisis,M,Ingeniería Civil,289,si,si,Rojo,39,S
+2022-1,202120008,Hurtado Mayhua,Angie Gabriela,11,2,18,1.58,60,Capricornio,F,Ing. Industrial,NA,Si,Si,Verde Jade,36,M
+2022-1,202110171,Jaramillo Olortegui,Bryan Martin,10,3,23,180,90,Geminis,M,Ing. Mecatrónica,213,Sí,No,Azul,46,XL
+2021-2,NA,Vásquez Del Castillo,Gabriel Felipe,7,4,19,174,72,Acuario,M,Ingeniería Mecatrónica,237,no,si,azul,41,S
+2021-2,202110453,Rosales Magallanes,Jeremy Fabian,3,2,19,173,75,Leo,M,Ingeniería Industrial,195,No,Sí,Azul Marino,43,L
+2021-2,202020086,Huayhua Apfata,Jose Fernando,1,3,18,162,60,Gemenis,M,Ingeniería civil,253,No,Sí,Azul,39,M
+2020.1,201820145,Salas Palacios,Eduardo Miguel,5,4,19,184,68,Leo,M,Ciencia de la Computación,394,Si,Si,NA,NA,NA
+2022-1,202120333,Lopez Gamboa,Andrea Nicol,1,2,21,1.65,69,Capricornio,F,Ing.Industrial,303,Si,Si,Morado,38,S
+2021-2,202020151,Taira Merino,Adriana Naomi,6,3,20,163,60,Capricornio,F,Ingeniería Mecatrónica,NA,No,No,Plomo,38,M
+2022-1,202010157,Obregón Casique,Marco Wanly,8,5,18,1.7,68,Aries,M,Computer Science,487,Si,SI,Negro,42,L
+2021-2,202010434,Yupanqui Mera,Leonardo Fabricio,7,4,18,176,75,tauro,M,Ingeniería Mecánica,210,si,si,azul,43,L
+2022-1,202120603,Villanueva Campos,Katherin Yohana,9,2,18,150,43,Cancer,F,Ingenieria Industrial,263,no,Si,Negro,36,S
+2021.1,201820037,Calderon Solorzano,Greyssi Danuska,2,3,19,155,56,Gemenis,F,Ing. Química,376,Sí,No,NA,NA,NA
+2021-2,202020159,Ugarte,Grover,1,3,18,181,65,Cáncer,M,Ciencia de la Computación,198,SI,SI,Amarillo,11.5,L
+2021-2,202020072,Giraldo Reyes,Samuel Obed,6,3,20,175,70,Cancer,M,Ingenieria Civil,318,SI,SI,Verde,44,M
+2021-2,202010239,Cosme Ayala,Jackelyn Dayana,6,4,17,159,55,Libra,F,Ingeniería Química,273,No,Si,Verde agua,6.5,M
+2021.1,201810669,Hilares Barrios,Salvador Eliot,2,6,20,171,65,Escorpio,M,Ciencia de la Computacion,887,Si,No,NA,NA,NA
+2022-1,202020106,Meneses Mendez,Walter,4,4,21,1.74,68,Leo,M,Ing. CIvil,215,Si,Si,Verde,42,M
+2020.2,202010609,Tineo Capcha,Axel Anthony,5,2,21,176,74,Sagitario,M,Ing.Ambiental,180,si,si,NA,NA,NA
+2018-2,201820144,Rosario Palomino,Diego Antonio,2,6,21,179,86,Virgo,NA,Ciencias de la Computación,NA,si,si,verde,NA,NA
+2021.1,201910057,Acurio Rodriguez,Diego Gonzalo,3,4,18,184,82,Libra,M,Ing. Civil,237,Si,Si,NA,NA,NA
+2021.1,201810648,Acuña Uriol,Rocío Pamela,2,3,23,164,55,Piscis,F,Bioingeniería,275,Sí,No,NA,NA,NA
+2021-2,201910255,Pariona Villegas,Wanda Alison,1,4,19,156,60,Sagitario,F,Bioingenieria,264,No,Si,Blanco,37,S
+2020.2,201910509,Valencia Escajadillo,Leopoldo Erico,5,4,17,178,74,Leo,M,Bioingenieria,224,si,si,NA,NA,NA
+2021.1,201910305,Sotelo Redhead,Natalia,4,5,19,168,NA,Géminis,F,Bioingeniería,228,No,Si,NA,NA,NA
+2022-1,202020162,Valladares Tocto,Fiorella Isabel,10,4,18,160,59,cáncer,F,Ingenirería Industrial,356,no,no,verde agua,38,M
+2021.1,201810338,Cárdenas Aguirre,Sebastián Edgard,4,7,20,177,70,Libra,M,Ing de la Energía,173,Si,Si,NA,NA,NA
+2022-1,202120203,Díaz Alarcón,Jenny Melissa,11,2,19,1.53,53,Libra,F,Ing. Industrial,NA,No,No,Negro,37,S
+2021-2,201410312,Zerpa Medina,Manuel,2,5,24,175,80,Geminis,M,Ingeniería Química,308,Si,Si,Negro,42,M
+2021-2,201910169,Flores Flores,Fabiana,4,6,19,156,58,Sagitario,F,Ing. Ambiental,271,Si,Si,Negro,36,XS
+2022-1,202010252,Falvy Puente,Fiona Lucia,4,5,19,175,59,Capricornio,F,Bioingenieria,306,No,No,Azul,41,M
+2022-1,201910076,Barrenachea Ramirez,Jose Antonio,6,7,19,170,72,Aries,M,Ing. Mecanica,250,si,si,Azul,42,M
+2021-2,202020215,Vargas Pastor,Diana Sherlin,7,3,18,150,53,Cancer,F,Ingeniería Civil,294,No,Si,Negro,37,S
+2022-1,202120205,Echavarria Gomez,Zonaly Brighit,9,2,18,157,59,Acuario,F,Ingeniería Industrial,251,No,No,Rosado,36,M
+2021.1,202010258,Galloso Andia,Rafael Andre,5,3,18,179,81,Aries,M,Ing. Mecanica,231,No,No,NA,NA,NA
+2022-0,202110320,Romani Tafur,Mariajulia Romina,1,3,17,154,52,Tauro,F,Ciencia de la computación,398,Si,No,Negro,36,S
+2021-2,202020192,Rodríguez Huamaní,Camelia Fernanda,2,3,18,165,58,Tauro,F,Ingeniería Industrial,424,No,No,Negro,38,M
+2022-1,202010026,Velarde Torres,Ana Paula,3,5,18,164,57,Tauro,F,Bioingeniería,318,No,Si,Rojo,38,S
+2022-1,202110202,Machaca Soloaga,Jose Leandro,8,3,17,1.76,64,Capricornio,M,Ciencias de la Computacion,256,SI,SI,verde,42,M
+2022-1,202020069,Garay Lopez,Rider Angello,10,4,20,168,57,Capricornio,M,Ingeneria Civil,963,si,si,azul metalico,41,M
+2022-1,202110077,Chimoy Riques,Adriana,10,3,17,1.6,50,Cancer,F,Ing. Química,341,Sí,No,Morado,36,S
+2022-1,202120318,Leon Mezagil,Marjorie Andrea,11,2,19,150,49,Aries,F,Ingeniería Industrial,271,si,no,Coral,36,S
+2021-2,201910315,Torres Farfán,Juan Manuel,2,5,19,182,79,Piscis,M,Ciencia de la Computación,219,Sí,Sí,Morado,42,L
+2021-2,202020001,Achic Maldonado,Pablo,3,3,20,168,62,Cancer,M,Ingenieria Mecanica,NA,NA,NA,NA,NA,NA
+2022-0,201810351,Anticona Puza,Francescolli Gustavo,1,6,22,175,72,Sagitario,M,Ingeniería Electrónica,NA,Si,Si,NA,NA,NA
+2022-0,202110479,Acuña Malpartida,Mirella,1,3,17,160,56,Acuario,F,Ingenieria Industrial,NA,si,si,Amarillo,36,S
+2021-2,202010544,Abad Chate,Josue Shalón,7,3,18,169,60,Virgo,M,Ingeniería Mecatrónica,210,No,No,Azul turquesa,42,M
+2021-2,201910385,Guadalupe Mucha,Bryan Walter,6,5,20,174,86,Leo,M,Ingeniería Mecatrónica,220,Si,No,Azul,43,L
+2022-1,202020207,Mamani Ramirez,Jimena Alexia,2,3,18,160,49,Geminis,F,Bioingenieria,252,Sí,Si,Azul,36,NA
+2022-1,202110225,Miranda Ramos,Maria Lourdes,9,3,18,158,50,sagitario,F,Bioingenieria,168,Sí,Sí,Lila,36,S
+2021-2,202020020,Camacho Chappe,Angie Fiorella,1,3,18,159,53,Capricornio,F,Ingeniería Civil,240,No,No,Violeta,38,S
+2022-1,201720122,ViIllegas Flores,Brandon Lee,1,7,22,163,65,Sagitario,M,Ing. de la Energia,355,si,no,morado,42,M
+2021.1,201820108,Retamozo Ccorahua,Hector Alexis,3,6,23,163,55,Tauro,M,Ing. Ambiental,297,Si,Si,NA,NA,NA
+2020-2,202020079,Gutierrez Rodriguez,Alejandro Jesus,2,4,19,174,72,Acuario,M,Ingeniería Mecánica,259,Sí,Sí,Verde,41,M
+2021.1,202010461,Bracamonte Otiniano,Eric,5,3,18,166,61,Tauro,M,Ciencia de la Computación,196,Si,Si,NA,NA,NA
+2020.1,201910336,Villacorta Garcia,Esteban,1,3,17,171,72,Géminis,M,Ciencia de la Computación,387,Si,No,NA,NA,NA
+2022-1,202110609,Moreno Limaymanta,Naomi Guissell,4,3,18,155,NA,Virgo,F,Ingeniería Mecatrónica,NA,No,Si,Beige,NA,S
+2022-1,202010325,Moreno Amoretti,Solangge Liliana,1,3,19,150,47,Leo,M,Ingeniería de la Energía,370,Sí,Sí,Amarillo,36,S
+2020.1,201910040,Sánchez Atahualpa,José Miguel,4,3,18,160,84,Acuario,M,Ciencias de la Computación,428,No,No,NA,NA,NA
+2021.1,201910008,De La Vega Musayón,Gabriela,2,5,19,172,75,Libra,F,Ing. Ambiental,396,Si,No,NA,NA,NA
+2021-2,202020116,Pachas Cayulla,Antony Arturo,1,3,23,176,83,Cáncer,M,Ingeniería Industrial,NA,sí,sí,negro,43,M
+2021.1,201720090,Sime Costilla,William,4,6,21,160,56,Virgo,M,Ing. Mecatronica,268,Si,No,NA,NA,NA
+2022-1,202010445,Huaman Santillan,Elizabeth,5,4,23,158,56,Piscis,F,Ciencias de la computación,321,no,si,Rojo,36,S
+2021.1,201910132,Cueva Paredes,Anthony Ivan,2,5,19,169,64,Sagitario,M,Ing. Civil,225,Sí,Sí,NA,NA,NA
+2021-2,202020195,Morales Panitz,Alexander,1,3,19,174,75,Virgo,M,Ciencia de la Computación,224,No,Si,Verde,42,M
+2022-1,202120332,Luyo Barrios,Patricia Alexandra,2,2,18,1.6,60,Capricornio,F,Ing. Industrial,271,No,No,Purpura,39,M
+2022-1,202120383,Morales Enriquez,William Eduardo,11,2,20,1.75,70,Capricornio,M,Ingenieria Industrial,NA,Sí,Sí,Verde,NA,NA
+2022-1,201710285,Romero Oliva,Christian Marcelo,2,6,22,163,60,Virgo,M,Ingeniería Ambiental,254,Sí,Sí,Azul,39,S
+2022-2,201810017,Riveros Soto,Andres Jaffet,5,6,23,161,58,Leo,M,Ciencia de la Computación,253,No,Si,Morado,41,S
+2021.2,201820050,Hidalgo Franco,Abelardo Edilberto,7,7,20,164,48,Aries,M,Ingeniería Mecánica,227,Sí,No,Azul,8,S
+2022-1,202120180,Cruz Inga,Kelly Marita,9,2,18,1.58,50,Tauro,F,Ingeniería mecánica,280,No,Si,Plomo,38,M
+2021.1,202010287,Humpiri Coila,Gianmarco,3,3,18,177,68,Leo,M,Ing. Mecatrónica,241,Si,No,NA,NA,NA
+2021.1,202010181,Abril Sarmiento,Mario,2,3,20,180,75,Capricornio,M,Ing. Mecánica,333,NA,sí,NA,NA,NA
+2020.2,201710048,Sánchez Silva Bellota,Diego Elías,1,7,20,178,69,Libra,M,Ing. Mecánica,209,Si,Si,NA,NA,NA
+2022-1,202010278,Hernandez Reategui,Paula Fatima,9,3,19,1.53,51,Sagitario,F,Ing. Industrial,262,No,Si,Verde,36,S
+2022-1,202110213,Mayta Castillo,Camila,4,3,18,159,60,Virgo,F,Bioingeniería,NA,No,Sí,Azul,36,M
+2021-2,202010363,Raraz Senmache,Adrian Salvador,1,3,19,172,74,Tauro,M,Bioingeniería,220,NA,NA,NA,NA,NA
+2021-2,202010472,Chavez Depaz,Gustavo Armando,7,3,23,175,85,Virgo,M,Ingenieria Mecatronica,302,Si,No,Negro,43,L
+2019-1,201910434,Valer Valverde,Paul Jesus,1,6,18,170,78,Libra,M,Ingenieria Mecatronica,231,Si,SI,Azul,42,M
+2019-1,201910455,Huaira Cañahui,Aaron,10,4,21,1.77,75,Virgo,M,Ing. Civil,432,Sí,sí,Azul,44,M
+2022.1,202010524,Vargas Silva,Iam Mauricio,5,5,19,172,71.29,Leo,M,Ing. Mecánica,276.6,No,No,Negro,42,L
+2022-1,202110040,Briceño Lazaro,Gerardo,11,3,18,1.7,58,Cancer,M,Ingenieria mecanica,233,Si,Si,Negro,42,S
+2022-1,202010155,Novoa Nakama,Rodrigo Akira,1,5,19,174,72,Tauro,M,Bioingeniería,250,No,Si,Verde,43,M
+2022-1,201910282,Rejas Berrios,Sebastian,3,6,20,1.72,63,Capricornio,M,Ciencia de Datos,187,SI,SI,Purpura,40,M
+2021-2,202010396,Sánchez Vílchez,Daniel,7,4,18,170,70,Géminis,M,Ingeniería Mecatrónica,234,No,Si,Negro,42,M
+2022-0,202010128,Elguera Salazar,Fabrizzio Miguel,1,3,19,170,78,Capricornio,M,Ciencia de la Computación,255,Si,Si,Rojo,41,M
+2021.1,201910118,Cervantes Salazar,Juan Diego Gabriel,1,5,18,165,70,Cancer,M,Ing. Mecánica,241,Si,Si,NA,NA,NA
+2021-2,202020131,Reyes Aragón,Rubi,6,3,18,169,58,Sagitario,F,Ingenieria Civil,263,No,No,Negro,38,S
+2021.1,202010085,Reyes Velarde,Piero,1,3,18,191,85,Acuario,M,Ing. Mecatrónica,233,Sí,Sí,NA,NA,NA
+2022-1,202110716,De la Cruz Saravia,César David,9,3,19,170,82,Tauro,M,Ciencia de la Computación,NA,Sí,No,Rojo,NA,NA
+2022-1,202120111,Briceño Leon,Niunier David,4,2,19,175,65,sagitario,M,ingenieria industrial,273,No,Sí,Rojo,40,M
+2022-1,201810578,García Pérez,César Paolo Renato,5,3,21,175,90,leo,M,Mecatrónica,316,Sí,No,Verde,41,XL
+2021-2,202020092,Kana Maccapa,Jhoel,7,3,19,165,61,Acuario,M,Ingenieria Civil,257,Sí,Si,Verde,40,M
+2021.1,201310284,Ticse,Kevin,1,3,26,175,81,Leo,M,Ing. Mecanica,289,No,Si,NA,NA,NA
+2020.1,201910345,Zevallos Córdova,Oscar Eduardo,2,3,18,180,84,Tauro,M,Ing.Mecánica,246,No,SI,NA,NA,NA
+2020-1,202020066,Gamboa Gonzales,Daniel Alejandro,2,3,23,1.78,90,Leo,M,Ing. Mecatrónica,192,Si,Si,Azul,45,L
+2020.1,201810381,Sanchez Paredes,Martin,4,5,18,175,60,Cancer,M,Ing. Civil,295,Si,No,NA,NA,NA
+2021-1,202110557,Flores Puma,Adin Manuel,1,3,19,169,62,Aries,M,Ingeniería Electrónica,237,Sí,Sí,Rojo,42,M
+2021-2,202020002,Aguero Mucha,Fabian Leonardo,7,3,18,158,61,-,M,Ingeniería Mecatrónica,302,Si,No,Amarillo,38,S
+2022-1,202010243,Dávila Vera,Eros David,3,5,18,1.75,66,Escorpio,M,Ingeniería Mecatrónica,275,Sí,Sí,Verde,43,M
+2021.1,201910212,Machicado Condor,Gian Daniel,1,5,19,173,80,Sagitario,M,Ing.Mecatronica,235,Si,Si,NA,NA,NA
+2021.1,201910323,Vargas Melgarejo,Joaquin Alberto,3,4,19,191,81,Tauro,M,Bioingenieria,229,Si,Si,NA,NA,NA
+2021-1,201720002,Bonilla De la cruz,Israel Jesus,5,8,20,181,71,sagitario,M,Ing. Mecanica,252,Si,Si,NA,NA,NA
+2021.1,202010063,Chiotti Acosta,Diego Martin,5,3,17,163,71,Géminis,M,Ing. Mecatronica,239,Si,No,NA,NA,NA
+2021.1,201820059,Reategui Reategui,María,4,6,22,165,NA,Tauro,F,Ing de la Energía,300,Si,Si,NA,NA,NA
+2020.2,201720017,Solano Vergara,Camila,4,6,22,165,70,Leo,F,Ing Mecanica,60,Si,Si,NA,NA,NA
+2021-1,201910463,Oré Rosales,Danith Yeing,1,4,22,1.57,68,virgo,F,Ingeniería industrial,270,No,Si,Negro,37,M
+2022-1,202110134,Galloza Melendez,Noelia Fernanda,5,3,19,1.57,60,Virgo,F,Ing. Química,315,No,Si,Lila,38,M
+2021-2,202020200,Aponte Castro,Fabricio Giordano,7,3,19,172,71,Escorpio,M,Ingeniería de la Energía,251,Si,Si,Turquesa oscuro,40,M
+2020.2,201810528,Tome Yabuta,Mitsuo,3,6,19,170,63,Libra,M,Ing. Mecánica,216,Si,Si,NA,NA,NA
+2021-1,202010378,Rojas Dávalos,Rodrigo,1,4,18,170,60,Géminis,M,Ingeniería de la Energía,250,Sí,Si,Azul,43,M
+2021-2,202020127,Ramirez Taype,Sergio Esteban,6,3,20,164,150,escorpio,M,ing. civil,NA,si,si,negro,40,M
+NA,NA,NA,NA,5,4,20,176,73,libra,M,Industrial,NA,NA,NA,NA,NA,NA
+2021-2,NA,Renom,José Miguel,NA,NA,52,180,NA,Aries,M,NA,309,Sí,No,Verde,11,XXL
+2021.1,201810642,Rodriguez Moscoso,Mauricio Antonio,3,7,19,170,62,Leo,M,Ciencia de la Computación,287,No,Si,NA,NA,NA
+2020.1,201710191,Ruiz de Somocurcio Landa,Benjamin,5,7,20,164,62,Sagitario,M,Ing. Mecánica,247,Si,Sí,NA,NA,NA
+2022-1,202120594,Venegas Chavez,Paul Anthony,11,2,18,170,68,Capricornio,M,Ing industrial,352,no,si,Negro,43,L
+2022-0,202020043,Chuquin Beas,Jhosep Piero,1,4,21,170,74,Escorpio,M,Ingeniería Civil,NA,NA,NA,NA,NA,NA
+2021-2,202020070,Garcia Rios,Sebastian Santiago,7,3,18,173,68,Virgo,M,Bioingeniería,202,No,Si,Azul,NA,NA
+2022-1,202110259,Palacios Samaniego,Patricio Ignacio,1,3,18,185,82,Tauro,M,Ingeniería Química,247,Sí,No,Negro,44,L
+2020-1,202010522,Torres Mamani,Nadia Briggit,6,5,19,1.54,64,Leo,F,Ing. Industrial,279,si,no,rojo,37,M
+2022-0,202010185,Aguilar Perales,Sebastián Alonso,1,5,19,171,67,Capricornio,M,Ingeniería Mecatrónica,275,Sí,Sí,Azul,41,M
+2022-1,202010478,Feijoo Ojeda,Eduardo Sebastian,5,5,20,1.75,71,Aries,M,Ing. Mecatrónica,284,Sí,Sí,Turqueza,42,M
+2022-1,202120103,Baldeon Rupay,Annie Guadalupe,11,2,18,164,70,Sagitario,F,Ingeniería Industrial,239,No,Sí,Rosado,40,M
+2022-1,202110157,Guzmán Bendezú,Alexander,NA,3,18,1.74,76,Virgo,M,Bioingeniería,290,Sí,Sí,Azul,44,L
+2022-1,201810066,Alvarez Ccopa,José Luis,2,4,21,178,75,Cancer,M,Ingenieria Mecánica,254,Si,Si,Negro,42,L
+2022-1,202110109,Espinoza Tarazona,Valeria Nicole,8,3,17,156,53,Tauro,F,Ciencias de la computación,247,Sí,Sí,Celeste,37,S
+2020.2,201710189,Rojas Jorge,Heyder,1,7,21,170,65,Leo,M,Ing.Mecatronica,249,si,si,NA,NA,NA
+2021.1,201910314,Toledo,Pedro,1,5,18,162,58,Tauro,M,Bioingeniería,215,Sí,NA,NA,NA,NA
+2022-1,201720043,Quispe Casaverde,Julio Eduardo,2,4,26,180,80,Libra,M,Bioingenieria,250,SI,SI,AZUL,44,L
+2022-1,202110709,Ortiz Vasquez,Gustavo Tadeo,10,3,17,175,64,Cancer,M,Ciencias de la Computacion,210,si,si,azul,42,M
+2022-1,202020096,Leandro Blas,Juan Jose,6,4,19,1.65,67,Cancer,M,Computer Science,324,no,no,Azul,42,M
+2021.1,201910465,Rios Guerra,Rafael,2,5,18,176,62,Libra,M,Ing. Energía,192,Sí,No,NA,NA,NA
+2022-1,202110184,Liendo Casapino,Nestor Gabriel,3,3,18,182,75,Cáncer,M,Ing. Mecatrónica,NA,sí,sí,verde,43,L
+2022-1,202010379,Rojas Gomez,Fabrizio,2,5,19,1.68,69,libra,M,Ingenieria Industrial,242,Si,No,Rojo,42,S
+2022-1,202120609,Vilchez Ortiz,Yamile Evelin,5,2,21,151,70,Geminis,F,Ingenieria Industrial,270,si,si,Marrón,37,M
+2021-2,202120369,Mendoza Tello,Raquel Melany,8,2,18,1.63,52,Aries,F,Ing. Industrial,280,No,Si,Negro,36,S
+2021-2,201910470,Valera Nuñez,Derkhenz Ezer,2,5,19,165,71,Libra,M,Ingenieria Mecatronica,220,Sí,No,Granate,41,L
+2021-2,201910375,Domínguez Aspilcueta,Pedro Francisco,2,5,23,175,70,Acuario,M,Ciencia de la Computación,259,Sí,No,Dorado,42,M
+2022-1,201910296,Rosas del Aguila,José Gabriel,3,4,20,170,67,Sagitario,M,Ing. Industrial,316,si,no,Negro,42,M
+2020.2,201810423,Vásquez Auqui,Fabrizio Jesús,3,6,20,172,70,Cáncer,M,Ciencias de la computacion,297,Si,No,NA,NA,NA
+2021.1,201920099,Valdivieso Ccasani,César Fabricio,3,4,20,168,63,Libra,M,Ing. Electrónica,238,Sí,Sí,NA,NA,NA
+2022-1,201920081,Malpartida Paredes,Jimena Anabel,2,6,23,164,55,Leo,F,Ingeniería Electrónica,261,Sí,Sí,Verde Limón,36,M
+2022-1,201920029,Palacios Rojas,Giovanni Heinrich Alejandro,4,5,19,173,63,Geminis,M,Ingenieria Civil,NA,Si,Si,Rojo,42,M
+2021-2,202010271,Guimoye Machicao,Marco Antonio,5,4,20,170,67,Aries,M,Ingenieria Civil,256,Sí,Sí,Azul,41,M
+2020-1,202010068,Delgado Ortiz,Sebastian Alonso,1,4,19,180,62,Libra,M,Ingeniería Mecánica,193,si,si,morado,42,M
+2022-1,202120557,Taboada pomahuacre,Cristian,11,2,20,1.78,90,Virgo,M,Ing. mecanica,230,Si,No,Purpura,44,XL
+NA,NA,Castro Chavez,Fabián Joel,9,3,18,1.7,80,Sagitario,M,Bioingeniería,250,Sí,No,Negro,42,M

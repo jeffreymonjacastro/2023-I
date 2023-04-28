@@ -1,0 +1,36 @@
+---
+title: "xd"
+format: html
+editor: visual
+---
+
+## xd
+
+```{r}
+DATA <- read_csv("DatosC04.csv") 
+```
+
+```{r}
+str(DATA)
+```
+
+```{r}
+DATA$`Peso (kg)` <- as.numeric(DATA$`Peso (kg)`)
+```
+
+```{r}
+ncol(DATA)
+nrow(DATA)
+```
+
+```{r}
+mean(DATA$`Peso (kg)`)
+```
+
+```{r}
+(table(DATA$Período))[table(DATA$Período) == max(table(DATA$Período))]
+```
+
+```{r}
+table(is.na(DATA))
+```
