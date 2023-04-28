@@ -332,7 +332,86 @@ plot(DF$Edad, DF$Tiempo
 ### Estatura
 
 ```{r}
-(table(DF$Estatura))[table(DF$Estatura) == max(table(DF$Estatura))]
+boxplot(DF$Estatura, horizontal = TRUE)
+```
+
+Veamos las estaturas demasiado altas. Dijimos que consideraríamos como correctas entre 45 cm y 280 cm
+
+```{r}
+DF %>% filter(Estatura > 280)
+```
+
+Esta estatura claramente es un error, vamos a eliminarla colocando `NA`
+
+```{r}
+DF$Estatura[DF$Estatura > 280] <- NA
+```
+
+```{r}
+boxplot(DF$Estatura, horizontal = TRUE)
+```
+
+Vamos a resolver los datos atípicamente pequeños.
+
+```{r}
+DF %>% filter(Estatura < 45) %>% count()
+```
+
+Decidimos que multiplicaríamos por 100, todos esos datos, ya que probablemente la persona puso su estatura en metros en lugar de centímetros
+
+```{r}
+Sel <- !is.na(DF$Estatura) & DF$Estatura < 45 
+DF$Estatura[Sel] <- 100*DF$Estatura[Sel]
+```
+
+```{r}
+boxplot(DF$Estatura, horizontal = TRUE)
+```
+
+Veamos las observaciones atípicas
+
+Los atípicos por ser demasiado grandes son:
+
+```{r}
+q3 <- quantile(DF$Estatura, 0.75, na.rm = TRUE, type = 3)
+q3
+```
+
+```{r}
+q1 <- quantile(DF$Estatura, 0.25, na.rm = TRUE, type = 3)
+q1
+```
+
+```{r}
+RIC <- q3 - q1
+RIC
+```
+
+(usando dplyr)
+
+```{r}
+DF %>% filter(Estatura > q3 + 1.5*RIC)
+```
+
+Los atípicos pequeños
+
+(usando R base)
+
+```{r}
+DF[!is.na(DF$Estatura) & DF$Estatura < q1 - 1.5*RIC, ]
+```
+
+Vamos a suponer que nuestros datos están limpios y vamos a tratar de describirlos.
+
+En UTEC usaremos los histogramas con el parámetro `prob = TRUE` ya que de esa manera garantizamos que el área del histograma es 1. Esto es importante para poder comparar histogramas entre si y para poder compararlos con densidades una vez que veamos variables aleatorias
+
+```{r}
+hist(DF$Estatura
+     , main = "Histograma de estaturas"
+     , xlab = "Estatura (cm)"
+     , ylab = "Frecuencia relativa"
+     , prob = TRUE
+     )
 ```
 
 ### Peso
