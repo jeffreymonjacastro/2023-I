@@ -17,7 +17,7 @@ DF <- read_csv("DD20230421.csv")
 ```
 
 ```{r}
-info(DF)
+str(DF)
 ```
 
 Recordemos que las columnas 19 y 20 estaban vacías. Vamos a eliminarlas
@@ -256,7 +256,7 @@ barplot(table(DF$Per),
                     nrow(DF), "observaciones"),
         col = c("lightgreen", "lightgreen", "red"), 
         cex.names = 0.6,)
-leyend("topleft", 
+legend("topleft", 
        legend = c("Ciclo regular", "Veranito"), 
        fill = c("lightgreen", "red"),
        bty = "n")
@@ -401,9 +401,52 @@ Los atípicos pequeños
 DF[!is.na(DF$Estatura) & DF$Estatura < q1 - 1.5*RIC, ]
 ```
 
+Promedio:
+
+```{r}
+# Promedio
+mean(DF$Estatura, na.rm = TRUE)
+```
+
+Si me lo piden correctamente redondeado a dos decimales
+
+```{r}
+round(mean(DF$Estatura, na.rm = TRUE), digits = 2)
+```
+
+::: callout-caution
+## Cuidado!
+
+Para el standard de R, en el caso el número decimal esté a la misma distancia tanto de arriba como de abajo, el redondeo se realiza para el número par más cercano
+
+```{r}
+round(10.5)
+round(11.5)
+```
+
+Hay otras formas para redondear, como son `floor` y `ceiling`
+
+```{r}
+floor(10.5)
+ceiling(10.5)
+```
+:::
+
+¿Cuánto vale la mediana?
+
+```{r}
+median(DF$Estatura, na.rm = TRUE)
+```
+
+¿Cuánto vale la moda?
+
+```{r}
+moda <- as.numeric(names((table(DF$Estatura))[table(DF$Estatura) == max(table(DF$Estatura), na.rm = TRUE)]))
+```
+
 Vamos a suponer que nuestros datos están limpios y vamos a tratar de describirlos.
 
-En UTEC usaremos los histogramas con el parámetro `prob = TRUE` ya que de esa manera garantizamos que el área del histograma es 1. Esto es importante para poder comparar histogramas entre si y para poder compararlos con densidades una vez que veamos variables aleatorias
+En UTEC usaremos los histogramas con el parámetro prob = TRUE ya que de esa manera garantizamos que el área del histograma es 1. Esto es importante para poder comparar histogramas entre si y para poder compararlos con densidades una vez que veamos variables aleatorias.
 
 ```{r}
 hist(DF$Estatura
@@ -411,10 +454,97 @@ hist(DF$Estatura
      , xlab = "Estatura (cm)"
      , ylab = "Frecuencia relativa"
      , prob = TRUE
+     #, breaks = seq(from = min(DF$Estatura, na.rm = TRUE) - 0.5, to = max(DF$Estatura, na.rm = TRUE) + 0.5, by = 10)
      )
+abline(v = c(mean(DF$Estatura, na.rm = TRUE)
+          , median(DF$Estatura, na.rm = TRUE)
+          , moda)
+       , col = c("red", "blue", "orange")
+       , lwd = 2
+       , lty = c(2,1,2)
+       )
+legend("topright"
+       , legend = c("promedio", "mediana", "moda")
+       , col = c("red", "blue", "orange")
+       , lwd = 2
+       , lty = c(2,1,2) 
+       )
+
 ```
 
+Cositas
+
+```{r}
+DF$Ultimo <- DF$Estatura %% 10
+```
+
+```{r}
+barplot(table(DF$Ultimo))
+```
+
+¿Qué está pasando?
+
+```{r}
+table(DF$Ultimo)
+```
+
+Por cuestión de representación en el formato IEEE-754, la operación %% no ha dado entero en todos los casos
+
+Vamos a arreglarlo redondeando
+
+```{r}
+DF$Ultimo <- round(DF$Ultimo)
+```
+
+```{r}
+barplot(table(DF$Ultimo))
+```
+
+Claramente hay una distorsión en los últimos digitos de las estaturas
+
+```{r}
+DF$multiplo5 <- (DF$Ultimo == 0) | (DF$Ultimo == 5)
+```
+
+```{r}
+table(DF$multiplo5)
+```
+
+```{r}
+barplot(table(DF$multiplo5)/sum(!is.na(DF$multiplo5))
+        , main = "Comparación de los últimos digitos múltiplos de 5 con los que no son"
+        , ylab = "frecuencia relativa"
+        , names.arg = c("no multiplos de 5", "multiplos de 5")
+        )
+abline(h = 0.2, col = "red", lty = 2, lwd = 2)
+legend("topright", legend = "frec. esperada de mult. 5", col = "red", lty = 2, lwd = 2)
+```
+
+Estamos observando cerca de el doble de multiplos de 5 de los que esperábamos ver.
+
 ### Peso
+
+```{r}
+table(DF$Peso)
+```
+
+Vamos a hacer una limpieza agresiva del peso
+
+Verifiquemos primero cuantos valores faltantes tenemos y al final veremos si ese número se incrementó demasiado.
+
+```{r}
+sum(!is.na(DF$Peso))
+```
+
+Todo lo que no sea interpretable directamente como un número se convertirá en `NA`
+
+```{r}
+DF$Peso <- as.numeric(DF$Peso)
+```
+
+```{r}
+sum(!is.na(DF$Peso))
+```
 
 ### Signo
 
