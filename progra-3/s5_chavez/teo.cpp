@@ -45,7 +45,7 @@ Los objetos callables pueden ser utilizados en funciones predefinidas en la libr
  * sort: Ordenar los elementos de una lista
  * find: Encontrar el índice
  * transform: Realiza una transformación a cada elemento
- * shuffle: Chocolatear
+ * random_shuffle: Chocolatear
 
 */
 
