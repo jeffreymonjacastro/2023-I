@@ -4,18 +4,30 @@ format: html
 editor: visual
 ---
 
-## xd
+## TS04
+
+```{r}
+library(readr)
+library(dplyr)
+```
 
 ```{r}
 DATA <- read_csv("DatosC04.csv") 
 ```
 
+Pregunta:\
+
 ```{r}
+# Para identificar los tipos de datos
 str(DATA)
 ```
 
 ```{r}
-DATA$`Peso (kg)` <- as.numeric(DATA$`Peso (kg)`)
+DATA$`Peso (kg)` <- as.numeric(DATA$`Peso (kg)`, na.rm = TRUE)
+```
+
+```{r}
+str(DATA)
 ```
 
 ```{r}
