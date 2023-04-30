@@ -11,7 +11,7 @@ library(readr)
 ```
 
 ```{r}
-D <- read_csv("DatosC04.csv")
+DATA <- read_csv("DatosC04.csv")
 ```
 
 Número de variables
