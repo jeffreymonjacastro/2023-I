@@ -16,13 +16,13 @@ library(knitr)
 DATA <- read_csv("DatosC04.csv") 
 ```
 
-Pregunta:
+## Pregunta 4
 
 ```{r}
 include_graphics("Jeff4.jpeg")
 ```
 
-`ncol`: Número de variables
+`ncol`: Número de variables = 18
 
 ```{r}
 ncol(DATA)
@@ -60,7 +60,9 @@ Moda del Período: 2022-1
 
 ```{r}
 (table(DATA$`Color favorito`))[table(DATA$`Color favorito`) == max(table(DATA$`Color favorito`))]
+
 (table(DATA$Período))[table(DATA$Período) == max(table(DATA$Período))]
+
 ```
 
 ```{r}
@@ -68,6 +70,10 @@ str(DATA)
 ```
 
 ## Pregunta 7
+
+```{r}
+include_graphics("Jeff7.jpeg")
+```
 
 Datos faltantes:
 
@@ -93,8 +99,35 @@ table(complete.cases(DATA))
 round(233 * 100 / 550, 2)
 ```
 
-Variable con más datos faltantes
+Variable con más datos faltantes:\
+Talla de polo con 161 datos faltantes
 
 ```{r}
-names(cwhich is.na(DATA))
+# FUNCIONAA
+names(which.max(colSums(is.na(DATA))))
+table(is.na(DATA$`Talla de polo`))
+```
+
+Variable con más datos faltantes:
+
+Nombre, con 4 datos faltantes
+
+```{r}
+names(which.min(colSums(is.na(DATA))))
+table(is.na(DATA$Nombre))
+```
+
+Observación con más datos faltantes:
+
+La número 182 con 18 datos faltantes (todos)
+
+```{r}
+which.max(rowSums(is.na(DATA)))
+table(is.na(DATA[182,]))
+```
+
+## Otra pregunta 5
+
+```{r}
+str(DATA)
 ```
