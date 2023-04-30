@@ -1,0 +1,97 @@
+---
+title: "ts04"
+format: html
+editor: visual
+---
+
+## Quarto
+
+```{r}
+library(readr)
+```
+
+```{r}
+D <- read_csv("DatosC04.csv")
+```
+
+Número de variables
+
+```{r}
+ncol(D)
+```
+
+Tipo de variables
+
+-   Período: ordinal
+
+-   Sección: nominal
+
+-   Ciclo: ordinal
+
+-   Edad: discreta
+
+-   Estatura: continua
+
+-   Peso: continua
+
+-   Signo: nominal
+
+-   Sexo: nominal
+
+-   Carrera: nominal
+
+-   Tiempo: continua
+
+-   Videojuegos: nominal
+
+-   Deporte: nominal
+
+-   Color: nominal
+
+-   Zapato: ordinal
+
+-   Polo: ordinal
+
+-   Sistema: nominal
+
+-   Fecha: ¿ordinal?
+
+-   Indicaciones: nominal
+
+```{r}
+spec(D)
+```
+
+Media
+
+```{r}
+round(mean(D$Edad, na.rm=TRUE),2)
+D$`Peso (kg)` <- as.numeric(D$`Peso (kg)`)
+round(mean(D$`Peso (kg)`, na.rm=TRUE),2)
+round(mean(D$`Tiempo de reacción`, na.rm=TRUE),2)
+```
+
+Moda
+
+```{r}
+(table(D$Ciclo))[table(D$Ciclo) == max(table(D$Ciclo))] #ciclo
+(table(D$Sección))[table(D$Sección) == max(table(D$Sección))] #periodo
+```
+
+```{r}
+table(complete.cases(D))
+table(is.na(D))
+```
+
+```{r}
+V <- colSums(is.na(D))
+max(V)
+V == max(V)
+V[V == max(V)]
+```
+
+```{r}
+V <- rowSums(is.na(D))
+a <- which.max(V)
+V[a]
+```

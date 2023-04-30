@@ -36,6 +36,10 @@ nrow(DATA)
 str(DATA)
 ```
 
+```{r}
+spec(DATA)
+```
+
 Comando para transformar la variable Peso a numérica
 
 ```{r}
