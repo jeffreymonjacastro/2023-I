@@ -9,40 +9,92 @@ editor: visual
 ```{r}
 library(readr)
 library(dplyr)
+library(knitr)
 ```
 
 ```{r}
 DATA <- read_csv("DatosC04.csv") 
 ```
 
-Pregunta:\
+Pregunta:
 
 ```{r}
-# Para identificar los tipos de datos
-str(DATA)
+include_graphics("Jeff4.jpeg")
 ```
 
-```{r}
-DATA$`Peso (kg)` <- as.numeric(DATA$`Peso (kg)`, na.rm = TRUE)
-```
-
-```{r}
-str(DATA)
-```
+`ncol`: Número de variables
 
 ```{r}
 ncol(DATA)
 nrow(DATA)
 ```
 
-```{r}
-mean(DATA$`Peso (kg)`)
-```
+6 variables numéricas y 12 variables categóricas
 
 ```{r}
+# Para identificar los tipos de datos
+str(DATA)
+```
+
+Comando para transformar la variable Peso a numérica
+
+```{r}
+DATA$`Peso (kg)` <- as.numeric(DATA$`Peso (kg)`, na.rm = TRUE)
+```
+
+Promedio de Edad: 19.38 años
+
+Promedio de Peso: 66.45 kg
+
+Promedio Estatura: 143.73 cm
+
+```{r}
+round(mean(DATA$Edad, na.rm = TRUE),2)
+round(mean(DATA$`Peso (kg)`, na.rm = TRUE),2)
+round(mean(DATA$`Estatura (cm)`, na.rm = TRUE),2)
+```
+
+Moda del color: Azul
+
+Moda del Período: 2022-1
+
+```{r}
+(table(DATA$`Color favorito`))[table(DATA$`Color favorito`) == max(table(DATA$`Color favorito`))]
 (table(DATA$Período))[table(DATA$Período) == max(table(DATA$Período))]
 ```
 
 ```{r}
+str(DATA)
+```
+
+## Pregunta 7
+
+Datos faltantes:
+
+```{r}
 table(is.na(DATA))
+```
+
+```{r}
+round(688 * 100 / 9900, 2)
+```
+
+Observaciones incompletas: 233
+
+Observaciones completas: 317
+
+```{r}
+table(complete.cases(DATA))
+```
+
+42.36 %
+
+```{r}
+round(233 * 100 / 550, 2)
+```
+
+Variable con más datos faltantes
+
+```{r}
+names(cwhich is.na(DATA))
 ```
