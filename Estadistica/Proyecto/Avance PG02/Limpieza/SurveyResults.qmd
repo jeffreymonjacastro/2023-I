@@ -1,0 +1,64 @@
+# Filtrado de la base de datos (Survey Results)
+
+-   Encuestas de Stack Overflow (33880 registros obtenidos de 73268)
+
+```{r warning=FALSE, echo=FALSE}
+library(readr)
+library(dplyr)
+
+#Leer la base de datos
+encuesta = read_csv("../db/survey_results_public.csv")
+
+```
+
+## Revisar que la base de datos esté limpia:
+
+Revisaremos cuantos casos completos hay
+
+```{r}
+
+#complete cases
+table(complete.cases(encuesta))
+```
+
+Observamos que parece que ninguna observación esta completa. HORROR! Sin embargo mejor enfoquémonos en las variables que queremos analizar y revisemos de nuevo.
+
+```{r}
+
+#borrar las filas que no queremos
+encuesta = select(encuesta, MainBranch, Employment, RemoteWork, CodingActivities, DevType, Country, EdLevel, Currency, ConvertedCompYearly, MentalHealth, Ethnicity, Gender, Age, `OpSysPersonal use`, `OpSysProfessional use`, LanguageHaveWorkedWith)
+
+```
+
+Ahora si, revisemos de nuevo cuantos casos completos tenemos.
+
+```{r}
+#casos completos
+table(complete.cases(encuesta))
+```
+
+Tal parece que solo 34672 casos están completos, por lo que seleccionaremos justo estos.
+
+```{r}
+#eliminar nulos
+encuesta = na.omit(encuesta)
+```
+
+## Revisar valores de las columnas
+
+Para esta primera instancia analizaremos primero las variables numéricas, de esta forma podemos eliminar lo que creemos que se aleja de la realidad, como salarios extremadamente bajos que solo entorpecen el análisis.
+
+```{r}
+#minimo unos 3600 dolares anuales
+encuesta = encuesta[encuesta$ConvertedCompYearly > 3600,]
+```
+
+Filtrar por los géneros. En la encuesta se permite elegir géneros de varios tipos. Sin embargo, para fines de estudio nos limitaremos a hombre o mujeres, más obviaremos a los no binarios, entre otros.
+
+```{r}
+encuesta = encuesta[encuesta$Gender == "Man" | encuesta$Gender == "Woman",]
+
+table(encuesta$Gender)
+```
+
+Listo, eso es todo lo que querremos filtrar en la base de datos.

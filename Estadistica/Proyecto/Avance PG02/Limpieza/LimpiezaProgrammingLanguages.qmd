@@ -1,0 +1,141 @@
+---
+title: "DB2_limpieza"
+format: html
+editor: visual
+---
+
+## Programming Languages Data Base
+
+Se procederá a limpiar la base de datos `Programming_languages.csv`.
+
+Primero, se verifica que las librerías estén instaladas:
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+Luego, se importa la base de datos con la librería `readr`, asignando a una variable llamada `DF`.
+
+```{r, warning=FALSE}
+dataframe <- read_csv("../db/Programming_languages.csv")
+```
+
+Veamos cuántas filas y columnas tiene nuestro `dataframe`:
+
+```{r}
+nrow(dataframe)
+ncol(dataframe)
+```
+
+Como se puede ver, hay muchas columnas (en total 353) que no utilizaremos.
+
+Por ello, procedemos a limpiar nuestro `dataframe`, centrándonos en las variables que nos interesan, las cuales son: `Title`, `Appeared`, `Type`, `Rank`, `numberOfJobs`, `numberOfUsers`, `Country`, `githubLanguage.repos` y `githubBigQuery.repos`.
+
+Vamos a eliminar las columnas que no necesitemos:
+
+```{r}
+# Columnas a conservar
+dataframe <- select(dataframe, title, appeared, type, rank, numberOfJobs, numberOfUsers, country, githubLanguage.repos, githubBigQuery.repos)
+
+```
+
+El resultado de este proceso sería:
+
+```{r}
+names(dataframe)
+```
+
+Renombraremos las variables para una mejor manipulación
+
+```{r}
+dataframe %>% rename(Nombre = title,
+                     Año = appeared,
+                     Tipo = type,
+                     Rank = rank,
+                     N_Trabajos = numberOfJobs,
+                     N_Usuarios = numberOfUsers,
+                     País = country,
+                     Github_repos = githubLanguage.repos,
+                     BigQuery_repos = githubBigQuery.repos) -> dataframe
+```
+
+## Limpieza de datos
+
+### Nombre
+
+La variable `Nombre` ya se encuentra limpia, verifiquemos que esté completa para todas las filas:
+
+```{r}
+any(is.na(dataframe$Nombre))
+```
+
+Efectivamente está completa.
+
+### Año
+
+Consideraremos los lenguajes de programación que hayan sido creados posteriores e iguales al año 1945:
+
+```{r}
+dataframe$Año[dataframe$Año < 1945] <- NA
+
+#dataframe <- dataframe[!is.na(dataframe$Año), ]
+```
+
+### Tipo
+
+Queremos que la variable `Tipo` corresponda a lenguajes de programación `pl` o `queryLanguage`, Por lo que se eliminan todos los registros que no sean `pl` (programming languages) o `queryLanguage` (Lenguaje de consulta)
+
+```{r}
+dataframe <- dataframe[dataframe$Tipo == "pl" | dataframe$Tipo == "queryLanguage",]
+```
+
+### Rank
+
+Como el ranking de esta variable empieza en 0, vamos a sumar 1 a cada fila de esta variable:
+
+```{r}
+dataframe$Rank <- dataframe$Rank + 1
+```
+
+### N_Trabajos
+
+Queremos que el lenguaje de programación tenga al menos 1 trabajador:
+
+```{r}
+dataframe$N_Trabajos[dataframe$N_Trabajos == 0] <- NA
+```
+
+### N_Usuarios
+
+Queremos que el lenguaje de programación tenga más de 10 usuarios:
+
+```{r}
+dataframe <- dataframe[dataframe$N_Usuarios > 10,] 
+```
+
+### País
+
+Esta variable ya está limpia.
+
+### Github_repos
+
+Queremos que exista al menos un repositorio al buscar en Github
+
+```{r}
+dataframe$Github_repos[dataframe$Github_repos == 0] <- NA
+```
+
+### BigQuery_repos
+
+Queremos que exista al menos un repositorio al buscar en BiigQuery
+
+```{r}
+dataframe$BigQuery_repos[dataframe$BigQuery_repos == 0] <- NA
+```
+
+En total, nuestra muestra final sería:\
+
+```{r}
+table(complete.cases(dataframe))
+```
