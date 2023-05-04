@@ -1,0 +1,18 @@
+---
+title: "LC3"
+format: html
+editor: visual
+---
+
+## Pag 6
+
+```{r}
+x <- c('a','e','i','o','u')
+y <- sample(x, 4)
+
+replicate(5, y)
+```
+
+```{r}
+replicate(3, y, simplify= "array")
+```
