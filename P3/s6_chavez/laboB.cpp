@@ -105,13 +105,11 @@ void ejercicio002(){
 
 void append(forward_list<int> lista, int x) {
     auto it = lista.begin();
-//
-//    while(next(it) != lista.end())
-//        it++;
-//
-//    lista.insert_after(it, x);
 
+    while(next(it) != lista.end())
+        it++;
 
+    lista.insert_after(it, x);
 }
 
 void ejercicio003(){
@@ -121,24 +119,21 @@ void ejercicio003(){
 
     srand(time(nullptr));
 
-    generate_n(list.begin(),10,[](){return rand()%10;});
+    generate_n(front_inserter(list),10,[](){return rand()%10;});
 
     for_each(list.begin(), list.end(), [](int i){cout<<i<<" ";});
     cout<<endl;
 
-    int distancia = distance(list.begin(), list.end());
+    append(list, 10);
 
-    cout << distancia;
-
-//    append(list, 10);
-//
-//    for_each(list.begin(), list.end(), [](int i){cout<<i<<" ";});
-//    cout<<endl;
+    for_each(list.begin(), list.end(), [](int i){cout<<i<<" ";});
+    cout<<endl;
 }
+
 
 int main() {
     //    ejercicio001();
-    //    ejercicio002();
+//        ejercicio002();
     ejercicio003();
 
     return 0;
