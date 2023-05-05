@@ -58,3 +58,8 @@ mean(results)
 
 
 ```
+
+```{r}
+factorial(5)
+# 5*4*3*2*1
+```
