@@ -1,0 +1,186 @@
+---
+title: "Labs6"
+format: html
+editor: visual
+---
+
+## Labo S6
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("DD20230331.csv")
+```
+
+```{r}
+DF %>% rename(Polo = `Talla de polo`) -> DF
+```
+
+```{r}
+table(DF$Polo)
+```
+
+Limpieza de tablas
+
+```{r}
+DF$Polo[DF$Polo == 'F'] <- NA
+DF$Polo[DF$Polo == 'l'] <- NA
+DF$Polo[DF$Polo == 'm'] <- NA
+DF$Polo[DF$Polo == 'M ó S'] <- NA
+DF$Polo[DF$Polo == 'mM'] <- NA
+DF$Polo[DF$Polo == 's'] <- NA
+DF$Polo[DF$Polo == 'S/M'] <- NA
+DF$Polo[DF$Polo == 'xl'] <- NA
+DF$Polo[DF$Polo == 'Xl'] <- NA
+DF$Polo[DF$Polo == 'xs'] <- NA
+```
+
+```{r}
+table(DF$Polo)
+```
+
+```{r}
+
+```
+
+========
+
+Debería estar claro que la moda es `M`, (y probablemente la mediana también lo sea.)
+
+Vamos a calcular la mediana explícitamente
+
+```{r}
+quantile(DF$Polo, 0.5, type = 3, na.rm = TRUE)
+```
+
+Efectivamente la mediana es `M` como esperábamos. Esto quiere decir que al menos la mitad de las tallas reportadas es `M` o más pequeña y al menos la mitad de los datos reportados son talla `M` o más grande.
+
+¿Quiénes serán los cuartiles 1 y 3?
+
+```{r}
+q1 <- quantile(DF$Polo, 0.25, type = 3, na.rm= TRUE)
+q3 <- quantile(DF$Polo, 0.75, type = 3, na.rm= TRUE)
+```
+
+Esto quiere decir que al menos la mitad de las tallas registradas es `S` o `M`.
+
+Al menos la cuarta parte de las tallas registradas es `S` o más pequeña y al menos la cuarta parte de las tallas registradas es `M` o más grande.
+
+## Variable Tiempo
+
+```{r}
+DF %>% rename(Tiempo = `Tiempo de reacción`) -> DF
+```
+
+Veamos qué dice R de la variable
+
+```{r}
+mode(DF$Tiempo)
+```
+
+Esto no nos ayuda mucho salvo para notar que la variable no es numérica y que los valores están ordenados lexicográficamente (en orden de diccionario)
+
+Vamos a limpiarla agresivamente convirtiendo a número y llevando a `NA` a todo lo que no podamos interpretar de manera no ambigua como un tiempo.
+
+```{r}
+TiempoLimpio <- as.numeric(DF$Tiempo)
+```
+
+Veamos cuantos `NA` adicionales tenemos
+
+```{r}
+sum(is.na(TiempoLimpio))
+sum(is.na(DF$Tiempo))
+```
+
+Hay tres `NA` nuevos, veamos quienes son
+
+```{r}
+DF$Tiempo[is.na(TiempoLimpio) & !is.na(DF$Tiempo)]
+```
+
+Podemos ver que hay un valor que era "rescatable", pero qué flojera arreglarlo
+
+```{r}
+DF$Tiempo <- TiempoLimpio
+rm(TiempoLimpio)
+```
+
+Veamos qué podemos decir de la variable `Tiempo`
+
+```{r}
+hist(DF$Tiempo)
+```
+
+Este histograma es muy poco informativo, solo sugiere que hay algunos valores atípicos con frecuencia muy pequeña.
+
+Una visualización más adecuada para entender qué está pasando es el *boxplot*.
+
+```{r}
+BXPL <- boxplot(DF$Tiempo, horizontal = TRUE)
+```
+
+Podemos apreciar que hay valores atípicamente grandes y valores atípicamente pequeños.
+
+El *boxplot* no es muy informativo pero nos permite apreciar hay valores atípicos.
+
+Si quisiéramos saber cuáles son los valores atípicos, podemos usar el campo `$out` de la estructura
+
+```{r}
+BXPL$out
+```
+
+¿Qué tiene que hacer un valor para ser denominado *atípico*?
+
+Tiene que estar por fuera de 1.5 veces el rango intercualtil (ric) de los bordes de la caja
+
+q1
+
+q3
+
+ric
+
+```{r}
+q1 <- quantile(DF$Tiempo, 0.25, na.rm = TRUE, type = 3)
+q3 <- quantile(DF$Tiempo, 0.75, na.rm = TRUE, type = 3)
+ric <- q3 - q1
+```
+
+```{r}
+q1
+q3
+ric
+```
+
+La función cuantil agrega una etiqueta a la respuesta para ayudar a entender que estamos viendo. El problema es que esas etiquetas se "heredan" de una manera complicada en R que no biene al caso.
+
+El parámetro `name` sirve para controlar si se coloca la etiqueta o no.
+
+```{r}
+q1 <- quantile(DF$Tiempo, 0.25, na.rm = TRUE, type = 3, name = FALSE)
+q3 <- quantile(DF$Tiempo, 0.75, na.rm = TRUE, type = 3, name = FALSE)
+ric <- q3 - q1
+```
+
+```{r}
+q1
+q3
+ric
+```
+
+El límite inferior hasta donde podría llegar el bigote izquierdo es:
+
+```{r}
+q1 - 1.5*ric
+```
+
+El límite superior hasta donde podría llegar el bigote derecho es:
+
+```{r}
+q3 + 1.5*ric
+```
+
+Esto quiere decir que al menos
