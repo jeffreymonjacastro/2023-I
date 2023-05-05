@@ -106,7 +106,7 @@ Podemos ver que hay un valor que era "rescatable", pero qué flojera arreglarlo
 
 ```{r}
 DF$Tiempo <- TiempoLimpio
-rm(TiempoLimpio)
+# rm(TiempoLimpio)
 ```
 
 Veamos qué podemos decir de la variable `Tiempo`
@@ -183,4 +183,91 @@ El límite superior hasta donde podría llegar el bigote derecho es:
 q3 + 1.5*ric
 ```
 
-Esto quiere decir que al menos
+Esto quiere decir que al menos la mitad de los datos registrados corresponden a tiempos de reacción entre 238 ms y 320 ms
+
+Al menos una cuarta parte de los datos registrados fueron menores o iguales a 238 ms
+
+El boxplot considera como atípicos a todos los valores por debajo de 115 y a todos los valores por encima de 443
+
+Claramente, el función del *boxplot* original, tenemos algunos problemas ligados a los valores atípicos
+
+```{r}
+min(DF$Tiempo, na.rm=TRUE)
+max(DF$Tiempo, na.rm=TRUE)
+```
+
+Estos datos son claramente problemáticos y probablemente corresponden a errores de transcripción.
+
+Vamos a tratar de limpiar esta variable, entendiendo que hay escenarios que podrían hacer plausibles estos resultados (pero que son altamente improbables).
+
+Sebastián encontró que 120 ms es el tiempo de reacción más corto registrado. Podemos suponer que los valores por debajo de ese son errores de algún tipo.
+
+Para los valores grandes tendremos que hacer algún juicio "experto" y decidir de manera más o menos arbitraria que punto de corte queremos usar.
+
+```{r}
+mean(DF$Tiempo, na.rm = TRUE) #PROMEDIO 
+sd(DF$Tiempo, na.rm = TRUE) #DESVIACIÓN ESTÁNDAR
+sd(DF$Tiempo, na.rm = TRUE) / mean(DF$Tiempo, na.rm = TRUE) #COEFICIENTE DE VARIACIÓN
+```
+
+Con estos datos deberíamos estar claro que el promedio no es una medida confiable para la *ubicación* de la variable `Tiempo`.
+
+Vamos a llevar a `NA` a todos los tiempos menores que 120 ms y a todos los tiempos mayores que 1000 ms. De nuevo, entender que estamos **eliminando** datos que registramos pensando que son errores.
+
+```{r}
+TiempoLimpio <- DF$Tiempo 
+TiempoLimpio[(TiempoLimpio < 120) | (TiempoLimpio > 1000)] <- NA
+```
+
+```{r}
+mean(TiempoLimpio, na.rm = TRUE)
+sd(TiempoLimpio, na.rm = TRUE) 
+sd(TiempoLimpio, na.rm = TRUE) / mean(DF$Tiempo, na.rm = TRUE)
+```
+
+Al eliminar esos valores atípicos el promedio parece haberse vuelto más confiable como medida de ubicación para `Tiempo`
+
+```{r}
+median(DF$Tiempo, na.rm = TRUE)
+median(TiempoLimpio, na.rm = TRUE)
+```
+
+La mediana, como esperábamos no se vio demasiado afectada
+
+```{r}
+boxplot(TiempoLimpio, horizontal = TRUE)
+```
+
+Notar que este *boxplot* designa como atípicos algunos valores que no eran atípicos antes.
+
+NO DEBEMOS ELIMINAR VALORES ATÍPICOS A LA LIGERA.
+
+Vamos a conservar los valores de `TiempoLimpio` en nuestra tabla
+
+```{r}
+DF$Tiempo <- TiempoLimpio
+rm(TiempoLimpio)
+```
+
+## Relación entre variables
+
+```{r}
+DF$Edad <- as.numeric(DF$Edad)
+```
+
+Vamos a tratar de estudiar la relación entre la edad y el tiempo de reacción.
+
+```{r}
+plot(DF$Edad, DF$Tiempo)
+```
+
+La gráfica se puede mejorar un poco, veamos
+
+```{r}
+# GRÁFCIA DE DENSIDAD
+smoothScatter(DF$Edad, DF$Tiempo)
+```
+
+Esta gráfica (que a veces se denomina gráfica de densidad) nos muestra un criterio diferente para atipicidad.
+
+En esta gráfica un valor es atípico si está "lejos" de otros valores. Un valor atípico se marca colocando un puntito negro.
