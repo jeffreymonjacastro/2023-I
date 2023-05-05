@@ -14,5 +14,47 @@ replicate(5, y)
 ```
 
 ```{r}
-replicate(3, y, simplify= "array")
+replicate(3, sample(1:9, 5))
+```
+
+```{r}
+z <- c(1,2,3,4,5,6)
+a <- c()
+
+for (i in 1:6) {
+  a[i] = z[i]*2
+  print(a[i])
+}
+
+```
+
+```{r}
+dado <- c(1,2,3,4,5,6)
+
+results <- c()
+
+for (i in 1:1000) {
+  count = 0
+  win = TRUE
+  while (win) {
+    Alan <- sum(sample(dado, 2))
+    Berenice <- sum(sample(dado, 3))
+    
+    if (Alan > Berenice){
+      count = count + 1;
+      win = FALSE
+    } else if (Berenice > Alan){
+      count = count + 1;
+      win = FALSE
+    } else if (Alan == Berenice)
+      count = count + 1;
+  }
+  
+  results <- c(results,count)
+}
+
+
+mean(results)
+
+
 ```
