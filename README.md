@@ -1,4 +1,9 @@
 # 2023-I
- Programing
+Este repositorio contiene todos mis códigos del ciclo 2023-I
 
-## Hello
+## Contenido
+Aquí hay códigos como:
+ - C++ (Programación III)
+ - HTML, CSS, JavaScript, PHP (DBP)
+ - R (Estadística I)
+ - SQL (Base de Datos I)
