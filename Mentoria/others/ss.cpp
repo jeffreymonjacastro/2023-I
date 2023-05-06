@@ -5,56 +5,42 @@ using namespace std;
 
 
 
-int main(){
+int main() {
+//
+//    int matrix1[2][2];
+//    int matrix2[3][3] = {};
+//    int matrix3[][3] = {0};
+//  int matrix4[2][2] = {1,2,3,4};
+//  int matrix5[2][2] = {{1,2}, {3,4}};
 
-//    int arr1[3];
-//    int arr2[3] = {1,2,3};
-//    int arr3[5]{1,2,3};
-//
-//    int size = 4;
-////    char arr4[size]{'a','b','c'};
-//
-//
-//    int* arrd1 = new int[3];
-//    int* arrd2 = new int[3]{1,2,3};
-//
-//    int* arrd3 = nullptr;
-//    arrd3 = new int[5]{1,2,3};
-//
-//    int sized = 4;
-//    char* arrd4 = nullptr;
-//    arrd4 = new char[sized]{'a','b','c'};
-//
-//    delete [] arrd1;
-//    delete [] arrd2;
-//    delete [] arrd3;
-//    delete [] arrd4;
-//
-//
+    int** matrix2 = new int*[2]{new int[2]{1,2}, new int[2]{3}};
 
-    int* arr = new int[10];
+    int** matrix = nullptr;
+    matrix = new int*[3];
 
-    for (int i = 0; i < 10; ++i) {
-        arr[i] = rand()%99;
-        cout<<arr[i]<<" ";
+    for (int i = 0; i < 3; ++i)
+        matrix[i] = new int[3];
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j)
+            matrix[i][j] = 3;
     }
 
-    cout<<endl;
+    for (int i = 0; i < 3; ++i)
+        delete[] matrix[i];
 
-    int max1 = -1e9, max2 = -1e9;
+    delete [] matrix;
 
-    for (int i = 0; i < 10; ++i) {
-        if (arr[i] > max1){
-            max2 = max1;
-            max1 = arr[i];
-        } else if (arr[i] > max2) {
-            max2 = arr[i];
+
+
+
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            cout << matrix2[i][j] << " ";
         }
+        cout << endl;
     }
 
-    cout<<max1<<" "<<max2;
-
-    return 0;
 }
 
 
