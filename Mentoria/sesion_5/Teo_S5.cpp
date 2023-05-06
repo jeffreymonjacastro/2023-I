@@ -24,10 +24,12 @@ void definirMatriz(int** matrix, int n, int m){
 void imprimirMatriz(int** matrix, int n, int m){
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            cout << setw(3) << matrix[i][j];
+            cout << setw(5) << matrix[i][j];
         }
         cout << endl;
     }
+
+    cout << endl;
 }
 
 void liberarMatriz(int** matrix, int n){
@@ -54,7 +56,7 @@ int** sumaMatrices(int** M1, int** M2, int n, int m){
 
 int** transpuesta(int** M, int n, int m){
     int** transp = new int*[m];
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < m; ++i) {
         transp[i] = new int[n];
     }
 
@@ -67,19 +69,16 @@ int** transpuesta(int** M, int n, int m){
     return transp;
 }
 
-
-
-int** multipliMatrices(int** M1, int**M2, int n, int m){
+int** multipliMatrizTranspuesta(int** M1, int n, int m){
     int** multi = new int*[n];
     for (int i = 0; i < n; ++i) {
-        multi[i] = new int[n];
+        multi[i] = new int[n]{};
     }
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            multi[i][j] = 0;
             for (int k = 0; k < m; ++k) {
-                multi[i][j] += M1[i][k] * M2[k][i];
+                multi[i][j] += M1[i][k] * M1[k][j];
             }
         }
     }
@@ -88,32 +87,57 @@ int** multipliMatrices(int** M1, int**M2, int n, int m){
 }
 
 int main(){
+//    int n = 2, m = 3;
+
+    int matrix1[2][3] = {1,2,3,4,5,6};
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            cout << matrix1[i][j] << " ";
+        }
+        cout<<endl;
+    }
+
+    int** matrix = new int*[n];
+
+    for (int i = 0; i < n; ++i) {
+        matrix[i] = new int[m];
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            matrix[i][j] = 5;
+            cout << matrix[i][j] << " ";
+        }
+        cout<<endl;
+    }
+
+    for (int i = 0; i < n; ++i) {
+        delete [] matrix[i];
+    }
+
+    delete [] matrix;
+
+// =====================================
+
     int n, m;
     cin >> n >> m;
 
     int** Matrix1 = declararMatriz(n,m);
 
-//    int** Matrix2 = declararMatriz(n,m);
-//
     definirMatriz(Matrix1, n, m);
-//    definirMatriz(Matrix2, n, m);
-//
+
     imprimirMatriz(Matrix1, n, m);
 
     int** transp = transpuesta(Matrix1, n, m);
-    imprimirMatriz(transp, n,m);
+    imprimirMatriz(transp, m,n);
 
-//    cout<<endl;
-//    imprimirMatriz(Matrix2, n, m);
-//    cout<<endl;
-//
-//    int** result = multipliMatrices(Matrix1,Matrix2,n,m);
-//
-//    imprimirMatriz(result, n, m);
-//
-//    liberarMatriz(Matrix1, n);
-//    liberarMatriz(Matrix2, n);
-//    liberarMatriz(result, n);
+    int** result = multipliMatrizTranspuesta(Matrix1,n,m);
+    imprimirMatriz(result, n, n);
+
+    liberarMatriz(Matrix1, n);
+    liberarMatriz(transp, n);
+    liberarMatriz(result, n);
 
 
 
@@ -121,36 +145,6 @@ int main(){
 
 
 
-//    int n = 2, m = 3;
-
-//    int matrix1[2][3] = {1,2,3,4,5,6};
-//
-//    for (int i = 0; i < 3; ++i) {
-//        for (int j = 0; j < 3; ++j) {
-//            cout << matrix1[i][j] << " ";
-//        }
-//        cout<<endl;
-//    }
-
-//    int** matrix = new int*[n];
-//
-//    for (int i = 0; i < n; ++i) {
-//        matrix[i] = new int[m];
-//    }
-//
-//    for (int i = 0; i < n; ++i) {
-//        for (int j = 0; j < m; ++j) {
-//            matrix[i][j] = 5;
-//            cout << matrix[i][j] << " ";
-//        }
-//        cout<<endl;
-//    }
-//
-//    for (int i = 0; i < n; ++i) {
-//        delete [] matrix[i];
-//    }
-//
-//    delete [] matrix;
 
     return 0;
 }
