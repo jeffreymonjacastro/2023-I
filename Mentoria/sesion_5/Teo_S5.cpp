@@ -40,18 +40,80 @@ void liberarMatriz(int** matrix, int n){
 }
 
 
+int** sumaMatrices(int** M1, int** M2, int n, int m){
+    int** sum = new int*[n];
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            sum[i][j] = M1[i][j] + M2[i][j];
+        }
+    }
+
+    return sum;
+}
+
+int** transpuesta(int** M, int n, int m){
+    int** transp = new int*[m];
+    for (int i = 0; i < n; ++i) {
+        transp[i] = new int[n];
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            transp[j][i] = M[i][j];
+        }
+    }
+
+    return transp;
+}
+
+
+
+int** multipliMatrices(int** M1, int**M2, int n, int m){
+    int** multi = new int*[n];
+    for (int i = 0; i < n; ++i) {
+        multi[i] = new int[n];
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            multi[i][j] = 0;
+            for (int k = 0; k < m; ++k) {
+                multi[i][j] += M1[i][k] * M2[k][i];
+            }
+        }
+    }
+
+    return multi;
+}
 
 int main(){
     int n, m;
     cin >> n >> m;
 
-    int** Matrix = declararMatriz(n,m);
+    int** Matrix1 = declararMatriz(n,m);
 
-    definirMatriz(Matrix, n, m);
+//    int** Matrix2 = declararMatriz(n,m);
+//
+    definirMatriz(Matrix1, n, m);
+//    definirMatriz(Matrix2, n, m);
+//
+    imprimirMatriz(Matrix1, n, m);
 
-    imprimirMatriz(Matrix, n, m);
+    int** transp = transpuesta(Matrix1, n, m);
+    imprimirMatriz(transp, n,m);
 
-    liberarMatriz(Matrix, n);
+//    cout<<endl;
+//    imprimirMatriz(Matrix2, n, m);
+//    cout<<endl;
+//
+//    int** result = multipliMatrices(Matrix1,Matrix2,n,m);
+//
+//    imprimirMatriz(result, n, m);
+//
+//    liberarMatriz(Matrix1, n);
+//    liberarMatriz(Matrix2, n);
+//    liberarMatriz(result, n);
 
 
 

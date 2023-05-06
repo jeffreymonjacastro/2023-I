@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(.)
 include_directories(progra-3)
 
-add_executable(2023_I Mentoria/sesion_5/debug.cpp)
+#add_executable(2023_I)
 
 add_executable(pcs P3/s5_chavez/pcs1/lab103p1.cpp)
 
@@ -18,4 +18,4 @@ add_executable(vjudge CPC/Beginners_trainee/Clase2/A.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
-add_executable(mentoria Mentoria/sesion_5/Teo_S5.cpp)
+add_executable(mentoria Mentoria/sesion_5/PC2_1.cpp Mentoria/sesion_5/PC2_1.cpp)
