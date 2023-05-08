@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(.)
 include_directories(progra-3)
 
-#add_executable(2023_I)
+add_executable(2023_I P3/s6_chavez/LaboB/Primero.cpp)
 
 add_executable(pcs P3/s5_chavez/pcs1/lab103p1.cpp)
 
