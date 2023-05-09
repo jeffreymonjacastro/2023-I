@@ -9,5 +9,15 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main(){
+    string richtext;
+    ifstream doc("The Y2K Saga.html");
+
+    if(doc.is_open()){
+        while(getline(doc, richtext))
+            cout << richtext << endl;
+        doc.close();
+    } else {
+        cout << "No se pudo abrir el archivo" << endl;
+    }
 
 }
