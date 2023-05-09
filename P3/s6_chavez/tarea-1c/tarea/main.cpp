@@ -27,11 +27,11 @@ int main(){
 //    cout << richtext << endl;
 
 
-    regex pattern("[a-z A-Z\\/]");
+    regex pattern("<body>");
 
     smatch match;
 
-    string text = "/..--.123456Hola mundo como estas xd123";
+    string text = "<head> Hola mundo </head> <body>/..--.123456Hola mundo como estas xd123</body>";
 
     bool found = regex_search(text, match, pattern);
 
