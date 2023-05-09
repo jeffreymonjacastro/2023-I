@@ -9,23 +9,42 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main(){
-    string richtext;
-    ifstream doc("document.html");
+//    string richtext;
+//    ifstream doc(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
+//
+//    if(doc.is_open()){
+//        string linea;
+//
+//        while(getline(doc, linea))
+//            richtext += linea + "\n";
+//
+//        doc.close();
+//
+//    } else {
+//        cout << "No se pudo abrir el archivo" << endl;
+//    }
+//
+//    cout << richtext << endl;
 
-    if(doc.is_open()){
-        string linea;
 
-        while(getline(doc, linea))
-            richtext += linea;
+    regex pattern("[a-z A-Z\\/]");
 
-        doc.close();
+    smatch match;
 
-    } else {
-        cout << "No se pudo abrir el archivo" << endl;
+    string text = "/..--.123456Hola mundo como estas xd123";
+
+    bool found = regex_search(text, match, pattern);
+
+    if(found){
+        sregex_iterator iter(text.begin(), text.end(), pattern);
+        sregex_iterator end;
+
+        while (iter != end){
+            string match_str = iter->str();
+            cout << match_str;
+            iter++;
+        }
     }
-
-    cout << richtext << endl;
-
 
 
 
