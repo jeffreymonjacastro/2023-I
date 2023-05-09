@@ -9,52 +9,71 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main(){
-    string richtext;
-    ifstream doc(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
-
-    if(doc.is_open()){
-        string linea;
-
-        while(getline(doc, linea))
-            richtext += linea + "\n";
-
-        doc.close();
-
-    } else {
-        cout << "No se pudo abrir el archivo" << endl;
-    }
+//    string richtext;
+//    ifstream doc(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
+//
+//    if(doc.is_open()){
+//        string linea;
+//
+//        while(getline(doc, linea))
+//            richtext += linea + "\n";
+//
+//        doc.close();
+//
+//    } else {
+//        cout << "No se pudo abrir el archivo" << endl;
+//    }
 
     // todo: Para quitar todo lo que está arriba del <head>
 
-    string newtext;
+    string richtext = "<head>Holaaa</head>";
+
+    bool pos1 = false;
+    bool pos2 = false;
 
     for (int i = 0; i < richtext.size(); ++i) {
-        string subtext = richtext.substr(i,5);
+        int n, m;
 
-        if (subtext == "<body")
-            for (int j = i; j < richtext.size(); ++j) {
-                newtext += richtext[j];
-            }
-    }
-
-    cout << newtext << endl;
-
-    regex pattern("[a-z][A-Z]");
-
-    smatch match;
-
-    bool found = regex_search(newtext, match, pattern);
-
-    if(found){
-        sregex_iterator iter(newtext.begin(), newtext.end(), pattern);
-        sregex_iterator end;
-
-        while (iter != end){
-            string match_str = iter->str();
-            cout << match_str;
-            iter++;
+        if (richtext[i] == '<'){
+            n = i;
+            pos1 = true;
+        } else if (richtext[i] == '>'){
+            m = i;
+            pos2 = true;
         }
+
+        if (pos1 && pos2) {
+            cout << "Nice";
+        }
+
+
+
+
+
+
+        
     }
+
+//    cout << newtext << endl;
+
+// todo: codigo para leer solamente alfanuméricos
+
+//    regex pattern("[a-z A-Z]");
+//
+//    smatch match;
+//
+//    bool found = regex_search(newtext, match, pattern);
+//
+//    if(found){
+//        sregex_iterator iter(newtext.begin(), newtext.end(), pattern);
+//        sregex_iterator end;
+//
+//        while (iter != end){
+//            string match_str = iter->str();
+//            cout << match_str;
+//            iter++;
+//        }
+//    }
 
 
 
