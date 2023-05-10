@@ -7,6 +7,8 @@
 
 using namespace std;
 
+bool comparePairs(const pair<string, int>& a, const pair<string, int>& b);
+
 struct Counter{
     vector<string> content;
 
@@ -66,7 +68,7 @@ struct Counter{
 
         string prolijtext;
 
-        regex pattern1("[a-z A-Z \\']");
+        regex pattern1("[a-z A-Z]");
 
         sregex_iterator iter1(newtext.begin(), newtext.end(), pattern1);
         sregex_iterator end1;
@@ -93,8 +95,10 @@ struct Counter{
     int operator()(string s){
         map<string, int> search_word;
 
+        vector<string> conn = {"the", "for", "was", "and", "that", "but", "had", "you", "she", "all", "with", "could", "some", "from", "not", "can", "her", "just", "know", "would"};
+
         for(auto it = content.begin(); it != content.end(); it++) {
-            if(it->size() > 2 && *it != "the" && *it != "for" && *it != "was") {
+            if(it->size() > 2 && find(conn.begin(), conn.end(), *it) == conn.end()) {
                 transform(it->begin(), it->end(), it->begin(),
                           [](char c) { return tolower(c); });
 
@@ -108,12 +112,58 @@ struct Counter{
             }
         }
 
-        return -1;
+        return 0;
     }
 
+
+    // Encontrar el ranking de los 5 primeros
     vector<string> ranking(){
-        // TODO
         vector<string> v(5,"None");
+        vector<string> conn = {"the", "for", "was", "and", "that", "but", "had", "you", "she", "all", "with", "could", "some", "from", "not", "can", "her", "just", "know", "would"};
+
+        map<string, int> word_count;
+
+        for(auto it = content.begin(); it != content.end(); it++) {
+            if(it->size() > 2 && find(conn.begin(), conn.end(), *it) == conn.end()) {
+                transform(it->begin(), it->end(), it->begin(),
+                          [](char c) { return tolower(c); });
+
+                word_count[*it]++;
+            }
+        }
+
+        vector<pair<string,int>> ordered(word_count.begin(), word_count.end());
+
+        stable_sort(ordered.begin(), ordered.end(), comparePairs);
+
+        for (auto it:ordered) {
+            cout << it.first << ": " << it.second << endl;
+        }
+
+
+//        auto it = word_count.begin();
+//        pair<string,int> max_pair1 = {(*it).first, (*it).second};
+//        pair<string,int> max_pair2 = {(*it).first, (*it).second};
+//
+//        int n = 0;
+//        while (n < 5) {
+//            for (auto it = word_count.begin(); it != word_count.end(); it++) {
+//                if ((*it).second > max_pair1.second) {
+//                    max_pair2.first = max_pair1.first;
+//                    max_pair2.second = max_pair1.second;
+//
+//                    max_pair1.first = (*it).first;
+//                    max_pair1.second = (*it).second;
+//                } else if ((*it).second > max_pair2.second){
+//                    max_pair2.first = (*it).first;
+//                    max_pair2.second = (*it).second;
+//                }
+//            }
+//            n++;
+//        }
+
+//        cout << "Moda: " << max_pair.first << ", con " << max_pair.second << " rep." << endl;
+
         return v;
     }
 };
