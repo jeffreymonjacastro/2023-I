@@ -19,6 +19,11 @@ int main() {
     // Segundo item
     vector<string> rank = C.ranking();
 
+    cout << rank[0] << endl;    // ilsa     (con 30 repeticiones)
+    cout << rank[1] << endl;    // time     (con 20 repeticiones)
+    cout << rank[2] << endl;    // said     (con 18 repeticiones)
+    cout << rank[3] << endl;    // russell  (con 16 repeticiones)
+    cout << rank[4] << endl;    // still    (con 10 repeticiones)
 
     return 0;
 }

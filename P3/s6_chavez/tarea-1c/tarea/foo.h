@@ -134,35 +134,11 @@ struct Counter{
 
         vector<pair<string,int>> ordered(word_count.begin(), word_count.end());
 
-        stable_sort(ordered.begin(), ordered.end(), comparePairs);
+        sort(ordered.begin(), ordered.end(), comparePairs);
 
-        for (auto it:ordered) {
-            cout << it.first << ": " << it.second << endl;
+        for (int i = 0; i < 5; ++i) {
+            v[i] = ordered[i].first;
         }
-
-
-//        auto it = word_count.begin();
-//        pair<string,int> max_pair1 = {(*it).first, (*it).second};
-//        pair<string,int> max_pair2 = {(*it).first, (*it).second};
-//
-//        int n = 0;
-//        while (n < 5) {
-//            for (auto it = word_count.begin(); it != word_count.end(); it++) {
-//                if ((*it).second > max_pair1.second) {
-//                    max_pair2.first = max_pair1.first;
-//                    max_pair2.second = max_pair1.second;
-//
-//                    max_pair1.first = (*it).first;
-//                    max_pair1.second = (*it).second;
-//                } else if ((*it).second > max_pair2.second){
-//                    max_pair2.first = (*it).first;
-//                    max_pair2.second = (*it).second;
-//                }
-//            }
-//            n++;
-//        }
-
-//        cout << "Moda: " << max_pair.first << ", con " << max_pair.second << " rep." << endl;
 
         return v;
     }
