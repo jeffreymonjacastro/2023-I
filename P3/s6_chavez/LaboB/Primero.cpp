@@ -11,24 +11,24 @@ using namespace std;
 
 // ALGORITMO PARA CONTAR PALABRAS
 void ejercicio001() {
-        map<string, int> word_count;
-        string word;
+    map<string, int> word_count;
+    string word;
 
-        while(getline(cin,word)){
-            if (word.begin() == word.end())
-                break;
+    while(getline(cin,word)){
+        if (word.begin() == word.end())
+            break;
 
-            for (auto it = word.begin(); it != word.end(); ++it)
-                *it = tolower(*it);
+        for (auto it = word.begin(); it != word.end(); ++it)
+            *it = tolower(*it);
 
-            word_count[word]++;
-        }
+        word_count[word]++;
+    }
 
-        for (const auto &w : word_count){
-            cout << w.first << ": ";
-            cout << w.second;
-            cout << (w.second > 1 ? " veces" : " vez") << endl;
-        }
+    for (const auto &w : word_count){
+        cout << w.first << ": ";
+        cout << w.second;
+        cout << (w.second > 1 ? " veces" : " vez") << endl;
+    }
 };
 
 
@@ -114,9 +114,9 @@ void ejercicio004(){
 
 int main(){
     srand(time(nullptr));
-    // ejercicio001();
+    ejercicio001();
 //     ejercicio002();
-     ejercicio003();
+//     ejercicio003();
 
 
     return 0;

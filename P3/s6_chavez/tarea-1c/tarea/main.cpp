@@ -9,6 +9,14 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main() {
+    Counter C("C:\\Users\\Usuario\\Github\\2023-I\\P3\\s6_chavez\\tarea-1c\\tarea\\document.html");
+
+
+
+
+
+//    // todo: Código para leer el html como un archivo
+//
 //    string richtext;
 //
 //    ifstream doc(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
@@ -24,56 +32,61 @@ int main() {
 //    } else {
 //        cout << "No se pudo abrir el archivo" << endl;
 //    }
-
-//    cout << richtext << endl;
-
-// todo: Para quitar todo lo que está arriba del <head>
-
-    string richtext = "<head>Holaaa</head>";
-
-    string newtext;
-
-    bool pos1 = false, pos2 = false;
-
-    for (int i = 0; i < richtext.size(); ++i) {
-        int n, m;
-
-        if (richtext[i] == '<'){
-            n = i;
-            pos1 = true;
-        } else if (richtext[i] == '>' && pos1){
-            m = i;
-            pos2 = true;
-        }
-
-        if (!pos1 && !pos2) {
-
-            pos1 = false;
-            pos2 = false;
-
-        }
-    }
-
-    cout << richtext << endl;
-
-// todo: codigo para leer solamente alfanuméricos
-
-//    regex pattern("[a-z A-Z]");
 //
-//    smatch match;
 //
-//    bool found = regex_search(newtext, match, pattern);
+//    // todo: Para quitar todo lo que está arriba del <head>
 //
-//    if(found){
-//        sregex_iterator iter(newtext.begin(), newtext.end(), pattern);
-//        sregex_iterator end;
+//    string newtext;
 //
-//        while (iter != end){
-//            string match_str = iter->str();
-//            cout << match_str;
-//            iter++;
+////    for(int i = 0; i < richtext.size(); i++){
+////        if (richtext.substr(i,5) == "<body"){
+////            richtext.erase(0,i);
+////            break;
+////        }
+////    }
+//
+//    auto it = richtext.begin();
+//    while (it != richtext.end()) {
+//        if (string(it, it+5) == "<body") {
+//            richtext.erase(richtext.begin(), it);
+//            break;
+//        }
+//        ++it;
+//    }
+//
+//
+//    // todo: Código para eliminar las etiquetas <html>
+//
+//    bool pos = true;
+//
+//    for (auto it = richtext.begin(); it != richtext.end(); it++) {
+//        if (*it == '<') {
+//            pos = false;
+//        } else if (pos) {
+//            if (*it == '\n')
+//                newtext += " ";
+//            else
+//                newtext += *it;
+//        } else if (*it == '>' && !pos) {
+//            pos = true;
 //        }
 //    }
 //
+//    // todo: Código para leer solamente alfanuméricos con RegEx
+//
+//    string prolijtext;
+//
+//    regex pattern("[a-z A-Z \\']");
+//
+//    sregex_iterator iter(newtext.begin(), newtext.end(), pattern);
+//    sregex_iterator end;
+//
+//    while (iter != end){
+//        prolijtext += iter->str();
+//        iter++;
+//    }
+//
+//    cout << prolijtext;
+
     return 0;
 }
