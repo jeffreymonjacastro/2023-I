@@ -19,7 +19,7 @@ struct Counter{
 
         string richtext;
 
-        ifstream doc(url, ios::binary);
+        ifstream doc(url, ios::in);
 
         if (doc.is_open()) {
             string linea;
