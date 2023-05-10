@@ -25,7 +25,7 @@ struct Counter{
             string linea;
 
             while (getline(doc, linea))
-                richtext += linea + "\n";
+                richtext += linea + " ";
 
             doc.close();
 
@@ -65,7 +65,7 @@ struct Counter{
         }
 
 
-        // todo: Código para leer solamente alfanuméricos (y ') con RegEx
+        // todo: Código para leer solamente alfanuméricos con RegEx
 
         string prolijtext;
 
@@ -79,8 +79,7 @@ struct Counter{
             iter1++;
         }
 
-
-        // todo: Código para separar cada palabra del string y ponerlo en un vector
+        // todo: Código para separar cada palabra del string y ponerlo en un vector con RegEx
 
         regex pattern2("\\s+");
 
