@@ -12,9 +12,9 @@ int main() {
     Counter C("C:\\Users\\Usuario\\Github\\2023-I\\P3\\s6_chavez\\tarea-1c\\tarea\\document.html");
 
     // Primer item check
-//    cout << C("think");
-//    cout << C("bug");
-//    cout << C("bugs");
+    cout << C("think");
+    cout << C("bug");
+    cout << C("bugs");
 
     // Segundo item
     vector<string> rank = C.ranking();
