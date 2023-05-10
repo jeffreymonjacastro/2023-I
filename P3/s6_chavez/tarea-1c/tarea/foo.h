@@ -14,12 +14,12 @@ struct Counter{
 
 
     // Leer el html
-    Counter(string url){
+    explicit Counter(const string& url){
         // todo: Código para leer el html como un archivo
 
         string richtext;
 
-        ifstream doc(url, ios::in);
+        ifstream doc(url, ios::binary);
 
         if (doc.is_open()) {
             string linea;
