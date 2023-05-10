@@ -93,23 +93,21 @@ struct Counter{
     int operator()(string s){
         map<string, int> search_word;
 
-        string word;
-
         for(auto it = content.begin(); it != content.end(); it++) {
-            if (word.begin() == word.end())
-                break;
+            if(it->size() > 2 && *it != "the" && *it != "for" && *it != "was") {
+                transform(it->begin(), it->end(), it->begin(),
+                          [](char c) { return tolower(c); });
 
-            for (auto it = word.begin(); it != word.end(); ++it)
-                *it = tolower(*it);
-
-            word_count[word]++;
+                search_word[*it]++;
+            }
         }
 
-        for (const auto &w : word_count){
-            cout << w.first << ": ";
-            cout << w.second;
-            cout << (w.second > 1 ? " veces" : " vez") << endl;
+        for (auto it = search_word.begin(); it != search_word.end(); it++){
+            if (s == it->first){
+                return it->second;
+            }
         }
+
         return -1;
     }
 
