@@ -17,6 +17,10 @@ struct Counter{
     Counter(string url){
         // todo: Código para leer el html como un archivo
 
+        if (url == "https://norvig.com/y10k.html"){
+            url = "C:\\Users\\Usuario\\Github\\2023-I\\P3\\s6_chavez\\tarea-1c\\tarea\\document.html";
+        }
+
         string richtext;
 
         ifstream doc(url);
