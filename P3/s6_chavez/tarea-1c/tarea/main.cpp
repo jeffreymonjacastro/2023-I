@@ -29,7 +29,7 @@ int main() {
 //    }
 
 
-    Counter C("C:\\Users\\Usuario\\Github\\2023-I\\P3\\s6_chavez\\tarea-1c\\tarea\\document.html");
+    Counter C("document.html");
 
     // Primer item check
     cout << C("think") << endl;
