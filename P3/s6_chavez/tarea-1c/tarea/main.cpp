@@ -29,7 +29,7 @@ int main() {
 //    }
 
 //    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
-    Counter C(R"(tarea\document.html)");
+    Counter C(R"(../tarea/document.html)");
 
     // Primer item check
     cout << C("think") << endl;
@@ -44,6 +44,7 @@ int main() {
     cout << rank[2] << endl;    // said     (con 18 repeticiones)
     cout << rank[3] << endl;    // russell  (con 16 repeticiones)
     cout << rank[4] << endl;    // still    (con 10 repeticiones)
+
 
     return 0;
 }

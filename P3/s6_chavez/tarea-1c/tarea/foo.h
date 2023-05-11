@@ -17,9 +17,10 @@ struct Counter{
     explicit Counter(const string& url){
         // todo: Código para leer el html como un archivo
 
+
         string richtext;
 
-        ifstream doc(url, ios::in);
+        ifstream doc("../tarea/document.html", ios::in);
 
         if (doc.is_open()) {
             string linea;
