@@ -17,7 +17,7 @@ int main(){
 
     vector<char> no_rep;
 
-    
+
 
     return 0;
 }
