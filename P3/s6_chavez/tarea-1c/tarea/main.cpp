@@ -10,24 +10,6 @@
 // Puede validar su codigo con la siguiente funcion main
 int main() {
 
-//    string url = "https://norvig.com/y10k.html";
-//
-//    string richtext;
-//
-//    ifstream doc("https://norvig.com/y10k.html");
-//
-//    if (doc.is_open()) {
-//        string linea;
-//
-//        while (getline(doc, linea))
-//            richtext += linea + " ";
-//
-//        doc.close();
-//
-//    } else {
-//        cout << "No se pudo abrir el archivo" << endl;
-//    }
-
 //    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.txt)");
     Counter C(R"(../tarea/document.txt)");
 
