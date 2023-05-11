@@ -7,9 +7,7 @@
 
 using namespace std;
 
-bool comparePairs(const pair<string, int>& a, const pair<string, int>& b) {
-    return a.second > b.second;
-}
+bool comparePairs(const pair<string, int>& a, const pair<string, int>& b);
 
 struct Counter{
     vector<string> content; // Las palabras del html
@@ -22,7 +20,7 @@ struct Counter{
 
         string richtext;
 
-        ifstream doc("../tarea/document.html", ios::in);
+ifstream doc("../tarea/document.txt", ios::in);
 
         if (doc.is_open()) {
             string linea;

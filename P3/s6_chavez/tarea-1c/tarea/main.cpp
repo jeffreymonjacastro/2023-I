@@ -28,8 +28,8 @@ int main() {
 //        cout << "No se pudo abrir el archivo" << endl;
 //    }
 
-//    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.html)");
-    Counter C(R"(../tarea/document.html)");
+//    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.txt)");
+    Counter C(R"(../tarea/document.txt)");
 
     // Primer item check
     cout << C("think") << endl;
