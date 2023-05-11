@@ -20,7 +20,7 @@ struct Counter{
 
         string richtext;
 
-ifstream doc("../tarea/document.txt", ios::in);
+        ifstream doc("../tarea/document.txt", ios::in);
 
         if (doc.is_open()) {
             string linea;

@@ -12,7 +12,7 @@ add_executable(teo P3/s6_chavez/tarea-1c/tarea/testing.cpp)
 
 add_executable(pcs P3/s5_chavez/pcs1/lab103p1.cpp)
 
-#add_executable(Dayane )
+add_executable(Dayane P3/s7_chavez/context.cpp)
 
 add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
