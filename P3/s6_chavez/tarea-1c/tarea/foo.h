@@ -7,7 +7,9 @@
 
 using namespace std;
 
-bool comparePairs(const pair<string, int>& a, const pair<string, int>& b);
+bool comparePairs(const pair<string, int>& a, const pair<string, int>& b) {
+    return a.second > b.second;
+}
 
 struct Counter{
     vector<string> content; // Las palabras del html

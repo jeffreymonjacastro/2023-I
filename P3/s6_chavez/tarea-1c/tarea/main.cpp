@@ -35,6 +35,7 @@ int main() {
     cout << C("think") << endl;
     cout << C("bug") << endl;
     cout << C("bugs") << endl;
+    cout << C("ilsa") << endl;
 
     // Segundo item
     vector<string> rank = C.ranking();
