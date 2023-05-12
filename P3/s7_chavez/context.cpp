@@ -12,6 +12,14 @@ int repeticiones(vector<char>& v, char c){
     return sum;
 }
 
+int suma(vector<int>& v){
+    int sum = 0;
+    for(auto i:v){
+        sum += i;
+    }
+    return sum;
+}
+
 int main(){
     vector<char> palabras{'a','a','b','b','c'};
 
