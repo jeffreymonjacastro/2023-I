@@ -1,0 +1,54 @@
+---
+title: "Laboratorio 1"
+output: html_notebook
+---
+
+# Introducción
+
+Los estudios históricos [JM], [ED] y [SG] sobre la **anchoveta ficticia** (*Engraulis simulacra*) en las zonas pesqueras del Perú determinaron que el largo promedio de la anchoveta es de $8\,cm$ y su peso promedio es de $70\,g$. 
+
+En los dos últimos estudios citados, la preponderancia de machos y hembras fue similar y en el primero, no se reportó.
+
+Las redes utilizadas en los tres estudios tenían agujeros de, respectivamente $2.54\,cm$, $2.54\,cm$ y $2.00\,cm$. 
+
+Estos estudios también determinaron que las proporciones aproximadas de la anchoveta son las de un cilindro de largo $l$ y diámetro $a$ en centímetros, donde se determinó una relación aproximada entre $a$ y $l$ por regresión. Ese modelo, que aún es utilizado en la actualidad, es $a=l*0.28+1.00$ y se supone que es válido para peces de $7.00\,cm$ o más.
+
+Finalmente, en los tres estudios mencionados, se determinó la densidad de la anchoveta comparando el peso seco de las mismas, con el volumen de agua destilada a $4^\circ C$ desplazado por estas; llegando al valor de $1.05\,\frac{g}{cm^3}$. 
+
+Considerando que el más moderno de estos estudios tiene casi 100 años de antiguedad se decidió llevar a cabo un nuevo estudio para caracterizar las poblaciónes de este pez y determinar la salud de los inventarios disponibles.
+
+Este estudio se llevó a cabo desde el año 2007 hasta el año 2017, donde se clasificaron, midieron y pesaron, 100 peces capturados mediante una red de malla fina con agujeros de $1.00\,cm$ en la misma semana durante durante el verano y el invierno de cada año, por 10 barcos pesqueros de características similares, seleccionados al azar en cada estación, de un conjunto de 18 disponibles y trabajando en las zonas de pesca legal.
+
+Las mediciones fueron tomadas por personal entrenado en el reconocimiento, clasificación y medida de las características relevantes.
+
+Los datos recolectados se reportan a continuación en el archivo [Anchoveta_07_17.csv](https://utec.instructure.com/users/2088/files/91206) que debe ser descargado en su computador para ser analizado usando **R**.
+
+El archivo está codificado en formato UTF-8 consiste de 22000 observaciones de las siguientes variables:
+
++ `Año`: el año en que se realizó la recolección, variable numérica entera entre 2007 y 2017. 
+
++ `Estacion`: la estación en que se realizó la recolección, variable categórica que puede tomar los valores `Invierno` y `Verano`. La recolección se llevó a cabo en las condiciones descritas en la *semana central* de la estación.
+
++ `Barco`: el barco en el que se realizó la recolección, es una variable categórica que puede tomar cualquiera de 18 valores posibles. En cada estación se seleccionaron al azar 10 de los 18 barcos disponibles para que la recolección se llevase a cabo en ellos.
+
++ `Sexo`: sexo de la anchoveta, es una variable categórica que puede tomar los valores `Hembra` o `Macho`. Para determinar el sexo de la anchoveta se confió en el juicio del clasificador entrenado. El iris de las hembras es plateado brillante mientras que el de los machos de un anaranjado brillante.  
+
++ `Largo`: el largo de la anchoveta en centímetros, es una variable numérica positiva. El largo se mide desde el borde de la agalla hasta el centro del inicio de la aleta caudal. Las proporciones de la anchoveta se mantienen relativamente uniformes una vez esta alcanza un tamaño relativamente grande (históricamente se habla de al menos $7.00\,cm$).
+
++ `Peso`: el peso de la anchoveta en gramos, es una variable numérica positiva. Se pesa la anchoveta completa. 
+
+
+# Problema
+
+Se desea dar una descripción de los datos recolectados con la intención de validar los modelos existentes para la anchoveta ficticia y proponer modelos apropiados en el caso de que los modelos existentes ya no sean válidos.
+
+
+# Bibliografía
+
+[JM]: J. Moriarty (1889). *A Survey of the peruvian populations of Engraulis simulacra*. Royal Society of Natural Sciences, London, England. p. 314.
+
+[ED]: E. Dibol (1911). *Sobre la salud de la anchoveta ficticia en las costas de Peru*. Acta Ecológica, Lima, Perú. p. 127.
+
+[SG]: S. Gonzón (1923). *Caracterización de las especies económicamente aprovechables de la fachada del Pacífico*. AES , Lima, Perú. p. 35.
+
+
