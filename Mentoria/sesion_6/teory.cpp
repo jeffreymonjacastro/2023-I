@@ -92,6 +92,25 @@ int main(){
     v.front();
     v.back();
 
+    for (int i = 0; i < v.size(); ++i) {
+        cout << v[i];
+    }
+
+    for(auto i:v){
+        cout << i;
+    }
+
+    for(auto i=v.begin(); i!=v.end(); ++i){
+        cout << *i;
+    }
+
+    vector<vector<int>> vmatrix = {{1, 2, 3}, {4, 5, 6}};
+
+    for(auto i:vmatrix){
+        for(auto j:i){
+            cout << j;
+        }
+    }
 
     return 0;
 }
