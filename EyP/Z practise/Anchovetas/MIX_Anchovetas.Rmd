@@ -29,7 +29,7 @@ Seleccionar la 4ta posicion del vector b
 
 ```{r}
 b[4] # Este funciona
-b(4) # Este no 
+# b(4) # Este no 
 ```
 
 seleccionar todo menos la 4ta posicion del vector b
@@ -156,40 +156,162 @@ Se desea dar una descripción de los datos recolectados con la intención de val
 # LIBRERIAS
 
 ```{r}
-
+library(readr)
+library(dplyr)
 ```
 
 # Base de Datos
 
 ```{r}
-
+DF <- read_csv('./Anchoveta_07_17.csv')
 ```
 
 # PREGUNTAS
 
 > ¿Cuántas veces, en promedio, participaron los barcos en el estudio?
 
+```{r}
+round(mean(table(DF$Barco)/100),2)
+```
+
+*Otras formas con `dplyr`*:
+
+```{r, warning=FALSE}
+DF %>% count(Barco) %>% summarise(n = n/100) %>% pull(n) %>% mean %>% round(2)
+```
+
 > ¿Cuántos barcos participaron en el estudio?
+
+```{r}
+sum(table(unique(DF$Barco)))
+```
 
 > ¿Cuántas veces participó el barco que más veces participó en el estudio?
 
+```{r}
+max(table(DF$Barco)/100)
+```
+
+*Otras formas con `dplyr`*:
+
+```{r}
+DF %>% count(Barco) %>% arrange(desc(n))
+```
+
+```{r}
+DF %>% count(Barco) %>% summarise(Barco, n = n/100) %>% arrange(-n)
+```
+
+```{r}
+#max es para el mayor valor
+# which.max es para hallar la posición donde se encuentra el mayor valor
+```
+
 > ¿Cuántas veces participó el barco que menos veces participó en el estudio?
+
+```{r}
+# Similar al anterior pero con min en lugar de max
+min(table(DF$Barco)/100)
+```
+
+*Con `dplyr`*
+
+```{r}
+DF %>% count(Barco) %>% summarise(Barco, n = n/100) %>% arrange(n)
+```
 
 > ¿Cuál es el porcentaje de hembras en todo el estudio?
 
+```{r}
+# Opción 1:
+round(mean(DF$Sexo == "Hembra") * 100, 2)
+
+# Opción 2:
+round(sum(DF$Sexo == "Hembra") / nrow(DF) * 100, 2)
+
+# Opción 3:
+round(prop.table(table(DF$Sexo)) * 100, 2)
+```
+
+```{r}
+count(DF, Sexo)
+# DF %>% count(Sexo)
+```
+
 > ¿Cuál es el porcentaje de hembras capturadas en invierno?
+
+```{r}
+# Opción 1
+round(sum(DF$Sexo == "Hembra" & DF$Estacion == "Invierno") / sum(DF$Estacion == "Invierno") * 100,2)
+
+# Opción 2
+prop.table(table(DF$Sexo, DF$Estacion), margin = 2)
+```
 
 > ¿Cuál es el porcentaje de hembras capturadas en verano?
 
 > ¿Cuánto es el largo promedio en centímetros de las anchovetas del estudio?
 
+```{r}
+round(mean(DF$Largo),2)
+```
+
+*Con dplyr*
+
+```{r}
+DF %>% pull(Largo) %>% mean %>% round(2)
+```
+
 > ¿Cuál es la mediana/minimo/maximo/desviacion estandar del largo en centímetros de las anchovetas del estudio?
 
 > El rango intercuartil de los pesos en gramos de las anchovetas del estudio es:
 
+```{r}
+round(IQR(DF$Peso),2)
+```
+
 > El rango de los pesos en gramos de las anchovetas del estudio es:
 
+```{r}
+# Opción 1
+max(DF$Peso) - min(DF$Peso)
+
+# Opción 2
+range(DF$Peso)[2] - range(DF$Peso)[1]
+
+# Opción 3
+diff(range(DF$Peso))
+```
+
 > La distribución de los pesos es:
+
+```{r}
+summary(DF$Peso)
+```
+_Cuando la mediana y la media no son iguales, hay sesgo. Si la mediana está a la izq o der_ 
+```{r}
+hist(DF$Peso,
+     breaks=30,
+     col="lightgray",
+     main="Distribuvión del peso de las anchovetas",
+     ylab="densidad",
+     xlab="peso (g)",
+     prob = TRUE)
+
+abline(v = median(DF$Peso),
+       col = "red",
+       lwd = 2)
+
+abline(v = mean(DF$Peso),
+       col = "blue",
+       lwd = 2)
+
+legend(200,0.012,
+       legend=c("Mediana", "Media"),
+       lwd = 2,
+       col = c("red", "blue"))
+```
+
 
 > Clase modal
 
@@ -198,7 +320,13 @@ Si se agrupan los pesos de las anchovetas en gramos en clases de ancho 10, comen
 La clase modal corresponde (la clase que tiene la mayor cantidad de observaciones) es:
 
 ```{r}
+# fn + f1 para el help
 
+# El comando seq realiza secuencias, como un for
+
+# cut agrupa los valores según un intervalo al que pertenezcan
+
+which.max(table(cut(DF$Peso, breaks = seq(0,250,by=10))))
 ```
 
 ```{r}
