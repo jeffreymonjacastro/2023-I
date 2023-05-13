@@ -85,6 +85,10 @@ is.na(DF)
 Inspeccionar los comandos colSums rowSums is.na y complete.cases
 
 ```{r}
+#A
+```
+
+```{r}
 table(is.na(DF))
 ```
 
@@ -98,7 +102,9 @@ Comandos dplyr
 DF %>% 
   filter(Estacion == 'Invierno') %>% # Crea un filtor en el DF
   select(-Largo) %>% # Deselecciona la columna Largo 
-  mutate(Peso2 = Peso/10) # Modifica la columna Peso. Puede crear otra columna
+  mutate(Peso2 = Peso/10) %>% # Modifica la columna Peso. Puede crear otra columna
+  group_by(Año, Sexo) %>% # Agrupa según los valores de columna
+  summarise(Peso_avg = mean(Peso2)) -> Peso_promedio # Indica el peso promedio 
 ```
 
 # Introducción

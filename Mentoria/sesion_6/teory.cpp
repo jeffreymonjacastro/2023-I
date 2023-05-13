@@ -19,7 +19,7 @@ using namespace std;
     - v.insert(pos, elem): agregar un elemento en la posición i del vector
     - v.emplace(pos, elem): agregar un elemento en la posición i del vector (más eficiente que insert)
 
-    - v.rezise(tam, val): cambiar el tamaño del vector a tam, y todos los elementos tendrán el valor val
+    - v.rezise(tam, val): cambiar el capacidad del vector a tam, y todos los elementos tendrán el valor val
 
 ### READ
  ## Mediante índices
@@ -63,12 +63,12 @@ int main(){
     v.insert(v.begin(), 3);
     v.emplace(v.end(), 4);
 
-    cout << v[0];
-    cout << v.at(1);
+//    cout << v[0];
+//    cout << v.at(1);
 
-    for(auto i:v){
-        cout << i;
-    }
+//    for(auto i:v){
+//        cout << i;
+//    }
 
     v.begin();
     v.end();
@@ -76,9 +76,9 @@ int main(){
     v[1] = 5;
     v.at(2) = 6;
 
-    for(auto i:v){
-        v[i]++;
-    }
+//    for(auto i:v){
+//        v[i]++;
+//    }
 
     v.pop_back();
     v.erase(v.begin());
@@ -92,25 +92,36 @@ int main(){
     v.front();
     v.back();
 
-    for (int i = 0; i < v.size(); ++i) {
-        cout << v[i];
-    }
+//    for (int i = 0; i < v.size(); ++i) {
+//        cout << v[i];
+//    }
 
-    for(auto i:v){
-        cout << i;
-    }
-
-    for(auto i=v.begin(); i!=v.end(); ++i){
-        cout << *i;
-    }
+//    for(auto i:v){
+//        cout << i;
+//    }
+//
+//    for(auto i=v.begin(); i!=v.end(); ++i){
+//        cout << *i;
+//    }
 
     vector<vector<int>> vmatrix = {{1, 2, 3}, {4, 5, 6}};
 
-    for(auto i:vmatrix){
+    vector<int> v1 = {1, 2, 3};
+
+    vmatrix[0].push_back(3);
+    vmatrix[1].pop_back();
+    vmatrix.push_back(v1);
+
+
+    for(auto i: vmatrix){
         for(auto j:i){
-            cout << j;
+            cout << j*j << " ";
         }
+
+        cout << endl;
     }
+
+    
 
     return 0;
 }
