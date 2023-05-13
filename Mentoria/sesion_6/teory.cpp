@@ -38,22 +38,60 @@ using namespace std;
     - v.pop_back(): eliminar el último elemento del vector
     - v.erase(pos): eliminar un elemento en la posición i del vector
     - v.clear(): eliminar todos los elementos del vector
+    - v.shrink_to_fit(): eliminar la capacidad extra del vector
 
-
-Size: obtener el tamaño del vector
-Begin: obtener un iterador al inicio del vector
-End: obtener un iterador al final del vector
-Empty: determinar si el vector está vacío
-
-
-
-
+### OTHERS
+    - v.size(): obtener el tamaño del vector
+    - v.capacity(): obtener la capacidad del vector
+    - v.empty(): devuelve true si el vector está vacío, false en caso contrario
+    - v.swap(v2): intercambia los elementos de v con los de v2
+    - v.front(): devuelve el primer elemento del vector
+    - v.back(): devuelve el último elemento del vector
 
 */
 
 
-
 int main(){
+    vector<int> v;
+    vector<string> v2;
+    vector<int> v3(10);
+    vector<int> v4(10, 5);
+    vector<int> v5 = {1, 2, 3};
+
+    v.push_back(1);
+    v.emplace_back(2);
+    v.insert(v.begin(), 3);
+    v.emplace(v.end(), 4);
+
+    cout << v[0];
+    cout << v.at(1);
+
+    for(auto i:v){
+        cout << i;
+    }
+
+    v.begin();
+    v.end();
+
+    v[1] = 5;
+    v.at(2) = 6;
+
+    for(auto i:v){
+        v[i]++;
+    }
+
+    v.pop_back();
+    v.erase(v.begin());
+    v.clear();
+    v.shrink_to_fit();
+
+    v.size();
+    v.capacity();
+    v.empty();
+    v.swap(v5);
+    v.front();
+    v.back();
+
 
     return 0;
 }

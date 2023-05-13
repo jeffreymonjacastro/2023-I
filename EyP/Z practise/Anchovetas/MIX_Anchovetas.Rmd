@@ -38,11 +38,51 @@ seleccionar los elementos entre la posicion 2 y 4
 
 seleccionar las posiciones 1 y 5 del vector b seleccionar los elementos que sean 'Serena' 'Diana' y 'Solymar' del vector b
 
+```{r}
+b[b %in% c('Serena', 'Diana', 'Solymar')]
+```
+
 Formas de seleccionar la variable Largo del dataframe DF
 
-inspeccionar los comando colSums rowSums Diferencia entre is.na y complete.cases
+```{r}
+largo <- DF$Largo
+```
 
-Probar comandos dplyr
+```{r}
+l <- DF[,5] # filas, columnas obs, variables
+```
+
+```{r}
+DF['Largo']
+```
+
+Seleccionar del vector largo los valores mayores a 9
+
+```{r}
+largo[largo > 9]
+```
+
+```{r}
+barco <- DF$Barco
+```
+
+```{r}
+barco[barco %in% c('Serena', 'Diana', 'Solymar')]
+```
+
+```{r}
+DF[4, c(5:6)] <- NA
+```
+
+```{r}
+DF[c(7,3,10),c(2,6)] <- NA
+```
+
+```{r}
+is.na(DF)
+```
+
+Inspeccionar los comandos colSums rowSums is.na y complete.cases
 
 # Introducción
 
