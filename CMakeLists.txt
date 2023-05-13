@@ -20,4 +20,4 @@ add_executable(vjudge CPC/Beginners_trainee/Clase2/A.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
-add_executable(mentoria Mentoria/sesion_5/Teo_S5.cpp)
+add_executable(mentoria Mentoria/sesion_6/teory.cpp)

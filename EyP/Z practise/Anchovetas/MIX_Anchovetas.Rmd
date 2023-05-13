@@ -10,45 +10,51 @@ library(dplyr)
 
 ```{r}
 DF <- read_csv('./Anchoveta_07_17.csv')
+# El puntito (.) indica la ubicación actual
 ```
 
 # Ejercicios comandos:
 
 ```{r}
-b <- unique(DF$Barco)
+b <- unique(DF$Barco) 
+# Devuelve todos los elementos únicos de la tabla
+```
+
+```{r}
+# Genera vectores
+tmp <- c('A', 'manzana', 'C')
 ```
 
 Seleccionar la 4ta posicion del vector b
+
+```{r}
+b[4] # Este funciona
+b(4) # Este no 
+```
+
 seleccionar todo menos la 4ta posicion del vector b
+
 seleccionar los elementos entre la posicion 2 y 4
-seleccionar las posiciones 1 y 5 del vector b
-seleccionar los elementos que sean 'Serena' 'Diana' y 'Solymar' del vector b
+
+seleccionar las posiciones 1 y 5 del vector b seleccionar los elementos que sean 'Serena' 'Diana' y 'Solymar' del vector b
 
 Formas de seleccionar la variable Largo del dataframe DF
 
-inspeccionar los comando colSums rowSums
-Diferencia entre is.na y complete.cases
+inspeccionar los comando colSums rowSums Diferencia entre is.na y complete.cases
 
 Probar comandos dplyr
 
-
-
-
-
-
-
-
 # Introducción
 
-Los estudios históricos [JM], [ED] y [SG] sobre la **anchoveta ficticia** (*Engraulis simulacra*) en las zonas pesqueras del Perú determinaron que el largo promedio de la anchoveta es de $8\,cm$ y su peso promedio es de $70\,g$. 
+Los estudios históricos [JM], [ED] y [SG] sobre la **anchoveta ficticia** (*Engraulis simulacra*) en las zonas pesqueras del Perú determinaron que el largo promedio de la anchoveta es de $8\,cm$ y su peso promedio es de $70\,g$.
 
 En los dos últimos estudios citados, la preponderancia de machos y hembras fue similar y en el primero, no se reportó.
 
-Las redes utilizadas en los tres estudios tenían agujeros de, respectivamente $2.54\,cm$, $2.54\,cm$ y $2.00\,cm$. 
+Las redes utilizadas en los tres estudios tenían agujeros de, respectivamente $2.54\,cm$, $2.54\,cm$ y $2.00\,cm$.
 
 Estos estudios también determinaron que las proporciones aproximadas de la anchoveta son las de un cilindro de largo $l$ y diámetro $a$ en centímetros, donde se determinó una relación aproximada entre $a$ y $l$ por regresión. Ese modelo, que aún es utilizado en la actualidad, es $a=l*0.28+1.00$ y se supone que es válido para peces de $7.00\,cm$ o más.
 
-Finalmente, en los tres estudios mencionados, se determinó la densidad de la anchoveta comparando el peso seco de las mismas, con el volumen de agua destilada a $4^\circ C$ desplazado por estas; llegando al valor de $1.05\,\frac{g}{cm^3}$. 
+Finalmente, en los tres estudios mencionados, se determinó la densidad de la anchoveta comparando el peso seco de las mismas, con el volumen de agua destilada a $4^\circ C$ desplazado por estas; llegando al valor de $1.05\,\frac{g}{cm^3}$.
 
 Considerando que el más moderno de estos estudios tiene casi 100 años de antiguedad se decidió llevar a cabo un nuevo estudio para caracterizar las poblaciónes de este pez y determinar la salud de los inventarios disponibles.
 
@@ -60,23 +66,21 @@ Los datos recolectados se reportan a continuación en el archivo [Anchoveta_07_1
 
 El archivo está codificado en formato UTF-8 consiste de 22000 observaciones de las siguientes variables:
 
-+ `Año`: el año en que se realizó la recolección, variable numérica entera entre 2007 y 2017. 
+-   `Año`: el año en que se realizó la recolección, variable numérica entera entre 2007 y 2017.
 
-+ `Estacion`: la estación en que se realizó la recolección, variable categórica que puede tomar los valores `Invierno` y `Verano`. La recolección se llevó a cabo en las condiciones descritas en la *semana central* de la estación.
+-   `Estacion`: la estación en que se realizó la recolección, variable categórica que puede tomar los valores `Invierno` y `Verano`. La recolección se llevó a cabo en las condiciones descritas en la *semana central* de la estación.
 
-+ `Barco`: el barco en el que se realizó la recolección, es una variable categórica que puede tomar cualquiera de 18 valores posibles. En cada estación se seleccionaron al azar 10 de los 18 barcos disponibles para que la recolección se llevase a cabo en ellos.
+-   `Barco`: el barco en el que se realizó la recolección, es una variable categórica que puede tomar cualquiera de 18 valores posibles. En cada estación se seleccionaron al azar 10 de los 18 barcos disponibles para que la recolección se llevase a cabo en ellos.
 
-+ `Sexo`: sexo de la anchoveta, es una variable categórica que puede tomar los valores `Hembra` o `Macho`. Para determinar el sexo de la anchoveta se confió en el juicio del clasificador entrenado. El iris de las hembras es plateado brillante mientras que el de los machos de un anaranjado brillante.  
+-   `Sexo`: sexo de la anchoveta, es una variable categórica que puede tomar los valores `Hembra` o `Macho`. Para determinar el sexo de la anchoveta se confió en el juicio del clasificador entrenado. El iris de las hembras es plateado brillante mientras que el de los machos de un anaranjado brillante.
 
-+ `Largo`: el largo de la anchoveta en centímetros, es una variable numérica positiva. El largo se mide desde el borde de la agalla hasta el centro del inicio de la aleta caudal. Las proporciones de la anchoveta se mantienen relativamente uniformes una vez esta alcanza un tamaño relativamente grande (históricamente se habla de al menos $7.00\,cm$).
+-   `Largo`: el largo de la anchoveta en centímetros, es una variable numérica positiva. El largo se mide desde el borde de la agalla hasta el centro del inicio de la aleta caudal. Las proporciones de la anchoveta se mantienen relativamente uniformes una vez esta alcanza un tamaño relativamente grande (históricamente se habla de al menos $7.00\,cm$).
 
-+ `Peso`: el peso de la anchoveta en gramos, es una variable numérica positiva. Se pesa la anchoveta completa. 
-
+-   `Peso`: el peso de la anchoveta en gramos, es una variable numérica positiva. Se pesa la anchoveta completa.
 
 # Problema
 
 Se desea dar una descripción de los datos recolectados con la intención de validar los modelos existentes para la anchoveta ficticia y proponer modelos apropiados en el caso de que los modelos existentes ya no sean válidos.
-
 
 # Bibliografía
 
@@ -92,7 +96,6 @@ Se desea dar una descripción de los datos recolectados con la intención de val
 
 ```
 
-
 # Base de Datos
 
 ```{r}
@@ -103,58 +106,27 @@ Se desea dar una descripción de los datos recolectados con la intención de val
 
 > ¿Cuántas veces, en promedio, participaron los barcos en el estudio?
 
-
-
 > ¿Cuántos barcos participaron en el estudio?
-
 
 > ¿Cuántas veces participó el barco que más veces participó en el estudio?
 
-
-
 > ¿Cuántas veces participó el barco que menos veces participó en el estudio?
-
-
 
 > ¿Cuál es el porcentaje de hembras en todo el estudio?
 
-
-
-
-
 > ¿Cuál es el porcentaje de hembras capturadas en invierno?
-
-
-
-
 
 > ¿Cuál es el porcentaje de hembras capturadas en verano?
 
-
-
-
 > ¿Cuánto es el largo promedio en centímetros de las anchovetas del estudio?
-
-
-
-
 
 > ¿Cuál es la mediana/minimo/maximo/desviacion estandar del largo en centímetros de las anchovetas del estudio?
 
-
-
-
 > El rango intercuartil de los pesos en gramos de las anchovetas del estudio es:
-
-
-
 
 > El rango de los pesos en gramos de las anchovetas del estudio es:
 
-
-
 > La distribución de los pesos es:
-
 
 > Clase modal
 
@@ -162,24 +134,14 @@ Si se agrupan los pesos de las anchovetas en gramos en clases de ancho 10, comen
 
 La clase modal corresponde (la clase que tiene la mayor cantidad de observaciones) es:
 
-
 ```{r}
 
 ```
 
-
 ```{r}
 
 ```
-
 
 > El coeficiente de variación del peso de las anchovetas del estudio es:
 
-
-
-
 > El coeficiente de variación del peso de las anchovetas del estudio, como número entre 0 y 1 es:
-
-
-
-
