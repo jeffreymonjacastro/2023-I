@@ -1,0 +1,40 @@
+<!-- Se usa para heredar cosas de la página padre -->
+{% extends 'base.html'%}
+
+<!-- Se usa para importar el html de macros -->
+{% import 'macros.html' as macros %}
+
+<!-- Jinja utiliza bloques -->
+<!-- super() Se usa para heredar el título de la página padre -->
+{% block title %}
+    {{super()}} 
+    Welcome To Flask Project
+
+{% endblock %}
+
+<!-- Se usan las dobles llaves para recibir una variable desde python -->
+<!-- Se pueden ingresar estructuras de control a través de las llaves y %-->
+
+<!-- Se usa para añadir el contenido del bloque en la página padre -->
+{% block content %}
+
+    {% if user_ip %} <!-- Se usa para validar si la variable existe -->
+        <h2 class="ip">Hola que tal, tu direccion ip es {{user_ip}}</h2>
+    {% else %}
+        <h2 class="ip">No se detectó tu ip</h2>
+
+        <!-- Se usa el "url_for()" para redireccionar a una ruta a través del nombre de la función-->
+        <a href="{{ url_for('index') }}">Crear Cookie</a>
+    {% endif %} 
+
+    <!-- Bucle for -->
+    <ul>
+        {% for item in items %}
+
+            <!-- Se usa para usar la función de macro.html -->
+            {{macros.render_items(item)}}
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}

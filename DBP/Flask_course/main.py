@@ -2,7 +2,8 @@ from flask import (
     Flask, # Flask es la clase para crear diferentes instancias
     request, # request es la clase para obtener los datos del cliente
     make_response, # make_response es la clase para crear respuestas personalizadas
-    redirect # redirect es la clase para redireccionar a otra ruta pasando parámetros, crear cookies, etc
+    redirect, # redirect es la clase para redireccionar a otra ruta pasando parámetros, crear cookies, etc
+    render_template # render_template es la clase para renderizar archivos html
     ) 
 
 # Se crea una instancia de Flask llamada app, el (__name__ es el nombre del módulo actual)
@@ -12,6 +13,8 @@ app = Flask(__name__)
 ### Flask relaciona la función index() con el navegador a través de ('/') que es la ruta raíz.
 ### Endpoint hace referencia a x ruta
 
+
+items = ["first", "second", "third", "four"]
 
 @app.route('/index')
 def index():
@@ -31,7 +34,15 @@ def show_info():
     # Se obtiene la ip del usuario desde la cookie a través del método get de request.cookies
     user_ip = request.cookies.get('user_ip_information') 
 
-    return f"Hola que tal, tu ip es {user_ip}"
+    # Se crea un diccionario donde almacene todas las variables que se quieran pasar al html
+    context = {
+        'user_ip': user_ip,
+        'items': items
+    }
+
+    # Se renderiza el archivo html index.html y se le pasa la variable **context, que permite desempaquetar el diccionario context
+    # render_template busca SIEMPRE el archivo html en la carpeta templates
+    return render_template('ip_info.html', **context)
 
 
 # Para correr la aplicación de flask:

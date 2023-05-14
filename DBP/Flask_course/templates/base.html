@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} Flask App Web | {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+
+    <header>
+        <!-- EL include es para agregar directamente un render-->
+        {% include 'navbar.html' %}
+
+    </header>
+
+    {% block content %}    
+    {% endblock %}
+
+</body>
+</html>
