@@ -3,11 +3,16 @@ from flask import (
     request, # request es la clase para obtener los datos del cliente
     make_response, # make_response es la clase para crear respuestas personalizadas
     redirect, # redirect es la clase para redireccionar a otra ruta pasando parámetros, crear cookies, etc
-    render_template # render_template es la clase para renderizar archivos html
+    render_template, # render_template es la clase para renderizar archivos html
     ) 
+from flask_bootstrap import Bootstrap # Bootstrap es la clase para utilizar bootstrap en flask
 
 # Se crea una instancia de Flask llamada app, el (__name__ es el nombre del módulo actual)
 app = Flask(__name__)
+
+# Se crea una instancia de Bootstrap llamada bootstrap
+Bootstrap = Bootstrap(app)
+
 
 ## Flask funciona con rutas o urls, para crear una ruta se utiliza el decorador route. Cada ruta necesita una función que se ejecutará cuando se acceda a la ruta en el navegador
 ### Flask relaciona la función index() con el navegador a través de ('/') que es la ruta raíz.
@@ -15,6 +20,11 @@ app = Flask(__name__)
 
 
 items = ["first", "second", "third", "four"]
+
+# Se crea una ruta para cuando se produzca un error 404 (Not Found), el parámetro varía según el error
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
 
 @app.route('/index')
 def index():

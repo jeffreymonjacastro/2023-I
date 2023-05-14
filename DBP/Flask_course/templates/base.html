@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{super()}}
+    
     <title>{% block title%} Flask App Web | {% endblock %}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
-</head>
-<body>
-
-    <header>
+    
+{% endblock head %}
+    
+{% block body %}
+    {% block navbar%}
         <!-- EL include es para agregar directamente un render-->
         {% include 'navbar.html' %}
-
-    </header>
-
-    {% block content %}    
     {% endblock %}
+    
+    <!-- El block es para que se pueda modificar desde otro archivo -->
+    {% block content %}
+    {% endblock %}
+{% endblock %}
 
-</body>
-</html>
