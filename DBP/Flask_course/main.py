@@ -9,12 +9,13 @@ app = Flask(__name__)
 ### Endpoint hace referencia a x ruta
 
 
-@app.route('/')
+@app.route('/home')
 def index():
     return "Hello world"
 
 # Para correr la aplicación de flask:
 ## El host es la ip del servidor, en este caso es localhost para todos los usuarios.
+## El puerto es el puerto del servidor, en este caso es el 3000
 
 app.run(host='0.0.0.0', port=3000)
 
