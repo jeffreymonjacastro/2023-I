@@ -4,6 +4,9 @@
 <!-- Se usa para importar el html de macros -->
 {% import 'macros.html' as macros %}
 
+<!-- Para hacer uso de una función -->
+{% import 'bootstrap/wtf.html' as wtf %}
+
 <!-- Jinja utiliza bloques -->
 <!-- super() Se usa para heredar el título de la página padre -->
 {% block title %}
@@ -18,6 +21,11 @@
 <!-- Se usa para añadir el contenido del bloque en la página padre -->
 {% block content %}
 
+    {% if username %}
+        <h3>Bienvenido {{username}}</h3>
+    {% endif %}
+
+
     {% if user_ip %} <!-- Se usa para validar si la variable existe -->
         <h2 class="ip">Hola que tal, tu direccion ip es {{user_ip}}</h2>
     {% else %}
@@ -26,6 +34,13 @@
         <!-- Se usa el "url_for()" para redireccionar a una ruta a través del nombre de la función-->
         <a href="{{ url_for('index') }}">Crear Cookie</a>
     {% endif %} 
+
+    <div class="container">
+        
+            <!-- el objeto de formulario que está en el context -->
+            {{wtf.quick_form(login_form)}}
+
+    </div>
 
     <!-- Bucle for -->
     <ul>
