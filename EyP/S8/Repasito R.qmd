@@ -7,11 +7,21 @@ editor: visual
 # Repasito R
 
 ::: callout-tip
-## Atajos de R
+## Atajos importantes de R
 
 `Ctrl + Alt + i` -\> Crea un nuevo chunk de R
 
 `Ctrl + L` -\> Limpia la consola de R
+
+`Ctrl + Enter` -\> Ejecutar una línea del chunk de R en el que se encuentra el cursor
+
+`Ctrl + Shift + Enter` -\> Ejecuta todo un chunk de R
+
+`Ctrl + Shift + M` -\> Escribe un pipe `%>%` en un chunk de R
+
+`Ctrl + Shift + D` -\> Duplica la línea actual en un chunk de R
+
+`Ctrl + D` -\> Eliminar una fila`de un chunk de R`
 :::
 
 ### Clases de objetos:
