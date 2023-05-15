@@ -1,0 +1,139 @@
+---
+title: "Repaso R"
+format: html
+editor: visual
+---
+
+## Repasito R
+
+::: callout-important
+## Librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+:::
+
+::: callout-important
+## Importación de DataFrame
+
+```{r}
+data <- read_csv("DD20230331.csv")
+```
+:::
+
+### Ver las características del `data`
+
+```{r}
+str(data)
+```
+
+```{r}
+spec(data)
+```
+
+### Acceder a los elementos de data
+
+```{r}
+data[200,] # filas
+```
+
+```{r}
+data[,5] # columnas
+```
+
+```{r}
+data$Período # Datos de las variables
+```
+
+```{r}
+data[data$Período == '2023-1',]
+```
+
+### Clases de objetos:
+
+-   character
+
+-   numeric (real number)
+
+-   integer
+
+-   complex
+
+-   logical (True/False)
+
+### Vectores
+
+```{r}
+char <- c('a', 'b', 'c')
+num <- c(0.1,0.2,0.3)
+int <- c(1,2,3)
+cplx <- c(1+0i, 2+4i)
+logi <- c(T,F)
+
+char
+num
+int
+cplx
+logi
+```
+
+### Matrices
+
+Creación de una matriz
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3)
+m
+
+dim(m)
+```
+
+Crear una matriz a través de elementos de un vector
+
+```{r}
+m <- 1:10
+dim(m) <- c(2,5)
+m
+```
+
+### Listas
+
+```{r}
+l <- list(1, 'a', TRUE, 0.1, 3 + 4i)
+
+l <- vector("list", length = 5) # Vector vacío
+```
+
+### Factores
+
+Usado en variables categóricas
+
+```{r}
+f <- factor(c("yes", "yes", "no", "yes", "no"), levels= c("yes", "no"))
+f
+table(f)
+```
+
+### Coerción
+
+```{r}
+class(num) # Saber el tipo de variable
+num <- as.character(num) # Cambiar el tipo de variable
+class(num)
+```
+
+### Maths
+
+```{r}
+data$Edad <- as.numeric(data$Edad)
+sum(data$Edad, na.rm = TRUE)
+```
+
+### Descriptores numéricos
+
+```{r}
+max(data$Edad, na.rm= TRUE) # Hallar el valor máximo
+data[which.max(data$Edad),] # Hallar la posición del valor máximo
+```
