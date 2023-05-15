@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(.)
 
-add_executable(2023_I P3/s8/Teo.cpp)
+add_executable(2023_I P3/s8/coso.cpp)
 
 add_executable(teo P3/s6_chavez/tarea-1c/tarea/testing.cpp)
 

@@ -8,7 +8,7 @@ void foo(){
 }
 
 int main(){
-    thread t(&foo)
+    thread t(&foo);
 
 
     return 0;
