@@ -1,0 +1,29 @@
+---
+title: "Whatever"
+format: html
+editor: visual
+---
+
+## Whatever
+
+```{r}
+library(readr)
+```
+
+```{r}
+DD <- read_csv('weather.csv')
+```
+
+Look at the data
+
+```{r}
+dim(DD)
+```
+
+```{r}
+spec(DD)
+```
+
+```{r}
+str(DD)
+```

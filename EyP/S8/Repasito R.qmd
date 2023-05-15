@@ -4,52 +4,15 @@ format: html
 editor: visual
 ---
 
-## Repasito R
+# Repasito R
 
-::: callout-important
-## Librerías
+::: callout-tip
+## Atajos de R
 
-```{r}
-library(readr)
-library(dplyr)
-```
+`Ctrl + Alt + i` -\> Crea un nuevo chunk de R
+
+`Ctrl + L` -\> Limpia la consola de R
 :::
-
-::: callout-important
-## Importación de DataFrame
-
-```{r}
-data <- read_csv("DD20230331.csv")
-```
-:::
-
-### Ver las características del `data`
-
-```{r}
-str(data)
-```
-
-```{r}
-spec(data)
-```
-
-### Acceder a los elementos de data
-
-```{r}
-data[200,] # filas
-```
-
-```{r}
-data[,5] # columnas
-```
-
-```{r}
-data$Período # Datos de las variables
-```
-
-```{r}
-data[data$Período == '2023-1',]
-```
 
 ### Clases de objetos:
 
@@ -131,9 +94,119 @@ data$Edad <- as.numeric(data$Edad)
 sum(data$Edad, na.rm = TRUE)
 ```
 
-### Descriptores numéricos
+### Dataframes
+
+::: callout-important
+## Liberías
 
 ```{r}
-max(data$Edad, na.rm= TRUE) # Hallar el valor máximo
-data[which.max(data$Edad),] # Hallar la posición del valor máximo
+library(readr)
+library(dplyr)
+```
+:::
+
+::: callout-important
+## Importación de dataframe
+
+```{r}
+data <- read_csv("../DD20230331.csv")
+```
+:::
+
+### Información del dataframe
+
+```{r}
+str(data)
+```
+
+```{r}
+spec(data)
+```
+
+### Acceder a los elementos de data
+
+Por medio de índices
+
+```{r}
+data[200,] # filas
+```
+
+```{r}
+data[,5] # columnas
+```
+
+A través del nombre de las variables
+
+```{r}
+periodos <- data$Período # Datos de las variables
+```
+
+A través de condiciones
+
+```{r}
+data[data$Período == '2023-1',]
+```
+
+```{r}
+data[data$Edad > 20, ]
+```
+
+### Eliminar filas y columnas
+
+Eliminar filas
+
+```{r}
+
+```
+
+### Valores faltantes
+
+Se usa con un table para ver la cantidad de valores faltantes
+
+```{r}
+table(is.na(data))  
+```
+
+Cantidad de datos faltantes de cada variable
+
+```{r}
+colSums(is.na(data))
+```
+
+Cantidad de datos faltantes por cada observación
+
+```{r}
+table(rowSums(is.na(data)))
+```
+
+Cantidad de observaciones completas e incompletas
+
+```{r}
+table(complete.cases(data))
+```
+
+### Names
+
+```{r}
+names(data)
+```
+
+### Descriptores numéricos
+
+max() = Hallar el valor máximo
+
+which.max() = Hallar la posición del valor máximo
+
+```{r}
+max(data$Edad, na.rm= TRUE)
+data[which.max(data$Edad),] 
+```
+
+min() = Hallar el valor mínimo
+
+which.min() = Hallar la posición del valor mínimo
+
+```{r}
+min(data$Edad, na.rm= TRUE)
+data[which.min(data$Edad), ]
 ```
