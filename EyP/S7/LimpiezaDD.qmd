@@ -1,0 +1,1959 @@
+---
+title: "Limpieza de datos diversos"
+format: 
+  html:
+    toc: true
+    number-sections: true
+    df-print: kable
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("DD20230421.csv")
+```
+
+```{r}
+str(DF)
+```
+
+Recordemos que las columnas 19 y 20 estaban vacías. Vamos a eliminarlas.
+
+```{r}
+all(is.na(DF[, c(19, 20)]))
+```
+
+En efecto están vacías, vamos a eliminarlas.
+
+```{r}
+DF <- DF[, -c(19, 20)]
+```
+
+Vamos a hacer lo mismo para las filas. Podría ser que tengamos algunas filas vacías.
+
+En R, los valores `TRUE` y `FALSE` se interpretan como `1` y `0` respectivamente cuando aparecen en operaciones artiméticas. Esto se conoce como *promoción automática de tipos*.
+
+```{r}
+sum(rowSums(is.na(DF)) == 18)
+```
+
+Hay `r sum(rowSums(is.na(DF)) == 18)` filas vacías.
+
+Vamos a eliminarlas.
+
+```{r}
+DF <- DF[rowSums(is.na(DF)) < 18, ]
+```
+
+Nuestro tamaño de muestra ahora es `r nrow(DF)`.
+
+Veamos los nombres de las variables.
+
+```{r}
+names(DF)
+```
+
+Los nombres de las variables deberían ser sencillos y descriptivos, para efectos de esta limpieza abreviaré algunos y el resto simplemente los escribiré con una sola palabra y sin caracteres reservados para no tener que utilizar las *comillas volteadas*.
+
+La función `rename` de `dplyr` es buena para este tipo de operación ya que permite trabajar sobre las variables que queremos cambiar, dejando las demás intactas.
+
+```{r}
+DF %>% rename(Per = Período
+              , Sec = Sección
+              , Estatura = `Estatura (cm)`
+              , Peso = `Peso (kg)`
+              , Signo = `Signo del zodiaco`
+              , Tiempo = `Tiempo de reacción`
+              , Videojuegos = `Juega videojuegos`
+              , Deporte = `Hace deporte`
+              , Color = `Color favorito`
+              , Zapato = `Talla de zapato`
+              , Polo = `Talla de polo`
+              , Sistema = `Sistema operativo`
+              , Fecha = `Fecha de nacimiento`
+              ) -> DF
+```
+
+# Libreta de códigos
+
+La libreta de códigos debería especificar, tipo de cada variable y valores admisibles si es que alguna restricción aplica.
+
+Es importante recordar que las variables categóricas en R se pueden trabajar con la función `factor` y si la variable fuese categórica ordinal, podemos pasar el parámetro `ordered = TRUE`.
+
+Esto permite hacer una limpieza agresiva a ciegas.
+
+-   Per:
+
+-   Sec:
+
+-   Ciclo:
+
+-   Edad:
+
+-   Estatura:
+
+-   Peso:
+
+-   Signo:
+
+-   Sexo:
+
+-   Carrera:
+
+-   Tiempo:
+
+-   Videojuegos:
+
+-   Deporte:
+
+-   Color:
+
+-   Zapato:
+
+-   Polo:
+
+-   Sistema:
+
+-   Fecha:
+
+-   Indicaciones:
+
+# Limpieza de cada variable
+
+## Per
+
+Veamos que hay dentro de la variable.
+
+```{r}
+table(DF$Per)
+```
+
+Claramente hay errores en la representación, pero algunos parecen ser fáciles de arreglar.
+
+El formato debería ser `YYYY-C` donde `YYYY` corresponde a un año "reciente" y `C` corresponde al ciclo, que puede ser cualquiera de {0, 1, 2}.
+
+Para ver si podemos rescatar algunos valores vamos a usar la función `grep` (y sus variantes).
+
+```{r}
+grep("2019-1", DF$Per)
+```
+
+La función `grep` retorna los índices del arreglo donde el patrón ocurre.
+
+```{r}
+DF[grep("2019-1", DF$Per), ]
+```
+
+Deberíamos poder salvar sin mayor problema aquellos datos que usan "." o " " en vez de "-".
+
+Recuerden que pueden pedir ayuda sobre la función `grep` mediante `? grep` o `help(grep)`.
+
+Vamos a sustituir los "." por "-".
+
+Como el "." es un caracter especial (ver, `help("regular expression")`) debemos *escaparlo* si queremos considerar un punto literal, eso quiere decir que debemos colocar el *backslash* `\` delante del punto, pero al ser el backslash un caracter especial, debemos escaparlo si queremos que se interprete como un backslash.
+
+Esto reemplaza todos los puntos por guiones.
+
+```{r}
+DF$Per <- gsub("\\.", "-", DF$Per)
+```
+
+y esto sustituye los espacios por guiones.
+
+```{r}
+DF$Per <- gsub("\\ ", "-", DF$Per)
+```
+
+Finalmente, debemos sustituir más de un guión consecutivo por un solo guión.
+
+```{r}
+DF$Per <- gsub("-.*-", "-", DF$Per)
+```
+
+Veamos que queda en la variable ahora
+
+```{r}
+table(DF$Per)
+```
+
+La variable está casi limpia.
+
+Vamos a reparar la entrada que tiene una "I" en vez de un "1".
+
+```{r}
+DF$Per <- gsub("I", "1", DF$Per)
+```
+
+Ahora solo falta lidiar con cosas que no tenemos idea de como arreglar.
+
+```{r}
+table(DF$Per)
+```
+
+Vamos a ver que cosas satisfacen el patrón.
+
+```{r}
+table(DF$Per[grep("[0-9][0-9][0-9][0-9]-[0-9]", DF$Per)])
+```
+
+Podríamos ser más estrictos:
+
+```{r}
+table(DF$Per[grep("20[12][0-9]-[012]", DF$Per)])
+```
+
+¿Que cosa no satisfacen el patrón? (podemos ser más estrictos)
+
+```{r}
+table(DF$Per[-grep("20[12][0-9]-[012]", DF$Per)])
+```
+
+Vamos a colocar `NA` en esas observaciones.
+
+```{r}
+DF$Per[-grep("20[12][0-9]-[012]", DF$Per)] <- NA
+```
+
+Aparentemente estamos listos.
+
+```{r}
+table(DF$Per)
+```
+
+Salvo que quedan dos problemas sutiles, que debemos resolver.
+
+El valor `2023-2` está en el futuro, claramente es un error.
+
+El otro detalle es que el conjunto de datos diversos se usó por primera vez en `2020-1`. Eso quiere decir que hay algunos valores inválidos que debemos eliminar.
+
+```{r}
+DF$Per[DF$Per == "2023-2"] <- NA
+DF$Per[DF$Per == "2013-1"] <- NA
+DF$Per[DF$Per == "2018-2"] <- NA
+DF$Per[DF$Per == "2019-1"] <- NA
+DF$Per[DF$Per == "2019-2"] <- NA
+```
+
+Eliminar estos errores es más delicado ya que requiere información adicional a la que los datos nos dan.
+
+Ustedes no tienen forma de saber esa información a no ser que yo se las brinde o la obtengan de alguna otra fuente confiable.
+
+```{r}
+table(DF$Per)
+```
+
+Como la variable `Per` es categórica ordinal, podría ser sensato mostrar un diagrama de barras.
+
+```{r}
+barplot(table(DF$Per), las = 3)
+```
+
+Mirando la gráfica podemos notar que, tanto en la tabla como en el diagrama, falta el ciclo `2021-0`, ese ciclo o no se usó datos diversos o no se abrió la materia.
+
+Vamos a convertir a la variable `Per` a `factor`(categórica ordinal) y vamos a reflejar todos los niveles que realmente han debido aparecer.
+
+```{r}
+DF$Per <- factor(DF$Per, levels = c("2020-1", "2020-2", "2021-0", "2021-1", "2021-2", "2022-0", "2022-1", "2022-2", "2023-0", "2023-1"), ordered = TRUE)
+```
+
+Por cierto, es importante recordar que, por defecto, la función `table` no muestra por separado la categoría de datos faltantes.
+
+```{r}
+table(DF$Per, useNA = "ifany")
+```
+
+Esta categoría se oculta automáticamente si no deseamos incluirla.
+
+```{r}
+table(DF$Per)
+```
+
+Finalmente, la gráfica se vería así:
+
+```{r}
+barplot(table(DF$Per), las = 3)
+```
+
+Pero esta gráfica deja mucho que desar; vamos a mejorarla.
+
+### Descripción de `Per`
+
+```{r}
+barplot(table(DF$Per)
+        , xlab = "Período"
+        , ylab = "Cantidad de personas"
+        , main = "Número de personas registradas por período"
+        , sub = paste("Total de"
+                      , sum(!is.na(DF$Per))
+                      , "valores válidos de una muestra con"
+                      , nrow(DF)
+                      , "observaciones."
+                      )
+        , col = c("lightgreen", "lightgreen", "red")
+        , cex.names = 0.6
+        )
+legend("topleft"
+       , legend = c("Ciclo regular", "Verano")
+       , fill = c("lightgreen", "red")
+       , bty = "n"
+       )
+```
+
+Podemos observar que en los ciclos `0` el número de personas registradas es menor, estos ciclos corresponden a los ciclos de verano mientras que los demás corresponden a ciclos regulares y en ellos se puede apreciar el crecimiento de la universidad.
+
+El ciclo `2021-0` no sabemos si se abrió el curso de estadística en verano o si habiéndose abierto, se usó datos diversos. Lo que podemos afirmar es que no se registraron entradas con ese período como valor.
+
+Los comentarios que acabamos de hacer son el *análisis de la gráfica* y son una parte fundamental de la misma. Un descriptor numérico o un descriptor gráfico sin análisis **no sirve para nada**.
+
+¿Cuál es la moda del ciclo?
+
+Recordemos que el ciclo es categórica ordinal.
+
+```{r}
+table(DF$Per)
+```
+
+```{r}
+(table(DF$Per))[table(DF$Per) == max(table(DF$Per))]
+```
+
+La moda de la variable `Per` es `2022-2` es decir, el período sobre el que más datos tenemos es 2022-2; como la variable es categórica ordinal también podríamos calcular su mediana.
+
+Al ser una variable no numérica debemos trabajar con la función `quantile` y especificar el parámetro `type` recordando que `type = 3` es el valor que hace una mediana de R más compatible con la definición dada en UTEC.
+
+Al tener datos faltantes, debemos usar el parámetro `na.rm = TRUE` para poder determinar una mediana.
+
+```{r}
+quantile(DF$Per, 0.5, type = 3, na.rm = TRUE)
+```
+
+Veamos que encontramos:
+
+```{r}
+sum(!is.na(DF$Per))/2
+sum(DF$Per <= "2022-1", na.rm = TRUE)
+sum(DF$Per >= "2022-1", na.rm = TRUE)
+```
+
+Es decir hay 1138 valores registrados menores o iguales a "2022-1" y 1057 valores registrados mayores o iguales a "2022-1". Como la mitad de los valores registrados corresponde con 931, tenemos:
+
+```{r}
+sum(DF$Per <= "2022-1", na.rm = TRUE) >= sum(!is.na(DF$Per))/2
+sum(DF$Per >= "2022-1", na.rm = TRUE) >= sum(!is.na(DF$Per))/2
+```
+
+es decir, "2022-1" es la mediana tal como la hemos definido en UTEC.
+
+Una gráfica que represente esta idea la podemos ver si hacemos.
+
+```{r}
+.hacia_abajo <- function(x, l){
+  return(sum(x <= l, na.rm = TRUE))  
+}
+
+hacia_abajo <- Vectorize(.hacia_abajo, "l")
+
+.hacia_arriba <- function(x, l){
+  return(sum(x >= l, na.rm = TRUE))  
+}
+
+hacia_arriba <- Vectorize(.hacia_arriba, "l")
+
+Abajo <- hacia_abajo(DF$Per, levels(DF$Per))
+Arriba <- hacia_arriba(DF$Per, levels(DF$Per))
+```
+
+Las funciones `hacia_arriba` y `hacia_abajo` son las versiones vectorizadas que comparan todos los valores contra cada nivel de la variable categórica ordinal.
+
+```{r}
+barplot(rbind(Abajo, Arriba)
+        , beside = TRUE
+        , cex.names = 0.6
+        , col = c("lightgray", "darkgray")
+        , ylim = c(0, 3000) # Modifico la escala para poner la leyenda.
+        )
+title(main = "Determinación gráfica de medianas"
+      , sub = paste("Según la definición de UTEC\n"
+                    , "Umbral a superar:"
+                    , ceiling(sum(!is.na(DF$Per))/2)
+                    , "observaciones."
+                    )
+      )
+abline(h = ceiling(sum(!is.na(DF$Per))/2)
+       , col = "red"
+       , lwd = 2)
+legend("topright"
+       , legend = c("menores o iguales"
+                    , "mayores o iguales"
+                    , "umbral a superar"
+                    )
+       , fill = c("lightgray", "darkgray", NA)
+       , border = c("black", "black", NA)
+       , col = c(NA, NA, "red")
+       , lty = c(NA, NA, 1)
+       , lwd = c(NA, NA, 2)
+       , cex = 0.6
+       , bty = "n"
+       , merge = TRUE
+       )
+```
+
+Una mediana (en UTEC) será cualquier nivel donde ambas barras superen la línea roja que corresponde al menos mitad del número de datos disponibles (en o por debajo y en o por encima del nivel especificado).
+
+En este caso específico, al menos la mitad de las observaciones ocurren en o antes de 2022-1 y al menos la mitad de las observaciones ocurren en o después de 2022-1.
+
+Como eso solo ocurre para 2022-1, solo tenemos una mediana (es decir, la mediana es es única en este caso).
+
+## `Sec`
+
+Veamos que hay dentro de `Sec`
+
+```{r}
+str(DF$Sec)
+table(DF$Sec)
+```
+
+La variable parece estar bastante limpia, salvo por su tipo que es `chr` debido a que algunas personas usaron espacios o guiones.
+
+Vamos a arreglar eso con `gsub` luego convertiremos a numérico con `as.numeric` y finalmente llevaremos la variable a tipo factor ya que es categórica (y realmente no es ordinal a pesar de representarse como número.)
+
+Vamos a tratar de conservar solo los datos faltantes que tenemos.
+
+```{r}
+sum(is.na(DF$Sec))
+```
+
+Primero vamos a arreglar las entradas que tienen espacios, eliminándolos.
+
+```{r}
+DF$Sec <- gsub("\\ ", "", DF$Sec)
+```
+
+hagamos lo mismo con los guiones
+
+```{r}
+DF$Sec <- gsub("\\-", ".", DF$Sec)
+```
+
+Convertimos a número
+
+```{r}
+DF$Sec <- as.numeric(DF$Sec)
+```
+
+Conservamos solo la parte entera del número
+
+```{r}
+DF$Sec <- floor(DF$Sec)
+```
+
+Finalmente, al ser la variable categórica nominal, la convertimos a factor.
+
+```{r}
+DF$Sec <- factor(DF$Sec)
+```
+
+```{r}
+table(DF$Sec, useNA = "ifany")
+```
+
+Hemos preservado el número de datos faltantes y la variable está limpia hasta donde podemos apreciar.
+
+Una limpieza más profunda involucraría conocer que secciones se abrieron en cada período.
+
+```{r}
+barplot(table(DF$Sec)
+        , cex.names = 0.6
+        , main = "Sección"
+        , xlab = "número de sección"
+        , ylab = "personas registradas"
+        )
+```
+
+Podemos apreciar, que al menos desde los datos registrados, hay mayor abundancia de las secciones con números bajos.
+
+La sección 1 es la que más veces aparece registrada.
+
+Para efectos de presentación, cuando los datos realmente no son categóricos ordinales, es conveniente ordenar la gráfica por frecuencia para facilitar las comparaciones.
+
+```{r}
+barplot(sort(table(DF$Sec),decreasing = TRUE)
+        , cex.names = 0.6
+        , main = "Sección"
+        , xlab = "número de sección"
+        , ylab = "personas registradas"
+        )
+
+```
+
+Para esta variable no tiene sentido calcular su mediana, pero podría ser interesante saber cuantas secciones hay por período.
+
+```{r}
+DF %>% 
+  select(Per, Sec) %>% 
+  group_by(Per) %>% 
+  summarise(Secciones = length(unique(Sec)))
+```
+
+Esto lo podemos verificar, período por período
+
+```{r}
+unique(DF$Sec[DF$Per == "2020-1"])
+```
+
+Claramente, entre las "secciones" se cuenta la sección `<NA>` donde la persona no especificó su sección.
+
+Podría ser interesante ver el número de personas que se registran en un período dado y bajo una sección específica ya que sabemos que ese número debería ser menor o igual a 46 (el aforo de las aulas grandes, incluyendo al profesor que podría haber participado) y relativamente grande (ya que las secciones con pocos estudiantes no se abren).
+
+Guardaremos esto en `DFP`.
+
+```{r}
+DF %>% select(Per, Sec) %>% group_by(Per, Sec) %>% summarise(Personas = n()) -> DFP
+```
+
+Veamos como está esa participación por período.
+
+```{r}
+DFP %>% group_by(Per) %>% summarise(Secciones = n(), min = min(Personas), max = max(Personas), promedio = mean(Personas), desv = sd(Personas), cv = sd(Personas)/mean(Personas))
+```
+
+Podemos apreciar claramente como la participación parece haber crecido con el tiempo, vemos una disminución apreciable en el coeficiente de variación que refleja que el promedio se vuelve una medida más confiable para hablar de la ubicación de la variable `Personas` en `DFP`.
+
+## Ciclo
+
+Esta variable es categórica ordinal, veamos que tando debemos limpiarla.
+
+```{r}
+str(DF$Ciclo)
+table(DF$Ciclo)
+```
+
+Parece estar bastante limpia, está representada con un número y todos los números están en el rango apropiado.
+
+Vamos a convertir a factor directamente.
+
+```{r}
+DF$Ciclo <- factor(DF$Ciclo, ordered = TRUE)
+```
+
+Claramente tenemos problemas de interpretación ya que, de acuerdo a la definición de UTEC, el ciclo de un estudiante es el correspondiente en la malla a la materia de ciclo más bajo que aún no ha tomado.
+
+Eso significa que en realidad todos los valores por encima de 4 están mal en algún sentido.
+
+```{r}
+barplot(table(DF$Ciclo, useNA = "ifany")
+        , main = "Ciclos registrados"
+        , xlab = "ciclo"
+        , ylab = "frecuencia absoluta"
+        , col = c(rep("lightgray", 4), rep("orange", 5), "darkgray")
+        )
+legend("topright"
+       , legend = c("ciclo válido", "error de interpretación", "ciclo faltante")
+       , fill = c("lightgray", "orange", "darkgray")
+       , cex = 0.6
+       , bty = "n"
+       )
+
+```
+
+## Edad
+
+```{r}
+str(DF$Edad)
+table(DF$Edad)
+```
+
+Las edades parecen estar limpias salvo por el tipo que no es numérico debido a el uso de un guión.
+
+Vamos a limpiar agresivamente convirtiendo al número apropiado. Trataremos de mantener bajo control el número de datos faltantes.
+
+```{r}
+sum(is.na(DF$Edad))
+```
+
+```{r}
+DF$Edad <- as.numeric(DF$Edad)
+```
+
+```{r}
+sum(is.na(DF$Edad))
+```
+
+Solo pescamos un dato faltante adicional, correspondiente a "-" que de todas formas era una edad faltante.
+
+Esta variable es numérica, puede ser pertinente hablar de su diagrama de cajas y su histograma.
+
+```{r}
+boxplot(DF$Edad
+        , horizontal = TRUE
+        , xlab = "Edad"
+        , main = "Diagrama de caja de edades"
+        )
+```
+
+Este diagrama nos muestra algunos datos atípicos por *ser muy grandes*.
+
+Estos datos fueron recolectados correctamente y se pueden confirmar, por lo que no debemos eliminarlos. Podemos apreciar que al menos tres cuartas partes de las edades son menores o iguales a 20 años (lo que nos deja con al menos una cuarta parte de los datos mayor o igual a 20 años.)
+
+Veamos el histograma
+
+Por convención en UTEC, trabajaremos con histogramas de frecuencias relativas, es decir, debemos usar el parámetro `prob = TRUE` para garantizar que el histograma tiene área 1.
+
+```{r}
+hist(DF$Edad
+     , main = "Histograma de edades"
+     , xlab = "edad"
+     , ylab = "frecuencia relativa"
+     , prob = TRUE
+     )
+```
+
+El número de clases ha sido calculado automáticamente por R, pero debido a los datos atípicos, es poco interesante en las áreas donde más debería serlo.
+
+Podemos modificar las clases del histograma usando el parámetro `breaks`, por ejemplo, podríamos estar interesados los años cumplidos exactos sin agrupar.
+
+```{r}
+hist(DF$Edad
+     , main = "Histograma de edades"
+     , xlab = "edad"
+     , ylab = "frecuencia relativa"
+     , prob = TRUE
+     , breaks = (min(DF$Edad, na.rm = TRUE):(max(DF$Edad, na.rm = TRUE) + 1)) - 0.5
+     )
+```
+
+## Estatura
+
+```{r}
+str(DF$Estatura)
+table(DF$Estatura)
+```
+
+Veamos cuantos datos faltantes tenemos
+
+```{r}
+sum(is.na(DF$Estatura))
+```
+
+Vamos a tratar de mantener este valor lo más bajo posible.
+
+Para variables que toman muchos valores, ver la tabla de frecuencias se vuelve cada vez más impráctico.
+
+Podemos usar el diagrama de caja o el histograma como herramientas de diagnóstico y limpieza de datos.
+
+```{r}
+boxplot(DF$Estatura, horizontal = TRUE)
+```
+
+Claramente tenemos datos atípicamente grandes y atípicamente pequeños.
+
+```{r}
+hist(DF$Estatura, prob = TRUE)
+```
+
+En el histograma también podemos apreciar el mismo problema, con la ventaja de que podemos ver que hay muy pocos datos atípicamente grandes, pero hay muchos atípicamente pequeños.
+
+Claramente tenemos problemas con las estaturas que tienen decimales, vamos a rescatarlas.
+
+Hemos decidido trabajar con límites válidos para las estaturas de 45 cm y 280 cm.
+
+Veamos
+
+```{r}
+DF %>% filter(Estatura > 280)
+```
+
+Esta estatura no sabemos como arreglarla, vamos a convertirla en `NA`.
+
+```{r}
+DF$Estatura[DF$Estatura > 280] <- NA
+```
+
+Veamos cuantos datos están por debajo del límite inferior.
+
+```{r}
+DF %>% filter(Estatura < 45) %>% count()
+```
+
+Nuestra suposición es que estas personas se equivocaron y colocaron la estatura en metros en vez de en centímetros.
+
+Veamos
+
+```{r}
+DF %>% filter(Estatura < 2.8) %>% count()
+```
+
+Vamos a multiplicar todas esas estaturas por 100.
+
+```{r}
+Sel <- !is.na(DF$Estatura) & DF$Estatura < 2.8
+DF$Estatura[Sel] <- 100*DF$Estatura[Sel]
+```
+
+Veamos como quedaron los datos
+
+```{r}
+hist(DF$Estatura)
+```
+
+Ahora parecen estar limpios.
+
+## Peso
+
+```{r}
+str(DF$Peso)
+unique(DF$Peso)
+```
+
+Claramente tenemos algunos problemas, podemos apreciar, por ejemplo, que estamos trabajando con una variable que no es de tipo numérico.
+
+También podemos apreciar que algunos valores tienen decimales (a pesar que la mayoría no los tienen).
+
+Seamos agresivos con la limpieza.
+
+```{r}
+PesoNuevo <- as.numeric(DF$Peso)
+```
+
+Veamos que valores se convirtieron en `NA`.
+
+```{r}
+DF$Peso[is.na(PesoNuevo) & !is.na(DF$Peso)]
+```
+
+Los guiones deben convertirse a `NA`
+
+el `90k` probablemente correspondía a un 90.
+
+Veamos cuántos valores no son enteros (ya que en este caso, una parte fraccionaria podría corresponder a un error)
+
+```{r}
+table(PesoNuevo - floor(PesoNuevo) > 0)
+```
+
+Claramente, el hecho de que hay solo dos entradas con decimales sugiere que estas son atípicas.
+
+```{r}
+PesoNuevo[(PesoNuevo - floor(PesoNuevo) > 0) & !is.na(PesoNuevo)]
+```
+
+De los dos valores, el `65.5` probablemente tiene sentido, mientras que el `71.29` se siente sospechoso (pero podría ser alguien que está controlando con mucho cuidado su peso y por esa razón lo sabe con precisión).
+
+Vamos a dejar esos pesos en paz.
+
+Veamos su diagrama de caja y bigotes.
+
+```{r}
+boxplot(PesoNuevo, horizontal = TRUE)
+```
+
+Hay algunos valores atípicos, los que son atípicamente pequeños son claramente problemáticos.
+
+```{r}
+table(PesoNuevo <= 20)
+```
+
+Hay un peso menor o igual a 20 que si bien no es imposible, probablemente es un error ya que no corresponde a un peso saludable para la población que estamos considerando.
+
+Vamos a colocar `NA` en ese peso.
+
+```{r}
+PesoNuevo[PesoNuevo <= 20] <- NA
+```
+
+Veamos de nuevo el diagrama de caja y bigotes
+
+```{r}
+boxplot(PesoNuevo, horizontal = TRUE)
+```
+
+Se ve bien, veasmos un histograma de los pesos.
+
+```{r}
+hist(PesoNuevo, prob = TRUE)
+```
+
+Se ve bien, supondremos que el peso está limpio y haremos oficiales los cambios.
+
+```{r}
+DF$Peso <- PesoNuevo
+```
+
+Ya podemos borrar la variable `PesoNuevo`.
+
+```{r}
+rm(PesoNuevo)
+```
+
+## Signo
+
+Esta variable, con toda certeza, será un asco de limpiar.
+
+```{r}
+unique(DF$Signo)
+```
+
+Tenemos 55 "signos" cuando deberíamos tener 12.
+
+Posiblemente podríamos tener 13 o 14 signos zodiacales dependiendo de cuán exótico es su astrólogo o cuantas ganas de trolear haya tenido la persona que llenó los datos.
+
+Podríamos limpiar de manera agresiva, pero probablemente perderíamos un montón de datos.
+
+```{r}
+SignoNuevo <- factor(DF$Signo, levels = c("aries", "tauro", "géminis", "cáncer", "leo", "virgo", "libra", "escorpio", "sagitario", "capricornio", "acuario", "piscis"))
+```
+
+Veamos cuantos `NA` generó nuestra limpieza agresiva.
+
+```{r}
+table(is.na(DF$Signo))
+table(is.na(SignoNuevo))
+```
+
+Son un montón, pasamos de 174 `NA` a 1938.
+
+Veamos si podemos hacer algo mejor.
+
+Primero podemos eliminar las mayúsculas...
+
+```{r}
+SignoNuevo <- tolower(DF$Signo)
+```
+
+Veamos si logramos alguna reducción en el número de "signos".
+
+```{r}
+unique(SignoNuevo)
+```
+
+hemos pasado de 55 a 38, una reducción apreciable.
+
+Vamos a eliminar las tildes ya que las personas pueden haber escrito los nombres mal, al final las restituiremos adecuadamente.
+
+```{r}
+SignoNuevo <- chartr("áéíóú", "aeiou", SignoNuevo)
+```
+
+```{r}
+unique(SignoNuevo)
+```
+
+Logramos una pequeña reducción de 38 a 36.
+
+Si queremos rescatar algunas entradas, podríamos eliminar los que tienen caracteres que no son letras.
+
+```{r}
+unique(gsub("[\\ /\\?\\-]", "", SignoNuevo))
+```
+
+Eliminamos uno más... vamos a oficialzar ese cambio.
+
+```{r}
+SignoNuevo <- gsub("[\\ /\\?\\-]", "", SignoNuevo)
+```
+
+En este punto ya estamos bastante limpios, como se puede apreciar en una tabla de frecuencias.
+
+```{r}
+sort(table(SignoNuevo), decreasing = TRUE)
+```
+
+Ya que podemos apreciar que las 12 categorías con mayor frecuencia corresponden a signos apropiados (aunque algunos aún estén sin tildes) las categorías restantes corresponden, en general a errores ortográficos que podríamos reparar si deseamos o podríamos descartar si optamos por una limpieza agresiva.
+
+Veamos cuantos datos "perdemos" en una limpieza agresiva.
+
+```{r}
+sum(sort(table(SignoNuevo), decreasing = TRUE)[-(1:12)])
+```
+
+Perderíamos 40 datos, claramente una mejora enorme en consideración con la limpieza original.
+
+Por cuestiones de completitud podemos intentar limpiar lo que falta.
+
+Una observación interesante puede ser que hasta cuando las personas se equivocan, tienen el inicio del signo correcto.
+
+Podemos usar eso para limpiar, si somos cuidadosos.
+
+```{r}
+unique(SignoNuevo[grep("^ari", SignoNuevo)])
+```
+
+arreglamos, podemos poner la mayúscula pues los signos se escriben así.
+
+```{r}
+SignoNuevo[grep("^ari", SignoNuevo)] <- "Aries"
+```
+
+```{r}
+unique(SignoNuevo)
+```
+
+Una categoría menos, como esperábamos.
+
+```{r}
+unique(SignoNuevo[grep("^tau", SignoNuevo)])
+```
+
+Solo hay que arreglar la mayúscula
+
+```{r}
+SignoNuevo[grep("^tau", SignoNuevo)] <- "Tauro"
+```
+
+```{r}
+unique(SignoNuevo[grep("^gem", SignoNuevo)])
+```
+
+Arreglamos y de paso incluimos la tilde.
+
+```{r}
+SignoNuevo[grep("^gem", SignoNuevo)] <- "Géminis"
+```
+
+```{r}
+unique(SignoNuevo[grep("^can", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^can", SignoNuevo)] <- "Cáncer"
+```
+
+```{r}
+unique(SignoNuevo[grep("^le", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^le", SignoNuevo)] <- "Leo"
+```
+
+```{r}
+unique(SignoNuevo[grep("^vi", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^vi", SignoNuevo)] <- "Virgo"
+```
+
+```{r}
+unique(SignoNuevo[grep("^li", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^li", SignoNuevo)] <- "Libra"
+```
+
+```{r}
+unique(SignoNuevo[grep("^esc", SignoNuevo)])
+```
+
+Aquí tenemos un problema genuino, el "escorpiolibra" debería ser un `NA`.
+
+```{r}
+SignoNuevo[grep("escorpiolibra", SignoNuevo)] <- NA
+SignoNuevo[grep("^esc", SignoNuevo)] <- "Escorpio"
+```
+
+```{r}
+unique(SignoNuevo[grep("^sa", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^sa", SignoNuevo)] <- "Sagitario"
+```
+
+```{r}
+unique(SignoNuevo[grep("^ca", SignoNuevo)])
+```
+
+Este tiene un montón de errores
+
+```{r}
+SignoNuevo[grep("^ca", SignoNuevo)] <- "Capricornio"
+```
+
+```{r}
+unique(SignoNuevo[grep("^ac", SignoNuevo)])
+```
+
+```{r}
+SignoNuevo[grep("^ac", SignoNuevo)] <- "Acuario"
+```
+
+```{r}
+unique(SignoNuevo[grep("^pi", SignoNuevo)])
+```
+
+Este también tiene un montón de errores.
+
+```{r}
+SignoNuevo[grep("^pi", SignoNuevo)] <- "Piscis"
+```
+
+Llegamos al final del zodiaco tradicional, veamos nuestra tabla ahora.
+
+```{r}
+sort(table(SignoNuevo), decreasing = TRUE)
+```
+
+De los valores que quedan, dos los podemos identificar claramente como "Escorpio" y uno; "ofiuco" corresponde a "Ofiuco" un signo del zodiaco *moderno* (siempre hay algún gracioso que lo incluye... otro valor similar podría ser "Cetus"... 🙄).
+
+Los demás valores son `NA`.
+
+Arreglamos los "Escorpio" y "Ofiucos" y terminamos.
+
+```{r}
+SignoNuevo[grep("^esk", SignoNuevo)] <- "Escorpio"
+SignoNuevo[grep("^sco", SignoNuevo)] <- "Escorpio"
+SignoNuevo[grep("^ofi", SignoNuevo)] <- "Ofiuco"
+SignoNuevo[grep("^cet", SignoNuevo)] <- "Cetus"
+```
+
+```{r}
+sort(table(SignoNuevo), decreasing = TRUE)
+```
+
+finalmente convertimos a factor con los niveles especificados, tal como hicimos al principio.
+
+```{r}
+SignoNuevo <- factor(SignoNuevo, levels = c("Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis", "Ofiuco", "Cetus"))
+```
+
+```{r}
+table(SignoNuevo)
+```
+
+Finalmente, podemos ver cuantos `NA` pescamos después de nuestra limpieza cuidadosa.
+
+```{r}
+sum(is.na(DF$Signo))
+sum(is.na(SignoNuevo))
+```
+
+Solo pescamos 8 `NA` nuevos.
+
+Corresponden a:
+
+```{r}
+DF$Signo[is.na(SignoNuevo) & !is.na(DF$Signo)]
+```
+
+donde debería estar claro que no había una manera correcta de determinar el valor del signo, por lo que asignar `NA` es la única opción sensata.
+
+Una visualización de la tabla de frecuencias puede ser conveniente.
+
+```{r}
+barplot(table(SignoNuevo), las = 3, cex.names = 0.6)
+```
+
+Oficializamos el cambio
+
+```{r}
+DF$Signo <- SignoNuevo
+rm(SignoNuevo)
+```
+
+## Sexo
+
+```{r}
+str(DF$Sexo)
+unique(DF$Sexo)
+```
+
+Primero vamos a llevar todo a mayúsculas.
+
+```{r}
+SexoNuevo <- toupper(DF$Sexo)
+```
+
+```{r}
+table(SexoNuevo)
+```
+
+Aquí las instrucciones dejaban mucho que desear. Podemos ver que algunas personas respondieron con su género (NB = no binario) u orientación sexual (L = lesbiana).
+
+El "MM" parece ser un error (pero si no lo es, me avisan y lo arreglo).
+
+Probablemente la variable se interpretó como *Orientación sexual*.
+
+```{r}
+SexoNuevo[grep("MM", SexoNuevo)] <- "M"
+```
+
+```{r}
+table(SexoNuevo)
+```
+
+```{r}
+DF$Sexo <- factor(SexoNuevo, levels = c("F", "M", "L", "G" , "B", "T", "I", "NB"))
+```
+
+```{r}
+table(DF$Sexo)
+```
+
+```{r}
+rm(SexoNuevo)
+```
+
+## Carrera
+
+Esta es otra variable que será una pesadilla de limpiar.
+
+Debemos proceder con cuidado.
+
+```{r}
+unique(DF$Carrera)
+```
+
+Considerando que UTEC tiene 12 carreras, tener 190 valores es claramente un problema.
+
+Afortunadamente hay un montón de cosas que podemos hacer para reducir esto.
+
+Todo a minúsuclas (por ejemplo) y eliminación de tildes
+
+```{r}
+CarreraNueva <- tolower(DF$Carrera)
+CarreraNueva <- chartr("áéíóú", "aeiou", CarreraNueva)
+```
+
+```{r}
+unique(CarreraNueva)
+```
+
+Redujimos el número de valores de 190 a 88 (buen trabajo).
+
+Hay múltiples variaciones que tienen la palabra "ingenieria" al principio, abreviada o mal escrita. Veamos si podemos capturar esos valores.
+
+```{r}
+unique(CarreraNueva[grep("^ing.*[\\.\\ ]", CarreraNueva)])
+```
+
+Hemos detectado aquellos patrones que comienzan por "ing" y eventualmente llegan a un punto o un espacio.
+
+Vamos a eliminar ese *preámbulo* con `gsub`.
+
+```{r}
+unique(gsub("^ing.*[\\.\\ ]", "", CarreraNueva))
+```
+
+haciendo eso reduciríamos 67 categorías a 33.
+
+```{r}
+CarreraNueva <- gsub("^ing.*[\\.\\ ]", "", CarreraNueva)
+```
+
+Veamos que logramos
+
+```{r}
+unique(CarreraNueva)
+```
+
+Pasamos de 88 categorías a 33.
+
+```{r}
+sort(table(CarreraNueva), decreasing = TRUE)
+```
+
+```{r}
+unique(CarreraNueva[grep("ind", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("ind", CarreraNueva)] <- "Industrial"
+```
+
+```{r}
+unique(CarreraNueva[grep("mecat", CarreraNueva)])
+```
+
+Un montón de errores, pero los podemos arreglar
+
+```{r}
+CarreraNueva[grep("mecat", CarreraNueva)] <- "Mecatrónica"
+```
+
+```{r}
+unique(CarreraNueva[grep("civ", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("civ", CarreraNueva)] <- "Civil"
+```
+
+otro montón de errores
+
+```{r}
+unique(CarreraNueva[grep("bio", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("bio", CarreraNueva)] <- "Bioingeniería"
+```
+
+```{r}
+unique(CarreraNueva[grep("com", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("com", CarreraNueva)] <- "Computación"
+```
+
+```{r}
+sort(table(CarreraNueva), decreasing = TRUE)
+```
+
+```{r}
+unique(CarreraNueva[grep("mecan", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("mecan", CarreraNueva)] <- "Mecánica"
+```
+
+```{r}
+unique(CarreraNueva[grep("amb", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("amb", CarreraNueva)] <- "Ambiental"
+```
+
+```{r}
+unique(CarreraNueva[grep("electro", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("Electro", CarreraNueva)] <- "Electrónica"
+```
+
+```{r}
+unique(CarreraNueva[grep("qui", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("qui", CarreraNueva)] <- "Química"
+```
+
+```{r}
+unique(CarreraNueva[grep("ene", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("ene", CarreraNueva)] <- "Energía"
+```
+
+```{r}
+unique(CarreraNueva[grep("dat", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("dat", CarreraNueva)] <- "Datos"
+```
+
+Veamos que queda
+
+```{r}
+sort(table(CarreraNueva), decreasing = TRUE)
+```
+
+Quedan seis valores que son todos errores ortográficos o abreviaciones de "Electrónica", "Mecatrónica" o "Computación"; uno de los datos debe convertirse en `NA` ya que "Eléctrica" no es una carrera en UTEC y no sabemos si corresponde a "Energía" o a "Electrónica".
+
+```{r}
+CarreraNueva[grep("electrica", CarreraNueva)] <- NA
+```
+
+```{r}
+unique(CarreraNueva[grep("elect", CarreraNueva)])
+
+```
+
+```{r}
+CarreraNueva[grep("elect", CarreraNueva)] <- "Electrónica"
+```
+
+```{r}
+unique(CarreraNueva[grep("atro", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("atro", CarreraNueva)] <- "Mecatrónica"
+```
+
+```{r}
+unique(CarreraNueva[grep("cs", CarreraNueva)])
+```
+
+```{r}
+CarreraNueva[grep("cs", CarreraNueva)] <- "Computación"
+```
+
+```{r}
+sort(table(CarreraNueva), decreasing = TRUE)
+```
+
+```{r}
+barplot(sort(table(CarreraNueva), decreasing = TRUE), las = 3, cex.names = 0.8)
+```
+
+La variable `Carrera` está lista.
+
+```{r}
+DF$Carrera[is.na(CarreraNueva) & !is.na(DF$Carrera)]
+```
+
+y solo perdímos un dato que, por ambiguedad debió ser asignado a `NA`.
+
+Oficializamos los cambios.
+
+```{r}
+DF$Carrera <- CarreraNueva
+rm(CarreraNueva)
+```
+
+## Tiempo
+
+```{r}
+str(DF$Tiempo)
+unique(DF$Tiempo)
+```
+
+Claramente tenemos problemas con el tipo de la variable.
+
+Limpiaremos agresivamente convirtiendo a número.
+
+```{r}
+TiempoNuevo <- as.numeric(DF$Tiempo)
+```
+
+Veamos el resumen de los tiempos
+
+```{r}
+summary(TiempoNuevo)
+```
+
+En vista de la prueba podemos ver que hay algunos valores demasiado grandes y otros demasiado pequeños.
+
+Para determinar los que son errores debemos recurrir a nuestro juicio, en el caso de los tiempos demasiado grandes y podemos apoyarnos en la información pública disponible.
+
+Para el menor tiempo de reacción podemos usar 90 ms y para el mayor podemos usar 1000 ms.
+
+```{r}
+sum((TiempoNuevo < 90) | (TiempoNuevo > 1000), na.rm = TRUE)
+```
+
+Con esto estaríamos eliminando 20 datos registrados.
+
+```{r}
+TiempoNuevo[TiempoNuevo < 90 & !is.na(TiempoNuevo)]
+```
+
+Estos valores muy probablemente son errores de algun tipo.
+
+```{r}
+TiempoNuevo[TiempoNuevo > 1000 & !is.na(TiempoNuevo)]
+```
+
+Estos valores, claramente posibles, probablemente indican algún problema durante la toma de los tiempos de reacción.
+
+Descartamos esos valores a conciencia de que podríamos estar descartando datos válidos.
+
+```{r}
+TiempoNuevo[(TiempoNuevo < 90) | (TiempoNuevo > 1000)] <- NA
+```
+
+```{r}
+boxplot(TiempoNuevo, horizontal = TRUE)
+```
+
+Todavía tenemos una colección de datos sesgada a la derecha
+
+```{r}
+mean(TiempoNuevo, na.rm = TRUE)
+median(TiempoNuevo, na.rm = TRUE)
+```
+
+con algunos puntos atípicos por ambos lados.
+
+```{r}
+hist(TiempoNuevo, prob = TRUE)
+```
+
+El total de datos perdidos en la limpieza es de:
+
+```{r}
+sum(is.na(TiempoNuevo)) - sum(is.na(DF$Tiempo))
+```
+
+Oficializamos los cambios
+
+```{r}
+DF$Tiempo <- TiempoNuevo
+```
+
+## Videojuegos
+
+```{r}
+str(DF$Videojuegos)
+table(DF$Videojuegos)
+```
+
+Esta es una variable lógica, fácil de limpiar.
+
+Primero llevaremos a minúsculas y colocaremos `FALSE` en lugar de `no` ya que allí no hay ambiguedad con respecto a la escritura (para los `Sí` que corresponden a `TRUE` tenemos versiones con tilde y sin tilde).
+
+```{r}
+DF$Videojuegos <- tolower(DF$Videojuegos) != "no"
+```
+
+```{r}
+table(DF$Videojuegos)
+```
+
+Listo.
+
+## Deporte
+
+```{r}
+str(DF$Deporte)
+table(DF$Deporte, useNA = "ifany")
+```
+
+Esta es una variable lógica, fácil de limpiar, pero está más sucia que la anterior.
+
+Primero llevaremos a minúsculas y colocaremos `FALSE` en lugar de `no` ya que allí no hay ambiguedad con respecto a la escritura (para los `Sí` que corresponden a `TRUE` tenemos versiones con tilde y sin tilde).
+
+Primero llevaremos el valor `algo` a `NA` y corregiremos los otros errores.
+
+```{r}
+DeporteNuevo <- tolower(DF$Deporte)
+
+DeporteNuevo[DeporteNuevo == "algo" & !is.na(DF$Deporte)] <- NA
+DeporteNuevo[DeporteNuevo == "nu" &   !is.na(DF$Deporte)] <- "no"
+DeporteNuevo[DeporteNuevo == "´si" &  !is.na(DF$Deporte)] <- "sí"
+DeporteNuevo[DeporteNuevo == "sï" &   !is.na(DF$Deporte)] <- "sí"
+
+```
+
+```{r}
+table(DeporteNuevo, useNA = "ifany")
+```
+
+```{r}
+DeporteNuevo <- (DeporteNuevo != "no")
+```
+
+```{r}
+DF$Deporte[is.na(DeporteNuevo) & !is.na(DF$Deporte)]
+```
+
+```{r}
+DF$Deporte <- DeporteNuevo
+rm(DeporteNuevo)
+```
+
+## Color
+
+Otra pesadilla de limpiar, vamos a utilizar una tabla de frecuencias para decidir
+
+```{r}
+str(DF$Color)
+unique(DF$Color)
+sort(table(DF$Color), decreasing = TRUE)
+```
+
+hay 100 colores diferentes, hagamos el tratamiento habitual, todo a minúsculas
+
+```{r}
+ColorNuevo <- tolower(DF$Color)
+```
+
+```{r}
+unique(ColorNuevo)
+```
+
+Hay algunos errores y problemas
+
+```{r}
+ColorNuevo <- gsub("negro oscuro", "negro", ColorNuevo)
+ColorNuevo <- gsub("celetse", "celeste", ColorNuevo) 
+ColorNuevo <- gsub("azul metalico", "azul metálico", ColorNuevo)
+ColorNuevo <- gsub("turqueza", "turquesa", ColorNuevo)
+ColorNuevo <- gsub("purpura", "púrpura", ColorNuevo)
+ColorNuevo <- gsub("ninguno", NA, ColorNuevo)
+ColorNuevo <- gsub("cyan", "cian", ColorNuevo)
+ColorNuevo <- gsub("cafe", "café", ColorNuevo)
+ColorNuevo <- gsub("blue", "azul", ColorNuevo)
+ColorNuevo <- gsub("brown", "marrón", ColorNuevo)
+ColorNuevo <- gsub("-", NA, ColorNuevo)
+ColorNuevo <- gsub("salmon", "salmón", ColorNuevo)
+ColorNuevo <- gsub("mi esposa", NA, ColorNuevo)
+ColorNuevo <- gsub("aazul", "azul", ColorNuevo)
+ColorNuevo <- gsub("marrón café", "café", ColorNuevo)
+ColorNuevo <- gsub("beach", NA, ColorNuevo)
+ColorNuevo <- gsub("verde sage", "verde salvia", ColorNuevo)
+```
+
+```{r}
+sort(table(ColorNuevo), decreasing = TRUE)
+```
+
+Quedan unos pocos problemáticos
+
+```{r}
+ColorNuevo <- gsub("^naranja", "anaranjado", ColorNuevo)
+ColorNuevo <- gsub("#268b85 (cerceta)", "cerceta", ColorNuevo)
+ColorNuevo <- gsub("azul turquesa", "turquesa", ColorNuevo) 
+ColorNuevo <- gsub("navy", "azul marino", ColorNuevo)
+```
+
+```{r}
+sort(table(ColorNuevo), decreasing = TRUE)
+```
+
+La entrada "#268b85 (cerceta)" se resiste a ser cambiada.
+
+```{r}
+ColorNuevo[grep("268b85", ColorNuevo)] <- "cerceta"
+```
+
+```{r}
+sort(table(ColorNuevo), decreasing = TRUE)
+```
+
+```{r}
+barplot(sort(table(ColorNuevo), decreasing = TRUE), las = 3, cex.names = 0.5)
+```
+
+¿Qué valores perdimos?
+
+```{r}
+DF$Color[is.na(ColorNuevo) & !is.na(DF$Color)]
+```
+
+Oficializamos el cambio
+
+```{r}
+DF$Color <- ColorNuevo
+rm(ColorNuevo)
+```
+
+## Zapato
+
+```{r}
+str(DF$Zapato)
+unique(DF$Zapato)
+```
+
+Claramente vamos a tener problemas para limpiar esta variable. Su tipo es erróneo, y tiene caracteres que no podemos simplemente eliminar sin perder algo de información.
+
+Veamos cuanta información perderíamos con una limpieza agresiva.
+
+```{r}
+ZapatoNuevo <- as.numeric(DF$Zapato)
+```
+
+```{r}
+DF$Zapato[is.na(ZapatoNuevo) & !is.na(DF$Zapato)]
+```
+
+Solo seis valores (podríamos limpiar agresivamente), veamos qué podemos salvar.
+
+Veamos que tenemos acceso a las entradas en cuestión.
+
+```{r}
+DF$Zapato[grep("41 1/3", DF$Zapato)]
+DF$Zapato[grep("44-45", DF$Zapato)]
+DF$Zapato[grep("36-37", DF$Zapato)]
+DF$Zapato[grep("37-38", DF$Zapato)]
+DF$Zapato[grep("41/42", DF$Zapato)]
+DF$Zapato[grep("\\$42", DF$Zapato)]
+```
+
+Dado que en la lista hay valores decimales, algunos de los valores los podemos covertir directamente a sus versiones con decimales.
+
+El único valor que es genuínamente problemático es el "41 1/3" y ese lo resolveremos por redondeo.
+
+```{r}
+ZapatoNuevo[grep("41 1/3", DF$Zapato)] <- NA
+ZapatoNuevo[grep("44-45", DF$Zapato)] <- 44.5
+ZapatoNuevo[grep("36-37", DF$Zapato)] <- 36.5
+ZapatoNuevo[grep("37-38", DF$Zapato)] <- 37.5
+ZapatoNuevo[grep("41/42", DF$Zapato)] <- 41.5
+ZapatoNuevo[grep("\\$42", DF$Zapato)] <- 42
+```
+
+Veamos ahora
+
+```{r}
+boxplot(ZapatoNuevo, horizontal = TRUE)
+```
+
+No se ve tan mal...
+
+Veamos un histograma
+
+```{r}
+hist(ZapatoNuevo, prob = TRUE)
+```
+
+peculiar...
+
+```{r}
+hist(ZapatoNuevo, prob = TRUE, breaks = 30)
+```
+
+Cada vez más curioso...
+
+Podríamos estar en verdaderos problemas.
+
+![Mis zapatos](Mio.jpg)
+
+¿Qué talla debería usar? En los zapatos que tengo puestos figuran tres tallas numéricas diferentes que claramente viven en escalas diferentes.
+
+Veamos que podemos conseguir.
+
+![Una tabla de conversión entre España y Reino Unido](ESUK.jpg)
+
+![Una tabla de conversión entre México y Estados Unidos](MXUS.jpg)
+
+![Una tabla de conversión entre Perú y Estados Unidos](PEUS.jpg)
+
+Me van a disculpar el francés, pero:
+
+**Nani TF?**
+
+Buscando un poco más podemos descubrir que la cosa es peor, mucho peor de lo que habíamos imaginado.
+
+![Es un milagro que podamos conseguir zapatos de alguna talla](Insane.jpg)
+
+Estas escalas son claramente categóricas ordinales y diferentes y lamentablemente parece que algunas de las escalas se solapan y los valores parecen depender del sexo.
+
+Podría ser imposible limpiar correctamente esta variable.
+
+Vamos a hacer un experimento.
+
+Vamos a jalar los datos de la tabla que hay en la página de Marathon y vamos a ver si podemos hacer un convertidor.
+
+Esta es la tabla:
+
+| MIDE DEL TALÓN A LA PUNTA DEL DEDO | PERÚ | USA  | EUROPA |
+|:----------------------------------:|:----:|:----:|-------:|
+|               24 cm                | 37.5 |  6   |   38.5 |
+|              24.5 cm               |  38  | 6.5  |     39 |
+|               25 cm                |  39  |  7   |     40 |
+|              25.5 cm               | 39.5 | 7.5  |   40.5 |
+|               26 cm                |  40  |  8   |     41 |
+|              26.5 cm               |  41  | 8.5  |     42 |
+|               27 cm                | 41.5 |  9   |   42.5 |
+|              27.5 cm               |  42  | 9.5  |     43 |
+|               28 cm                |  43  |  10  |     44 |
+|              28.5 cm               | 43.5 | 10.5 |   44.5 |
+|               29 cm                |  44  |  11  |     45 |
+|              29.5 cm               | 44.5 | 11.5 |   45.5 |
+|               30 cm                |  45  |  12  |     46 |
+|              30.5 cm               |  46  | 12.5 |     47 |
+|               31 cm                | 46.5 |  13  |   47.5 |
+|              31.5 cm               |  47  | 13.5 |     48 |
+|               32 cm                | 47.5 |  14  |   48.5 |
+|              32.5 cm               |  48  | 14.5 |     49 |
+|               33 cm                | 48.5 |  15  |   49.5 |
+|              33.5 cm               |  49  | 15.5 |     50 |
+|               34 cm                | 49.5 |  16  |   50.5 |
+|              34.5 cm               |  50  | 16.5 |     51 |
+|               35 cm                | 50.5 |  17  |   51.5 |
+|              35.5 cm               |  51  | 17.5 |     52 |
+|               36 cm                | 51.5 |  18  |   52.5 |
+|               37 cm                | 52.5 |  19  |   53.5 |
+|               38 cm                | 53.5 |  20  |   54.5 |
+|               39 cm                | 54.5 |  21  |   55.5 |
+|               40 cm                | 55.5 |  22  |   56.5 |
+
+Esta tabla pegada en un documento de Google Sheets la podemos cargar como csv con la función `read_csv`.
+
+Ese archivo es "TallasZapatos.csv"
+
+```{r}
+DFZ <- read_csv("TallasZapatos.csv")
+```
+Haremos una limpieza rápida, sencilla y agresiva.
+```{r}
+DFZ %>% rename(Largo = `MIDE DEL TALÓN A LA PUNTA DEL DEDO`, Tpe = PERÚ, Tus = USA, Teu = EUROPA) -> DFZ
+```
+
+```{r}
+DFZ$Largo <- gsub("cm", "", DFZ$Largo)
+DFZ$Largo <- as.numeric(DFZ$Largo)
+```
+Y listo, tenemos la tabla de tallas en R.
+
+```{r}
+DFZ
+```
+Por ejemplo, podemos ver (sin preocuparnos por si la persona es varon o mujer, esta tabla no contempla eso) como es la gráfica de las tallas peruanas en función de las americanas.
+
+```{r}
+plot(DFZ$Tus, DFZ$Tpe)
+```
+y ahora podríamos hacer una regresión para ajustar la mejor recta... 😈
+
+```{r}
+Convuspe <- lm(DFZ$Tpe ~ DFZ$Tus)
+```
+
+```{r}
+summary(Convuspe)
+```
+```{r}
+plot(DFZ$Tus, DFZ$Tpe)
+abline(Convuspe, col = "red")
+```
+
+La pendiente de esa recta es:
+```{r}
+m <- Convuspe$coefficients[2]
+m
+```
+y su ordenada en el origen es:
+```{r}
+b <- Convuspe$coefficients[1]
+b
+```
+
+Por lo que podemos tratar de convertir los valores pequeños en `Zapato` bajo la suposición que se trata de tallas americanas (pero podrían ser del reino unido y no son las mismas, ¡qué asco! ¡qué desastre!).
+
+```{r}
+hist(ZapatoNuevo)
+```
+
+Veamos si hay algunas tallas por encima de 20 y por debajo de 30
+
+```{r}
+any((ZapatoNuevo > 20) & (ZapatoNuevo < 30) & !is.na(ZapatoNuevo))
+```
+No hay ninguna, vamos a suponer (y es una suposición grande, una fantasía bonita) que las tallas por debajo de 25 son tallas **americanas de Estados Unidos** (y no mexicanas o del Reino Unido que parecen usar una escala similar).
+
+Esas tallas las traduciremos a talla peruana de acuerdo a la regresión que hicimos.
+```{r}
+Sel <- (ZapatoNuevo < 25) & !is.na(ZapatoNuevo)
+ZapatoNuevo[Sel] <- m*ZapatoNuevo[Sel] + b
+```
+
+Veamos el histograma ahora
+```{r}
+hist(ZapatoNuevo, breaks = seq(from = 30, to = 50, by = 0.5) - 0.25, prob = TRUE)
+```
+Se ve mejor que antes, podemos notar que no mucha gente trabaja (o sabe o reporta o recuerda) las tallas intermedias.
+
+El hecho que tenemos dos "chichones" diferentes se puede deber a la diferencia entre tallas de varones y tallas de mujeres.
+
+Eso lo exploraremos luego.
+
+De momento, consideraremos que la variable está tan limpia como puede estar.
+
+Yo no usaría la variable para nada crítico debido al montón de suposiciones (no necesariamente defendibles) que hicimos para limpiarla.
+
+
+Vamos a oficializar los cambios.
+```{r}
+DF$Zapato <- ZapatoNuevo
+rm(Zapatonuevo)
+```
+
+## Polo
+
+```{r}
+str(DF$Polo)
+unique(DF$Polo)
+```
+```{r}
+PoloNueva <- toupper(DF$Polo)
+```
+
+```{r}
+unique(PoloNueva)
+```
+```{r}
+PoloNueva[grep("M Ó S", PoloNueva)]
+PoloNueva[grep("S/M", PoloNueva)]
+PoloNueva[grep("MM", PoloNueva)]
+```
+
+```{r}
+PoloNueva[grep("M Ó S", PoloNueva)] <- NA
+PoloNueva[grep("S/M", PoloNueva)] <- NA
+PoloNueva[grep("MM", PoloNueva)] <- "M"
+PoloNueva[grep("F", PoloNueva)] <- NA
+```
+
+Finalmente, debemos convertirla a factor ordenado
+
+```{r}
+PoloNueva <- factor(PoloNueva, levels = c("XXS", "XS", "S", "M", "L", "XL", "XXL"), ordered = TRUE)
+```
+
+```{r}
+table(PoloNueva)
+```
+```{r}
+DF$Polo[is.na(PoloNueva) & !is.na(DF$Polo)]
+```
+```{r}
+barplot(table(PoloNueva))
+```
+Oficializamos los cambios.
+```{r}
+DF$Polo <- PoloNueva
+rm(PoloNueva)
+```
+
+
+## Sistema
+
+Esta debería ser fácil de limpiar.
+
+```{r}
+str(DF$Sistema)
+unique(DF$Sistema)
+```
+Simplemente tenemos que convertirla a factor.
+```{r}
+DF$Sistema <- factor(DF$Sistema)
+```
+
+```{r}
+sort(table(DF$Sistema), decreasing = TRUE)
+```
+
+```{r}
+barplot(sort(table(DF$Sistema), decreasing = TRUE))
+```
+
+
+## Fecha
+
+```{r}
+str(DF$Fecha)
+unique(DF$Fecha)
+```
+Podemos ver algunos problemas, el formato original era "MM/DD/YYYY" por lo que trataremos de asignar los datos a ese formato.
+
+```{r}
+FechaNueva <- as.POSIXlt(DF$Fecha, format = "%m/%d/%Y")
+```
+
+```{r}
+summary(FechaNueva)
+```
+Claramente algunas fechas están mal, veamos que tan grave es la situación.
+
+Cumpleaños lejos en el pasado.
+```{r}
+sum((FechaNueva < "1963-01-01") & !is.na(FechaNueva))
+```
+Cumpleaños en el futuro.
+```{r}
+sum((FechaNueva > "2023-05-11") & !is.na(FechaNueva))
+```
+
+```{r}
+FechaNueva[!is.na(FechaNueva) & ((FechaNueva < "1963-01-01") | (FechaNueva > "2023-05-11"))] <- NA
+```
+
+Veamos un resumen de las fechas
+```{r}
+summary(FechaNueva)
+```
+Claramente aún tenemos problemas. Veamos que nos dicen las edades.
+
+```{r}
+f2023 <- as.POSIXlt("2023-05-11", format = "%Y-%m-%d")
+f1970 <- as.POSIXlt("1970-01-01", format = "%Y-%m-%d")
+plot(FechaNueva, DF$Edad
+     #, ylim = c(0, f2023$year)
+     #, xlim =c(as.numeric(f1970), as.numeric(f2023))
+     , pch = 20
+     , col = rgb(0, 0, 0, 0.1)
+     )
+abline(v = as.numeric(as.POSIXlt("2007-05-11", format = "%Y-%m-%d"))
+       , col = "red"
+       , lty = 3
+       )
+abline(a = f2023$year - f1970$year
+       , b =  (f2023$year - f1970$year)/(as.numeric(f1970) - as.numeric(f2023))
+       , col = "red"
+       )
+legend("topright"
+       , legend = c("fecha de nacimiento de alguien con 16 años"
+                    , "Edad en función de la fecha")
+       , lty = c(3, 1)
+       , col = "red"
+       , cex = 0.6
+       , bty = "n"
+       )
+```
+
+```{r}
+min(DF$Edad, na.rm = TRUE)
+```
+Veamos las fechas de nacimento correspondientes a menos de 16 años de edad.
+```{r}
+FechaNueva[!is.na(FechaNueva) & (FechaNueva > "2007-05-11")]
+```
+Esas fechas claramente corresponden a errores, colocaremos `NA` en ellas.
+
+```{r}
+FechaNueva[!is.na(FechaNueva) & (FechaNueva > "2007-05-11")] <- NA
+```
+
+Veamos otra vez...
+```{r}
+plot(FechaNueva
+     , DF$Edad
+     , pch = 20
+     , col = ifelse(
+       (as.POSIXlt("2023-05-11", format = "%Y-%m-%d") - FechaNueva)/365 - DF$Edad < -1.5
+       , "red"
+       , ifelse(
+         (as.POSIXlt("2023-05-11", format = "%Y-%m-%d") - FechaNueva)/365 - DF$Edad > 1.5
+         , "blue"
+         , rgb(0.3, 0.3, 0.3, 0.1)
+       )
+     )
+)
+```
+Claramente aún tenemos problemas, las edades de algunas personas no coinciden con sus fechas de cumpleaños.
+
+```{r}
+unique(FechaNueva$day)
+```
+```{r}
+
+```
+
+
+## Indicaciones
+
+Esta debería ser fácil de limpiar.
+```{r}
+str(DF$Indicaciones)
+unique(DF$Indicaciones)
+```
+```{r}
+table(DF$Indicaciones, useNA = "ifany")
+```
+
+Está limpia, pero muestra uno de los problemas de las listas predeterminadas, está rellena con `FALSE` a pesar de que, como variable se añadió recientemente, es decir estamos atribuyendo la respuesta `FALSE` a personas que posiblemente leyeron las indicaciones pero no pudieron responder la pregunta pues esta no existía.
+
+Esto se debe a la naturaleza misma del _checkbox_; está marcado (`TRUE`) o no está marcado (`FALSE`), el `NA` debería ser imposible, pero los usuarios siempre son muy _astutos_ y si uno simplemente borra la celda, el resultado es `NA`.
+
+
+## Guardado de datos limpios
+
+```{r}
+write_csv(DF, "DDLimpios.csv")
+```
+

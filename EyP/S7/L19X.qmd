@@ -1,0 +1,202 @@
+---
+title: "L19 - Descriptores de interacción"
+format: html
+editor: visual
+---
+
+## Interacción entre variables
+
+Tengo cargado en `DF` una versión limpia de "Datos Diversos".
+
+### Num - Num
+
+Veamos inteacción entre el peso y la estatura
+
+```{r}
+plot(DF$Peso, DF$Estatura)
+```
+
+Claramente hay algún tipo de relación, vamos a explorar con un poco más cuidado.
+
+Con `pch` controlamos el símbolo que se marca.
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = ".")
+```
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = 19, col = rgb(0, 0, 0, 0.1))
+```
+
+Tal vez sería interesante incuir una recta de tendencia (recta de regresión) pasando por la nube.
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = 19, col = rgb(0, 0, 0, 0.1))
+abline(lm(DF$Estatura ~ DF$Peso), col = "red", lty = 2, lwd = 2)
+```
+
+```{r}
+modelo_ep <- lm(DF$Estatura ~ DF$Peso)
+```
+
+```{r}
+summary(modelo_ep)
+```
+
+```{r}
+modelo_ep$coefficients
+```
+
+Pero si esto fuese para responder en CANVAS trabajaría con
+
+```{r}
+round(modelo_ep$coefficients, digits = 2)
+```
+
+Es decir, tengo un modelo $Estatura = 0.49*Peso + 135.59 + Error$.
+
+#### Tarea:
+
+Use la función `predict` para determinar la estatura de una persona que pesa $98 \,kg$.
+
+Marque en la gráfica con un punto grueso azul sólido el valor predicho.
+
+Para esto puede usar la función `points`.
+
+Otra visualización interesante puede ser con una gráfica de densidad.
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura)
+abline(modelo_ep, col = "red", lty = 2, lwd = 2)
+```
+
+Ahora no se destacan los puntos individuales salvo que estén aislados (y se marcan con un puntito), las grandes concentraciones de puntos se muestra con azul más oscuro.
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 10)
+```
+
+Los parámetros `nbin` y `bandwidth` controlan la forma como se muestra la densidad de color.
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 256, bandwidth = c(2, 2))
+abline(modelo_ep, col = "red", lty = 2, lwd = 2)
+```
+
+¿Qué descriptores numéricos podímos incluir?
+
+```{r}
+cor(DF$Peso, DF$Estatura, use = "pairwise.complete")
+```
+
+Esto sugiere una correlación alta (positiva) entre la estatura y el peso. Esto quiere decir, que en general, a mayor peso, mayor estatura.
+
+```{r}
+modelo_ep
+```
+
+El coeficiente de `Peso` es positivo eso también sugiere que a mayor peso, mayor estatura.
+
+```{r}
+summary(modelo_ep)
+```
+
+El R cuadrado nos dice que estamos explicando cerca del 44 % de la variabilidad de `Estatura` con la variabilidad de `Peso`.
+
+```{r}
+sum(is.na(DF$Estatura))
+sum(is.na(DF$Peso))
+```
+
+¿Cuál es el tamaño efectivo de la muestra para el cálculo de la correlación?
+
+el número de datos faltantes para el cáculo de la correlación es de:
+
+```{r}
+sum(is.na(DF$Estatura) | is.na(DF$Peso))
+```
+
+Es decir, el tamaño efectivo de la muestra para el cálculo de la correlación es
+
+```{r}
+nrow(DF) - sum(is.na(DF$Estatura) | is.na(DF$Peso))
+```
+
+Hay exactamente
+
+```{r}
+sum(is.na(DF$Estatura) & is.na(DF$Peso))
+```
+
+donde faltan ambas, la estatura y el peso. \### Cat-Num
+
+Veamos como podemos apreciar la relación entre una variable numérica y una categórica.
+
+Para esto podemos usar *boxplots indexados*
+
+Vamos a trabajar con La variable `Estatura` y `Polo`.
+
+```{r}
+boxplot(DF$Estatura ~ DF$Polo)
+```
+
+Claramente podemos apreciar que a medida que la talla de `Polo` aumenta, la `Estatura` parece aumentar.
+
+```{r}
+table(DF$Polo)
+```
+
+El ancho de cada caja es engañoso y nos puede llevar a conclusiones incorrectas.
+
+En este tipo de gráfica deberíamos usar el parámetro `varwidth = TRUE`
+
+```{r}
+boxplot(DF$Estatura ~ DF$Polo, varwidth = TRUE)
+```
+
+Ahora queda claro que la contribución a las cajas de tallas extremas es baja en cuanto a número de observaciones.
+
+### Cat - Cat
+
+Veamos que pasa cuando queremos ver la interacción entre dos variables categóricas.
+
+Tenemos una tabla de contingencia donde podemos apreciar el número de personas de cada *orientación sexual* que practican deporte.
+
+```{r}
+table(DF$Deporte, DF$Sexo)
+```
+
+```{r}
+mosaicplot(table(DF$Deporte, DF$Sexo))
+```
+
+Notar que `mosaicplot` traspuso los ejes (es decir está considerando la primera variable como la que se grafica sobre el eje horizontal)
+
+```{r}
+mosaicplot(table(DF$Sexo, DF$Deporte))
+```
+
+```{r}
+
+```
+
+```{r}
+
+table(factor(DF$Deporte, levels = c(FALSE, TRUE), labels = c("No hace deporte", "hace deporte")))
+```
+
+```{r}
+table(factor(DF$Sexo, levels = levels(DF$Sexo), labels = c("F", "M", "X", "X", "X", "X", "X", "X")), factor(DF$Deporte, levels = c(FALSE, TRUE), labels = c("No hace deporte", "hace deporte"))
+                 )
+```
+
+```{r}
+mosaicplot(table(factor(DF$Sexo, levels = levels(DF$Sexo), labels = c("F", "M", "X", "X", "X", "X", "X", "X")), factor(DF$Deporte, levels = c(FALSE, TRUE), labels = c("No hace deporte", "hace deporte"))
+                 )
+, main = "Deporte en función de Sexo", col = c("orange", "darkgreen"))
+
+```
+
+Podemos decir que la variable `Deporte` depende de la variable `Sexo`, la proporción de hombres que hacen deporte parece ser mayor que la proporción de mujeres que hacen deporte.
+
+Parece que hay un poco más de el doble de hombres que de mujeres.

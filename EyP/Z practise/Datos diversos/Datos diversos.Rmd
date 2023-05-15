@@ -1,0 +1,117 @@
+---
+title: "Datos Diversos"
+author: "Jeff"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Resolución
+
+Importar librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+Importar Base
+
+```{r}
+DF <- read_csv('./DD.csv')
+```
+
+Preguntas:
+
+1- Según R, hay 8 var. numéricas y 7 var. categóricas. De esta última, 2 son ordinales `logi`
+
+```{r}
+#str(DF)
+spec(DF)
+```
+
+2- Hay 326 Obs y 15 variables. Además, hay 135 datos faltantes y 64 observaciones incompletas
+
+```{r}
+nrow(DF)
+ncol(DF)
+```
+
+```{r}
+table(!is.na(DF)) # Datos faltantes
+table(complete.cases(DF)) # Observaciones completas
+```
+
+3- La variable con mayor datos faltantes es `tiempo`
+
+```{r}
+which.max(colSums(is.na(DF)))
+max(colSums(is.na(DF)))
+```
+
+4- La carrera de la observación con más datos faltantes es: Industrial
+
+```{r}
+DF[which.max(rowSums(is.na(DF))), 12] 
+```
+
+5- Variable Peso
+
+```{r}
+round(mean(DF$Peso, na.rm = TRUE), digits = 2) # La media
+round(sd(DF$Peso, na.rm = TRUE), digits = 2)
+median(DF$Peso, na.rm = TRUE)
+```
+
+```{r}
+rango <- round(diff(range(DF$Peso)), digits = 2)
+RIQ <- IQR(DF$Peso)
+RIQ / rango * 100
+```
+
+```{r}
+round(min(DF$Peso), digits = 2)
+round(max(DF$Peso), digits = 2)
+```
+
+```{r}
+meanx <- mean(DF$Peso)
+varianza <- var(DF$Peso)
+ne <- (1 / (2 * varianza / meanx ))^2
+ne
+```
+
+6-
+
+```{r}
+boxplot(DF$Edad, horizontal = TRUE)
+```
+
+```{r}
+q1 <- quantile(DF$Edad, 0.25, na.rm = TRUE, type = 3, name = FALSE)
+q3 <- quantile(DF$Edad, 0.75, na.rm = TRUE, type = 3, name = FALSE)
+ric <- q3 - q1
+
+q1
+q3
+ric
+```
+
+```{r}
+table(DF$Edad < q1 - 1.5*ric)
+```
+
+```{r}
+table(DF$Edad > q3 + 1.5*ric)
+```
+
+```{r}
+mean(DF$Edad, na.rm=TRUE)
+median(DF$Edad, na.rm=TRUE)
+```
+
+```{r}
+DF$Edad[-DF$Edad > q3 + 1.5*ric]
+
+mean(DF$Edad, na.rm=TRUE)
+median(DF$Edad, na.rm=TRUE)
+```

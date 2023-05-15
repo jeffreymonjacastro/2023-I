@@ -288,7 +288,9 @@ diff(range(DF$Peso))
 ```{r}
 summary(DF$Peso)
 ```
-_Cuando la mediana y la media no son iguales, hay sesgo. Si la mediana está a la izq o der_ 
+
+*Cuando la mediana y la media no son iguales, hay sesgo. Si la mediana está a la izq o der*
+
 ```{r}
 hist(DF$Peso,
      breaks=30,
@@ -311,7 +313,6 @@ legend(200,0.012,
        lwd = 2,
        col = c("red", "blue"))
 ```
-
 
 > Clase modal
 

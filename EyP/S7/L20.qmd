@@ -1,0 +1,290 @@
+---
+title: "L20 - Descriptores de interacción"
+format: html
+editor: visual
+---
+
+### Datos
+
+En `DF` tenemos una versión limpia de "Datos Diversos".
+
+### Num - Num
+
+Gráfica de dispersión de `Estatura` en función de `Peso`.
+
+```{r}
+plot(DF$Peso, DF$Estatura)
+```
+
+Claramente podemos ver que hay una relación entre la estatura y el peso, en general, parece que a mayor `Peso`, mayor `Estatura`.
+
+Con el parámetro `pch` podemos controlar el símbolo que se usa para marcar cada punto.
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = ".")
+
+```
+
+Claramente podemos observar la discretización de estaturas y pesos a valores enteros.
+
+Algo que es difícil de apreciar es cuantos datos están superpuestos en cada punto.
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = 19, col = rgb(0, 0, 0, 0.1))
+```
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = 20, col = rgb(1, 0.5, 0, 0.1))
+```
+
+```{r}
+modelo_ep <- lm(DF$Estatura ~ DF$Peso)
+```
+
+```{r}
+summary(modelo_ep)
+```
+
+```{r}
+modelo_ep$coefficients
+```
+
+Para responder en CANVAS (en el parcial, por ejemplo)
+
+```{r}
+round(modelo_ep$coefficients, digits = 2)
+```
+
+Es decir, podemos modelar $Estatura = 0.49*Peso + 135.59 + Error$.
+
+#### Tarea:
+
+Usar la función `predict` para determinar la estatura de una persona que pesa $95.4 \,kg$.
+
+Marcar con un punto grueso azul sobre la línea de tendencia (línea de regresión) el valor predicho.
+
+Para esto podrían usar la función `points`.
+
+Ocasionalmente puede ser interesante usar uno de los ejemplos que viene en la ayuda y adaptarlo a lo que se pide.
+
+Esto significa que deben enteder el ejemplo.
+
+```{r}
+x <- rnorm(15)
+y <- x + rnorm(15)
+predict(lm(y ~ x))
+new <- data.frame(x = seq(-3, 3, 0.5))
+predict(lm(y ~ x), new, se.fit = TRUE)
+pred.w.plim <- predict(lm(y ~ x), new, interval = "prediction")
+pred.w.clim <- predict(lm(y ~ x), new, interval = "confidence")
+matplot(new$x, cbind(pred.w.clim, pred.w.plim[,-1]),
+        lty = c(1,2,2,3,3), type = "l", ylab = "predicted y")
+
+
+```
+
+Podemos hacer trampa (para que puedan comparar)
+
+```{r}
+plot(DF$Peso, DF$Estatura, pch = 20, col = rgb(1, 0.5, 0, 0.1))
+abline(modelo_ep, col = "skyblue", lwd = 2, lty = 2)
+points(95.4, 0.49*95.4 + 135.59, pch = 19, col = "blue")
+```
+
+La Estatura parece depender del peso de manera positiva
+
+```{r}
+cor(DF$Estatura, DF$Peso)
+```
+
+#### Tarea: Entender el argumento `use` de `cor`
+
+¿Cuál es el tamaño efectivo de la muestra para el cálculo de la correlación?
+
+El número de datos faltantes en cada variable es:
+
+```{r}
+sum(is.na(DF$Peso))
+sum(is.na(DF$Estatura))
+```
+
+Es decir, el tamaño efectivo de la muestra para las variables `Peso` y `Estatura` es, respectivamente:
+
+```{r}
+nrow(DF) - sum(is.na(DF$Peso))
+nrow(DF) - sum(is.na(DF$Estatura))
+
+```
+
+¿Cuál es el tamaño efectivo de la muestra para el cálculo de la correlación?
+
+$$\rho(X,Y)=\mathsf{cor(X,Y)}=\frac{\mathsf{cov}(X,Y)}{\mathsf{sd}(X)\mathsf{sd}(Y)} =\frac{\sum_{i=1}^n (x_i - \bar{x}_n)(y_i - \bar{y}_n)}{\sqrt{\sum_{i=1}^n(x_i - \bar{x}_n)^2}\sqrt{\sum_{i=1}^n(y_i - \bar{y}_n)^2}}$$
+
+En la correlación, serán `NA` los productos donde falte cualquiera de los factores.
+
+```{r}
+sum(is.na(DF$Estatura) | is.na(DF$Peso))
+```
+
+Por lo que el tamaño efectivo de la muestra para efectos de la correlación es de:
+
+```{r}
+nrow(DF) - sum(is.na(DF$Estatura) | is.na(DF$Peso))
+
+```
+
+Veamos donde faltan ambos
+
+```{r}
+sum(is.na(DF$Estatura) & is.na(DF$Peso))
+
+```
+
+```{r}
+cor(DF$Estatura, DF$Peso, use = "pairwise.complete")
+```
+
+Por lo que podemos decir que existe una correlación alta positiva (o fuerte, positiva) entre `Estatura` y `Peso`.
+
+Esto lo podemos obsevar también cuando vemos que el coeficiente de `Peso` en la regresión es positivo. Pero el tamaño de la pendiente puede ser engañoso.
+
+Otra observación puede ser que:
+
+```{r}
+summary(modelo_ep)
+```
+
+Como el R cuadrado es aproximadamente 44 %, podemos decir que explicamos el 44 % de la variabilidad de la estatura con el modelo y la variabilidad del peso.
+
+Debe haber otrs factores que no hemos incluido en la regresión que explican el resto de la varibilidad (el 56 % faltante).
+
+Son las 17:07 seguimos a las 17:17.
+
+Otra manera de presentar la relación entre ambas variables puede ser con el uso de un diagrama de densidad.
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura)
+abline(modelo_ep, col = "red", lwd = 2, lty = 2)
+# points(95.4, 0.49*95.4 + 135.59, pch = 19, col = "blue")
+
+```
+
+Aquí la idea es que con la intensidad el azul (o del color seleccionado) mostramos cuantos puntos cayeron cerca unos de otros.
+
+Los puntos que están solos, se marcan con un puntito.
+
+Podemos controlar la apariencia de la densidad con los parámetros `nbin` y `bandwidth`
+
+`nbin` controla el número de cajas (la discretización).
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 10)
+```
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 256)
+```
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 256, bandwidth = 10)
+
+```
+
+```{r}
+smoothScatter(DF$Peso, DF$Estatura, nbin = 256, bandwidth = 0.5)
+```
+
+### Cat - num
+
+Veamos la relación entre la talla de polo y la estatura.
+
+Para esto trabajaremos con *boxplots indexados*.
+
+```{r}
+boxplot(DF$Estatura ~ DF$Polo)
+```
+
+Claramente podemos ver que existe una relación donde a mayor talla de polo, mayor estatura.
+
+La "caja" para la talla `XXL` es sospechosa, veamos una tabla de esos valores.
+
+```{r}
+table(DF$Polo)
+```
+
+```{r}
+barplot(table(DF$Polo))
+```
+
+Para evitar la situación engañosa de "todas las cajas son igualemente importantes" podemos usar el parámetro `varwidth`.
+
+```{r}
+boxplot(DF$Estatura ~ DF$Polo, varwidth = TRUE)
+```
+
+Ahora, el ancho de la caja refleja cuantas observaciones hay en la misma, de manera que podemos entender que aunque la tendencia parece romperse para `XXL`, probablemente se debe a que el número de observaciones es muy pequeño.
+
+```{r}
+boxplot(DF$Estatura ~ DF$Carrera, varwidth = TRUE, las = 3, cex.axis = 0.5)
+```
+
+```{r}
+boxplot(DF$Tiempo ~ DF$Polo, varwidth = TRUE)
+```
+
+La variable tiempo y la variable talla de polo no parecen estar correlacionadas.
+
+### Cat - Cat
+
+Primero veamos una tabla de contingencias para la variables `Deporte` y `Sexo`.
+
+Notar que la variable `Sexo` está semánticamente sucia, ya que tiene una mezcla de sexo biológico, género y orientación sexual.
+
+```{r}
+table(DF$Deporte, DF$Sexo)
+```
+
+```{r}
+mosaicplot(table(DF$Deporte, DF$Sexo))
+```
+
+La primera observación es que el mosaico traspone las dimensiones de la tabla, es decir, coloca en el eje horizonal, lo que estaba en el eje vertical de la tabla y vice versa.
+
+Por ejemplo, del mosaico de arriba podemos deducir que hay mas perosnas que hacen deporte que personas que no hacen deporte.
+
+Si quiseramos ver como variable independiente a `Sexo`, debemos intercambiar el orden en la función.
+
+```{r}
+mosaicplot(table(DF$Sexo, DF$Deporte))
+```
+
+Vamos a simplificar esa tabla un poco agrupando los nieveles de `Sexo` que tienen pocas personas reportadas.
+
+```{r}
+table(factor(DF$Sexo, levels = levels(DF$Sexo), labels = c("F", "M", "X", "X", "X", "X", "X", "X")))
+```
+
+```{r}
+table(factor(DF$Deporte, levels = c("FALSE", "TRUE"), labels = c("No hace deporte", "hace deporte")))
+```
+
+```{r}
+mosaicplot(table(factor(DF$Sexo, levels = levels(DF$Sexo), labels = c("F", "M", "X", "X", "X", "X", "X", "X"))
+                 , factor(DF$Deporte, levels = c("FALSE", "TRUE"), labels = c("No hace deporte", "hace deporte"))
+                 )
+           , col = c("orange", "darkgreen")
+           , main = "Deporte vs. Sexo"
+           )
+```
+
+Claramente hay más hombres que muejeres en la tabla, y la proporción de mujeres que no hace deporte es mayor que la proporción de hombres que no hace deporte.
+
+También debería ser más o menos obvio que hay un poco mas del doble de hombres que de mujeres en `DF`.
+
+```{r}
+table(factor(DF$Sexo, levels = levels(DF$Sexo), labels = c("F", "M", "X", "X", "X", "X", "X", "X"))
+                 , factor(DF$Deporte, levels = c("FALSE", "TRUE"), labels = c("No hace deporte", "hace deporte"))
+                 )
+```
+
+Podemos apreciar que la cantidad de hombres que no hace deporte es mayor que la cantidad de mujers que no hace deporte, pero desde el punto de vista de proporciones, esa relación está invertida.

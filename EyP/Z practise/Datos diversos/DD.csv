@@ -1,0 +1,327 @@
+Periodo,Codigo,Apellido,Nombre,Seccion,Ciclo,Edad,Estatura,Peso,Signo,Sexo,Carrera,Tiempo,Videojuegos,Deporte
+2020.1,201610403,Vila Centeno,Lennin Cristopher,5,7,22,170,45,Capricornio,M,Industrial,253,TRUE,FALSE
+2020.1,201810679,Marchán,Adriana,3,5,19,162,46,Piscis,F,Ambiental,297,FALSE,FALSE
+2020.1,NA,Navarro Flores,Cristina,NA,NA,45,150,49,Escorpio,F,NA,607,FALSE,FALSE
+2020.1,201810439,Estrada,Claudia,3,5,19,166,50,Capricornio,F,Ambiental,472,FALSE,FALSE
+2020.1,201910052,Abanto Rodríguez,Diego Walter,1,3,17,153,50,Escorpio,M,Mecatrónica,381,FALSE,FALSE
+2020.1,201910205,Loayza Bautista,Sebastian Enrique,3,3,19,171,50,Capricornio,M,Mecatrónica,243,TRUE,TRUE
+2020.1,201810699,Sosa,Vania,2,5,18,153,51,Aries,F,Bioingeniería,340,TRUE,NA
+2020.1,201910100,Cárdenas Zevallos,María de los Ángeles,3,3,18,157,51,Sagitario,F,Civil,257.6,TRUE,FALSE
+2020.1,201910061,Alegria,Alexia,3,3,18,165,51,Sagitario,F,Industrial,887,FALSE,TRUE
+2020.1,201810666,Flores Arroyo,Génesis,1,5,19,158,53,Escorpio,F,Bioingeniería,288,FALSE,TRUE
+2020.1,201910031,Gutiérrez Moreno,María Fernanda,1,3,18,158,53,Piscis,F,Bioingeniería,307,FALSE,TRUE
+2020.1,201910042,Sotelo Guzman,Carolina,3,3,18,156,53,Escorpio,F,Ambiental,346,FALSE,FALSE
+2020.1,201910320,Vadillo Villalobos,Alberto Joaquín,3,3,18,169,54,Virgo,M,Mecatrónica,436,TRUE,TRUE
+2020.1,201910250,Pacori Palomino,Claudia,3,3,17,158,55,Géminis,F,Electrónica,283,FALSE,FALSE
+2020.1,201910267,Portocarrero Mendoza,Priscila,3,3,17,165,55,Tauro,F,Energía,NA,FALSE,FALSE
+2020.1,201910260,Peralta Limachi,Stephanie Emily,3,3,17,160,55,Aries,F,Ambiental,455.6,FALSE,TRUE
+2020.1,201910275,Ramirez Condor,Noemi,2,3,17,162,55,Acuario,F,Bioingeniería,271.4,TRUE,TRUE
+2020.1,201910399,Miguel Granza,Angie,2,3,18,154,55,Capricornio,F,Civil,361,FALSE,TRUE
+2020.1,201910122,Chincha Leon,Mario Sebastian,2,3,18,185,56,Libra,NA,Electrónica,242,TRUE,FALSE
+2020.1,201910146,Si,Renato,2,3,18,170,58,Sagitario,M,Mecatrónica,293,TRUE,FALSE
+2020.1,201510013,Cirineo Arroyo,Luz Miriam,5,7,21,151,59,Virgo,F,Química,215,FALSE,TRUE
+2020.1,201810580,Gonzalez,Alvaro,6,5,20,170,59,Capricornio,M,Industrial,214,FALSE,TRUE
+2020.1,201810381,Sanchez Paredes,Martin,4,5,18,175,60,Cáncer,M,Civil,295,TRUE,FALSE
+2020.1,201620035,Rivas Pelizzoli,Mirella Andrea,3,7,20,170,60,Géminis,F,Electrónica,292,FALSE,FALSE
+2020.1,201810511,Medina,Luis,6,5,18,168,60,Géminis,M,Industrial,261,TRUE,FALSE
+2020.1,201910141,Del Maestro Yarlaque,Cesar Miguel,2,3,17,170,60,Aries,M,Mecánica,363,TRUE,TRUE
+2020.1,201810119,Betalleluz Shimabukuro,Chiemi Luz,2,5,19,166,60,Acuario,F,Industrial,257,FALSE,TRUE
+2020.1,201810291,Rodriguez Arce,Norel,5,3,18,170,60,Libra,M,Mecánica,234,TRUE,FALSE
+2020.1,201810391,Pérez Callahue,Anamaría,3,3,18,165,60,Géminis,F,Mecatrónica,291,FALSE,TRUE
+2020.1,201920162,Camizan Vidal,Gino,5,3,22,175,60,Libra,M,Electrónica,303,TRUE,FALSE
+2020.1,201910213,Malla Carrillo,Mateo Rodrigo,1,3,17,160,61,Cáncer,M,Química,259,TRUE,TRUE
+2020.1,201810587,Munguia Cruzatt,Mauro Sthepano,3,5,19,178,62,Sagitario,M,Mecatrónica,252,TRUE,TRUE
+2020.1,201710101,Arias Schreiber Gonzalez,Ian,5,7,20,173,62,Piscis,M,Computación,172,TRUE,FALSE
+2020.1,201710191,Ruiz de Somocurcio Landa,Benjamin,5,7,20,164,62,Sagitario,M,Mecánica,247,TRUE,TRUE
+2020.1,201910123,Chirinos Palacios,Ignacio,3,3,18,174,64,NA,M,Electrónica,0.187,TRUE,TRUE
+2020.1,201910412,Porras Diaz,Diego Alonso,4,3,17,170,65,Aries,M,Mecánica,331,FALSE,TRUE
+2020.1,201910184,Guillén,César,1,3,17,172,68,Géminis,M,Mecatrónica,276,TRUE,FALSE
+2020.1,201710126,Chipana Menacho,Nicolás Alejandro,5,7,20,171,68,Acuario,M,Computación,199,TRUE,FALSE
+2020.1,201910113,Castro Zegarra,Juan Carlos,3,3,18,170,70,Virgo,M,Ambiental,289,TRUE,TRUE
+2020.1,201710521,Pucuhuanca Sullca,Junior,2,5,19,176,70,Géminis,M,Energía,386,FALSE,TRUE
+2020.1,NA,Quineche,Luis,NA,NA,39,165,72,Leo,M,NA,312,FALSE,FALSE
+2020.1,NA,Gallo,Dante Jim Randal,NA,NA,23,166,73,Tauro,M,Mecatrónica,292,FALSE,FALSE
+2020.1,201910176,Garcia Motta,Brayan,5,3,18,165,74,Virgo,M,Civil,336,TRUE,TRUE
+2020.1,201910231,Morales Aquije,Cristopher Angel,3,3,18,161,74,Sagitario,M,Ambiental,283,TRUE,FALSE
+2020.1,201910270,Puma Suma,Cristopher Remy,4,3,18,166,74,Sagitario,M,Energía,276,TRUE,TRUE
+2020.1,201910342,Zegarra Becerra,Antonio Manuel,2,3,18,170,75,Sagitario,M,Bioingeniería,229,TRUE,FALSE
+2020.1,201910252,Pantoja Jara,Cristhian,3,3,18,164,75,Acuario,M,Mecatrónica,220,TRUE,TRUE
+2020.1,201910212,Machicado Condor,Gian Daniel,2,3,18,173,78,Sagitario,M,Mecatrónica,472,TRUE,TRUE
+2020.1,201810067,Calderón Meza,Enrique Mario,5,5,19,170,78,Aries,M,Mecatrónica,329,TRUE,TRUE
+2020.1,201910227,Mercedes Balcazar,Jonny Mercedes,4,3,17,175,78,Tauro,M,Civil,359,FALSE,FALSE
+2020.1,201910431,Tinco Montoya,Guillermo Sebastian,1,3,18,177,79,Acuario,M,Química,293,TRUE,TRUE
+2020.1,201910438,Otárola Ruiz,César Luciano,2,3,17,182,79,Leo,M,Bioingeniería,275,TRUE,TRUE
+2020.1,201810179,Hussen,Ahmad,2,5,20,181,80,Acuario,M,Industrial,327,FALSE,TRUE
+2020.1,201810109,Aviles Gamarra,Cristian Alberto,2,5,20,181,80,Sagitario,M,Industrial,252,TRUE,TRUE
+2020.1,201810358,Cabezas Baquerizo,César Enrique,3,5,19,170,80,Sagitario,M,Computación,258,TRUE,FALSE
+2020.1,201910244,Olórtegui Huamán,Miguel Tomás,1,3,17,180,81,Virgo,M,Mecatrónica,250,TRUE,FALSE
+2020.1,201910054,Acevedo Polo,Rodrigo Yonnel,5,3,18,181,81,Aries,M,Mecatrónica,332,TRUE,TRUE
+2020.1,201910277,Ramirez Gutierrez,Joaquin Elias,1,3,18,185,83,Leo,M,Computación,309,FALSE,TRUE
+2020.1,201810592,Palomino Reyes,Adrián Santiago,6,5,18,169,84,Cáncer,M,Electrónica,290,TRUE,TRUE
+2020.1,201910345,Zevallos Córdova,Oscar Eduardo,2,3,18,180,84,Tauro,M,Mecánica,246,FALSE,TRUE
+2020.1,201910040,Sánchez Atahualpa,José Miguel,4,3,18,160,84,Acuario,M,Computación,428,FALSE,FALSE
+2020.1,201910030,González Sánchez,Oscar Mauricio,2,3,17,179,87,Géminis,M,Mecánica,424,TRUE,FALSE
+2020.1,201910032,Hermoza,Rodrigo,1,3,18,181,88,Cáncer,M,Bioingeniería,378,FALSE,TRUE
+2020.1,201610275,Espinosa,Joel Alexander,1,5,21,170,88,Libra,M,Mecánica,426,TRUE,FALSE
+2020.1,201810389,Llap Unchón,Alonso Gabriel,2,3,18,175,90,Leo,M,Electrónica,202,TRUE,FALSE
+2020.1,201620073,Aliaga Gómez,Diego Miguel,5,7,24,174,95,Acuario,M,Mecánica,230,TRUE,FALSE
+2020.1,201910242,Núñez Silvera,Rubén Alexander,2,3,18,181,97,Escorpio,M,Bioingeniería,286,TRUE,TRUE
+2020.1,201910335,Vilela Obando,Yuri Fabian,3,3,18,172,102,Virgo,M,Mecatrónica,386,TRUE,FALSE
+2020.1,201720107,Sánchez Paredes,Josue,1,5,21,175,108,Cáncer,M,Mecatrónica,221,TRUE,FALSE
+2020.1,NA,Renom,José Miguel,NA,NA,50,180,110,Aries,M,NA,425,TRUE,FALSE
+2020.1,201910247,Ortiz Quispe,Jose Joaquin,5,2,18,163,51,Leo,M,Ambiental,371,FALSE,TRUE
+2020.1,201910301,Santillan Calipuy,Jean Pierre,2,3,18,175,120,Acuario,M,Industrial,295,TRUE,TRUE
+2020.1,201820133,García,Luana,3,4,18,169,51,Tauro,F,Ambiental,265,FALSE,FALSE
+2020.1,201810115,Basurco,Nicolas,3,5,19,182,75,Acuario,M,Industrial,289,TRUE,FALSE
+2020.1,201910263,Pocohuanca,Alex,3,3,18,169,61,Aries,M,Electrónica,271,TRUE,FALSE
+2020.1,201910020,Boado Vargas,Ignacio,1,3,18,163,52,Géminis,M,Industrial,379,TRUE,TRUE
+2020.1,201710384,Torrejon Obregon,Diego Renato,4,7,19,171,63,Libra,M,Ambiental,275,TRUE,NA
+2020.1,201810033,Chuquimajo,Pablo,5,5,20,178,62,Géminis,M,Electrónica,320,TRUE,TRUE
+2020.1,201910369,Chipayo,Alejandro,5,2,20,162,68,Piscis,M,Computación,373,TRUE,FALSE
+2020.1,201810083,Suclupe Navarro,Junior Antony,5,5,22,170,70,Tauro,M,Mecánica,281,FALSE,TRUE
+2020.1,201810518,Oporto,Alberto,1,4,18,185,80,Géminis,M,Computación,266,TRUE,NA
+2020.1,201910314,Toledo,Pedro,2,3,17,162,58,Tauro,M,Bioingeniería,215,TRUE,NA
+2020.1,201910517,Tarazona,Flores,1,3,17,177,62,Virgo,M,Mecatrónica,246,TRUE,TRUE
+2020.1,201810161,García,Santiago,2,4,19,178,88,Libra,M,Química,350,TRUE,FALSE
+2020.1,201910218,Marquina Uyén,Mathias Santiago,4,3,18,188,79,Géminis,M,Civil,349,TRUE,TRUE
+2020.1,201810487,Calleja Castillo,Angel Salvador,1,5,19,169,76,Sagitario,M,Química,405,TRUE,FALSE
+2020.1,201910310,Tasayco Guerra,Perla Valentina,5,3,18,165,56,Piscis,F,Industrial,323,TRUE,TRUE
+2020.1,201910216,Márquez Delgado,Natalia Carolina,2,3,18,160,55,Acuario,F,Bioingeniería,303,FALSE,TRUE
+2020.1,201820104,Quispe Arminta,Manuel,2,4,20,176,80,Acuario,M,Electrónica,225,TRUE,TRUE
+2020.1,201910249,Ospina Castro,Jesús Cristian,4,3,18,156,54,Capricornio,M,Energía,305.4,TRUE,TRUE
+2020.1,201910148,Donayre Villoslada,Aleksander Sebastian,3,3,17,170,74,Cáncer,M,Electrónica,320,TRUE,TRUE
+2020.1,201910179,Gomez Vasquez,Oscar Alfredo,1,3,18,176,85,Escorpio,M,Bioingeniería,307.6,TRUE,TRUE
+2020.1,201820147,Velásquez Villar,Camilo Marcelo,3,4,19,172,68,Acuario,M,Bioingeniería,405,TRUE,TRUE
+2020.1,201810714,flores zambrano,daniel armando,3,5,19,172,85,Escorpio,M,Mecatrónica,257.8,TRUE,TRUE
+2020.1,201820102,Polo Rosas,Chritian Leonardo,1,4,18,177,80,Tauro,M,Bioingeniería,239,TRUE,TRUE
+2020.1,201910201,Larisch Roif,Joel,3,3,19,178,74,Virgo,M,Industrial,262,FALSE,TRUE
+2020.1,201910124,Chu Wong,Andrea Cecilia,1,3,18,161,55,Capricornio,F,Mecatrónica,242,TRUE,FALSE
+2020.1,NA,Molina Carabaño,Brígida,NA,NA,NA,170,63,Acuario,F,NA,347,TRUE,FALSE
+2020.1,201810713,Acevedo Loayza,Gina Tamarah,1,5,18,172,74,Aries,F,Industrial,381,FALSE,FALSE
+2020.1,201810438,Cuenca,Sebastian,6,5,19,175,70,Acuario,M,Mecánica,283,TRUE,TRUE
+2020.1,201910176,Garcia Motta,Brayan,5,3,18,165,75,Virgo,M,Civil,333,TRUE,TRUE
+2020.1,201820127,Castañeda Arroyo,Rubén,3,4,18,181,85,Géminis,M,Bioingeniería,399,TRUE,FALSE
+2020.1,201910083,Bolaños Gainsborg,Franco Jesús,1,3,18,174,70,Escorpio,M,Mecatrónica,275,TRUE,FALSE
+2020.1,201910253,Paredes Bozzo,Adrian Enrique,1,3,17,165,58,Tauro,M,Química,270,FALSE,TRUE
+2020.1,201910259,Peralta Ibañez,Sebastián André,2,3,17,186,78,Cáncer,M,Mecatrónica,224,TRUE,TRUE
+2020.1,201910128,Contreras Cabrera,Marcelo Jafett,3,3,18,172,64,Sagitario,M,Mecatrónica,220,TRUE,TRUE
+2020.1,201810118,Bernuy Geiser,Mauricio Bernardo,5,5,19,186,104,Cáncer,M,Computación,260,TRUE,FALSE
+2020.1,201810098,Anco Patricio,Luis Mi,5,5,18,163,51,Capricornio,M,Computación,NA,FALSE,TRUE
+2020.1,201910229,Montalvo Poblete,Marian Ariadne,3,3,17,166,53,Libra,F,Ambiental,218,TRUE,TRUE
+2020.1,201910041,Silva Winder,Gonzalo,5,3,18,186,73,Géminis,M,Industrial,251,TRUE,FALSE
+2020.1,201910329,Velazco Loaiza,Jatzumi Abigail,5,3,17,162,53,Cáncer,F,Civil,249,TRUE,TRUE
+2020.1,201810679,Marchán Ramírez,Adriana,3,5,19,162,46,Piscis,F,Ambiental,247,FALSE,FALSE
+2020.1,201910113,Castro Zegarra,Juan Carlos,3,3,18,170,70,Virgo,M,Ambiental,250,TRUE,TRUE
+2020.1,201910001,Alarcón Fernandez,Luigui Yonel,3,3,17,166,68,Aries,M,Mecatrónica,173,TRUE,TRUE
+2020.1,201910325,Vasquez Chirito,Christoffer Angel,3,3,17,170,71,Cáncer,M,Mecatrónica,245,TRUE,TRUE
+2020.1,201720108,Sandoval Rivera,Daniel Eduardo,1,5,20,172,90,Tauro,M,Energía,238,TRUE,FALSE
+2020.1,201910293,Rodríguez Yagui,Tomás Alberto,1,3,17,166,79,Tauro,M,Bioingeniería,235,TRUE,FALSE
+2020.1,201910226,Mendoza Navarro,Emerson Ademir,3,3,18,172,72,Capricornio,M,Mecatrónica,249,TRUE,TRUE
+2020.1,201710344,Carrasco Castañeda,Martin,1,7,22,173,62,Aries,M,Computación,316,TRUE,TRUE
+2020.1,201910336,Villacorta Garcia,Esteban,1,3,17,171,72,Géminis,M,Computación,387,TRUE,FALSE
+2020.1,201820076,Aguirre Bernal,Alvaro Gonzalo,1,4,22,177,62,Aries,M,Computación,NA,TRUE,NA
+2020.1,201910059,Aguilar Sanchez,Anthony Sleiter,3,3,17,160,65,Tauro,M,Computación,244,TRUE,TRUE
+2020.1,201920069,Chu Peramas,Juan Diego,1,5,20,183,66,Sagitario,M,Electrónica,285,TRUE,FALSE
+2020.1,201710591,Huamancayo Quispe,Alexis Roberto,6,7,25,169,75,Tauro,M,Industrial,319,TRUE,FALSE
+2020.1,201910019,Aubert De Luchi Lomellini,Kevin,1,3,17,178,63,Tauro,M,Mecatrónica,295,TRUE,FALSE
+2020.1,201820100,Paretto Castre,Angello,1,4,20,183,83,Cáncer,M,Química,248,TRUE,TRUE
+2020.1,201820033,Medina Medina,Eduardo Enrique,2,5,25,170,74,Virgo,M,Computación,298,FALSE,TRUE
+2020.1,201910232,Morales Guevara,Mark Claudio Antonio,1,3,18,170,63,Sagitario,M,Industrial,269,TRUE,NA
+2020.1,201910007,Corrales Castillo,Sixto Alonso,1,3,18,170,61,Capricornio,M,Mecatrónica,249,TRUE,FALSE
+2020.1,201820046,Gallarday Bueno,Juan Antonio,5,4,19,180,77,Libra,M,Industrial,286,TRUE,TRUE
+2020.1,201910209,Lovaton Guevara,Glivert Job,2,3,17,169,61,Tauro,M,Energía,365,TRUE,FALSE
+2020.1,NA,Pardes Pasco,Nelson Joaquin,2,5,19,175,NA,Virgo,M,Industrial,NA,FALSE,TRUE
+2020.1,201910017,Vergani Api,Luciano Matteo,2,3,18,160,65,Leo,M,Mecatrónica,260,TRUE,TRUE
+2020.1,201910228,Mogollon Villavicencio,Clara Valerin,2,3,17,150,45,Virgo,F,Industrial,243,TRUE,TRUE
+2020.1,201820103,Ponce Sanchez,Max Albert,5,4,21,170,85,Géminis,M,Computación,194,TRUE,TRUE
+2020.1,201820139,Melendez Cabezas,Jean Paul,5,4,20,178,69,Aries,M,Computación,237,TRUE,TRUE
+2020.1,201910449,Farje Robles,Cristina Elvira,5,3,18,154,50,Piscis,F,Industrial,448,TRUE,FALSE
+2020.1,201810665,Fiestas Valverde,Dayanna Lucero,5,5,18,159,60,Libra,F,Industrial,299,FALSE,FALSE
+2020.1,201710484,Quiñe Chumpitaz,Braulio,5,7,20,177,68,Capricornio,M,Mecatrónica,295,TRUE,TRUE
+2020.1,202010444,Del Maestro Yarlaque,Jose Alonso,2,6,21,169,72,Virgo,M,Electrónica,412,TRUE,FALSE
+2020.1,201810578,García Pérez,César Paolo,3,5,19,175,80,Leo,M,Mecatrónica,309,TRUE,FALSE
+2020.1,201910140,Del Castillo Sihue,Jorge Joel,1,3,18,173,50,Piscis,M,Mecatrónica,271,TRUE,FALSE
+2020.1,201910411,Peñaloza Flores,Christian Alfieri,4,3,22,180,75,Géminis,M,Mecánica,232,TRUE,TRUE
+2020.1,201910126,Condor,Lucero,2,3,17,160,60,Virgo,F,Industrial,241,FALSE,FALSE
+2020.1,201820137,Knell Noriega,Sebastian,3,4,18,173,61,Tauro,M,Computación,275,TRUE,TRUE
+2020.1,201910287,Rivera Cordero,Stefano,3,3,17,183,70,Tauro,M,Energía,240,TRUE,TRUE
+2020.1,201810542,Celedonio Cam,brandon,3,5,19,172,74,Piscis,M,Civil,298,TRUE,TRUE
+2020.1,201810086,Villanueva Avellaneda,Gilmar,1,4,20,170,66,Tauro,M,Computación,183,TRUE,TRUE
+2020.1,201910371,Cueva Soriano,Gonzalo Mauricio,5,3,22,178,78,Sagitario,M,Química,268,FALSE,TRUE
+2020.1,201910377,Espinoza Alanya,Lorenzo Alberto,5,3,19,168,66,Libra,M,Mecatrónica,NA,TRUE,TRUE
+2020.1,201820079,Buitrago Zegarra,Alejandro,6,4,19,178,70,Libra,M,Energía,235,TRUE,TRUE
+2020.1,201820145,Salas Palacios,Eduardo Miguel,5,4,19,184,68,Leo,M,Computación,394,TRUE,TRUE
+2020.1,201910370,Cisneros Huyhua,Daniela Luciana,5,3,23,156,57,Piscis,F,Bioingeniería,274,FALSE,FALSE
+2020.1,201810482,Ascuña Coa,Victor Enrique,6,5,18,175,75,Cáncer,M,Computación,193,TRUE,TRUE
+2020.1,201810486,Caballa Huamán,Lielka Noelia,6,5,18,152,55,Géminis,F,Bioingeniería,503,FALSE,TRUE
+2020.1,201820036,Butrón Villena,Mauricio Alejandro,5,3,20,183,75,Géminis,M,Electrónica,273,TRUE,FALSE
+2020.1,201910388,Irigoyen Peña,Jose Luis,6,3,21,183,78,Acuario,M,Industrial,299,TRUE,TRUE
+2020.1,201610478,Caytuiro Yupanqui,Alvert,5,6,21,175,88,Capricornio,M,Industrial,238,TRUE,FALSE
+2020.1,201910224,Méndez Carazas,Luis Yucef Julio,3,3,17,178,82,Escorpio,M,Mecatrónica,370,FALSE,TRUE
+2020.1,201910196,Jiménez Espinosa,Gabriel Rafael,5,3,18,173,76,Acuario,M,Computación,313,FALSE,FALSE
+2020.1,201910289,Rodriguez Ccorimanya,Mijael,6,3,18,169,62,Acuario,M,Civil,263,TRUE,TRUE
+2020.1,201910251,Palacios Rivera,Crisian Jair,1,3,18,180,74,Cáncer,M,Mecánica,266,TRUE,TRUE
+2020.1,202010599,Prado Lopez,Ivan Edgard,1,3,20,180,70,Tauro,M,Electrónica,491,FALSE,FALSE
+2020.1,201910025,Coronado Espinoza,Ivan,5,3,18,180,96,Sagitario,M,Mecatrónica,231,TRUE,TRUE
+2020.1,201820021,Zevallos García,Rodrigo Martín,5,4,24,176,67,Virgo,M,Energía,420,FALSE,TRUE
+2020.1,201810606,Teran Panduro,Santiago Nicolas,5,5,18,175,72,Virgo,M,Mecatrónica,289,TRUE,TRUE
+2020.2,NA,Renom Andara,José Miguel,NA,NA,51,180,NA,Aries,M,NA,269,TRUE,FALSE
+2020.2,202010268,González Dancourt,Darío,2,2,17,170,70,NA,M,Mecatrónica,325,TRUE,FALSE
+2020.2,202010357,Quispe Carlos,Medard,2,2,16,167,60,Libra,M,Mecatrónica,315,FALSE,TRUE
+2020.2,NA,Molina Carabaño,Brígida Coromoto,NA,NA,NA,170,65.5,Acuario,F,NA,297,TRUE,FALSE
+2020.2,201910446,Castro Mendoza,Matias Jose,4,3,18,179,74,Capricornio,M,Computación,250,TRUE,TRUE
+2020.2,201710079,Muñoz Zevallos,Alejandro,2,8,19,170,75,Piscis,M,Mecatrónica,257,TRUE,TRUE
+2020.2,202010447,Vizcarra Ruiz,Marco Antonio,2,2,24,180,90,Acuario,M,Bioingeniería,266,TRUE,FALSE
+2020.2,201920120,Lazaro Colonia,Liseth Nayeli,5,3,18,156,80,Piscis,F,Industrial,250,FALSE,TRUE
+2020.2,201920066,Canto Vidal,Harold Alexis Victor,4,3,22,175,95,Aries,M,Computación,210,TRUE,TRUE
+2020.2,201920130,Alexander Steven,Sandoval Chirito,3,3,18,174,64,Acuario,M,Civil,200,TRUE,TRUE
+2020.2,201920109,Kilder Andre,Cardenas Serra,4,3,18,180,77,Géminis,M,Ambiental,NA,TRUE,FALSE
+2020.2,201910235,Moreno Benavides,Josefelix,2,4,18,170,68,Escorpio,M,Mecatrónica,221,TRUE,FALSE
+2020.1,202010203,Bastidas Guerrero,Rodrigo Miguel,2,2,17,170,NA,NA,M,Mecatrónica,220,TRUE,TRUE
+2020.2,201920117,Gonzales Gonzales,Joshua Montgomery,2,3,18,170,67,Cáncer,M,Mecánica,NA,TRUE,FALSE
+2020.2,201710048,Sánchez Silva Bellota,Diego Elías,1,7,20,178,69,Libra,M,Mecánica,209,TRUE,TRUE
+2020.2,201810171,Gutiérrez Córdova,Jimena Alejandra,1,6,18,159,53,Libra,F,Ambiental,290,TRUE,FALSE
+2020.2,201910084,Borja Velarde,Emilia,1,4,19,159,52,Capricornio,F,Ambiental,187,FALSE,TRUE
+2020.2,202010217,Calderon Poppe,Vittorio,1,2,19,181,75,Capricornio,M,Ambiental,151,FALSE,TRUE
+2020.2,202010272,Guizado Diaz,Diego Sebastian,2,2,17,178,80,Aries,M,Bioingeniería,25,TRUE,TRUE
+2020.2,202010249,Espinoza Garcia,Jean Carlos Sebastian,2,2,18,171,75,Escorpio,M,Mecatrónica,286.4,TRUE,TRUE
+2020.2,202010605,Mamani Clemente,Diego Vicente,2,2,18,162,67,Escorpio,M,Mecánica,290,TRUE,TRUE
+2020.2,202010584,Gastañaduí Yica,Daniel Arturo,1,NA,20,165,73,Tauro,M,Civil,275,TRUE,TRUE
+2020.2,201710189,Rojas Jorge,Heyder,1,7,21,170,65,Leo,M,Mecatrónica,249,TRUE,TRUE
+2020.2,201820136,Ibañez Tejada,Iván,2,4,20,170,85,Virgo,M,Industrial,NA,TRUE,FALSE
+2020.2,202010578,Siesquen Hidalgo,Camila Araceli,2,2,17,163,NA,Virgo,F,Industrial,311,TRUE,TRUE
+2020.2,201910023,Castillo Aliaga,Jorge Alonso,5,4,18,1.78,80,Acuario,M,Computación,236,TRUE,TRUE
+NA,201710352,Gallo Angulo,Fernando,1,6,20,1.72,75,Tauro,M,Industrial,196,TRUE,TRUE
+2020.2,201810548,Otero Henostroza,Alejandro,1,6,20,176,74,Tauro,M,Computación,357,TRUE,TRUE
+2020.2,201810329,Sotelo Otero,Ariana,1,5,19,155,48,Capricornio,F,Química,344.2,TRUE,TRUE
+2020.2,201920037,Salcedo Espinoza,Jose Maria,1,3,19,160,60,Acuario,M,Industrial,271,FALSE,TRUE
+2020.2,201910129,Córdova Amaya,Efraín Antonio,1,4,18,175,84,Piscis,M,Computación,289,TRUE,FALSE
+2020.2,201910470,Valera Nuñez,Derkhenz ezer,2,4,18,165,69,Libra,M,Mecatrónica,268.2,TRUE,FALSE
+2020.2,201910194,Huby Tuesta,Jean Paul,1,4,19,175,90,Virgo,M,Computación,220,TRUE,FALSE
+2020.2,201820066,Townsend Ku,Mia Alessandra,1,5,19,151,52,Capricornio,F,Bioingeniería,273,FALSE,TRUE
+2020.2,201910434,Valer Valverde,Paul Jesús,1,3,18,170,74,Libra,M,Mecatrónica,264,FALSE,TRUE
+2020.2,201810305,Lopez Ponte,Monica Alejandra,1,6,20,165,58,Leo,F,Ambiental,247,TRUE,TRUE
+2020.2,201910415,Quispe Bao,David Caleb,4,3,18,169,52,Aries,M,Mecatrónica,343,TRUE,FALSE
+2020.2,201910111,Castro Quispe,Eduardo Sebastian,1,4,19,170,50,Cáncer,M,Computación,300,TRUE,TRUE
+2020.2,201920021,García Cacñahuaray,Alexis Jeremi,5,3,18,1.72,80,Capricornio,M,Industrial,363,TRUE,FALSE
+2020.2,201920012,Carita Condorhuaman,Manuel Omar,3,3,18,173,65,Leo,M,Mecatrónica,256,TRUE,FALSE
+2020.2,201610411,Carcamo Vera,Luis Camilo,2,8,21,170,70,Acuario,M,Mecatrónica,264,TRUE,TRUE
+2020.2,201910331,Vento Bustamante,Daniela Abril,1,4,19,148,52,Géminis,F,Computación,296,TRUE,TRUE
+2020.2,201910074,Atusparia Campos,Jorge Luis,3,4,18,162,51,Virgo,M,Civil,282,TRUE,FALSE
+2020.2,202010328,Nieto Lloque,Mauricio Aarón,2,2,17,163,47,Piscis,M,Computación,321,TRUE,FALSE
+2020.2,201920097,Torres Pinedo,Richard Wernir,2,3,21,180,83,Sagitario,M,Industrial,260,TRUE,FALSE
+2020.2,201920014,Cerna Aguirre,Jesús Alexander,4,3,20,1.69,87,Géminis,M,Civil,NA,NA,NA
+2020.2,201920025,Mamani Pomalaza,Jesus,3,3,18,170,85,Escorpio,M,Química,229,TRUE,FALSE
+2020.2,202010590,Velasque Chiclla,Tania,3,2,23,1.59,63,Acuario,F,Industrial,452,TRUE,TRUE
+2020.2,201920101,Alva Navas,Jorge Abel,3,3,21,179,70,Géminis,M,Energía,276,TRUE,TRUE
+2020.2,201920042,Uribe Morales,Sharon,4,3,18,160,58,Sagitario,F,Mecatrónica,304,FALSE,TRUE
+2020.2,201620013,Carnero Vivar,Armando,1,7,22,190,74,Cáncer,M,Mecánica,223,TRUE,TRUE
+2020.2,201810657,Calderon Bailon,Richard Henr,1,6,25,172,65,Libra,M,Bioingeniería,194,TRUE,FALSE
+2020.2,201910056,Acuña Faustino,Ana Maria,3,4,18,153,55,Virgo,F,Mecatrónica,405,FALSE,FALSE
+2020.2,201910038,Rios Vasquez,Paul,1,4,18,174,85,Piscis,M,Computación,215,TRUE,TRUE
+2020.2,201810566,Contreras Chire,Jorge Luis,1,6,20,170,70,Aries,M,Industrial,270,TRUE,FALSE
+2020.2,201910153,Espejo Mendoza,Mauricio Alejandro,1,4,18,174,67,Aries,M,Bioingeniería,216,TRUE,TRUE
+2020.1,201910293,Rodríguez Yagui,Tomás Alberto,1,3,17,167,81,Tauro,M,Bioingeniería,NA,NA,NA
+2020.2,201610621,Tito Huamani,Kevin Alfredo,1,6,24,168,82,Acuario,M,Mecánica,297,TRUE,TRUE
+2020.2,201920023,Jimenez Turpo,Angie Nayeli,5,3,20,160,60,Leo,F,Industrial,281,FALSE,TRUE
+2020.2,201610478,Caytuiro Yupanqui,Alvert,1,6,21,175,85,Capricornio,M,Industrial,236,TRUE,FALSE
+2020.2,201910098,Carbajal Cortez,Luis Renato,1,4,18,166,70,Cáncer,M,Computación,236,TRUE,FALSE
+2020.2,201920110,Carrillo Martinez,Jesus Ricardo,5,3,19,179,56,Aries,M,Civil,280,TRUE,TRUE
+2020.2,202010480,Gómez Loayza,Camila Nicole,2,2,18,168,70,Cáncer,F,Bioingeniería,395,TRUE,TRUE
+2020.2,201810049,Merma Silva,Carlos Antonio,2,4,19,175,75,Acuario,M,Computación,242,TRUE,TRUE
+2020.2,202010606,Pariona Zapana,Nicolle Sheridan,2,2,19,155,50,Cáncer,F,Mecatrónica,NA,NA,NA
+2020.2,201810606,Teran Panduro,Santiago Nicolas,4,6,18,176,74,Virgo,M,Mecatrónica,279,TRUE,TRUE
+2020.2,201810385,Bustamante Cornejo,Valeria,4,4,17,160,60,Virgo,F,Mecatrónica,NA,NA,NA
+2020.2,201920035,Quispe Yauri,Rosario Lizeth,4,3,20,150,55,Virgo,F,Mecatrónica,277,FALSE,TRUE
+2020.2,201810313,Panez Quinto,Hugo Alberth,5,6,18,180,92,Piscis,M,Industrial,NA,TRUE,FALSE
+2020.2,201920009,Angeles Barazorda,Jean Pier Renzo,2,3,21,169,60,Cáncer,M,Computación,NA,NA,NA
+2020.2,201710379,Samanamud Chirinos,Augusto Jiose,3,7,20,176,80,Sagitario,M,Electrónica,328,TRUE,FALSE
+2020.2,201910006,Chira Vallejo,Cristhian Eduardo,3,4,19,176,NA,Libra,M,Química,NA,TRUE,TRUE
+2020.2,201920017,Custdio Jurupe,Jairo Nick,3,3,19,160,65,Leo,M,Mecatrónica,325,TRUE,TRUE
+2020.2,202010629,Valderrama Auccacusi,Indira,1,2,28,155,60,Piscis,F,Electrónica,365,FALSE,TRUE
+2020.2,201910004,Bojorquez Samame,Jose Rene,4,4,18,176,79,Acuario,M,Computación,307,TRUE,FALSE
+2020.2,201920083,Mosquera Gutierrez,Pedro Jose,3,3,23,169,92,Aries,M,Mecatrónica,382,TRUE,FALSE
+2020.2,201720017,Solano Vergara,Camila,4,6,22,165,70,Leo,F,Mecánica,60,TRUE,TRUE
+2020.2,202010109,Avendaño Vargas,Plinio Matias,3,2,17,178,75,Piscis,M,Computación,NA,NA,NA
+2020.2,202010009,Flores Teniente,Enrique Francisco,2,2,19,NA,NA,Virgo,M,Computación,NA,NA,NA
+2020.2,201810033,Chuquimajo Huamantumba,Pablo,3,5,21,180,68,Géminis,M,Electrónica,300,FALSE,FALSE
+2020.2,201910095,Camere Aguirre,Rafaella,3,4,18,160,55,Libra,F,Bioingeniería,290,FALSE,TRUE
+2020.2,201920160,Riveros Rodriguez,Alcides,2,3,18,162,65,Géminis,M,Civil,NA,NA,NA
+2020.2,201920122,Paucar Espinoza,Clever Alvaro,4,3,18,164,64,Tauro,M,Civil,222,TRUE,TRUE
+2020.2,201920114,Cruz Cruz,María Ximena,4,3,18,156,51,Sagitario,F,Bioingeniería,267,FALSE,TRUE
+2020.2,201810345,Paima Meza,Fabricio Alfredo,3,6,18,168,70,Capricornio,M,Mecatrónica,270,TRUE,TRUE
+2020.2,201920067,Castilla Camacho,Rodrigo Alonso,4,3,18,172,62,Sagitario,M,Mecánica,NA,TRUE,TRUE
+2020.2,201810163,García Santos,Figo,5,6,19,179,72,Ofiuco,M,Industrial,315,TRUE,TRUE
+2020.2,201710469,Huayanay Damian,Miguel Angel,3,8,19,172,59,Libra,M,Energía,468,FALSE,TRUE
+2020.2,201920027,Melgarejo Blas,Erick Robert,3,3,18,160,66,Aries,M,Civil,324,TRUE,TRUE
+2020.2,201610275,Espinosa Torres,Joel Alexander,3,6,21,160,75,Libra,M,Mecánica,315,TRUE,FALSE
+2020.2,201910037,Paredes Rey de Castro,Diego Andrey,3,4,18,170,58,Libra,M,Computación,NA,NA,NA
+2020.2,201910297,Rosas Melgar,Andrea Celeste,3,4,18,153,47,Sagitario,F,Civil,383,TRUE,FALSE
+2020.2,201920077,Gutierrez Gutierrez,Reyna Soledad,3,2,18,165,80,NA,F,Bioingeniería,NA,TRUE,FALSE
+2020.2,201810528,Tome Yabuta,Mitsuo,3,6,19,170,63,Libra,M,Mecánica,216,TRUE,TRUE
+2020.2,201920096,Tineo Alfaro,Xavier David,3,2,18,175,69,NA,M,Mecánica,NA,TRUE,TRUE
+2020.2,201910412,Porras Diaz,Diego Alonso,3,4,18,170,60,Aries,M,Mecánica,331,TRUE,TRUE
+2020.2,201710235,Quispe Roldan,Sebastian Enrique,3,8,21,172,72,Tauro,M,Mecánica,386,TRUE,TRUE
+2020.2,201810423,Vásquez Auqui,Fabrizio Jesús,3,6,20,172,70,Cáncer,M,Computación,297,TRUE,FALSE
+2020.2,201920104,Cabeza Morales,José Elias,3,3,17,172,62,Sagitario,M,Mecatrónica,283,TRUE,TRUE
+2020.2,201910099,Carbajal Valverde,Rafael,3,4,18,170,65,Virgo,M,Bioingeniería,300,TRUE,TRUE
+2020.2,201710525,Guevara Vigo,Carolina,3,5,20,165,48,Libra,F,Industrial,NA,FALSE,TRUE
+2020.2,201810190,Manfredi Guzmán,Stefano Giovanni,3,6,20,178,62,Cáncer,M,Ambiental,338,NA,NA
+2020.2,201810161,García Escudero,Santiago,3,5,19,177,85,Virgo,M,Química,255,FALSE,FALSE
+2020.2,201910511,Yupanqui López,Milagros Valeria,3,4,18,160,49,Libra,F,Computación,270,TRUE,TRUE
+2020.2,201910227,Mercedes Balcázar,Jonny Joan,3,4,18,176,75,Tauro,M,Civil,414,FALSE,TRUE
+2020.2,201820134,Huamán Sánchez,Leonardo Luis,3,5,19,178,64,Tauro,M,Civil,341,TRUE,TRUE
+2020.2,201910115,Cauti Segura,Daniela Lucía,3,4,18,162,60,Leo,F,Computación,285,FALSE,FALSE
+2020.2,201910076,Barrenachea Ramirez,Jose Antonio,4,4,18,170,74,Aries,M,Mecánica,250,TRUE,TRUE
+2020.2,201710243,Escalante Silva-Santisteban,Eduardo,3,8,20,173,60,Libra,M,Electrónica,265,TRUE,TRUE
+2020.2,201910204,Llerena Llosa,Lucia,3,4,19,163,49,Acuario,F,Energía,328,FALSE,TRUE
+2020.2,201710333,Alvarado Lopez,Joaquin Alberto,4,8,20,170,65,Piscis,M,Mecánica,NA,TRUE,TRUE
+2020.2,201920020,Garabito Nizama,Deivy Jhanpiere,5,3,18,180,70,Capricornio,M,Industrial,271,TRUE,TRUE
+2020.2,201910233,Morales Ishitsuka,Gabriel Masaru,5,4,19,177,65,Cáncer,M,Bioingeniería,252,TRUE,FALSE
+NA,NA,NA,NA,5,4,20,176,73,Libra,M,Industrial,NA,NA,NA
+NA,201810587,Munguia Cruzatt,Mauro Sthepano,5,5,19,179,64,Sagitario,M,Mecatrónica,221,TRUE,TRUE
+2020.2,201810565,Chero Lau,Marcelo Sebastian,1,6,20,178,75,Virgo,M,Industrial,243,TRUE,TRUE
+2020.2,201810116,Bendezú Gonzales,Ariana Sofía,4,6,20,160,60,Virgo,F,Bioingeniería,360,TRUE,TRUE
+2020.2,201920028,Mendoza Salome,Omar Americo,5,3,18,170,70,Capricornio,M,Industrial,283,TRUE,TRUE
+2020.2,201810149,Espinoza Gastulo,Joaquin Salvador,1,6,19,173,66,Acuario,M,Ambiental,180,FALSE,TRUE
+2020.2,201920033,Puelles Ramirez,Danfer Herminio,5,3,21,172,69,Acuario,M,Civil,NA,NA,NA
+2020.2,201710620,Pelaez Sagastegui,Alberto Alejandro,5,3,26,173,85,Piscis,M,Electrónica,227,TRUE,TRUE
+2020.2,201810551,Allpas Leyva,Renzo Benjamin,1,6,20,173,NA,Géminis,M,Energía,NA,TRUE,TRUE
+2020.2,201920060,Rosales Chumpitaz,Ronald Hernán,5,2,18,164,70,Aries,M,Civil,309,TRUE,FALSE
+NA,201710512,Quintana Silvera,Edwin Daniel,5,7,20,175,85,Virgo,M,Mecánica,NA,TRUE,FALSE
+2020.2,201920043,Usaqui Guerrero,Renato Alonzo,2,3,19,175,72,Escorpio,M,Bioingeniería,NA,TRUE,TRUE
+2020.2,201510280,Mena Llanos,Rodrigo Emmanuel,5,4,23,1.81,78,Géminis,M,Mecánica,NA,TRUE,TRUE
+2020.2,201910155,Espinoza Gervassi,Gabriel Espinoza,5,4,18,1.82,79,Tauro,M,Mecatrónica,189,TRUE,FALSE
+2020.2,201910509,Valencia Escajadillo,Leopoldo Erico,5,4,17,1.78,74,Leo,M,Bioingeniería,224,TRUE,TRUE
+2020.2,201710664,Vereau Sánchez,Kareen,5,4,25,160,52,Leo,F,Electrónica,340,FALSE,FALSE
+2020.2,201920128,Reyna Gil,Josue,5,3,17,1.75,70,Virgo,M,Industrial,201,TRUE,FALSE
+2020.2,201510352,Huaman Flores,Daniel Aratz,5,5,22,1.65,66,Acuario,M,Industrial,NA,TRUE,TRUE
+2020.2,201920106,Camasca Tapara,Jhon David,5,3,19,170,64,Libra,M,Industrial,NA,NA,NA
+2020.2,201620002,Manrique de Lara,Karina,1,7,22,1.75,67,Libra,F,Electrónica,NA,NA,NA
+2020.2,201920121,Mori Vega,Edden Fredy,5,3,31,1.6,75,Capricornio,M,Bioingeniería,228,TRUE,TRUE
+2020.2,201810647,Abad Rios,Alexandro,1,6,19,1.7,63,Géminis,M,Bioingeniería,NA,TRUE,TRUE
+2020.2,201910120,Chávez Angulo,Eduardo Julián,5,4,18,170,70,Libra,M,Civil,296,TRUE,TRUE
+2020.2,201920063,Surco Salas,Marcelo Juan,NA,3,18,183,74,Capricornio,M,Computación,NA,TRUE,TRUE
+2020.2,201820097,Montes Araujo,Leonardo Rodolfo,5,3,20,1.78,100,Libra,M,Química,NA,FALSE,TRUE
+2020.2,202010609,Tineo Capcha,Axel Anthony,5,2,21,1.76,74,Sagitario,M,Ambiental,180,TRUE,TRUE
+2020.2,201920071,Cruz Vargaya,Cesar Adolfo,3,3,20,175,79,Acuario,M,Mecatrónica,266,TRUE,FALSE
+2020.2,201820017,Sanchez Flores,Victor Moises,5,3,23,180,98,Virgo,M,Mecánica,356,TRUE,FALSE
+2020.2,201920151,Tueros Paz,Jose Adriel,5,3,19,178,72,Capricornio,M,Mecánica,426,TRUE,FALSE
+2020.2,201920150,Tueros Paz,Jose Dulas,5,3,19,178,92,Capricornio,M,Mecánica,380,TRUE,FALSE
+2020.2,201710405,Sanchez Barreto,Angelica,1,5,19,1.62,54,Acuario,F,Computación,NA,TRUE,TRUE
+2020.2,202020217,Castilla Pachas,Leonardo,4,3,21,174,92,Leo,M,Electrónica,272,TRUE,TRUE
+2020.2,201920134,Carbajal Huacac,Gerson,5,3,20,1.65,55,Virgo,M,Energía,285,TRUE,TRUE
+2020.2,202010393,Sanchez Quispe,Dangelo Alexander,5,2,17,175,60,Capricornio,M,Mecatrónica,255,TRUE,FALSE
+2020.2,201910007,Corrales Castillo,Sixto Alonso,1,4,18,169,61,Capricornio,M,Mecatrónica,233,TRUE,FALSE
+2020.2,201810679,Marchán Ramirez,Adriana,1,6,19,162,47,Piscis,F,Ambiental,230,FALSE,FALSE
+2020.2,201910432,Torres,Rodrigo,1,4,19,179,70,Piscis,M,Industrial,190,FALSE,TRUE
+2020.2,201820006,Garay Saavedra,Alejandro Martín,1,5,19,170,80,Tauro,M,Energía,NA,FALSE,TRUE
+2020.2,201910003,Balbin Risco,David Gabriel,NA,4,18,168,56,NA,M,Ambiental,299,TRUE,FALSE
+2020.2,201920032,pretel rojas,yoliño,1,3,21,165,71,Aries,M,Mecatrónica,NA,TRUE,TRUE
+2020.2,201910393,Marcas Sánchez,Herbert Ivanou,5,4,21,167,50,Capricornio,M,Mecánica,305,TRUE,TRUE
+2020.2,201710310,Alfaro Huerta,Juan Jezer Ricardo,1,8,20,NA,NA,Géminis,M,Mecatrónica,293,TRUE,FALSE
+2020.2,201910028,Feijoo Gonzales,Carlos Augusto,5,4,18,NA,NA,Géminis,M,Industrial,NA,TRUE,TRUE
+2020.2,201810602,Segami,Ryuji,1,6,20,181,83,Cáncer,M,Energía,NA,TRUE,NA
+2020.2,201710666,Vilcas,Ronald,5,8,21,171,65,Sagitario,M,Mecatrónica,195,TRUE,TRUE
+2020.2,201820036,Butrón Villena,Mauricio Alejandro,4,4,21,183,76,Géminis,M,Electrónica,249,TRUE,FALSE
+2020.2,201810232,Rodríguez Delgado,Alejandra Angélica,1,5,19,170,70,Sagitario,F,Mecatrónica,314,TRUE,TRUE
