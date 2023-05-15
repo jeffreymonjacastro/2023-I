@@ -10,6 +10,7 @@ void foo(){
 int main(){
     thread t(&foo);
 
+    t.join();
 
     return 0;
 }
