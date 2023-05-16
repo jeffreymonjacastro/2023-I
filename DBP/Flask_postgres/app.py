@@ -8,9 +8,17 @@ from db import Session, engine # Módulo db.py
 from models import Usuario # Módulo models.py
 import json # Para convertir un json en un diccionario
 from sqlalchemy import text
+from flask_sqlalchemy import SQLAlchemy
+
 
 # Instancia de Flask
 app = Flask(__name__)
+
+# Configuración de la base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost:5432/flaskapp'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
 
 session = Session()
 
