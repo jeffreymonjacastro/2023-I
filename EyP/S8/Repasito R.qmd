@@ -189,7 +189,9 @@ data <- select(data, Período, Sección, Ciclo, Edad, `Estatura (cm)`, `Peso (kg
 
 ### Agregar variables (columnas)
 
-JSJJS
+```{r}
+data$newCol = as.numeric(data$`Peso (kg)`) / (as.numeric(data$`Estatura (cm)`)/100)
+```
 
 ### Valores faltantes
 

@@ -10,7 +10,7 @@
 // Puede validar su codigo con la siguiente funcion main
 int main() {
 
-//    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6_chavez\tarea-1c\tarea\document.txt)");
+//    Counter C(R"(C:\Users\Usuario\Github\2023-I\P3\s6\tarea-1c\tarea\document.txt)");
     Counter C(R"(../tarea/document.txt)");
 
     // Primer item check

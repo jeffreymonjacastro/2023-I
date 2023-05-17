@@ -8,11 +8,11 @@ include_directories(.)
 
 add_executable(2023_I P3/s8/Teo.cpp)
 
-add_executable(teo P3/s6_chavez/tarea-1c/tarea/testing.cpp)
+add_executable(teo P3/s6/tarea-1c/tarea/testing.cpp)
 
-add_executable(pcs P3/s5_chavez/pcs1/lab103p1.cpp)
+add_executable(pcs P3/s5/pcs1/lab103p1.cpp)
 
-add_executable(Dayane P3/s7_chavez/context.cpp)
+add_executable(Dayane P3/s7/context.cpp)
 
 add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
