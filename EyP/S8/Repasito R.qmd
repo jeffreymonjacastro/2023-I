@@ -187,6 +187,10 @@ También se puede hacer uso de la función select
 data <- select(data, Período, Sección, Ciclo, Edad, `Estatura (cm)`, `Peso (kg)`, Sexo, Carrera)
 ```
 
+### Agregar variables (columnas)
+
+JSJJS
+
 ### Valores faltantes
 
 Se usa con un table para ver la cantidad de valores faltantes
