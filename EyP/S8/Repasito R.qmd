@@ -104,7 +104,7 @@ data$Edad <- as.numeric(data$Edad)
 sum(data$Edad, na.rm = TRUE)
 ```
 
-### Dataframes
+## Dataframes
 
 ::: callout-important
 ## Liberías
@@ -163,10 +163,28 @@ data[data$Edad > 20, ]
 
 ### Eliminar filas y columnas
 
-Eliminar filas
+Eliminar filas (Ojito, preferiblemente se debe ver qué se va a eliminar antes de)
 
 ```{r}
+data <- data[!is.na(data$Sección),] 
+```
 
+Eliminar columnas (primero verifiquemos si es necesario eliminarlas)
+
+```{r}
+all(is.na(data$...19))
+all(is.na(data$...19))
+```
+
+```{r}
+data$...19 <- NULL
+data$...20 <- NULL
+```
+
+También se puede hacer uso de la función select
+
+```{r}
+data <- select(data, Período, Sección, Ciclo, Edad, `Estatura (cm)`, `Peso (kg)`, Sexo, Carrera)
 ```
 
 ### Valores faltantes
@@ -195,13 +213,26 @@ Cantidad de observaciones completas e incompletas
 table(complete.cases(data))
 ```
 
-### Names
+### Names y Renombramiento
+
+Muestra el nombre de las variables de un dataframe
 
 ```{r}
 names(data)
 ```
 
-### Descriptores numéricos
+Ahora, se renombran con dplyr
+
+```{r}
+data %>% rename(Período = period,
+                Sección = section,
+                `Estatura (cm)` = Stature,
+                `Peso (kg)` = weight)
+```
+
+## Medidas de tendencia central
+
+### Max
 
 max() = Hallar el valor máximo
 
@@ -212,6 +243,8 @@ max(data$Edad, na.rm= TRUE)
 data[which.max(data$Edad),] 
 ```
 
+### Min
+
 min() = Hallar el valor mínimo
 
 which.min() = Hallar la posición del valor mínimo
@@ -220,3 +253,31 @@ which.min() = Hallar la posición del valor mínimo
 min(data$Edad, na.rm= TRUE)
 data[which.min(data$Edad), ]
 ```
+
+### Media
+
+```{r}
+
+```
+
+### Mediana
+
+```{r}
+
+```
+
+### Moda
+
+```{r}
+
+```
+
+## Dplyr
+
+::: callout-tip
+El operador `%>%` (pipe en inglés) es un operador de composición.
+
+Ejemplo:
+
+`x %>% f %>% g` significa $g(f(x))$.
+:::
