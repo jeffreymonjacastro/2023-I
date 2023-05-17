@@ -1,0 +1,126 @@
+---
+title: "A08"
+format: html
+editor: visual
+---
+
+```{r}
+library(dplyr)
+```
+```{r}
+library(readr)
+```
+
+
+```{r}
+DF <- read_csv("BodegasEP.csv")
+```
+
+
+Vamos a usar `dplyr` para obtener, promedio y desviación estándar de ventas totales por distrito.
+
+```{r}
+DF$VentasTotales = DF$Ventas1 + DF$Ventas2 + DF$Ventas3 + DF$Ventas4
+```
+
+
+```{r}
+DF %>% group_by(Distrito) %>% summarise(`Promedio ventas` = mean(VentasTotales), `Desviación estándar ventas` = sd(VentasTotales))
+```
+
+Necesitamos trabajar sin datos faltantes si pretendemos trabajar con la variable `VentasTotales`.
+
+Veamos cuantos datos faltantes tenemos
+
+```{r}
+sum(is.na(DF))
+```
+Veamos a cuantas bodegas afectan estos datos faltantes
+```{r}
+sum(!complete.cases(DF))
+```
+
+Como tenemos 11053 bodegas, podemos prescindir de 11 de ellas con datos faltantes.
+
+```{r}
+DF %>% filter(!complete.cases(DF)) -> DFF
+```
+
+De esta forma, hemos guardado en `DFF` las bodegas con datos faltantes para análisis posterior.
+
+```{r}
+DF %>% filter(complete.cases(DF)) -> DFL
+```
+
+```{r}
+DFL %>% group_by(Distrito) %>% summarise(`Promedio ventas` = mean(VentasTotales), `Desviación estándar ventas` = sd(VentasTotales)) -> DFR
+```
+
+Si queremos ver, en orden de ventas la tabla `DFR`
+
+```{r}
+DFR %>% arrange(desc(`Promedio ventas`)) -> DFO
+```
+
+```{r}
+DFO
+```
+
+```{r}
+barplot(DFO$`Promedio ventas`, names.arg = DFO$Distrito, las = 3, cex.names = 0.4)
+title(main = "Ventas de las bodegas por cada distrito")
+```
+
+Tal vez sería interesante _reescalar_ las barras normalizando por el número de bodegas en cada distrito.
+
+```{r}
+hist(DF$VentasTotales)
+```
+
+```{r}
+DFL %>% group_by(Distrito) %>% summarise(`Cantidad bodegas` = n(), `Promedio ventas` = mean(VentasTotales), `Desviación estándar ventas` = sd(VentasTotales)) -> DFR
+```
+
+```{r}
+DFR %>% arrange(desc(`Promedio ventas`)) -> DFO
+```
+
+```{r}
+DFO
+```
+
+```{r}
+BP <- barplot(DFO$`Promedio ventas`, names.arg = DFO$Distrito, las = 3, cex.names = 0.4, ylim = c(0, 16000))
+text(BP[, 1], DFO$`Promedio ventas`, labels = DFO$`Cantidad bodegas`, cex = 0.3, pos = 1)
+title(main = "Ventas de las bodegas por cada distrito")
+```
+
+```{r}
+hist(DFL$VentasTotales, prob = TRUE)
+```
+
+Esta gráfica es inapropiada pues el comportamiento de `VentasTotales` es similar al de una variable continua.
+```{r}
+barplot(table(DF$VentasTotales))
+```
+
+
+
+```{r}
+DFA <- read_csv("Anchoveta_07_17.csv")
+```
+
+```{r}
+boxplot(DFA$Largo ~ DFA$Barco, las = 3, cex.axis = 0.6, varwidth = TRUE)
+```
+
+```{r}
+DFA %>% select(Barco) %>% group_by(Barco) %>% summarise(`Cantidad de anchovetas` = n(), Participaciones = n()/100) -> DFAR
+DFAR
+```
+
+```{r}
+mean(DFAR$Participaciones)
+```
+
+
