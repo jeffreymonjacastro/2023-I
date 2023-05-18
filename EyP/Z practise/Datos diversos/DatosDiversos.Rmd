@@ -1,0 +1,169 @@
+---
+title: "Datos Diversos"
+author: "Jeff"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Resolución
+
+Importar librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+Importar Base
+
+```{r}
+DF <- read_csv('./DD.csv')
+```
+
+Funcion redondear:
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+
+Preguntas:
+
+1- Según R, hay 8 var. numéricas y 7 var. categóricas. De esta última, 2 son ordinales `logi`
+
+```{r}
+#str(DF)
+spec(DF)
+```
+
+2- Hay 326 Obs y 15 variables. Además, hay 135 datos faltantes y 64 observaciones incompletas
+
+```{r}
+dim(DF)
+```
+
+```{r}
+table(is.na(DF)) # Datos faltantes
+table(!complete.cases(DF)) # Observaciones incompletas
+```
+
+3- La variable con mayor datos faltantes es `tiempo`
+
+```{r}
+which.max(colSums(is.na(DF)))
+max(colSums(is.na(DF)))
+```
+
+4- La carrera de la observación con más datos faltantes es: Industrial
+
+```{r}
+DF[which.max(rowSums(is.na(DF))), 12] 
+```
+
+5- Respecto a la variable Tiempo
+
+La media \> mediana, por lo que está sesgada a la derecha
+
+```{r}
+r(mean(DF$Tiempo, na.rm = TRUE))
+r(sd(DF$Tiempo, na.rm = TRUE))
+r(median(DF$Tiempo, na.rm = TRUE))
+```
+
+El rango es amplio, entonces los datos están relativamente dispersos. Pero como el IQR es pequeño respecto al rango, los datos también están relativamente concentrados
+
+```{r}
+r(diff(range(DF$Tiempo, na.rm= TRUE)))
+r(IQR(DF$Tiempo, na.rm= TRUE))
+```
+
+```{r}
+min(DF$Tiempo, na.rm = TRUE)
+max(DF$Tiempo, na.rm = TRUE)
+```
+
+Tamaño efectivo: 285
+
+```{r}
+r(sum(!is.na(DF$Tiempo)) / nrow(DF) * 100)
+```
+
+6- Respecto a la variable Peso
+
+```{r}
+boxplot(DF$Peso, horizontal = TRUE)
+```
+
+```{r}
+q1 <- quantile(DF$Peso, 0.25, na.rm = TRUE, type = 3, name = FALSE)
+q3 <- quantile(DF$Peso, 0.75, na.rm = TRUE, type = 3, name = FALSE)
+ric <- q3 - q1
+
+q1
+q3
+ric
+```
+
+```{r}
+table(DF$Peso < q1 - 1.5*ric)
+```
+
+Hay 5 datos atípicos demasiado grandes
+
+```{r}
+table(DF$Peso > q3 + 1.5*ric)
+```
+
+El promedio y la mediana son:
+
+```{r}
+r(mean(DF$Peso, na.rm=TRUE))
+median(DF$Peso, na.rm=TRUE)
+```
+
+Eliminando los valores atípicos:
+
+```{r}
+DF$Peso[DF$Peso > q3 + 1.5*ric] <- NA
+```
+
+```{r}
+r(mean(DF$Peso, na.rm=TRUE))
+median(DF$Peso, na.rm=TRUE)
+```
+
+Se puede concluir que la mediana es MÁS robusta que el promedio pues es MENOS sensible a la presencia de valores atípicos
+
+5- Variable Peso
+
+```{r}
+round(mean(DF$Peso, na.rm = TRUE), digits = 2) # La media
+round(sd(DF$Peso, na.rm = TRUE), digits = 2)
+median(DF$Peso, na.rm = TRUE)
+```
+
+```{r}
+rango <- round(diff(range(DF$Peso)), digits = 2)
+RIQ <- IQR(DF$Peso)
+RIQ / rango * 100
+```
+
+```{r}
+round(min(DF$Peso), digits = 2)
+round(max(DF$Peso), digits = 2)
+```
+
+```{r}
+meanx <- mean(DF$Peso)
+varianza <- var(DF$Peso)
+ne <- (1 / (2 * varianza / meanx ))^2
+ne
+```
+
+```{r}
+DF$Edad[-DF$Edad > q3 + 1.5*ric]
+
+mean(DF$Edad, na.rm=TRUE)
+median(DF$Edad, na.rm=TRUE)
+```

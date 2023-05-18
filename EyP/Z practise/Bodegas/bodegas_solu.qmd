@@ -1,0 +1,30 @@
+---
+title: "Bodegas"
+format: html
+editor: visual
+---
+
+## Bodegas
+
+::: callout-note
+## Librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+## Dataframes
+
+```{r}
+DF <- read_csv("./BodegasEP.csv")
+```
+
+## Funciones
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+:::
