@@ -230,10 +230,10 @@ names(data)
 Ahora, se renombran con dplyr
 
 ```{r}
-data %>% rename(Período = period,
-                Sección = section,
-                `Estatura (cm)` = Stature,
-                `Peso (kg)` = weight)
+data %>% rename(period = Período,
+                section = Sección,
+                Stature = `Estatura (cm)`,
+                weight = `Peso (kg)`) -> data
 ```
 
 ## Medidas de tendencia central
@@ -263,13 +263,14 @@ data[which.min(data$Edad), ]
 ### Media
 
 ```{r}
-
+data$Edad <- as.numeric(data$Edad)
+mean(data$Edad, na.rm=TRUE)
 ```
 
 ### Mediana
 
 ```{r}
-
+median(data$Edad, na.rm = TRUE)
 ```
 
 ### Moda
