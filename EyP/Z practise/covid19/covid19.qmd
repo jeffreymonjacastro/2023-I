@@ -177,6 +177,29 @@ abline(h = 0, lty = 3, col = "red")
 Histograma
 
 ```{r}
+X <- DFU$CountDia
+hist(X, prob = TRUE, breaks=seq(0,10000,by = 1000))
+abline(v = c(mean(X), median(X)), col = c("red", "blue"))
+```
+
+Usando la tabla DX, ejecute:
+
+```{r}
+Trop <- (-23 <= DX$Latitud) & (DX$Latitud <= 23)
+plot(
+  DX$Edad
+, DX$Fertilidad
+, cex=log10(DX$Contagiados)
+, pch = 21
+, col= rgb(0,0,1,0.1)
+, bg = rgb(Trop,0,0,DX$Mort)
+, bty = "n"
+, xlab = "mediana de la edad"
+, ylab = "fertilidad promedio"
+)
+```
+
+```{r}
 length(unique(temp$Provincia))
 ```
 
