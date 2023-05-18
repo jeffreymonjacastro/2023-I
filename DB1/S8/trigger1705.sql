@@ -2,6 +2,8 @@
 --
 -- SET search_path = Teo1705;
 
+-- Documentación triggers: https://www.postgresql.org/docs/current/plpgsql-trigger.html
+
 create table logged_actions (
     schema_name text not null,
     table_name text not null,
@@ -66,5 +68,7 @@ FOR EACH ROW EXECUTE PROCEDURE func_auditoria();
 INSERT INTO emp (empname, salary) VALUES
 ('Antonio', 3500),
 ('Juan', 1500)
+
+
 
 
