@@ -1,0 +1,24 @@
+---
+title: "covid19"
+format: html
+editor: visual
+---
+
+## Covid-19
+
+::: callout-note
+## Librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+:::
+
+::: callout-note
+## Dataframes
+
+```{r}
+DC = read_csv()
+```
+:::
