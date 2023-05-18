@@ -1,0 +1,108 @@
+---
+title: "Asesoría"
+format: html
+editor: visual
+---
+
+## Asesoría 16/05
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("BodegasEP.csv")
+```
+
+### Librería Dplyr
+
+La librería dplyr considera que el DF está prolija, es decir con observaciones y variables completas
+
+Vamos a usar `dplyr` para obtener, promedio y desviación estándar de ventas totales por distrito
+
+```{r}
+DF$VentasTotales = DF$Ventas1 + DF$Ventas2 + DF$Ventas3 + DF$Ventas4
+```
+
+```{r}
+DF %>% group_by(Distrito) %>% summarise(PromVentas = mean(VentasTotales), DesviaciónEstandarVentas = sd(VentasTotales))
+```
+
+Necesitamos trabajar sin datos faltantes si pretendemos trabajar con la variable `VentasTotales`
+
+Veamos cuántos datos faltantes tenemos
+
+```{r}
+sum(is.na(DF))
+```
+
+Veamos a cuántas bodegas afectan estos datos faltantes
+
+```{r}
+sum(!complete.cases(DF))
+```
+
+Como tenemos 11053 bodegas, podemos prescindir de 11 de ellas con datos faltantes
+
+```{r}
+DF %>% filter(!complete.cases(DF)) -> DFF
+```
+
+De esta forma, hemos guardado en `DFF` las bodegas con datos faltantes para el análisis posterior
+
+```{r}
+DF %>% filter(complete.cases(DF)) -> DFL
+```
+
+Ahora sí
+
+```{r}
+DFL %>% group_by(Distrito) %>% summarise(PromVentas = mean(VentasTotales), DesviaciónEstandarVentas = sd(VentasTotales))
+```
+
+```{r}
+DFL %>% group_by(Distrito) %>% summarise(PromVentas = mean(VentasTotales), DesviaciónEstandarVentas = sd(VentasTotales)) -> DFR
+```
+
+Si queremos ver en orden de ventas la tabla `DFR`
+
+```{r}
+DFR %>% arrange(desc(PromVentas))
+```
+
+```{r}
+DFR %>% arrange(desc(PromVentas)) -> DFO
+```
+
+Veámoslo en un gráfico
+
+```{r}
+barplot(DFO$PromVentas, # La variable dependiente (columnas)
+        names.arg = DFO$Distrito, # Para colocar los nombres de las variables independinetes (filas)
+        las = 3, # Para mostrar los nombres en vertical
+        cex.names = 0.4) # Para disminuir el tamaño de los nombres
+title("Ventas totales por distrito")
+```
+
+Tal vez sería interesante *reescalar* las barras normalizando por el número de bodegas en cada distrito
+
+```{r}
+DFL %>% group_by(Distrito) %>% summarise(CantBodegas = n(), PromVentas = mean(VentasTotales), DesviaciónEstandarVentas = sd(VentasTotales)) -> DFN
+```
+
+```{r}
+DFN %>% arrange(desc(PromVentas)) -> DFN
+```
+
+```{r}
+BP <- barplot(DFN$PromVentas, 
+        names.arg = DFO$Distrito,
+        las = 3, 
+        cex.names = 0.4,
+        ylim = c(0,16000)) 
+
+text(BP[, 1], DFN$PromVentas, labels = DFN$CantBodegas, cex = 0.5, pos = 1)
+
+title("Ventas totales por distrito")
+```

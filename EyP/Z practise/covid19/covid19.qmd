@@ -155,6 +155,27 @@ El día con mayor número de contagios diarios de DFU
 DFU[DFU$CountDia == max(DFU$CountDia), ]
 ```
 
+Grafique la fecha contra la tasa de mortalidad acumulada TMA en DFU
+
+```{r}
+plot(DFU$Fecha, DFU$TMU,
+     ylim = c(0,60))
+```
+
+El siguiente fragmento de código muestra un diagrama de caja y bigotes de la mortalidad por en regiones tropicales comparada con la mortalidad en regiones no tropicales.
+
+```{r}
+DC %>% filter(Fecha == max(Fecha)) -> DF
+Mort <- DF$Muertos/DF$Contagiados
+Trop <- (-23 <= DF$Latitud) & (DF$Latitud <= 23)
+boxplot(Mort ~ Trop,
+        ylim= c(0,0.35)
+        )
+abline(h = 0, lty = 3, col = "red")
+```
+
+Histograma
+
 ```{r}
 length(unique(temp$Provincia))
 ```
