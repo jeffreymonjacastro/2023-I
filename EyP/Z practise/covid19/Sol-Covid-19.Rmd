@@ -1,6 +1,9 @@
 ---
 title: "Lab 1"
 output: html_notebook
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r}
@@ -14,14 +17,14 @@ DD <- read_csv("Demo.csv")
 ```
 
 Para redondear a dos cifras correctamente.
+
 ```{r}
 r <- function(x){
   return(round(x, digits = 2))
 }
 ```
 
-
-# Sobre los datos 
+# Sobre los datos
 
 ¿Cuantas observaciones tenemos en cada caso?
 
@@ -45,11 +48,11 @@ sum(is.na(DD))
 ```
 
 ¿Cuántos casos completos hay en cada caso?
+
 ```{r}
 sum(complete.cases(DC))
 sum(complete.cases(DD))
 ```
-
 
 ¿Qué porcentaje de los datos eliminaríamos si solo queremos observaciones completas?
 
@@ -60,6 +63,7 @@ r((nrow(DD)-sum(complete.cases(DD)))/nrow(DD)*100)
 ```
 
 ¿Qué variable tiene el mayor número de datos faltantes en cada caso?
+
 ```{r}
 colSums(is.na(DC))
 colSums(is.na(DD))
@@ -71,14 +75,13 @@ Si una variable puede tomar cualquier valor en un intervalo real dado entonces l
 
 Si una variable puede tomar cualquier valor en una lista explícita de valores entonces la variable es: numérica discreta.
 
-
 Clasifique las variables según su tipo.
 
 ```{r}
 spec(DC)
 ```
 
-`Fecha`  es categórica ordinal.
+`Fecha` es categórica ordinal.
 `Pais` es categórica nominal.
 `Provincia` es categórica nominal.
 `Latitud` es numérica continua.
@@ -106,6 +109,7 @@ spec(DD)
 ```{r}
 length(unique(DC$Pais))
 ```
+
 ¿Cuántos valores diferentes toma la variable `Provincia` en la tabla `DC`.
 
 ```{r}
@@ -123,15 +127,16 @@ length(unique(DC$Pais[is.na(DC$Provincia)]))
 ```{r}
 length(unique(DC$Pais[!is.na(DC$Provincia)]))
 ```
+
 ¿Qué se puede concluir sobre este resultado?
 
 ```{r}
 intersect(DC$Pais[is.na(DC$Provincia)],DC$Pais[!is.na(DC$Provincia)])
 ```
 
-Los anteriores países reportan algunas provincias pero tambien tienen una provincia con el valor `NA`. 
+Los anteriores países reportan algunas provincias pero tambien tienen una provincia con el valor `NA`.
 
-Esa es la forma como alguonso países están reportando datos sobre sus dependencias, bajo las provincias reportan los datos correspondientes y bajo la provincia con `NA` reportan los datos correspondientes al páis en si mismo. 
+Esa es la forma como alguonso países están reportando datos sobre sus dependencias, bajo las provincias reportan los datos correspondientes y bajo la provincia con `NA` reportan los datos correspondientes al páis en si mismo.
 
 ¿Cuántos provincias diferentes no corresponden a ningún país?
 
@@ -142,10 +147,10 @@ unique(DC$Provincia[is.na(DC$Pais)])
 Ninguna.
 
 También se puede hacer:
+
 ```{r}
 DC[is.na(DC$Pais),]
 ```
-
 
 ¿Qué hace el siguiente fragmento de código?
 
@@ -157,8 +162,8 @@ unique(DC$Pais[(DC$Pais %in% S) & is.na(DC$Provincia)])
 
 Determina que países tienen provincias diferentes de `NA`, es decir, que países están reportando provincias o terriotorios por separado.
 
-
 ¿Cuántas provincias tiene "United Kingdom"?
+
 ```{r}
 DC %>% filter(Pais == "United Kingdom") -> DF
 unique(DF$Provincia)
@@ -172,7 +177,6 @@ O pdemos hacer:
 length(unique(DF$Provincia))
 ```
 
-
 ¿En qué fecha se reportan los primeros casos en `United Kingdom`?
 
 ```{r}
@@ -184,6 +188,7 @@ DC %>%
 ```
 
 ¿Cuántos son?
+
 ```{r}
 DF
 ```
@@ -191,6 +196,7 @@ DF
 Podemos ver que reportan dos contagiados por primera vez el 31 de enero de 2020.
 
 ¿Qué hace el siguiente fragmento de código?
+
 ```{r}
 DC %>% 
   filter(Pais == "United Kingdom") %>%
@@ -203,16 +209,15 @@ DC %>%
 
 ```
 
-Construye la tabla `DFU` que debe tener los totales diarios de `Contagiados`, `Muertos` y `Recuperados` 
-
+Construye la tabla `DFU` que debe tener los totales diarios de `Contagiados`, `Muertos` y `Recuperados`
 
 Utilice la función `diff` para calcular el número de casos diarios reportados en cada día en `United Kingdom`.
 
 Agregar una columna `ContDia` con el número de contagios diarios en función del acumulado.
+
 ```{r}
 DFU$ContDia <- diff(c(0, DFU$Contagiados))
 ```
-
 
 ¿Cuántos días han transcurrido desde el primer caso reportado hasta el último caso reportado para `United Kingdom` .
 
@@ -221,18 +226,17 @@ diff(range(DFU$Fecha[c(diff(c(0,DFU$Contagiados))) > 0]))
 ```
 
 Es importante resaltar que:
+
 ```{r}
 max(DFU$Fecha)-min(DFU$Fecha)
 ```
+
 no funciona pues el hecho que haya reportes no quiere decir que ese día haya contagiados nuevos, como se puede observar al mirar el inicio y fin de `DFU`
 
 ```{r}
 head(DFU)
 tail(DFU)
 ```
-
-
-
 
 ```{r}
 cv <- function(X){
@@ -243,7 +247,6 @@ rango <- function(X){
   return(max(X)-min(X))
 }
 ```
-
 
 En DFU la tabla para el Reino Unido ( Pais == "United Kingdom")
 
@@ -267,8 +270,8 @@ r(cv(DFU$ContDia[Sel]))
 
 ```
 
-
 ¿Qué día ocurre el incremento de contagios más grande?
+
 ```{r}
 DFU[DFU$ContDia == max(DFU$ContDia),]
 ```
@@ -283,14 +286,15 @@ hist(X, prob = TRUE, breaks=seq(0,10000,by = 1000))
 abline(v = c(mean(X), median(X)), col = c("red", "blue"))
 ```
 
-La variable es sesgada a la derecha. La clase modal es [0, 1000].
+La variable es sesgada a la derecha.
+La clase modal es [0, 1000].
 
-Calcule la tasa mortalidad de cada día como el cociente del acumulado del número de muertos entre el acumulado del número de contagiados, ambos para ese día, como porcentaje. Guarde la variable en la columna `TMA`. 
+Calcule la tasa mortalidad de cada día como el cociente del acumulado del número de muertos entre el acumulado del número de contagiados, ambos para ese día, como porcentaje.
+Guarde la variable en la columna `TMA`.
 
 ```{r}
 DFU$TMA <- DFU$Muertos/DFU$Contagiados * 100
 ```
-
 
 ```{r}
 plot(DFU$Fecha, DFU$TMA)
@@ -301,8 +305,6 @@ DFU$Fecha[DFU$TMA == max(DFU$TMA, na.rm = TRUE)]
 ```
 
 La mortalidad más alta es 15 días después del día con mayores contagios.
-
-
 
 El siguiente fragmento de código muestra un diagrama de caja y bigotes de la mortalidad por en regiones tropicales comparada con la mortalidad en regiones no tropicales.
 
@@ -324,10 +326,8 @@ boxplot(Mort ~ Trop)
 abline(h = 0, lty = 3, col = "red")
 ```
 
-
-
-
 Una funcion para hacer promedios deslizantes, para suavizar la serie de tiempos.
+
 ```{r}
 desliz <- function(X, k){
   n <- length(X)
@@ -338,13 +338,6 @@ desliz <- function(X, k){
   return(M)
 }
 ```
-
-
-
-
-
-
-
 
 ```{r}
 Visualizar <- function(DF, Pais, k, col){
@@ -362,12 +355,9 @@ Visualizar <- function(DF, Pais, k, col){
 }
 ```
 
-
-
 ```{r}
 DC
 ```
-
 
 ```{r}
 DC %>% filter(Fecha == max(Fecha)) -> DZ
@@ -375,8 +365,6 @@ DX <- left_join(DZ,DD)
 DX$Mort <- DX$Muertos/DX$Contagiados
 DX <- DX[!is.na(DX$Mort),]
 ```
-
-
 
 ```{r}
 
@@ -395,7 +383,6 @@ plot(
   )
 ```
 
-
 ```{r}
 Visualizar <- function(DF, Pais, k, col){
   plot(
@@ -411,9 +398,6 @@ Visualizar <- function(DF, Pais, k, col){
     )
 }
 ```
-
-
-
 
 ====================
 
@@ -442,7 +426,6 @@ DFP <- Totalizar(DC, "Peru")
 DFK <- Totalizar(DC, "South Korea")
 ```
 
-
 ======================
 
 ```{r}
@@ -458,10 +441,8 @@ par(op)
 #dev.off()
 ```
 
-
 ```{r}
 #png(filename = "Una.png", pointsize = 14)
 Visualizar(DFP, "Perú", 15, "darkred")
 #dev.off()
 ```
-

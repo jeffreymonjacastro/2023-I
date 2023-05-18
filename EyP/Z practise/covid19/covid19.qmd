@@ -12,6 +12,7 @@ editor: visual
 ```{r}
 library(readr)
 library(dplyr)
+
 ```
 :::
 
@@ -19,6 +20,159 @@ library(dplyr)
 ## Dataframes
 
 ```{r}
-DC = read_csv()
+DC = read_csv("C19.csv")
+DD = read_csv("Demo.csv")
 ```
 :::
+
+::: callout-note
+## Funciones
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+
+```{r}
+cv <- function(X){
+  return(sd(X)/mean(X))
+}
+
+rango <- function(X){
+  return(max(X)-min(X))
+}
+```
+:::
+
+### Tablas para Covid
+
+DFU
+
+```{r}
+DC %>% filter(Pais == "United Kingdom") %>% 
+  group_by(Fecha) %>% 
+  summarise(TotalContagiados = sum(Contagiados)
+    , TotalMuertos = sum(Muertos)
+    , TotalRecuperados = sum(Recuperados)) -> DFU
+```
+
+Agregar columna CountDia
+
+```{r}
+DFU$CountDia <- diff(c(0, DFU$TotalContagiados))
+```
+
+Agregar columna tasa de mortalidad TMA
+
+```{r}
+DFU$TMU <- round(diff(c(0, DFU$TotalMuertos)) / DFU$CountDia * 100, digit = 2)
+```
+
+Tabla comparativa DX
+
+```{r}
+DC %>% filter(Fecha == max(Fecha)) -> DZ
+DX <- left_join(DZ,DD)
+DX$Mort <- DX$Muertos/DX$Contagiados
+DX <- DX[!is.na(DX$Mort),]
+```
+
+### Preguntas
+
+Observaciones y variables de DC y DD
+
+```{r}
+dim(DC)
+dim(DD)
+```
+
+Casos incompletos DC y DD
+
+```{r}
+round(sum(!complete.cases(DC)) / nrow(DC) * 100, digits = 2)
+round(sum(!complete.cases(DD)) / nrow(DD) * 100, digits = 2)
+```
+
+Variable con más datos faltantes en DC y DD
+
+```{r}
+which.max(colSums(is.na(DC)))
+which.max(colSums(is.na(DD)))
+```
+
+Tipo de variable de cada columna
+
+```{r}
+spec(DC)
+```
+
+Primeros contagiados de United Kingdom y cuántos se contagiaron
+
+```{r}
+DFU[DFU$TotalContagiados != 0, ]
+```
+
+Sobre la variable CountDia de DFU, considerando desde el primer día de contagiados, sus descriptores gráficos son:
+
+```{r}
+DFU <- DFU[DFU$TotalContagiados != 0, ]
+```
+
+```{r}
+summary(DFU$CountDia)
+```
+
+```{r}
+r(sd(DFU$CountDia))
+r(diff(range(DFU$CountDia)))
+r(IQR(DFU$CountDia))
+r(sd(DFU$CountDia)/mean(DFU$CountDia) * 100)
+```
+
+Otra forma
+
+```{r}
+fi <- min(DFU$Fecha[DFU$CountDia > 0])
+ff <- max(DFU$Fecha[DFU$CountDia > 0])
+
+Sel <- (fi <= DFU$Fecha) & (DFU$Fecha <= ff)
+
+r(min(DFU$CountDia[Sel]))
+r(median(DFU$CountDia[Sel]))
+r(mean(DFU$CountDia[Sel]))
+r(max(DFU$CountDia[Sel]))
+
+r(sd(DFU$CountDia[Sel]))
+r(range(DFU$CountDia[Sel]))
+r(IQR(DFU$CountDia[Sel]))
+r(sd(DFU$CountDia[Sel])/mean(DFU$CountDia[Sel]) * 100)
+```
+
+El día con mayor número de contagios diarios de DFU
+
+```{r}
+DFU[DFU$CountDia == max(DFU$CountDia), ]
+```
+
+```{r}
+length(unique(temp$Provincia))
+```
+
+```{r}
+DC %>% 
+  filter(Pais == "United Kingdom" & Contagiados > 0) %>% 
+  select(Fecha, Contagiados) %>% 
+  arrange(Fecha) -> DFU
+```
+
+```{r}
+DC %>% 
+  filter(Pais == "United Kingdom") %>%
+  group_by(Fecha, Pais) %>%
+  summarise(
+    Contagiados = sum(Contagiados)
+    , Muertos = sum(Muertos)
+    , Recuperados = sum(Recuperados)
+  ) -> DFU 
+```
