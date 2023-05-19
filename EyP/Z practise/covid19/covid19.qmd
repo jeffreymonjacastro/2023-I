@@ -119,11 +119,15 @@ Sobre la variable CountDia de DFU, considerando desde el primer día de contagia
 DFU <- DFU[DFU$TotalContagiados != 0, ]
 ```
 
+Con dplyr
+
+```{r}
+DFU %>% filter(TotalContagiados > 0)
+```
+
 ```{r}
 summary(DFU$CountDia)
 ```
-
-SJSJJS
 
 ```{r}
 r(sd(DFU$CountDia))

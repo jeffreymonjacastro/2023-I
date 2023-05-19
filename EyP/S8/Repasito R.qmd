@@ -288,3 +288,63 @@ Ejemplo:
 
 `x %>% f %>% g` significa $g(f(x))$.
 :::
+
+### select()
+
+La función **`select()`** de dplyr en R se utiliza para seleccionar columnas específicas de un data frame. Permite filtrar y mantener solo las variables que son de interés para el análisis o la manipulación de datos, descartando las demás columnas.
+
+```{r}
+data %>% select(Período, Edad, `Peso (kg)`)
+```
+
+### count()
+
+La función **`count()`** de dplyr en R se utiliza para contar el número de ocurrencias de cada valor único en una columna específica de un data frame.
+
+```{r}
+data %>% count(Edad)
+```
+
+### arrange()
+
+La función **`arrange()`** de dplyr en R se utiliza para reordenar las filas de un data frame en función de una o más columnas. Permite ordenar los datos en un orden ascendente (de menor a mayor) o descendente (de mayor a menor) según los valores de las columnas especificadas.
+
+```{r}
+
+```
+
+### filter()
+
+```{r}
+
+```
+
+### group_by()
+
+```{r}
+
+```
+
+### summarise()
+
+```{r}
+
+```
+
+### mutate()
+
+```{r}
+
+```
+
+### %in% 
+
+```{r}
+
+```
+
+### rename()
+
+```{r}
+
+```
