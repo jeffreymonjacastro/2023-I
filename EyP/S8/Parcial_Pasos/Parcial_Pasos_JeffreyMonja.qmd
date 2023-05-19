@@ -208,6 +208,10 @@ Orden de variabilidad:
 ### Pregunta 7:
 
 ```{r}
+r(cor(DF$Estatura, DF$Edad, use = "pairwise.complete"))
+```
+
+```{r}
 sum(is.na(DF$Estatura))
 sum(is.na(DF$Edad))
 ```
@@ -216,4 +220,16 @@ sum(is.na(DF$Edad))
 nrow(DF) - sum(is.na(DF$Estatura) | is.na(DF$Edad))
 ```
 
-El tamaño efectiv
+El tamaño efectivo es 295
+
+```{r}
+modelo_ep <- lm(DF$Edad ~ DF$Estatura)
+```
+
+```{r}
+summary(modelo_ep)
+```
+
+```{r}
+r(modelo_ep$coefficients)
+```

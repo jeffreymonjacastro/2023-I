@@ -14,7 +14,7 @@ library(dplyr)
 ```
 
 ```{r}
-DF <- read_csv("../DD20230331.csv")
+DATA <- read_csv("../DD20230331.csv")
 ```
 
 ```{r}
