@@ -227,9 +227,43 @@ modelo_ep <- lm(DF$Edad ~ DF$Estatura)
 ```
 
 ```{r}
-summary(modelo_ep)
+resumen <- summary(modelo_ep)
 ```
 
 ```{r}
 r(modelo_ep$coefficients)
+```
+
+```{r}
+r(resumen$r.squared*100)
+```
+
+### Pregunta 8:
+
+```{r}
+DF %>% mutate(Zancadas = 10 / Pasos * 100) -> DF
+```
+
+```{r}
+DF %>% filter(Sexo == 'M') %>% select(Zancadas) %>% pull() %>% mean %>% r
+```
+
+```{r}
+DF %>% filter(Sexo == 'M') %>% select(Zancadas) %>% pull() %>% sd %>% r
+```
+
+```{r}
+DF$Zancadas <- DF$Zancadas[!is.na(DF$Zancadas)]
+```
+
+```{r}
+modelo_2 <- lm(DF$Estatura ~ DF$Zancada)
+
+```
+
+### Pregunta 10:
+
+```{r}
+mosaicplot(factor(DF$Sexo), DF$Deporte)
+
 ```
