@@ -1,0 +1,94 @@
+---
+title: "Anchoveta_solu"
+format: html
+editor: visual
+---
+
+## Anchoveta Solu
+
+::: callout-note
+## Librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+## Dataframe
+
+```{r}
+DF <- read_csv("Anchoveta_07_17.csv")
+```
+
+## Funciones
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+:::
+
+1.  Promedio de participación
+
+```{r}
+DF %>% count(Barco) %>% summarise(n = n/100) %>% pull(n) %>% mean %>% r
+```
+
+2.  cuántos barcos?
+
+```{r}
+length(unique(DF$Barco))
+```
+
+3.  Cuántas veces participó?
+
+```{r}
+DF %>% count(Barco) %>% arrange(-n) %>% mutate(n = n/100)
+```
+
+4.  Porcentaje de hembras
+
+```{r}
+table(DF$Sexo) / nrow(DF) * 100 ## MEJOR ASÍ
+
+DF %>% count(Sexo) %>% filter(Sexo == "Hembra") %>% mutate(n = n/nrow(DF) * 100) %>% select(n) %>% r
+```
+
+5.  Porcentaje de hembras capturadas en verano
+
+```{r}
+DF %>% group_by(Estacion) %>% count(Sexo) %>% filter(Estacion == "Verano")
+
+r(4585/6415 * 100)
+```
+
+6.  Largo promedio de las anchovetas
+
+```{r}
+r(mean(DF$Largo))
+```
+
+7.  Mediana del largo
+
+```{r}
+r(median(DF$Largo))
+```
+
+8.  Rango de los pesos
+
+```{r}
+r(diff(range(DF$Peso)))
+```
+
+9.  La distribución de los pesos es:
+
+```{r}
+summary(DF$Peso)
+```
+
+10. CV del peso
+
+```{r}
+r(sd(DF$Peso)/mean(DF$Peso))
+```

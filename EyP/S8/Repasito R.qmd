@@ -356,7 +356,7 @@ data %>% mutate(MayorEdad = ifelse(Edad > 18, "Cumple", "No cumple"))
 
 ```
 
-### %in% 
+### %in%
 
 El operador **`%in%`** devuelve un vector lógico de la misma longitud que el vector de búsqueda, indicando qué elementos están presentes en el vector de referencia.
 

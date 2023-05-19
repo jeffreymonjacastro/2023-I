@@ -72,9 +72,8 @@ DFD
 
 4.  Cuántos niveles tiene el factor Distrito????
 
-```{=html}
 <!-- -->
-```
+
 5.  Cuántas variables num
 
 ```{r}
