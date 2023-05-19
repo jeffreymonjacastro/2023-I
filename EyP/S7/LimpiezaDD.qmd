@@ -30,7 +30,7 @@ all(is.na(DF[, c(19, 20)]))
 En efecto están vacías, vamos a eliminarlas.
 
 ```{r}
-DF <- DF[, -c(19, 20)]
+DATA <- DATA[, -c(19, 20)]
 ```
 
 Vamos a hacer lo mismo para las filas. Podría ser que tengamos algunas filas vacías.
@@ -46,7 +46,7 @@ Hay `r sum(rowSums(is.na(DF)) == 18)` filas vacías.
 Vamos a eliminarlas.
 
 ```{r}
-DF <- DF[rowSums(is.na(DF)) < 18, ]
+DATA <- DATA[rowSums(is.na(DATA)) < 18, ]
 ```
 
 Nuestro tamaño de muestra ahora es `r nrow(DF)`.
@@ -62,7 +62,7 @@ Los nombres de las variables deberían ser sencillos y descriptivos, para efecto
 La función `rename` de `dplyr` es buena para este tipo de operación ya que permite trabajar sobre las variables que queremos cambiar, dejando las demás intactas.
 
 ```{r}
-DF %>% rename(Per = Período
+DATA %>% rename(Per = Período
               , Sec = Sección
               , Estatura = `Estatura (cm)`
               , Peso = `Peso (kg)`
@@ -75,7 +75,7 @@ DF %>% rename(Per = Período
               , Polo = `Talla de polo`
               , Sistema = `Sistema operativo`
               , Fecha = `Fecha de nacimiento`
-              ) -> DF
+              ) -> DATA
 ```
 
 # Libreta de códigos
