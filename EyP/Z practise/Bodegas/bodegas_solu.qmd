@@ -12,6 +12,7 @@ editor: visual
 ```{r}
 library(readr)
 library(dplyr)
+library(stringi)
 ```
 
 ## Dataframes
@@ -28,3 +29,94 @@ r <- function(x){
 }
 ```
 :::
+
+DFT
+
+```{r}
+DFT <- DF[complete.cases(DF),]
+```
+
+```{r}
+DFT %>% mutate(VentasTotales = Ventas1 + Ventas2 + Ventas3 + Ventas4) -> DFT
+```
+
+DFD
+
+Para agrupar se recomienda realizar un `summarize()`, el cual toma una expresión como parámetro.
+
+```{r}
+DFT %>% group_by(Distrito) %>% summarise(venta_por_distrito = sum(VentasTotales)) %>% arrange(-venta_por_distrito) -> DFD
+```
+
+1.  Cuantas bodegas participaron en DF?
+
+```{r}
+length(unique(DF$Bodega))
+```
+
+Todas las bodegas son distintas
+
+2.  Bodega con nombre más largo y cuánto vendió
+
+```{r}
+max_str <- max(stri_length(DF$Bodega))
+
+DFT %>% filter(stri_length(Bodega) == max_str) %>% select(Bodega, VentasTotales)
+```
+
+3.  ¿Qué distrito tiene las mayores ventas en el estudio?
+
+```{r}
+DFD
+```
+
+4.  Cuántos niveles tiene el factor Distrito????
+
+```{=html}
+<!-- -->
+```
+5.  Cuántas variables num
+
+```{r}
+spec(DF)
+```
+
+6.  En DF, datos faltantes
+
+```{r}
+sum(is.na(DF))
+```
+
+```{r}
+DF[!complete.cases(DF),]
+```
+
+A cuántas bodegas afecta?
+
+```{r}
+sum(!complete.cases(DF))
+```
+
+7.  ¿En qué distrito está la bodega con mayor venta mensual? ¿Cómo se llama?
+
+```{r}
+DFT %>% filter(VentasTotales == max(VentasTotales)) %>% select(Bodega, Distrito, VentasTotales)
+```
+
+8.  ¿Cuál es el total de ventas en todos los distritos?
+
+```{r}
+sum(DFT$VentasTotales)
+```
+
+9.  En DF, cuántas bodegas tienen sus datos completos
+
+```{r}
+table(complete.cases(DF))
+```
+
+10. Distrito con la menor venta mensual y cómo se llama?
+
+```{r}
+DFT %>% filter(VentasTotales == min(VentasTotales)) %>% select(Bodega, Distrito, VentasTotales)
+```

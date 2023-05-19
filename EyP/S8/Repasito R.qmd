@@ -310,19 +310,29 @@ data %>% count(Edad)
 La función **`arrange()`** de dplyr en R se utiliza para reordenar las filas de un data frame en función de una o más columnas. Permite ordenar los datos en un orden ascendente (de menor a mayor) o descendente (de mayor a menor) según los valores de las columnas especificadas.
 
 ```{r}
+# Manera ascendente
+data %>% arrange(Edad)
 
+# Manera descendente
+data %>% arrange(desc(Edad))
 ```
 
 ### filter()
 
-```{r}
+La función **`filter()`** de dplyr en R se utiliza para filtrar las filas de un data frame en función de condiciones específicas. Permite seleccionar únicamente las filas que cumplan con ciertos criterios o condiciones definidas.
 
+Filtrar filas utilizando la función **`between()`** para seleccionar un rango de valores en una columna:
+
+```{r}
+data %>% filter(`Peso (kg)`>50) %>% arrange(Edad)
 ```
 
 ### group_by()
 
-```{r}
+La función **`group_by()`** de dplyr en R se utiliza para agrupar un data frame por una o más variables específicas. Permite dividir los datos en grupos basados en los valores de una o más columnas, lo que facilita el análisis y las operaciones por grupos.
 
+```{r}
+data %>% group_by(Carrera)
 ```
 
 ### summarise()
