@@ -29,7 +29,7 @@ r <- function(x){
 ```
 :::
 
-Pregunta 1:
+### Pregunta 1:
 
 ```{r}
 dim(DF)
@@ -43,7 +43,7 @@ str(DF)
 
 Hay 5 variables numéricas y 0 categóricas nominales y 3 categóricas ordinales
 
-Pregunta 2:
+### Pregunta 2:
 
 ```{r}
 sum(is.na(DF))
@@ -63,7 +63,7 @@ r(max(colSums(is.na(DF)))/sum(!complete.cases(DF))*100)
 
 Aproximadamente, un 71.3 % de los datos faltantes es responsable de un 84.54 % de observaciones incompletas
 
-Pregunta 3:
+### Pregunta 3:
 
 ```{r}
 which.max(colSums(is.na(DF)))
@@ -79,7 +79,7 @@ r(mean(rowSums(is.na(DF)),na.rm=TRUE))
 
 El número promedio de datos faltantes por observación es 0.38
 
-Pregunta 4:
+### Pregunta 4:
 
 ```{r}
 sum(!is.na(DF$Peso))
@@ -113,7 +113,7 @@ Rango Intercuartil: 16
 
 Como el coeficiente de variación es 0.18, podemos usar como descriptor de posición mediana
 
-Pregunta 5:
+### Pregunta 5:
 
 ```{r}
 sum(!is.na(DF$Calzado))
@@ -129,4 +129,53 @@ r(sd(DF$Calzado, na.rm = T) / mean(DF$Peso, na.rm = T))
 r(IQR(DF$Calzado, na.rm = T))
 ```
 
-a
+Tamaño efectivo: 300
+
+Mínimo: 34.5
+
+Máximo: 47
+
+Promedio: 40.34
+
+Desviación estándar: 2.78
+
+Coeficiente de variación: 0.04
+
+Mediana: 41
+
+Rango Intercuartil: 4
+
+### Pregunta 6:
+
+Variabilidad de la Edad:
+
+```{r}
+range(DF$Edad, na.rm = T)
+diff(range(DF$Edad, na.rm = T))
+
+r(sd(DF$Edad, na.rm = T))
+r(sd(DF$Edad, na.rm = T) / mean(DF$Edad, na.rm = T))
+
+IQR
+```
+
+Variabilidad del Peso:
+
+```{r}
+range(DF$Peso, na.rm = T)
+diff(range(DF$Peso, na.rm = T))
+```
+
+Variabilidad de la Estatura:
+
+```{r}
+range(DF$Estatura, na.rm = T)
+diff(range(DF$Estatura, na.rm = T))
+```
+
+Variabilidad de los Pasos
+
+```{r}
+range(DF$Pasos, na.rm = T)
+diff(range(DF$Pasos, na.rm = T))
+```
