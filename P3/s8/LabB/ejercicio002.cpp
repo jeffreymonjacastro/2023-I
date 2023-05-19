@@ -17,6 +17,20 @@ float** crearMatriAleatoria(int n){
     return matriz;
 }
 
+float** matrizIdentidad(int n){
+    float** matriz = new float*[n];
+
+    for (int i = 0; i < n; ++i) {
+        matriz[i] = new float[n];
+    }
+
+    for (int i = 0; i < n; ++i) {
+        matriz[i][i] = 1;
+    }
+
+    return matriz;
+}
+
 void liberarMatriz(float** matriz, int n){
     for(int i = 0; i < n; i++){
         delete[] matriz[i];
@@ -26,11 +40,21 @@ void liberarMatriz(float** matriz, int n){
 
 // Suma de matrices usando 1 thread
 void multiplicacionDeMatrices(float** M1, float** M2, float** M3, int n){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            M3[i][j] = M1[i][j] * M2[i][j];
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < result.filas; ++j) {
+            result.ptr[i][j] = 0.0;
         }
     }
+
+    for (int i = 0; i < result.filas; ++i) {
+        for (int j = 0; j < result.columnas; ++j) {
+            for (int k = 0; k < m1.columnas; ++k) {
+                result.ptr[i][j] += m1.ptr[i][k] * m2.ptr[k][j];
+            }
+        }
+    }
+
+    return result;
 }
 
 // Suma de matrices usando más threads

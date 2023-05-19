@@ -1,0 +1,7 @@
+---
+title: "Pasos_solu"
+format: html
+editor: visual
+---
+
+## Pasos
