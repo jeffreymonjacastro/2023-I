@@ -1,0 +1,114 @@
+---
+title: "Parcial_Pasos_JeffreyMonja"
+format: html
+editor: visual
+---
+
+## Pasos
+
+::: callout-note
+## Librerías
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+## Dataframe
+
+```{r}
+DF <- read_csv("./Pasos.csv")
+```
+
+## Funciones
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+:::
+
+Pregunta 1:
+
+```{r}
+dim(DF)
+```
+
+La tabla tiene 300 observaciones y 8 variables
+
+```{r}
+str(DF)
+```
+
+Hay 5 variables numéricas y 0 categóricas nominales y 3 categóricas ordinales
+
+Pregunta 2:
+
+```{r}
+sum(is.na(DF))
+sum(!complete.cases(DF))
+```
+
+La tabla tiene 115 datos faltantes y 97 casos incompletos
+
+```{r}
+colSums(is.na(DF))
+```
+
+```{r}
+r(max(colSums(is.na(DF)))/sum(is.na(DF))*100)
+r(max(colSums(is.na(DF)))/sum(!complete.cases(DF))*100)
+```
+
+Aproximadamente, un 71.3 % de los datos faltantes es responsable de un 84.54 % de observaciones incompletas
+
+Pregunta 3:
+
+```{r}
+which.max(colSums(is.na(DF)))
+max(colSums(is.na(DF)))
+```
+
+La variable con más datos faltantes es Talla, donde faltan 82 datos
+
+```{r}
+r(sum(rowSums(is.na(DF))) / nrow(DF))
+r(mean(rowSums(is.na(DF)),na.rm=TRUE))
+```
+
+El número promedio de datos faltantes por observación es 0.38
+
+Pregunta 4:
+
+```{r}
+sum(!is.na(DF$Peso))
+```
+
+```{r}
+summary(DF$Peso)
+```
+
+```{r}
+r(sd(DF$Peso, na.rm = T))
+r(sd(DF$Peso, na.rm = T) / mean(DF$Peso, na.rm = T))
+r(IQR(DF$Peso, na.rm = T))
+```
+
+Tamaño efectivo: 287
+
+Mínimo: 45
+
+Máximo: 109
+
+Promedio: 66.99
+
+Desviación Estándar: 12.16
+
+Coeficiente de Variación: 0.18
+
+Mediana: 65
+
+Rango Intercuartil: 16
+
+Como el coeficiente de variación es 0.18, podemos usar como descriptor de posición mediana

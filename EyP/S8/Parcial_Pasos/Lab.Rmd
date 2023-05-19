@@ -1,0 +1,69 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(readr)
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+
+```{r}
+DF <- read_csv('Pasos.csv')
+```
+#1. 
+```{r}
+dim(DF)
+```
+## 300 observaciones y 8 variables
+
+```{r}
+str(DF)
+```
+## hay 5 variables numéricas, 0 v. categóricas nominales y 3 v. categóricas ordinales
+
+#2.
+```{r}
+sum(is.na(DF))
+sum(!complete.cases(DF))
+```
+## hay 114 datos faltantes y 98 casos incompletos
+
+```{r}
+colSums(is.na(DF))
+```
+```{r}
+r(84/114*100)
+r(84/98*100)
+```
+
+#3
+```{r}
+which.max(colSums(is.na(DF)))
+max(colSums(is.na(DF)))
+```
+##talla con 84 datos faltantes
+##calzado sin datos faltantes
+
+```{r}
+sum(rowSums(is.na(DF))) / nrow(DF)
+mean(rowSums(is.na(DF)),na.rm=TRUE)
+```
+## 0.38 datos faltantes en promedio
+
+
+#4
+```{r}
+sum(!is.na(DF$Edad))
+```
+```{r}
+summary(DF$Edad)
+```
+```{r}
+r(sd(DF$Edad, na.rm = T))
+r(sd(DF$Edad, na.rm = T)/mean(DF$Edad, na.rm=TRUE))
+r(IQR(DF$Edad, na.rm = TRUE))
+```
