@@ -123,6 +123,10 @@ data <- read_csv("../DD20230331.csv")
 ```
 :::
 
+```{r}
+data$`Peso (kg)` <- as.numeric(data$`Peso (kg)`)
+```
+
 ### Información del dataframe
 
 ```{r}
@@ -332,29 +336,48 @@ data %>% filter(`Peso (kg)`>50) %>% arrange(Edad)
 La función **`group_by()`** de dplyr en R se utiliza para agrupar un data frame por una o más variables específicas. Permite dividir los datos en grupos basados en los valores de una o más columnas, lo que facilita el análisis y las operaciones por grupos.
 
 ```{r}
-data %>% group_by(Carrera)
+data %>% group_by(Ciclo) %>% summarise(estaturaprom = mean(`Estatura (cm)`, na.rm = TRUE))
 ```
 
 ### summarise()
 
-```{r}
+La función **`summarise()`** de dplyr en R se utiliza para resumir datos y calcular funciones de agregación sobre variables en un data frame. Permite calcular estadísticas resumidas, como la suma, el promedio, la mediana, el mínimo, el máximo, entre otros, para grupos definidos por variables de agrupación.
 
+```{r}
+data %>% group_by(Carrera) %>% summarise(prom_peso = mean(`Peso (kg)`, na.rm=TRUE))
 ```
 
 ### mutate()
 
+La función **`mutate()`** de dplyr en R se utiliza para crear o modificar variables en un data frame. Permite agregar nuevas columnas basadas en cálculos realizados a partir de las columnas existentes, o modificar los valores de las columnas existentes.
+
 ```{r}
+data %>% mutate(MayorEdad = ifelse(Edad > 18, "Cumple", "No cumple"))
 
 ```
 
 ### %in% 
 
-```{r}
+El operador **`%in%`** devuelve un vector lógico de la misma longitud que el vector de búsqueda, indicando qué elementos están presentes en el vector de referencia.
 
+```{r}
+d <- data.frame(ID = c(1, 2, 3, 4, 5),
+                   Categoria = c("A", "B", "C", "A", "B"))
+
+categorias_seleccionadas <- c("A", "C")
+
+resultado <- d %>% filter(Categoria %in% categorias_seleccionadas)
+
+print(resultado)
 ```
 
 ### rename()
 
-```{r}
+La función **`rename()`** de dplyr en R se utiliza para cambiar los nombres de las variables o columnas en un data frame. Permite renombrar una o varias columnas simultáneamente, proporcionando los nuevos nombres deseados.
 
+```{r}
+data %>% rename(period = Período,
+                section = Sección,
+                Stature = `Estatura (cm)`,
+                weight = `Peso (kg)`) -> data
 ```
