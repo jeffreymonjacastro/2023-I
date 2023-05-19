@@ -123,6 +123,8 @@ DFU <- DFU[DFU$TotalContagiados != 0, ]
 summary(DFU$CountDia)
 ```
 
+SJSJJS
+
 ```{r}
 r(sd(DFU$CountDia))
 r(diff(range(DFU$CountDia)))
