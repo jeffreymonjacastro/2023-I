@@ -194,3 +194,26 @@ r(sd(DF$Pasos, na.rm = T) / mean(DF$Pasos, na.rm = T))
 
 IQR(DF$Pasos, na.rm = T)
 ```
+
+Orden de variabilidad:
+
+1.  Peso
+
+2.  Estatura
+
+3.  Edad
+
+4.  Pasos
+
+### Pregunta 7:
+
+```{r}
+sum(is.na(DF$Estatura))
+sum(is.na(DF$Edad))
+```
+
+```{r}
+nrow(DF) - sum(is.na(DF$Estatura) | is.na(DF$Edad))
+```
+
+El tamaño efectiv
