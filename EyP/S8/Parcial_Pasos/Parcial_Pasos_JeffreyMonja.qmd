@@ -112,3 +112,21 @@ Mediana: 65
 Rango Intercuartil: 16
 
 Como el coeficiente de variación es 0.18, podemos usar como descriptor de posición mediana
+
+Pregunta 5:
+
+```{r}
+sum(!is.na(DF$Calzado))
+```
+
+```{r}
+summary(DF$Calzado)
+```
+
+```{r}
+r(sd(DF$Calzado, na.rm = T))
+r(sd(DF$Calzado, na.rm = T) / mean(DF$Peso, na.rm = T))
+r(IQR(DF$Calzado, na.rm = T))
+```
+
+a
