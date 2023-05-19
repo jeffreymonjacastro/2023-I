@@ -258,12 +258,18 @@ DF$Zancadas <- DF$Zancadas[!is.na(DF$Zancadas)]
 
 ```{r}
 modelo_2 <- lm(DF$Estatura ~ DF$Zancada)
+```
 
+### Pregunta 9:
+
+La talla es una variable categórica y la Estatura es numérica, por lo que sería mejor un boxplot indexado. Cuando la talla crece la estatura crece.
+
+```{r}
+boxplot(DF$Talla ~ DF$Estatura, varwidth = TRUE)
 ```
 
 ### Pregunta 10:
 
 ```{r}
 mosaicplot(factor(DF$Sexo), DF$Deporte)
-
 ```
