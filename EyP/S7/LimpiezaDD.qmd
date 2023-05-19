@@ -14,7 +14,7 @@ library(dplyr)
 ```
 
 ```{r}
-DF <- read_csv("DD20230421.csv")
+DF <- read_csv("../DD20230331.csv")
 ```
 
 ```{r}
@@ -1679,7 +1679,9 @@ Ese archivo es "TallasZapatos.csv"
 ```{r}
 DFZ <- read_csv("TallasZapatos.csv")
 ```
+
 Haremos una limpieza rápida, sencilla y agresiva.
+
 ```{r}
 DFZ %>% rename(Largo = `MIDE DEL TALÓN A LA PUNTA DEL DEDO`, Tpe = PERÚ, Tus = USA, Teu = EUROPA) -> DFZ
 ```
@@ -1688,16 +1690,19 @@ DFZ %>% rename(Largo = `MIDE DEL TALÓN A LA PUNTA DEL DEDO`, Tpe = PERÚ, Tus =
 DFZ$Largo <- gsub("cm", "", DFZ$Largo)
 DFZ$Largo <- as.numeric(DFZ$Largo)
 ```
+
 Y listo, tenemos la tabla de tallas en R.
 
 ```{r}
 DFZ
 ```
+
 Por ejemplo, podemos ver (sin preocuparnos por si la persona es varon o mujer, esta tabla no contempla eso) como es la gráfica de las tallas peruanas en función de las americanas.
 
 ```{r}
 plot(DFZ$Tus, DFZ$Tpe)
 ```
+
 y ahora podríamos hacer una regresión para ajustar la mejor recta... 😈
 
 ```{r}
@@ -1707,17 +1712,21 @@ Convuspe <- lm(DFZ$Tpe ~ DFZ$Tus)
 ```{r}
 summary(Convuspe)
 ```
+
 ```{r}
 plot(DFZ$Tus, DFZ$Tpe)
 abline(Convuspe, col = "red")
 ```
 
 La pendiente de esa recta es:
+
 ```{r}
 m <- Convuspe$coefficients[2]
 m
 ```
+
 y su ordenada en el origen es:
+
 ```{r}
 b <- Convuspe$coefficients[1]
 b
@@ -1734,18 +1743,22 @@ Veamos si hay algunas tallas por encima de 20 y por debajo de 30
 ```{r}
 any((ZapatoNuevo > 20) & (ZapatoNuevo < 30) & !is.na(ZapatoNuevo))
 ```
+
 No hay ninguna, vamos a suponer (y es una suposición grande, una fantasía bonita) que las tallas por debajo de 25 son tallas **americanas de Estados Unidos** (y no mexicanas o del Reino Unido que parecen usar una escala similar).
 
 Esas tallas las traduciremos a talla peruana de acuerdo a la regresión que hicimos.
+
 ```{r}
 Sel <- (ZapatoNuevo < 25) & !is.na(ZapatoNuevo)
 ZapatoNuevo[Sel] <- m*ZapatoNuevo[Sel] + b
 ```
 
 Veamos el histograma ahora
+
 ```{r}
 hist(ZapatoNuevo, breaks = seq(from = 30, to = 50, by = 0.5) - 0.25, prob = TRUE)
 ```
+
 Se ve mejor que antes, podemos notar que no mucha gente trabaja (o sabe o reporta o recuerda) las tallas intermedias.
 
 El hecho que tenemos dos "chichones" diferentes se puede deber a la diferencia entre tallas de varones y tallas de mujeres.
@@ -1756,8 +1769,8 @@ De momento, consideraremos que la variable está tan limpia como puede estar.
 
 Yo no usaría la variable para nada crítico debido al montón de suposiciones (no necesariamente defendibles) que hicimos para limpiarla.
 
-
 Vamos a oficializar los cambios.
+
 ```{r}
 DF$Zapato <- ZapatoNuevo
 rm(Zapatonuevo)
@@ -1769,6 +1782,7 @@ rm(Zapatonuevo)
 str(DF$Polo)
 unique(DF$Polo)
 ```
+
 ```{r}
 PoloNueva <- toupper(DF$Polo)
 ```
@@ -1776,6 +1790,7 @@ PoloNueva <- toupper(DF$Polo)
 ```{r}
 unique(PoloNueva)
 ```
+
 ```{r}
 PoloNueva[grep("M Ó S", PoloNueva)]
 PoloNueva[grep("S/M", PoloNueva)]
@@ -1798,18 +1813,21 @@ PoloNueva <- factor(PoloNueva, levels = c("XXS", "XS", "S", "M", "L", "XL", "XXL
 ```{r}
 table(PoloNueva)
 ```
+
 ```{r}
 DF$Polo[is.na(PoloNueva) & !is.na(DF$Polo)]
 ```
+
 ```{r}
 barplot(table(PoloNueva))
 ```
+
 Oficializamos los cambios.
+
 ```{r}
 DF$Polo <- PoloNueva
 rm(PoloNueva)
 ```
-
 
 ## Sistema
 
@@ -1819,7 +1837,9 @@ Esta debería ser fácil de limpiar.
 str(DF$Sistema)
 unique(DF$Sistema)
 ```
+
 Simplemente tenemos que convertirla a factor.
+
 ```{r}
 DF$Sistema <- factor(DF$Sistema)
 ```
@@ -1832,13 +1852,13 @@ sort(table(DF$Sistema), decreasing = TRUE)
 barplot(sort(table(DF$Sistema), decreasing = TRUE))
 ```
 
-
 ## Fecha
 
 ```{r}
 str(DF$Fecha)
 unique(DF$Fecha)
 ```
+
 Podemos ver algunos problemas, el formato original era "MM/DD/YYYY" por lo que trataremos de asignar los datos a ese formato.
 
 ```{r}
@@ -1848,13 +1868,17 @@ FechaNueva <- as.POSIXlt(DF$Fecha, format = "%m/%d/%Y")
 ```{r}
 summary(FechaNueva)
 ```
+
 Claramente algunas fechas están mal, veamos que tan grave es la situación.
 
 Cumpleaños lejos en el pasado.
+
 ```{r}
 sum((FechaNueva < "1963-01-01") & !is.na(FechaNueva))
 ```
+
 Cumpleaños en el futuro.
+
 ```{r}
 sum((FechaNueva > "2023-05-11") & !is.na(FechaNueva))
 ```
@@ -1864,9 +1888,11 @@ FechaNueva[!is.na(FechaNueva) & ((FechaNueva < "1963-01-01") | (FechaNueva > "20
 ```
 
 Veamos un resumen de las fechas
+
 ```{r}
 summary(FechaNueva)
 ```
+
 Claramente aún tenemos problemas. Veamos que nos dicen las edades.
 
 ```{r}
@@ -1899,10 +1925,13 @@ legend("topright"
 ```{r}
 min(DF$Edad, na.rm = TRUE)
 ```
+
 Veamos las fechas de nacimento correspondientes a menos de 16 años de edad.
+
 ```{r}
 FechaNueva[!is.na(FechaNueva) & (FechaNueva > "2007-05-11")]
 ```
+
 Esas fechas claramente corresponden a errores, colocaremos `NA` en ellas.
 
 ```{r}
@@ -1910,6 +1939,7 @@ FechaNueva[!is.na(FechaNueva) & (FechaNueva > "2007-05-11")] <- NA
 ```
 
 Veamos otra vez...
+
 ```{r}
 plot(FechaNueva
      , DF$Edad
@@ -1925,35 +1955,36 @@ plot(FechaNueva
      )
 )
 ```
+
 Claramente aún tenemos problemas, las edades de algunas personas no coinciden con sus fechas de cumpleaños.
 
 ```{r}
 unique(FechaNueva$day)
 ```
+
 ```{r}
 
 ```
-
 
 ## Indicaciones
 
 Esta debería ser fácil de limpiar.
+
 ```{r}
 str(DF$Indicaciones)
 unique(DF$Indicaciones)
 ```
+
 ```{r}
 table(DF$Indicaciones, useNA = "ifany")
 ```
 
 Está limpia, pero muestra uno de los problemas de las listas predeterminadas, está rellena con `FALSE` a pesar de que, como variable se añadió recientemente, es decir estamos atribuyendo la respuesta `FALSE` a personas que posiblemente leyeron las indicaciones pero no pudieron responder la pregunta pues esta no existía.
 
-Esto se debe a la naturaleza misma del _checkbox_; está marcado (`TRUE`) o no está marcado (`FALSE`), el `NA` debería ser imposible, pero los usuarios siempre son muy _astutos_ y si uno simplemente borra la celda, el resultado es `NA`.
-
+Esto se debe a la naturaleza misma del *checkbox*; está marcado (`TRUE`) o no está marcado (`FALSE`), el `NA` debería ser imposible, pero los usuarios siempre son muy *astutos* y si uno simplemente borra la celda, el resultado es `NA`.
 
 ## Guardado de datos limpios
 
 ```{r}
 write_csv(DF, "DDLimpios.csv")
 ```
-
