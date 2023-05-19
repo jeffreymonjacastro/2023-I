@@ -156,7 +156,7 @@ diff(range(DF$Edad, na.rm = T))
 r(sd(DF$Edad, na.rm = T))
 r(sd(DF$Edad, na.rm = T) / mean(DF$Edad, na.rm = T))
 
-IQR
+IQR(DF$Edad, na.rm = T)
 ```
 
 Variabilidad del Peso:
@@ -164,6 +164,11 @@ Variabilidad del Peso:
 ```{r}
 range(DF$Peso, na.rm = T)
 diff(range(DF$Peso, na.rm = T))
+
+r(sd(DF$Peso, na.rm = T))
+r(sd(DF$Peso, na.rm = T) / mean(DF$Peso, na.rm = T))
+
+IQR(DF$Peso, na.rm = T)
 ```
 
 Variabilidad de la Estatura:
@@ -171,6 +176,11 @@ Variabilidad de la Estatura:
 ```{r}
 range(DF$Estatura, na.rm = T)
 diff(range(DF$Estatura, na.rm = T))
+
+r(sd(DF$Estatura, na.rm = T))
+r(sd(DF$Estatura, na.rm = T) / mean(DF$Estatura, na.rm = T))
+
+IQR(DF$Estatura, na.rm = T)
 ```
 
 Variabilidad de los Pasos
@@ -178,4 +188,9 @@ Variabilidad de los Pasos
 ```{r}
 range(DF$Pasos, na.rm = T)
 diff(range(DF$Pasos, na.rm = T))
+
+r(sd(DF$Pasos, na.rm = T))
+r(sd(DF$Pasos, na.rm = T) / mean(DF$Pasos, na.rm = T))
+
+IQR(DF$Pasos, na.rm = T)
 ```
