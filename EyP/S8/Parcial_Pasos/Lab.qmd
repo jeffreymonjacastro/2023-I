@@ -17,7 +17,7 @@ library(dplyr)
 ## Dataframe
 
 ```{r}
-DF <- read_csv("./Pasos.csv")
+DF <- read_csv("./Pasos_keyli.csv")
 ```
 
 ## Funciones
@@ -208,8 +208,10 @@ Orden de variabilidad:
 ### Pregunta 7:
 
 ```{r}
-r(cor(DF$Estatura, DF$Edad, use = "pairwise.complete"))
+r(cor(DF$Estatura, DF$Peso, use = "pairwise.complete"))
 ```
+
+Correlación entre la estatura y la edad: 0.1
 
 ```{r}
 sum(is.na(DF$Estatura))
@@ -223,25 +225,33 @@ nrow(DF) - sum(is.na(DF$Estatura) | is.na(DF$Edad))
 El tamaño efectivo es 295
 
 ```{r}
-modelo_ep <- lm(DF$Edad ~ DF$Estatura)
+modelo_ep = lm(DF$Estatura ~ DF$Peso)
 ```
 
 ```{r}
-resumen <- summary(modelo_ep)
+summary(modelo_ep)
 ```
 
 ```{r}
 r(modelo_ep$coefficients)
 ```
 
+Es decir, podemos modelar $Estatura = 0*Peso + 18.8$.
+
+El R\^2 es 0.0001462, casi 0
+
 ```{r}
-r(resumen$r.squared*100)
+plot(DF$Estatura, DF$Peso, pch = 20, col = rgb(1, 0, 0, 0.1))
+
+abline(modelo_ep, col = "blue", lwd = 2, lty = 2)
 ```
+
+No tienen relación absoluta
 
 ### Pregunta 8:
 
 ```{r}
-DF %>% mutate(Zancadas = 10 / Pasos * 100) -> DF
+DF %>% mutate(Zancadas = r(1000 / Pasos)) -> DF
 ```
 
 ```{r}
