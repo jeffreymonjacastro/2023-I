@@ -421,8 +421,77 @@ GROUP BY cnombre
 HAVING MAX(precio) < 50;
 
 /* HAVING EVERY */
-
+SELECT cnombre, AVG(CAST(precio AS INTEGER)) AS promedio
+FROM ventas V
+JOIN album A
+ON V.aid = A.aid
+GROUP BY cnombre
+HAVING EVERY(precio BETWEEN 10 AND 50);
 
 /* HAVING ANY */
+-- En Postgres es bool_or
 
+SELECT cnombre, AVG(CAST(precio AS INTEGER)) AS promedio
+FROM ventas V
+JOIN album A
+ON V.aid = A.aid
+GROUP BY cnombre
+HAVING bool_or(A.fechalanzamiento BETWEEN '2019-01-01' AND '2022-01-01');
 
+/* FETCH FIRST */
+-- Devuelve n resultados
+
+SELECT *
+FROM album
+ORDER BY fechalanzamiento DESC
+FETCH FIRST 5 ROWS ONLY;
+
+/* LIMIT */
+
+SELECT *
+FROM album
+ORDER BY fechalanzamiento DESC
+LIMIT 3;
+
+/* ROW_NUMBER() */
+-- Asigna un número a cada fila
+
+/* RANK() */
+-- Asigna un número a cada fila, pero si hay empate, se salta el siguiente número
+
+/* MÁS FUNCIONES */
+
+/* ABS() */
+-- Valor absoluto
+
+/* CEIL() */
+-- Redondea hacia arriba
+
+/* FLOOR() */
+-- Redondea hacia abajo
+
+/* EXP() */
+-- Exponencial
+
+/* ROUND() */
+-- Redondea
+
+/* SQRT() */
+-- Raíz cuadrada
+
+/* LOWER() */
+-- Convierte a minúscula
+
+/* UPPER() */
+-- Convierte a mayúscula
+
+/* TRIM() */
+-- Elimina espacios en blanco al inicio y al final
+
+/* SUBSTRING() */
+-- Extrae una subcadena
+
+/* STARSWITH() */
+-- Devuelve true si la cadena empieza con el patrón
+
+---Y MÁS....
