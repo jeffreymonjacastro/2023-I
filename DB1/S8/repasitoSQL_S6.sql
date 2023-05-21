@@ -431,12 +431,13 @@ HAVING EVERY(precio BETWEEN 10 AND 50);
 /* HAVING ANY */
 -- En Postgres es bool_or
 
-SELECT cnombre, AVG(CAST(precio AS INTEGER)) AS promedio
+SELECT cnombre, substr(cnombre, 1, 1) AS inicial, ROUND(AVG(CAST(precio AS INTEGER))) AS promedio, SUM(precio) AS Total, COUNT(*) AS cantidad
 FROM ventas V
 JOIN album A
 ON V.aid = A.aid
-GROUP BY cnombre
+GROUP BY cnombre, A.nombre
 HAVING bool_or(A.fechalanzamiento BETWEEN '2019-01-01' AND '2022-01-01');
+
 
 /* FETCH FIRST */
 -- Devuelve n resultados
@@ -455,6 +456,13 @@ LIMIT 3;
 
 /* ROW_NUMBER() */
 -- Asigna un número a cada fila
+-- REPASAR
+/*
+SELECT cnombre, fechalanzamiento, ROW_NUMBER() OVER (PARTITION BY cnombre ORDER BY fechalanzamiento) AS num_secuencial
+FROM album
+GROUP BY cnombre, fechalanzamiento;
+*/
+
 
 /* RANK() */
 -- Asigna un número a cada fila, pero si hay empate, se salta el siguiente número
@@ -495,3 +503,23 @@ LIMIT 3;
 -- Devuelve true si la cadena empieza con el patrón
 
 ---Y MÁS....
+
+/* CASE */
+SELECT DISTINCT cnombre, substr(cnombre, 1, 1) AS nombre, AVG(numerocanciones) AS promedio,
+        CASE
+            WHEN cnombre = 'Maluma' THEN 'Colombiano'
+            WHEN cnombre = 'Ed Sheeran' THEN 'UK'
+            ELSE 'Otros'
+        END AS nacionalidad
+FROM album
+GROUP BY cnombre ;
+
+
+SELECT cnombre, genero,
+        CASE
+            WHEN cnombre = 'Maluma' THEN 'Colombiano'
+            WHEN cnombre = 'Ed Sheeran' THEN 'UK'
+            ELSE 'Otros'
+        END AS nacionalidad,  AVG(numerocanciones) AS promedio
+FROM album
+GROUP BY 1,2
