@@ -119,7 +119,7 @@ ALTER TABLE PersonaNatural ADD fecha_nac date;
 ALTER TABLE PersonaNatural ADD email varchar(50) UNIQUE ;
 ALTER TABLE PersonaNatural ADD ciudad varchar(50);
 
-/* 3. Que la edad este en el intervalo de 12 y 85. */
+/* 3. Que la edad esté en el intervalo de 12 y 85. */
 ALTER TABLE PersonaNatural ADD CONSTRAINT check_date_Edad CHECK (
     EXTRACT (YEAR FROM age(cast(fecha_nac as date)))  >=12 AND EXTRACT (YEAR FROM age(cast(fecha_nac as date))) <= 85
 );
