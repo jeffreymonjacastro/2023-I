@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Ordenamiento",
+      "setup": "make",
+      "run": "./a.out parte1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 12
+    }
+  ]
+}

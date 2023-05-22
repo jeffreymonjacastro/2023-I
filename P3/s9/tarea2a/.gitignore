@@ -1,0 +1,7 @@
+a.exe
+tarea/*.exe
+tarea/*.o
+tarea/main
+data.txt
+tarea/data.txt
+test/data.txt
