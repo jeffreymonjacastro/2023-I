@@ -67,24 +67,22 @@ ORDER BY Año;
 SELECT DISTINCT E.nombrees
 FROM estudiante E
 JOIN pertenece P ON E.codigoes = P.codigoes
+JOIN trabajap T ON E.codigoes = T.codigoes
 WHERE P.codigod = 'CS'
 UNION
-SELECT DISTINCT PR.nombrep
-FROM profesor PR
-JOIN asesora A ON PR.dnip = A.dnip
-JOIN trabajad T on PR.dnip = T.dnip
+SELECT DISTINCT PF.nombrep
+FROM profesor PF
+JOIN asesora A ON PF.dnip = A.dnip
+JOIN trabajad T on PF.dnip = T.dnip
 WHERE T.codigod = 'CS';
 
 -- 9. Muestre el primero y segundo proyecto que tiene la mayor cantidad de participantes
+-- FALTA
 SELECT PR.nombre, COUNT(T.codigoes) AS CantidadParticipantes
 FROM proyecto PR
 JOIN trabajap T ON PR.codigop = T.codigop
-GROUP BY PR.nombre
-UNION
-SELECT PR.nombre, COUNT(PF.dnip) AS CantidadParticipantes
-FROM profesor PF
-JOIN proyecto PR ON PF.dnip = PR.dnip
-GROUP BY PR.nombre
+JOIN profesor PF ON PR.dnip = PF.dnip
+GROUP BY PR.nombre;
 
 
 -- 10. Muestre el proyecto que tiene la mayor duración
@@ -94,23 +92,106 @@ GROUP BY PR.nombre
 
 
 -- 12. Carreras que tienen las misma cantidad de proyectos
+
 -- 13. Muestre el departamento con la menor cantidad de proyectos en los que han trabajado
     -- por lo menos un alumno de postgrado
--- 14. Cuantos profesores entre el rango de edad de 30 a 34 a˜nos dirigen proyectos trabajados
-    -- por al menos un alumno de pregrado de Ciencia de la Computaci´on
+
+-- 14. Cuantos profesores entre el rango de edad de 30 a 34 años dirigen proyectos trabajados
+    -- por al menos un alumno de pregrado de Ciencia de la Computación
+
 -- 15. Muestre los nombres de los alumnos de pregrado ordenados seg´un el tiempo dedicado
     -- (Considerar fecha de inicio y fin del proyecto) en el proyecto que trabajaron en el periodo
     -- 2017-2 (fecha). El resultado debe estar en orden descendente
+
 -- 16. Listar los nombres de los departamentos ordenados seg´un la cantidad de alumnos (Pregrado y Postgrado)
     -- pertenecientes al departamento que trabajaron en un proyecto en el periodo 2020-1(fecha)
--- 17. Muestre el nombre y c´odigo de los tres primeros departamentos cuya cantidad de profesores que dirigen proyectos
+
+-- 17. Muestre el nombre y código de los tres primeros departamentos cuya cantidad de profesores que dirigen proyectos
     -- es mayor que el promedio. (Ejem: En el Departamento A hay 5 profesores que dirigen proyectos, en el Departamento
     -- B hay 2 y el el Departamento C hay 6 . El promedio de proyectos dirigidos por departamento es es 4. En el
     -- resultado se consideran solo a los departamentos A y C)
--- 18. Liste los primeros dos c´odigos de los departamentos con tengan mayor cantidad de estudiantes (pregrado) que
+
+SELECT DP.nombred, COUNT(PF.dnip) AS cantidadProfesores
+FROM profesor PF
+JOIN proyecto P ON PF.dnip = P.dnip
+JOIN trabajad T ON PF.dnip = T.dnip
+JOIN departamento DP ON T.codigod = DP.codigod
+GROUP BY DP.nombred
+HAVING COUNT(PF.dnip) > (
+    SELECT AVG(cantidadProfesores)
+    FROM (
+        SELECT COUNT(PF.dnip) AS cantidadProfesores
+        FROM profesor PF
+        JOIN proyecto P ON PF.dnip = P.dnip
+        JOIN trabajad T ON PF.dnip = T.dnip
+        JOIN departamento DP ON T.codigod = DP.codigod
+        GROUP BY DP.nombred
+    ) AS promedio
+)
+ORDER BY cantidadProfesores DESC
+LIMIT 3;
+
+
+-- 18. Liste los primeros dos códigos de los departamentos que tengan mayor cantidad de estudiantes (pregrado) que
     -- trabajaron en un proyecto dirigido por un/a director/a de departamento
+SELECT PR.codigod, COUNT(E.codigoes) AS cantidadEstudiantes
+FROM epregrado E
+JOIN pertenece PR ON E.codigoes = PR.codigoes
+JOIN trabajap T ON E.codigoes = T.codigoes
+JOIN proyecto P ON T.codigop = P.codigop
+JOIN diriged D ON P.dnip = D.dnip
+GROUP BY PR.codigod
+ORDER BY cantidadEstudiantes DESC
+LIMIT 2;
+
+
 -- 19. Muestre la cantidad de estudiantes de pregrado por carrera universitaria que trabajaron
     -- en un proyecto en el periodo 2020-1 cuyo presupuesto sea menor al presupuesto promedio.
--- 20. Liste el ´area y nombre de los profesores que trabajen en el departamento con la menor
+
+SELECT E.carrera, COUNT(E.codigoes) AS CantidadEs
+FROM epregrado E
+JOIN trabajap T ON E.codigoes = T.codigoes
+JOIN proyecto P ON T.codigop = P.codigop
+WHERE T.fecha = '2020-1'
+AND P.presupuesto < (
+    SELECT AVG(presupuesto)
+    FROM proyecto
+    )
+GROUP BY E.carrera;
+
+
+-- 20. Liste el área y nombre de los profesores que trabajen en el departamento con la menor
     -- cantidad de estudiantes que trabajen en proyectos cuyo presupuesto sea mayor a 5000
+
+SELECT PR.area, PR.nombrep
+FROM profesor PR
+JOIN trabajad T ON PR.dnip = T.dnip
+JOIN departamento D ON T.codigod = D.codigod
+WHERE D.codigod IN (
+    SELECT D.codigod
+    FROM departamento D
+    JOIN pertenece P ON D.codigod = P.codigod
+    JOIN trabajap T ON T.codigoes = P.codigoes
+    JOIN proyecto PR ON T.codigop = PR.codigop
+    WHERE PR.presupuesto > 5000
+    GROUP BY D.codigod
+    HAVING COUNT(P.codigoes) = (
+        SELECT MIN(CantEstudiantes)
+        FROM (
+            SELECT COUNT(P.codigoes) AS CantEstudiantes
+            FROM departamento D
+            JOIN pertenece P ON D.codigod = P.codigod
+            JOIN trabajap T ON T.codigoes = P.codigoes
+            JOIN proyecto PR ON T.codigop = PR.codigop
+            WHERE PR.presupuesto > 5000
+            GROUP BY D.codigod
+        ) AS conteo
+    )
+)
+
+
+
+
+
+
 
