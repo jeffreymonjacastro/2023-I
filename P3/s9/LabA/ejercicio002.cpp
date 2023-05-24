@@ -11,7 +11,7 @@ using namespace std::chrono; // para las variables de tiempo
 mutex mtx; // Clase mutex
 
 
-int producto_escalar(vector<int> A, vector<int> B, int& s, int chunk, int chunks){
+void producto_escalar(vector<int> A, vector<int> B, int& s, int chunk, int chunks){
     int inicio = (chunk) * (A.size() / chunks);
     int fin = (chunk + 1) * (A.size() / chunks);
     int temp = 0;
@@ -19,12 +19,13 @@ int producto_escalar(vector<int> A, vector<int> B, int& s, int chunk, int chunks
     for (int i = inicio; i < fin; ++i)
         temp += A[i] * B[i];
 
-//    mtx.lock();
-//    s = s + temp;
-//    mtx.unlock();
+    mtx.lock();
+    s = s + temp;
+    mtx.unlock();
 
-    lock_guard<mutex> lock(mtx);
-    s += temp;
+    // Otra forma
+//    lock_guard<mutex> lock(mtx);
+//    s += temp;
 }
 
 

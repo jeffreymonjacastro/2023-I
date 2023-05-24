@@ -9,5 +9,14 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main(){
+    int N = 1000000;
+    vector<double> v(N);
 
+    ifstream file(R"(C:\Users\Usuario\Github\2023-I\P3\s9\tarea2a\data.txt)");
+
+    for(int i=0; i<N; i++){
+        file >> v[i];
+    }
+
+    file.close();
 }

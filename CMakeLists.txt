@@ -8,7 +8,7 @@ include_directories(.)
 
 add_executable(2023_I P3/s9/LabA/ejercicio002.cpp)
 
-add_executable(teo P3/s6/tarea-1c/tarea/testing.cpp)
+add_executable(tarea P3/s9/tarea2a/tarea/main.cpp P3/s9/tarea2a/tarea/foo.cpp)
 
 add_executable(pcs P3/s5/pcs1/lab103p1.cpp)
 
@@ -21,3 +21,4 @@ add_executable(vjudge CPC/Beginners_trainee/Contest_3/C.cpp)
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
 add_executable(mentoria Mentoria/sesion_6/pc2-vectores.cpp)
+
