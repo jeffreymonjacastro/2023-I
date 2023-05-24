@@ -1,0 +1,160 @@
+## Práctica RStudio, consultas.
+
+------------------------------------------------------------------------
+
+Importar los datos para practicar:
+
+```{r}
+library(dplyr)
+library(readr)
+
+encuesta_data = read.csv("../db/survey_results_public.csv");
+encuesta_data = select(encuesta_data, MainBranch, Employment, RemoteWork, CodingActivities, DevType, Country, EdLevel, Currency, ConvertedCompYearly, MentalHealth, Ethnicity, Sexuality, Gender, Age, `OpSysPersonal.use`, `OpSysProfessional.use`, LanguageHaveWorkedWith)
+
+encuesta_data = na.omit(encuesta_data)
+
+
+```
+
+## Ejercicios:
+
+1.  Encuentra el salario promedio por país.
+
+```{r}
+#seleccionar los datos relevantes
+salarios = select(encuesta_data, ConvertedCompYearly, Country)
+salarios = na.omit(salarios)
+
+#agrupar y sacar promedio con mean()
+salarios = salarios %>%
+  group_by(Country) %>%
+  summarize(Salario = mean(ConvertedCompYearly))
+
+#redondear a 2 decimales
+salarios$Salario = round(salarios$Salario, 2)
+
+
+#ordenar y mostrar
+salarios = arrange(salarios, desc(Salario))
+
+
+salarios
+rm(salarios)
+```
+
+2.  Encuentra el número de desarrolladores en cada país.
+
+```{r}
+
+#seleccionar los datos relevantes
+desarrolladores = select(encuesta_data, Country)
+
+#agrupar
+desarrolladores = desarrolladores %>%
+  group_by(Country) %>%
+  summarize(Personas = n())
+
+#ordenar y mostrar
+desarrolladores = arrange(desarrolladores, desc(Personas))
+
+desarrolladores
+rm(desarrolladores)
+```
+
+3.  Encuentra el numero de trabajadores que trabajan de forma remota
+
+```{r}
+
+#seleccionar lo relevante
+remotework = select(encuesta_data, RemoteWork)
+
+#agrupar
+remotework = remotework%>%
+  group_by(RemoteWork) %>%
+  summarize(CantPersonas = n())
+
+remotework
+rm(remotework)
+```
+
+4.  Encuentra el número de desarrolladores en cada rango de edad.
+
+```{r}
+#seleccionar lo relevante
+age = select(encuesta_data, Age, ConvertedCompYearly)
+
+#agrupar
+age = age%>%
+  group_by(Age) %>%
+  summarize(CantPersonas = n(), Salary = mean(ConvertedCompYearly))
+
+age
+rm(age)
+```
+
+5.  Contar el número de personas por género
+
+```{r}
+library(vctrs)
+library(tidyr)
+
+#seleccionar tipos
+gender = select(encuesta_data, Gender, ConvertedCompYearly)
+gender = na.omit(gender)
+
+#dividir por ";"
+gender %>%
+  separate_rows(Gender, sep=";") %>%
+  group_by(Gender) %>%
+  summarize(Personas = n(), SalarioProm = mean(ConvertedCompYearly))
+
+rm(gender)
+```
+
+6.  Los lenguajes que usa la gente, frecuencia.
+
+```{r}
+
+#sleccionar lo importante
+language = select(encuesta_data, LanguageHaveWorkedWith)
+language = na.omit(language)
+
+#dividir por ;
+language = language %>%
+  separate_rows(LanguageHaveWorkedWith, sep=";") %>%
+  group_by(LanguageHaveWorkedWith) %>%
+  summarise(CantUsers = n())
+
+#ordenar de mayor a menor
+language = arrange(language, desc(CantUsers))
+
+language
+
+
+language = language[language$CantUsers > 12000,]
+barplot(language$CantUsers, language$CantUsers, 1, language$LanguageHaveWorkedWith)
+
+rm(language)
+```
+
+7.  Frecuencias, salud mental
+
+```{r}
+#seleccionar
+health = select(encuesta_data, MentalHealth);
+
+#group
+health = health %>% 
+  separate_rows(MentalHealth, sep=";") %>%
+  group_by(MentalHealth) %>%
+  summarise(Personas = n())
+
+health
+
+rm(health)
+
+```
+
+```{r}
+
+```
