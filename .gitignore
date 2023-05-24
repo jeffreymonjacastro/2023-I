@@ -37,3 +37,6 @@ cmake-build-debug/*
 *.out
 *.app
 .Rproj.user
+
+
+2023-I\EyP\Proyecto\Avance PG03\db\survey_results_public.csv
