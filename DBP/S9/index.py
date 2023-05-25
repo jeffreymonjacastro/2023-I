@@ -27,11 +27,33 @@ with app.app_context():
     db.create_all()
 
 
+cache = {} # Se crea un diccionario vacio que almacene los datos de la base de datos
+
 @app.route('/', methods=['GET', 'POST'])
 def menu():
     if request.method == 'GET':
-        persons = Person.query.all()
-        return jsonify(persons)
+        global cache # Se declara la variable global cache
+
+        key = 'getUsers'
+
+        if key not in cache.keys():
+            dbResponse = Person.query.all()
+            cache[key] = dbResponse;
+            print("From DB")
+        else:
+            print("From Cache")
+
+        users = cache[key]
+        response = ""
+        for user in users:
+            response += user.name + ";" + user.email
+
+        #print(response)
+        return response
+
+        # persons = Person.query.all()
+        # dic['persons'] = persons
+        # return jsonify(persons)
 
 
     elif request.method == 'POST':
