@@ -42,7 +42,6 @@ def menu():
         return f"Person {person['name']} added successfully!"
         
 
-
 @app.route('/<id>', methods=['GET', 'PUT', 'DELETE'])
 def menu_id(id):
     if request.method == 'GET':
