@@ -2,8 +2,6 @@
 
 void sorting(vector<double>::iterator begin, vector<double>::iterator end){
     sort(begin, end);
-
-    cout<<"Finished"<<endl;
 }
 
 
@@ -22,5 +20,7 @@ void sort_alg(vector<double>::iterator begin, vector<double>::iterator end){
 
     thread1.join();
     thread2.join();
+
+    inplace_merge(begin, begin + (end - begin) / 2, end);
 }
 
