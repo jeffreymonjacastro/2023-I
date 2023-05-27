@@ -1,0 +1,175 @@
+---
+title: "Lab s9"
+format: html
+editor: visual
+---
+
+## Lab S9
+
+## E1: Lanzamiento de una moneda justa
+
+Veamos como podemos calcular la función de probabilidad
+
+```{r}
+Omega_1 <- c("cara", "sello")
+```
+
+```{r}
+P_1 <- data.frame(Evento = c("Vacio", "Sale cara", "Sale sello", "Omega_1"), Probabidad = c(0/2, 1/2, 1/2, 2/2))
+```
+
+Podemos hacer una simulación usando la función `sample` para obtener las probabilidades empíricas (probabilidades muestrales) de nuestro experimento
+
+Claramente nos tocó una mala muestra, y al ser pequeña los resultados dan b
+
+```{r}
+E1 <- sample(Omega_1, 10, replace = TRUE)
+E1
+```
+
+```{r}
+table(E1)
+```
+
+```{r}
+P_1$ProbEmp <- c(0, as.vector(table(E1))/length(E1), 1)
+```
+
+```{r}
+P_1
+```
+
+```{r}
+barplot(table(E1)/length(E1),
+        main = "Probabilidades empíricas de E1", 
+        ylim = c(0, 0.7))
+
+abline(h = 0.5, col = "red")
+
+legend("topright", 
+       legend = "probabilidad teórica", 
+       col = "red", 
+       lty = 1, 
+       cex = 0.6, 
+       bty = "n")
+```
+
+NOTA: tiene que estar claro que para efectos del cálculo de las probabilidades empíricas usando fuertemente la idea **frecuentista** de estimar la probabilidad de un evento, contando cuantas veces ocurre y dividiendo por el número de veces que hicimos el experimento.
+
+Esto **SIEMPRE** se puede hacer (noten que parece que el experimento fuese equiprobable)
+
+## E2: Lanzo un dado justo
+
+$\Omega_2=\{1,2,3,4,5,6\}$
+
+$\mathcal{F}_2 = 2^{\Omega_2}$
+
+$\mathbb{P_2}: \mathcal{F}_2 \longrightarrow [0,1]$
+
+Veamos como podemos calcular la función de probabilidad
+
+```{r}
+Omega_2 <- 1:6
+```
+
+El numero de eventos posibles ahora es mucho más grande, $|\mathcal{F}_2|=2^6=64$
+
+Rápidamente se vuelve impráctico colocar en la tabla todos los eventos.
+
+Afortunadamente, recordamos que si el espacio es equiprobable, podemos calcular las probabilidades de los
+
+```{r}
+P_2 <- data.frame(EventoAtomico = Omega_2, CasosFavorables = 1, CasosTotales = length(Omega_2))
+P_2
+```
+
+```{r}
+P_2$FraccionTeorica <- paste(P_2$CasosFavorables, "/", P_2$CasosTotales, sep = "")
+
+P_2$ProbabilidadTeórica <- P_2$CasosFavorables/P_2$CasosTotales
+
+P_2
+```
+
+Si queremos resolver el problema por simulación podemos hacerlo de manera similar a la anterior.
+
+```{r}
+E2 <- sample(Omega_2, 10, replace = TRUE)
+
+E2
+```
+
+Notarán, si están trabajando en sus máquinas, que no obtienen los mismos resultados que yo.
+
+Esto se debe a que el experimento es *aleatorio* ¿verdad?
+
+La realidad es que como los resultados los estamos calculando en el computador, estos no son realmente aleatorios sino que son *pseudoaleatorios*, hay un algoritmo que controla su generación.
+
+Nosotros podemos suponer que los datos se comportan de la manera más parecida a la verdadera aleatoriedad, pero como existe un algoritmo que los genera, podemos hacer cosas que son imposibles con aleatoriedad verdadera.
+
+Por ejemplo, podemos reiniciar el generador de números aleatorios a un valor conocido; para esto usamos la función `set.seed`
+
+```{r}
+set.seed(456)
+sample(Omega_2, 10, replace = TRUE)
+
+set.seed(456)
+sample(Omega_2, 10, replace = TRUE)
+
+#Sale el mismo resultado 
+```
+
+```{r}
+P_2$ProbEmp <- table(E2)/length(E2)
+P_2
+```
+
+Al igual que antes, podemos mostrar gráficamente lo que ocurre.
+
+```{r}
+barplot(P_2$ProbEmp, names.arg = 1:6)
+abline(h = 1/6, col = "red")
+```
+
+En la clase anterior, preguntaron como se podía hacer si queríamos barras para ambas probabilidades
+
+```{r}
+barplot(P_2$ProbabilidadTeórica, P_2$ProbEmp)
+
+```
+
+Esto no hace lo que quisiéramos, por favor, lean la ayuda, lean la ayuda
+
+```{r}
+names(P_2)
+```
+
+Si queremos trabajar con barras apliadas (este es la forma por defecto de trabajar con `barplot`
+
+```{r}
+barplot(t(P_2[, c(5,6)]))
+```
+
+Si queremos que las barras salgan una al lado de otra usamos el parámetro `beside = TRUE`
+
+```{r}
+barplot(t(P_2[, c(5,6)]),
+        beside = TRUE,
+        ylim = c(0,0.25),
+        col = c("lightblue", "pink"),
+        names.arg = paste({1:6}),
+        main = "Probabilidades de E2",
+        ylab = "Probabilidad",
+        xlab = "Evento atómico")
+legend("topleft",
+       legend = c("Probabilidad teórica", "Probabilidad empírica"),
+       fill = c("lightblue", "pink"),
+       bty = "n",
+       cex = 0.6)
+```
+
+Para calcular las probabilidades ahora simplemente usamos los resultados de los eventos como índices de suma,
+
+```{r}
+
+```
