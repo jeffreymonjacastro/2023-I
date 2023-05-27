@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 void sumar(vector<int> A, vector<int> B, vector<int> &C, int chunk, int chunks){
     int inicio = (chunk) * (A.size() / chunks);
     int fin = (chunk+1) * (A.size() / chunks);

@@ -42,14 +42,14 @@ int main() {
 
     int sum = 0;
 
-    suma_sin_threads(vec, sum);
-//    for (int i = 0; i < n_threads; ++i) {
-//        vthreads.push_back(thread(&suma_con_threads, vec, ref(sum), i, n_threads));
-//    }
-//
-//    for (int i = 0; i < n_threads; ++i) {
-//        vthreads[i].join();
-//    }
+//    suma_sin_threads(vec, sum);
+    for (int i = 0; i < n_threads; ++i) {
+        vthreads.push_back(thread(&suma_con_threads, vec, ref(sum), i, n_threads));
+    }
+
+    for (int i = 0; i < n_threads; ++i) {
+        vthreads[i].join();
+    }
 
     t_fin = high_resolution_clock::now();
 
