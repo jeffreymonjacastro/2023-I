@@ -1,37 +1,38 @@
 #include "foo.h"
 
-void heapify(vector<double>& v, int n, int i){
-    int largest = i;
-    int l = 2*i + 1; // Left
-    int r = 2*i + 2; // Right
+// Función para hacer el Heapify de un subárbol en un vector
+template <typename RandomIt>
+void heapify(RandomIt first, RandomIt last, RandomIt root) {
+    auto size = std::distance(first, last);
+    auto largest = root;
+    auto left = first + 2 * distance(first, root) + 1;
+    auto right = first + 2 * distance(first, root) + 2;
 
-    if(l < n && v[l] > v[largest]){
-        largest = l;
-    }
+    if (left < last && *left > *largest)
+        largest = left;
 
-    if(r < n && v[r] > v[largest]){
-        largest = r;
-    }
+    if (right < last && *right > *largest)
+        largest = right;
 
-    if(largest != i){
-        swap(v[i], v[largest]);
-        heapify(v, n, largest);
-    }
-}
-
-void buildHeap(vector<double>& v, int n){
-    for(int i = n/2 - 1; i >= 0; i--){
-        heapify(v, n, i);
+    if (largest != root) {
+        iter_swap(root, largest);
+        heapify(first, last, largest);
     }
 }
 
+// Función principal de Heap Sort
+template <typename RandomIt>
+void heapSort(RandomIt first, RandomIt last) {
+    auto size = std::distance(first, last);
 
-void heapSort(vector<double> &v, int n){
-    buildHeap(v, n);
+    // Construir el Heap inicial
+    for (auto i = size / 2 - 1; i >= 0; --i)
+        heapify(first, last, first + i);
 
-    for(int i = n-1; i >= 0; i--){
-        swap(v[0], v[i]);
-        heapify(v, i, 0);
+    // Extraer elementos del Heap en orden ascendente
+    for (auto i = size - 1; i >= 0; --i) {
+        iter_swap(first, first + i);
+        heapify(first, first + i, first);
     }
 }
 
@@ -44,15 +45,12 @@ void sort_alg(vector<double>::iterator begin, vector<double>::iterator end){
            las partes ordenadas en un solo vector ordenado.
     */
 
-    vector<double> vec1(begin, begin + (end - begin) / 2);
-    vector<double> vec2(begin + (end - begin) / 2, end);
-
-    thread thread1(heapSort, ref(vec1), vec1.size());
-    thread thread2(heapSort, ref(vec2), vec2.size());
+    thread thread1(heapSort, begin, end);
+    thread thread2(heapSort, begin, end);
 
     thread1.join();
     thread2.join();
 
-    merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), begin);
+    
 }
 
