@@ -9,7 +9,7 @@
 
 // Puede validar su codigo con la siguiente funcion main
 int main() {
-    int N = 100;
+    int N = 1000000;
     vector<double> v(N);
 
     ifstream file(R"(C:\Users\Usuario\Github\2023-I\P3\s9\tarea2a\data.txt)");
@@ -27,6 +27,16 @@ int main() {
     sort_alg(v.begin(), v.end());
 
     t_end = high_resolution_clock::now();
+
+//    for (int i = 0; i < N; ++i) {
+//        cout << v[i] << endl;
+//    }
+
+    if (is_sorted(v.begin(), v.end())) {
+        cout << "Ordenado" << endl;
+    } else {
+        cout << "No ordenado" << endl;
+    }
 
     duration<double, milli> t = t_end - t_start;
 

@@ -1,0 +1,63 @@
+---
+title: "TS05"
+format: html
+editor: visual
+---
+
+## TS05
+
+```{r}
+HE <- c(2.42, 3.50, 0.74, 1.97, 3.74, 2.69, 4.53, 0.52, 1.94, 2.25, 1.72, 3.07, 3.99, 1.73, 1.9)
+
+C <- c(2.02, 3.62, 1.60, 1.89, 5.67, 3.52, 3.28, 1.61, 2.50, 3.04, 2.63, 4.53, 3.90, 2.75, 2.95)
+
+round(cor(HE, C),2)
+
+round(cov(HE, C),2)
+```
+
+```{r}
+DF <- trees
+colnames(DF)<- c('Diametro','Altura','Volumen')
+DF
+
+plot(DF$Altura, DF$Volumen)
+plot(DF$Diametro, DF$Volumen)
+
+
+cor(DF$Altura, DF$Volumen)
+cor(DF$Diametro, DF$Volumen)
+
+lm(DF$Diametro ~ DF$Volumen)
+
+7.68+0.18*15
+```
+
+```{r}
+Poc <- data.frame(HE=c(3,15,6,8,4,2,10), NF=c(75,95,65,70,85,80,65), Clase='Pociones')
+
+Def <- data.frame(HE=c(4,12,9,6,2,3,10), NF=c(70,98,85,80,65,75,92), Clase='Defensa')
+
+DFH <- rbind(Poc,Def)
+
+plot(DFH$HE,DFH$NF, pch=19, col=factor(DFH$Clase), xlab = 'Horas de Estudio', ylab = 'Nota final')
+
+legend('topleft',pch=19, legend=levels(factor(DFH$Clase)), col=factor(levels(factor(DFH$Clase))))
+
+
+13.57 / 50.51 #Correlación de He y NF con pociones
+43.86 / 45.22 #Correlación de He y NF con Defensa
+```
+
+```{r}
+DF <- trees
+
+colnames(DF)<- c('Diametro','Altura','Volumen')
+
+DF
+
+
+modelo <- lm(DF$Volumen ~ DF$Diametro)
+
+round(modelo$coefficients , 2)
+```
