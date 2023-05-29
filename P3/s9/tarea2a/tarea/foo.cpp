@@ -1,40 +1,46 @@
 #include "foo.h"
 
-// Función para hacer el Heapify de un subárbol en un vector
-template <typename RandomIt>
-void heapify(RandomIt first, RandomIt last, RandomIt root) {
-    auto size = std::distance(first, last);
-    auto largest = root;
-    auto left = first + 2 * distance(first, root) + 1;
-    auto right = first + 2 * distance(first, root) + 2;
+void localSort(vector<double>& arr, int start, int end) {
+    int n = end - start + 1;
 
-    if (left < last && *left > *largest)
-        largest = left;
+    // Encuentra el valor máximo en el rango dado
+    double maxVal = *max_element(arr.begin() + start, arr.begin() + end + 1);
 
-    if (right < last && *right > *largest)
-        largest = right;
+    // Realiza el ordenamiento Radix Sort en los dígitos decimales
 
-    if (largest != root) {
-        iter_swap(root, largest);
-        heapify(first, last, largest);
+    for (int exp = 1; maxVal / exp > 0; exp *= 10) {
+
+        // Utiliza Counting Sort para ordenar los elementos según el dígito actual
+
+        int countSize = 10;
+        vector<int> count(countSize, 0);
+
+        for (int i = start; i <= end; i++) {
+            int index = static_cast<int>((arr[i] * n) / exp) % 10;
+            count[index]++;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < countSize; i++) {
+            int temp = count[i];
+            count[i] = sum;
+            sum += temp;
+        }
+
+        vector<double> temp(n);
+
+        for (int i = start; i <= end; i++) {
+            int index = static_cast<int>((arr[i] * n) / exp) % 10;
+            temp[count[index]] = arr[i];
+            count[index]++;
+        }
+
+        auto copyStart = temp.begin();
+        copy(copyStart, copyStart + n, arr.begin() + start);
     }
 }
 
-// Función principal de Heap Sort
-template <typename RandomIt>
-void heapSort(RandomIt first, RandomIt last) {
-    auto size = std::distance(first, last);
 
-    // Construir el Heap inicial
-    for (auto i = size / 2 - 1; i >= 0; --i)
-        heapify(first, last, first + i);
-
-    // Extraer elementos del Heap en orden ascendente
-    for (auto i = size - 1; i >= 0; --i) {
-        iter_swap(first, first + i);
-        heapify(first, first + i, first);
-    }
-}
 
 void sort_alg(vector<double>::iterator begin, vector<double>::iterator end){
     /*
@@ -45,12 +51,21 @@ void sort_alg(vector<double>::iterator begin, vector<double>::iterator end){
            las partes ordenadas en un solo vector ordenado.
     */
 
-    thread thread1(heapSort, begin, end);
-    thread thread2(heapSort, begin, end);
+    vector<double> arr(begin, end);
 
-    thread1.join();
-    thread2.join();
+    int mid = arr.size() / 2;
 
-    
+    thread t1(localSort, ref(arr), 0, mid);
+    thread t2(localSort, ref(arr), mid + 1, arr.size() - 1);
+
+    t1.join();
+    t2.join();
+
+    // Combinar los Ordenamientos locales
+
+    copy(arr.begin(), arr.end(), begin);
+
+    inplace_merge(begin, begin + mid + 1,end);
+
 }
 
