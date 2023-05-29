@@ -1,0 +1,420 @@
+---
+title: "L25 - Probabilidades"
+format: html
+editor: visual
+---
+
+## Probabilidades con R
+
+Si queremos calcular probabilidades de eventos para diversos experimentos tenemos básicamente dos enfoques:
+
+-   Fuerza bruta para generar todos los resultados posibles, generar eventos especiales y calcular sus probabilidades teóricas de manera exacta.
+
+-   Mediante simulación directa de los experimentos y aproximación de las probabilidades usando muestras.
+
+## E1: Lanzamiento de una moneda justa
+
+$\Omega_1=\{cara, sello\}$
+
+$\mathcal{F}_1 = 2^{\Omega_1}$
+
+$\mathbb{P_1}:\mathcal{F}_1 \longrightarrow [0,1]$
+
+Veamos como podemos calcular la función de probabilidad.
+
+```{r}
+Omega_1 <- c("cara", "sello")
+```
+
+```{r}
+P_1 <- data.frame(Evento = c("Vacio", "Sale cara", "Sale sello", "Omega_1"), Probabilidad = c(0/2, 1/2, 1/2, 2/2))
+```
+
+```{r}
+P_1
+```
+
+```{r}
+P_1$Conjunto <- NA
+```
+
+```{r}
+# P_1$Conjunto[1] <- list()
+# P_1$Conjunto[2] <- list("cara")
+# P_1$Conjunto[3] <- list("sello")
+# P_1$Conjunto[4] <- list("cara", "sello")
+```
+
+Podemos hacer una simulación usando la función `sample` para obtener las probabilidades empíricas (probabilidades muestrales) de nuestro experimento.
+
+```{r}
+E1 <- sample(Omega_1, 10, replace = TRUE)
+```
+
+```{r}
+E1
+```
+
+```{r}
+table(E1)
+```
+
+```{r}
+P_1$ProbEmp <- c(0, as.vector(table(E1))/length(E1), 1)
+```
+
+```{r}
+P_1
+```
+
+Claramente nos tocón una mala muestra, y al ser pequeña los resultados dan b astante lejos de lo que deberían dar.
+
+```{r}
+E1 <- sample(Omega_1, 100, replace= TRUE)
+```
+
+```{r}
+E1
+```
+
+```{r}
+table(E1)
+```
+
+```{r}
+P_1$ProbEmp <- c(0, as.vector(table(E1))/length(E1), 1)
+```
+
+```{r}
+P_1
+```
+
+```{r}
+barplot(table(E1)/length(E1), main = "Probabilidades empíricas de E1", ylim = c(0, 0.7))
+abline(h = 0.5, col ="red")
+legend("topright", legend = "probabilidad teórica", col = "red", lty = 1, cex = 0.6, bty = "n")
+```
+
+NOTA: tiene que esta claro que para efectos del cálculo de las probabilidades empírica estamos usando fuertemente la idea **frecuentista** de estimar la probabilidad de un evento, contando cuantas veces ocurre y dividiendo por el número de veces que hicimos el experimento.
+
+Esto **SIEMPRE** se puede hacer (noten que parece que el experimento fuese equiprobable)
+
+## E2: Lanzo un dado justo
+
+$\Omega_2=\{1, 2, 3, 4, 5 ,6\}$
+
+$\mathcal{F}_2 = 2^{\Omega_2}$
+
+$\mathbb{P_2}:\mathcal{F}_2 \longrightarrow [0,1]$
+
+Veamos como podemos calcular la función de probabilidad.
+
+```{r}
+Omega_2 <- 1:6
+```
+
+El numero de eventos posibles ahora es mucho mas grande, $|\mathcal{f}_2|=2^6=64$.
+
+Rápidamente se vuelve impráctico colocar en la tabla todos los eventos.
+
+Afortunadamente, recordamos que si el espacio es equiprobable, podemos calcular las probabilidades de los eventos atómicos y con eso podemos calcular todas las otras probabilidades.
+
+```{r}
+P_2 <- data.frame(EventoAtomico = Omega_2, CasosFavorables = 1, CasosTotales = length(Omega_2))
+```
+
+```{r}
+P_2
+```
+
+```{r}
+P_2$FraccionTeorica <- paste(P_2$CasosFavorables, "/", P_2$CasosTotales, sep = "")
+P_2$ProbabilidadTeorica <- P_2$CasosFavorables/P_2$CasosTotales
+
+```
+
+```{r}
+P_2
+```
+
+Si queremos resolver el problema por simulación podemos hacerlo de manera similar a la anterior.
+
+```{r}
+E2 <- sample(Omega_2, 10, replace = TRUE)
+```
+
+```{r}
+E2
+```
+
+Notarán, si están trabajando en sus máquinas, que no obtienen los mismos resultados que yo.
+
+Esto se debe a que el experimento es *aleatorio* ¿verdad?
+
+La realidad es que como los resultados los estamos calculando en el computador, estos no son realmente aleatorios sino que son *pseudoaletorios*, hay un algorimo que controla su generación.
+
+Nosotros podremos suponer que los datos se comportan de la manera más parecida a la verdadera aleatoriedad, pero como exite un algoritmo que los genera, podemos hacer cosas que son imposibles con aleatoriedad verdadera.
+
+Pro ejemplo, podemos reinciar el generador de numeros aleatorios a un valor conocido; para esto usamos la función `set.seed`.
+
+```{r}
+set.seed(456)
+```
+
+```{r}
+sample(Omega_2, 10, replace = TRUE)
+```
+
+```{r}
+sample(Omega_2, 10, replace = TRUE)
+```
+
+```{r}
+set.seed(456)
+sample(Omega_2, 10, replace = TRUE)
+```
+
+```{r}
+E2 <- sample(Omega_2, 1000, replace = TRUE)
+```
+
+```{r}
+P_2$ProbEmp <- table(E2)/length(E2)
+```
+
+```{r}
+P_2
+```
+
+Al igual que antes, podemos mostrar gráficamente lo que ocurre.
+
+```{r}
+barplot(P_2$ProbEmp, names.arg = 1:6)
+abline(h = 1/6, col = "red")
+```
+
+En la clase anterior me preguntaron como se podía hacer si queríamos barras para ambas probabildades.
+
+Un primer intento fracasa gloriosamente...
+
+```{r}
+barplot(P_2$ProbabilidadTeorica, P_2$ProbEmp)
+```
+
+Esto no hace lo que quisiéramos, por favor, lean la ayuda para que comprendan lo que estoy haciendo ahora.
+
+```{r}
+names(P_2)
+```
+
+Si queremos trabajar con barras apiladas (esta es la forma por defecto de trabajar con `barplot`)
+
+```{r}
+barplot(t(P_2[, c(5, 6)]))
+```
+
+Si queremos que las barras salgan una al lado de otra usamos el parámetro `beside = TRUE`
+
+```{r}
+barplot(t(P_2[, c(5, 6)]), beside = TRUE, ylim = c(0, 0.25), col = c("lightblue", "pink"), names.arg = paste("{", 1:6 , "}", sep = ""), main = "Probabilidades de E2", ylab = "probabilidad", xlab = "evento atómico")
+legend("topright", legend = c("probabilidad teórica", "probabilidad empírica"), fill =c("lightblue", "pink"), bty = "n", cex = 0.6)
+```
+
+Son las 17:14, seguimos a las 17:24.
+
+Veamos como podemos usar lo que tenemos para calcular probabilidades de eventos arbitrarios.
+
+Consideren los siguientes eventos:
+
+-   A: Sale par
+-   B: Sale primo
+-   C: No sale ni primo ni par
+-   D: Sale primo o sale par
+
+Notar que $C = \overline{A\cup B} = \bar{D}$
+
+```{r}
+A <- c(2, 4, 6)
+B <- c(2, 3, 5)
+D <- union(B, A)
+C <- setdiff(Omega_2, D)
+```
+
+Noten que podemos ver quienes son los resultados dentro de cada conjunto
+
+```{r}
+A
+B
+C
+D
+```
+
+Para calcular las probabilidades ahoram simplemente usamos los resultados de los eventos como índices de suma,
+
+### Para el evento A
+
+```{r}
+sum(P_2$ProbabilidadTeorica[A])
+sum(P_2$ProbEmp[A])
+```
+
+### Para el evento B
+
+```{r}
+sum(P_2$ProbabilidadTeorica[B])
+sum(P_2$ProbEmp[B])
+```
+
+### Para el evento C
+
+```{r}
+sum(P_2$ProbabilidadTeorica[C])
+sum(P_2$ProbEmp[C])
+```
+
+### Para el evento D
+
+```{r}
+sum(P_2$ProbabilidadTeorica[D])
+sum(P_2$ProbEmp[D])
+```
+
+En el fondo, simplemente estamos calculando
+
+$$\mathbb{P}_2(S)=\sum_{x\in S}\mathbb{P}_2(\{x\})$$
+
+## E3: suma de tres dados justos
+
+Para este experimento vamos a necesitar trabajar con productos cartesianos, ya que el experimento, como recordaran de clase, no es equiprobable.
+
+Para esto podemos usar la función `expand.grid` y un experimento accesorio apropiado.
+
+### EA: lanzamos tres dados distinguibles, uno rojo, uno verde y uno azul y anotamos lo que sale.
+
+```{r}
+Omega_A <- expand.grid(Rojo = 1:6, Verde = 1:6, Azul = 1:6)
+```
+
+```{r}
+Omega_A
+```
+
+Veamos la tabla con todas las probabilidades de los eventos atómicos de EA.
+
+```{r}
+P_A <- Omega_A
+P_A$CasosFavorables <- 1
+P_A$CasosTotales <- nrow(Omega_A)
+P_A$ProbabilidadTeorica <- P_A$CasosFavorables/P_A$CasosTotales
+```
+
+```{r}
+P_A
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+P_A$Suma <- P_A$Rojo + P_A$Verde + P_A$Azul
+```
+
+```{r}
+P_A %>% group_by(Suma) %>% summarise( CF = sum(CasosFavorables), CT = nrow(Omega_A), ProbTeo = sum(ProbabilidadTeorica)) -> P_3
+```
+
+```{r}
+P_3$FraccionTeorica = paste(P_3$CF, "/", P_3$CT, sep ="")
+P_3$PT = P_3$CF/P_3$CT
+```
+
+```{r}
+P_3
+```
+
+```{r}
+Omega_3 <- as.vector(P_3$Suma)
+```
+
+```{r}
+Omega_3
+```
+
+Claramente el experimento E3 no es equiprobable
+
+Veamos si podemos obtener las probabilidades de algunos eventos:
+
+-   A. La suma es par
+
+-   B. La suma es un número primo
+
+-   C. La suma no es múltiplo de 3 y si es múltiplo de 5
+
+-   D. La suma no es múltiplo de 3 o es un múltiplo de 7
+
+-   E. La unión de A y C interceptada con el complemento de D
+
+### Para el evento A
+
+```{r}
+A <- seq(from = 4, to = 18, by = 2)
+A
+
+# Otra forma
+Omega_3[Omega_3 %% 2 == 0]
+```
+
+La probabilidad que buscamos es:
+
+```{r}
+sum(P_3$ProbTeo[Omega_3 %in% A])
+```
+
+### Para el evento B
+
+```{r}
+B <- c(3,5,7,11,13,17)
+B
+```
+
+```{r}
+sum(P_3$ProbTeo[Omega_3 %in% B])
+```
+
+### Para el evento C
+
+```{r}
+C <- intersect(Omega_3[(Omega_3 %% 3 != 0)], Omega_3[(Omega_3 %% 5 == 0)])
+C
+```
+
+También podríamos simplemente restar 2 a los elementos del conjunto y usarlos como índices en la tabla. Esto es más eficiente que el acceso con `%in%`
+
+```{r}
+sum(P_3$ProbTeo[Omega_3 %in% C])
+
+sum(P_3$ProbTeo[C-2])
+```
+
+### Para el evento D
+
+```{r}
+D <- union(Omega_3[(Omega_3 %% 3 != 0)], Omega_3[(Omega_3 %% 7 == 0)])
+D
+```
+
+```{r}
+sum(P_3$ProbTeo[D-2])
+```
+
+### Para el evento E
+
+```{r}
+E <- intersect(union(A,C), setdiff(Omega_3, D))
+E
+```
+
+```{r}
+sum(P_3$ProbTeo[E-2])
+```
