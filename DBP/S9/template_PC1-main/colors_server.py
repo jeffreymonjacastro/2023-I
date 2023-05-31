@@ -13,13 +13,15 @@ db = SQLAlchemy(app)
 
 @dataclass
 class Colors(db.Model):
-    id: #TODO
-    R: #TODO
-    G: #TODO
-    B: #TODO
+    id: int
+    R: int
+    G: int
+    B: int
 
-    id = db.Column(db.Integer, primary_key=True)
-    #TODO
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    R = db.Column(db.Integer, nullable=False)
+    G = db.Column(db.Integer, nullable=False)
+    B = db.Column(db.Integer, nullable=False)
     
     def __repr__(self):
         return f'<Color {self.id}>'
@@ -31,26 +33,46 @@ with app.app_context():
 def list():
     return render_template('colors_list.html')
 
-@app.route('/color_list.js')
+@app.route('/colors_list.js')
 def list_js():
     return render_template('colors_list.js')
 
 @app.route('/colors', methods=['GET', 'POST'])
 def route_colors():
     if request.method == 'GET':
-        #TODO
-    
+        colors = Colors.query.order_by(Colors.id).all()
+        return jsonify(colors) 
+        
     elif request.method == 'POST':
-        #TODO
+        color = request.get_json()
+        new_color = Colors(R = color['R'], G = color['G'], B = color['B'])
+        db.session.add(new_color)
+        db.session.commit()
+        return jsonify(new_color)
 
 @app.route('/colors/<colors_id>', methods=['GET', 'PUT', 'DELETE'])
 def route_colors_id(colors_id):
     if request.method == 'GET':
-        #TODO
+        color = Colors.query.get(colors_id)
+        return jsonify(color)
     
     elif request.method == 'PUT':
-        #TODO
+        new_color = request.get_json()
+        old_color = Colors.query.get(colors_id)
+
+        old_color.R = new_color['R']
+        old_color.G = new_color['G']
+        old_color.B = new_color['B']
+
+        db.session.commit()
+
+        return jsonify(old_color)
+        
     
     elif request.method == 'DELETE':
-        #TODO
+        color = Colors.query.get(colors_id)
+        db.session.delete(color)
+        db.session.commit()
+        return colors_id
 
+app.run(debug=True, host='0.0.0.0', port=4000)
