@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 // Función para calcular el inverso multiplicativo utilizando el algoritmo de Euclides extendido
 int euclideanExtendedAlgorithm(int a, int b, int& x, int& y) {
     if (b == 0) {
@@ -30,15 +32,14 @@ int findMultiplicativeInverse(int a, int mod) {
 }
 
 int main() {
-    int a = 7;
-    int mod = 26;
+    int a = 5;
+    int mod = 3;
 
-    try {
-        int inverse = findMultiplicativeInverse(a, mod);
-        std::cout << "Inverso multiplicativo de " << a << " módulo " << mod << " es: " << inverse << std::endl;
-    } catch (const std::exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
-    }
+    int inverse = findMultiplicativeInverse(a, mod);
+    cout << "Inverso multiplicativo de " << a << " modulo " << mod << " es: " << inverse << endl;
+
+
+    cout << 5 % 3 << endl;
 
     return 0;
 }

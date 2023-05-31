@@ -1,0 +1,221 @@
+---
+title: "A10 - Eventos"
+format: html
+editor: visual
+---
+
+## Eventos
+
+Un evento $A$ es una colección de resultados, es decir un subconjunto de $\Omega$.
+
+Se espera (debido a las condiciones técnicas que cumple $\mathcal{F}$ la sigma-álgebra de eventos) que todos los eventos pertenecen a la sigma-álgebra $A \in \mathcal{F}$.
+
+Como $\mathbb{P}:\mathcal{F}\longrightarrow[0,1]$ entonces podemos calcular la probabilidad de $A$.
+
+Diremos que los eventos $A$ y $B$ son _mutuamente excluyentes_ (esto quiere decir que no pueden ocurrir a la vez), cuanto uno mira eventos mutuamente excluyentes como conjuntos, esa exclusión mutua se traduce en que su intersección es vacía, es decir $A \cap B = \emptyset$, es decir no hay resultados en común entre $A$ y $B$.
+
+**Ejemplo**:
+
+En el experimento, lanzo un dado justo y anoto lo que sale.
+
+$$\Omega = \{1, 2, 3, 4, 5, 6\}$$
+
+$$\mathcal{F}=2^{\Omega}=\{A: A\subseteq \Omega\}$$
+
+Los eventos $A : \text{sale un número par} = \{2, 4, 6\}$, $B : \text{sale el cinco} = \{5\}$ son mutuamente excluyentes, o disjuntos.
+
+```{r}
+A <- c(2, 4, 6)
+B <- c(5)
+intersect(A, B)
+```
+
+Mientras que los eventos $A$ y $C : \text{sale primo} = \{2, 3, 5\}$ no son mutuamente excluyentes, ya que $A \cap C = \{2\}$.
+
+```{r}
+C <- c(5, 2, 3)
+intersect(A, C)
+```
+Podemos hacer otro montón de operaciones sobre conuntos.
+```{r}
+D <- union(A, C)
+```
+
+```{r}
+D
+```
+Es decir, esto es el complemento de $E : \text{sale uno}$.
+
+```{r}
+E <- c(1)
+```
+
+```{r}
+Omega <- 1:6
+```
+
+Podemos usar la función `setequal` para ver si dos conjuntos son iguales.
+```{r}
+setequal(setdiff(Omega, E), D)
+```
+
+El viernes hablamos de como podíamos usar R para calcular algunas probabilidades.
+
+## Cartas
+
+```{r}
+Mazo <- expand.grid(Rango = c("A", 2:10, "J", "Q", "K"), Pinta = c("♠", "♢", "♣", "♡"))
+```
+
+```{r}
+Mazo
+```
+
+Si quiero una mano al azar,
+
+puedo usar la función `sample` para obtenerla.
+
+
+```{r}
+Mano <- sample(1:52, 5, replace = FALSE)
+```
+
+Veamos que nos salió.
+
+```{r}
+Mazo[Mano,]
+```
+
+¡Wow! tengo un doble par a la primera.
+
+Veamos si podemos trabajar con todas las manos.
+```{r}
+M <- combn(1:52, 5)
+```
+
+La función `dim`, me da las dimensiones de la matriz con todas las manos posibles.
+
+```{r}
+choose(52, 5)
+```
+
+```{r}
+dim(M)
+```
+Vamos a trasponer esa matriz (pues me gusta trabajar sobre las filas, en vez de sobre las columnas).
+
+```{r}
+M <- t(M)
+```
+
+```{r}
+head(M)
+```
+
+La primera mano listada en `M` es:
+
+```{r}
+Mazo[M[1, ],]
+```
+
+La última es:
+```{r}
+Mazo[M[choose(52,5), ], ]
+```
+
+Si queremos selccionar una mano al azar (que es lo mismo que hace sample, pero de manera diferente).
+
+```{r}
+sample(1:choose(52, 5), 1)
+```
+Salió la mano 1200031.
+
+Que corresponde a:
+```{r}
+Mazo[M[1200031, ], ]
+```
+
+Veamos si podemos calcular la probabilidad de sacar un par.
+
+
+
+```{r}
+EsUnPar <- function(indice){
+  Mano <- M[indice, ]
+  Rangos <- Mazo$Rango[Mano]
+  RangosDiferentes <- unique(Rangos)
+  NumeroDeRangosDiferentes <- length(RangosDiferentes)
+  EsUnPar <- (NumeroDeRangosDiferentes == 4)
+  return(EsUnPar)
+}
+```
+
+Esta debería dar `FALSE`
+```{r}
+EsUnPar(1)
+```
+
+Esta también debería dar `FALSE`
+```{r}
+EsUnPar(choose(52, 5))
+```
+
+Esta debería dar `TRUE`
+```{r}
+EsUnPar(1200031)
+```
+
+```{r}
+Veamos si la función está vectorizada
+```
+
+```{r}
+EsUnPar(c(1, 1200031, choose(52, 5)))
+```
+No, la función no está naturalmente vectorizada, por lo que la tenemos que vectorizar.
+
+```{r}
+Par <- Vectorize(EsUnPar)
+```
+
+```{r}
+Par(c(1, 1200031, choose(52, 5)))
+```
+```{r}
+CasosFavorables = sum(Par(1:choose(52, 5)))
+```
+
+
+
+Ese número debería ser igual a $\binom{13}{4}\binom{4}{1}\binom{4}{2}\binom{4}{1}^3$.
+
+```{r}
+choose(13, 4)*choose(4, 1)*choose(4, 2)*choose(4, 1)^3
+```
+
+```{r}
+CasosFavorables
+```
+
+La probabilidad de sacar par es:
+```{r}
+CasosFavorables/choose(52, 5)
+```
+
+Y también podriamos obtenerla por simulación.
+```{r}
+Muestra <- sample(choose(52, 5), 1000, replace = TRUE)
+```
+
+```{r}
+ParesMuestrales <- Par(Muestra)
+```
+
+La probabilidad estimada a partir de la muestra es:
+```{r}
+sum(ParesMuestrales)/length(ParesMuestrales)
+```
+Una simulación de este tipo se conoce (de manera fundamental y simplista) como una _simulación de Montecarlo_.
+
+
+
