@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -158,10 +159,12 @@ void ejemplo004(){
     // Find devuelve un iterador al elemento encontrado, se debe dereferenciar
     auto it = find(v.begin(), v.end(), 124);
     cout << *it << endl;
+
+    // Suffle mezcla los elementos del vector con una función
+    shuffle(v.begin(), v.end(), mt19937(random_device()()));
+    for_each(v.begin(), v.end(), [](int x){cout << x << " ";});
+    cout << endl;
 }
-
-
-
 
 
 
