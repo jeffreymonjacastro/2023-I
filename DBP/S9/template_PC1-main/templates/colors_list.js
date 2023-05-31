@@ -4,6 +4,31 @@ function contraste(elem, r, g, b) {
     return brillo < 128 ? elem.style.color = "white" : elem.style.color = "black"
 }
 
+function typecolor(elem, r, g, b) {
+    if (r < 10 && g < 10 && b < 10) {
+      elem.innerHTML = "Black"
+    } else if (r > 240 && g > 240 && b > 240) {
+        elem.innerHTML = "White"
+    } else if (r + g + b < 100) {
+        elem.innerHTML = "Dark"
+    } else if (r + g + b > 700) {
+        elem.innerHTML = "Light"
+    } else if (r == g && g == b) {
+        elem.innerHTML = "Gray"
+    } else if (r == g && r > b) {
+        elem.innerHTML = "Yellow"
+    } else if (r == b && r > g) {
+        elem.innerHTML = "Magenta"
+    } else if (g == b && g > r) {
+        elem.innerHTML = "Cyan"
+    } else if (r > g && r > b) {
+        elem.innerHTML = "Red"
+    } else if (g > r && g > b) {
+        elem.innerHTML = "Green"
+    } else if (b > r && b > g) {
+        elem.innerHTML = "Blue"
+    }
+}
 
 function fetchColors() {
     fetch('/colors')
@@ -21,7 +46,7 @@ function fetchColors() {
                 <td>${color.R}</td>
                 <td>${color.G}</td>
                 <td>${color.B}</td>
-                <td>Resultado</td>
+                <td></td>
                 <td>
                   <button onclick="editColor(${color.id})">Edit</button>
                   <button onclick="deleteColor(${color.id})"> Delete </button>
@@ -30,6 +55,7 @@ function fetchColors() {
 
             row.style.backgroundColor = `rgb(${color.R}, ${color.G}, ${color.B})`
             contraste(row, color.R, color.G, color.B)
+            typecolor(row.children[3], color.R, color.G, color.B)
             tbody.appendChild(row)
         })
     })
@@ -60,7 +86,7 @@ function addColor(){
             <td> ${color.R} </td>
             <td> ${color.G} </td>
             <td> ${color.B} </td>
-            <td>Resultado</td>
+            <td></td>
             <td>
                 <button type="button" onclick="editColor(${color.id})"> Edit </button>
                 <button type="button" onclick="deleteColor(${color.id})"> Delete </button>
@@ -68,6 +94,7 @@ function addColor(){
         ` 
         row.style.backgroundColor = `rgb(${color.R}, ${color.G}, ${color.B})`
         contraste(row, color.R, color.G, color.B)
+        typecolor(row.children[3], color.R, color.G, color.B)
         tbody.appendChild(row)
     })
 }
@@ -100,6 +127,7 @@ function editColor(colorID) {
 
         row.style.backgroundColor = `rgb(${color.R}, ${color.G}, ${color.B})`
         contraste(row, color.R, color.G, color.B)
+        typecolor(row.children[3], color.R, color.G, color.B)
         console.log(`Color with ID ${colorID} edited successfully`)
     })
 }
