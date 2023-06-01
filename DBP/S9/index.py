@@ -51,17 +51,24 @@ def menu():
         #print(response)
         return response
 
-        # persons = Person.query.all()
-        # dic['persons'] = persons
-        # return jsonify(persons)
-
-
     elif request.method == 'POST':
         person = request.get_json()
         person_test = Person(name = person['name'], email = person['email'])
         db.session.add(person_test)
         db.session.commit()
         return f"Person {person['name']} added successfully!"
+
+def fibo(n):
+    if n == 0:
+        return 0
+    elif n <= 1:
+        return n
+    else:
+        return fibo(n-1) + fibo(n-2)
+
+@app.route('/fib/<int:n>', methods=['GET'])
+def fibonacci(n):
+    return str(fibo(n))
         
 
 @app.route('/<id>', methods=['GET', 'PUT', 'DELETE'])

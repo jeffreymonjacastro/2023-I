@@ -76,6 +76,10 @@ void ejemplo002(){
     vector<int> A(10000000, 1);
     int suma1 = 0, suma2 = 0;
 
+    high_resolution_clock::time_point t_inicio, t_final;
+
+    t_inicio = high_resolution_clock::now();
+
     // Se define t1 de tipo thread y se le pasa como parámetro la función suma con parámetros A y suma1 por referencia
     thread t1(suma, A, ref(suma1));
     thread t2(suma, A, ref(suma2));
@@ -84,6 +88,12 @@ void ejemplo002(){
     t1.join();
     t2.join();
 
+    t_final = high_resolution_clock::now();
+
+    duration<double, milli> t = t_final - t_inicio;
+
+    cout << "Tiempo (ms): " << t.count() << endl;
+
     cout << suma1 + suma2 << endl;
 }
 
@@ -91,12 +101,49 @@ void ejemplo002(){
     RACE CONDITION
     -> Ocurre cuando dos o más hilos acceden a una misma variable y al menos uno de ellos la modifica
     -> Para evitarlo, se usa el mutex (mutual exclusion)
-
-
+    -> Se declara un mutex: mutex mtx;
+    -> Antes de acceder a la variable, se debe bloquear el mutex con lock_guard<mutex> lock(mtx); Esto asegura que solo un hilo pueda acceder a la variable
+    -> También se puede usar para bloquear el método mtx.lock(); y para desbloquear mtx.unlock();
 */
 
+mutex mtx; // Se declara un mutex
+
+void sumaSegura(int &suma){
+    int temp = 0; // Se pone una variable local
+    for (int i = 0; i < 10000000; i++){
+        temp++; // Se incrementa la variable local
+    }
+
+    lock_guard<mutex> lock(mtx); // Se bloquea el mutex asociado con el dato
+    suma += temp; // Se accede a la variable compartida de forma segura
+}
+
+void ejemplo003(){
+    int sum = 0;
+
+    high_resolution_clock::time_point t_inicio, t_final;
+
+    t_inicio = high_resolution_clock::now();
+
+    // Dos threads acceden a la variable compartida de forma segura
+    thread t1(sumaSegura, ref(sum)); 
+    thread t2(sumaSegura, ref(sum));
+
+    // Se espera a que los threads terminen
+    t1.join();
+    t2.join();
+
+    t_final = high_resolution_clock::now();
+
+    duration<double, milli> t = t_final - t_inicio;
+
+    cout << "Tiempo (ms): " << t.count() << endl;
+
+    cout << sum << endl;
+}
+
 int main(){
-    ejemplo002();
+    ejemplo003();
 
     return 0;
 }
