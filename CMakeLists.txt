@@ -10,7 +10,7 @@ add_executable(2023_I P3/s10/TeoCodes.cpp)
 
 add_executable(tarea P3/s9/tarea2a/tarea/main.cpp P3/s9/tarea2a/tarea/foo.cpp)
 
-add_executable(pcs P3/s10/PC2_practice/Repasito_Complejidad.cpp)
+add_executable(pcs P3/s10/PC2_practice/Repasito_Threads.cpp)
 
 add_executable(Dayane P3/s7/context.cpp)
 
