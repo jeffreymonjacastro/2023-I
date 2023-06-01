@@ -131,6 +131,7 @@ void ejemplo003(){
      * transform: Realiza una transformación a cada elemento
      * sort: Ordenar los elementos de una lista
      * find: Encontrar el índice de un elemento en una lista
+     * count: Contar el número de veces que aparece un elemento en una lista
      * random_shuffle: Chocolatear
      * etc...
 */
