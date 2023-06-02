@@ -35,7 +35,7 @@ int main(){
 
     // Se crean los threads que se particionarán por chunks la tarea de sumar
     for (int i = 0; i < n_threads; ++i) {
-        threads.push_back(thread(sumar, A, B, ref(C), i, n_threads);
+        threads.push_back(thread(sumar, A, B, ref(C), i, n_threads));
     }
 
     // Se espera a que los threads terminen su ejecución
