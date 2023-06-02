@@ -1,0 +1,174 @@
+---
+title: "LabS10"
+format: html
+editor: visual
+---
+
+## Probabilidad Condicional
+
+¿Cómo actualizamos nuestra idea de la incertidumbre de un evento en vista de información parcial sobre el mismo?
+
+## E1
+
+Lanzo dos dados justos, uno rojo y uno verde, anoto sus resultados.
+
+$$
+\Omega_1 = [6] \times[6]=\{(r,v): r\in [6] \wedge v\in [6]\}
+$$
+
+```{r}
+Omega_1 <- expand.grid(Rojo = 1:6, Verde = 1:6)
+Omega_1
+```
+
+Veamos si podemos calcular las probabilidades especificadas
+
+-   $\mathbb{P}(\text{Verde sale 3}) = \frac{6}{36} = \{(1,3),(2,3),(3,3),(4,3),(5,3),(6,3)\}$
+
+Como el espacio $(\Omega_1, \mathcal{F}_1, \mathbb{P}_1)$ es equiprobable entonces es 6/36
+
+-   $\mathbb{P}(\text{Suma vale 3}) = \frac{4}{36}$
+
+-   $\mathbb{P}(\text{Alguno de los dos dados sale 3})$
+
+-   $\mathbb{P}(\text{Suma vale 5 dado que el verde sale 3})$
+
+-   $\mathbb{P}(\text{verde sale 3 dado que la suma vale 5})$
+
+Notacionalmente usaremos la barra "\|" para separar un evento de otro como condición.
+
+$\mathbb{P}(\text{Suma vale 5} | \text{verde sale 3}) = \frac{1}{6}$
+
+**Definición** La probabilidad condicional de $A$ dado $B$ se define mediante:
+
+$$
+\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(\text{Suma vale 5} \cap \text{Verde sale 3})}{\mathbb{P}(\text{Verde sale 3})} = \frac{\frac{1}{36}}{\frac{6}{36}} = \frac{1}{6}
+$$
+
+$$
+\mathbb{P}(\text{Verde sale 3} | \text{Suma sale 5}) = \frac{\mathbb{P}(\text{Verde sale 3} \cap \text{suma vale 5})}{\mathbb{P}(\text{Suma vale 5})} = \frac{\frac{1}{36}}{\frac{4}{36}} = \frac{1}{4}
+$$ \## E2
+
+Selecciono al azar uno de los siete dados (tengo uno de 4 caras, uno de 6, uno de 8, dos distinguibles de 10 caras, uno de 12 y uno de 20), lo lanzo y anoto el resultado.
+
+¿Cuál es la probabilidad de que el dado seleccionado sea el de 20 caras dado que el resultado es 11?
+
+Veamos como podemos resolver este problema por simulación
+
+Recuerden que pueden usar la función `sample` para seleccionar de manera equiprobable elementos de una lista
+
+```{r}
+sample(1:8, 1)
+```
+
+Podemos escribir una simulación directa del experimento **E2**
+
+```{r}
+rE2 <- function(){
+  DadosPosibles <- c(4,6,8,10,10,12,20)
+  DadoSeleccionado <- sample(DadosPosibles, 1)
+  Resultado <- sample(1:DadoSeleccionado,1)
+  return(Resultado)
+}
+```
+
+Veamos una muestra
+
+```{r}
+Muestra <- replicate(1000000, rE2())
+#Muestra
+```
+
+```{r}
+hist(Muestra, breaks = 1:21 - 0.5, prob = TRUE)
+```
+
+¿Será que con esto podemos resolver?
+
+$$
+\mathbb{P}(\text{seleccionamos el dado de 20}|\text{salió 11}) = \frac{\mathbb{P}(\text{Seleccionamos el dado de 20} \cap \text{salió 11})}{\mathbb{P}(\text{salió 11})}
+$$
+
+El experimento que hicimos me permite estimar la probabilidad del evento *salio 11*
+
+```{r}
+table(Muestra)/length(Muestra)
+```
+
+```{r}
+(table(Muestra)/length(Muestra))[11]
+```
+
+¿Quién es el evento *Seleccionamos el dado de 20* en la sigma álgebra de $(\Omega_2, \mathcal{F}_2, \mathbb{P}_2)$?
+
+¿Qué resultados lo componen?
+
+Noten que $\Omega_2 = [20] = \{x\in \mathbb{N}: x \leq 20 \}$
+
+¿Pueden representar el "evento" *seleccionamos el dado de 20* ? en $\mathcal{F}_2$?
+
+No. no podemos.
+
+Para poder resolver el problema necesitamos un espacio accesorio donde registremos la información sobre el dado seleccionado
+
+$$
+\Omega_A = \{(d,r): d\text{ es el dado seleccionado } \wedge r\text{ es su resultado al lanzarlo}\}
+$$
+
+¿Cuánto vale $|\Omega_A|$?
+
+$|\Omega_A| = 4 + 6 + 8 + 10+10 + 12+ 20 = 70$
+
+```{r}
+.resultados <- function(x){
+  return(1:x)
+}
+```
+
+```{r}
+.resultados(6)
+```
+
+Vamos a vectorizar la función
+
+```{r}
+Resultados <- Vectorize(.resultados)
+```
+
+```{r}
+Resultados(c(2,3,4,5,6))
+```
+
+```{r}
+unlist(Resultados(c(2,3)))
+```
+
+```{r}
+.dados <- function(x){
+  return(rep(x,x))
+}
+```
+
+```{r}
+.dados(7)
+```
+
+```{r}
+Dados <- Vectorize(.dados)
+```
+
+```{r}
+MisDados <- c(4,6,8,10,10,12,20)
+```
+
+```{r}
+
+```
+
+```{r}
+Omega_A <- data.frame(DadoUsado = unlist(Dados(MisDados)), Sale = unlist(Resultados(MisDados)))
+```
+
+```{r}
+Omega_A
+```
