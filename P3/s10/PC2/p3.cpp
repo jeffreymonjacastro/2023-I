@@ -30,10 +30,9 @@ int encontrarSegundoMinimo(vector<int>& A){
 
 /*
  * 1. Describa el Invariante de Bucle.
-    El algoritmo sirve para hallar el segundo elemento mínimo de un 
-    El invariante de bucle es
+    El algoritmo sirve para hallar el segundo elemento mínimo de un conjunto de enteros. Para lograrlo, el algoritmo itera a través del conjunto para buscar el elemento mínimo y asignarlo a la variable min1. Luego, si encuentra otro elemento mínimo, el número que estaba almacenado en min1 pasa a ser el segundo mínimo (min2) y el min1 será denuevo el menor elemento. Este proceso lo realiza en O(n), ya que debe recorrer cada uno de los elementos del arreglo.
 
-    es una propiedad que se cumple en cada iteración del bucle. En este caso, el invariante de bucle es que el minimo1 y minimo2 son los dos menores elementos del vector A[0..i-1].
+    Por lo tanto, el invariante de bucle es que, en cada iteración, la variable min1 y min2 son el primer y segundo elemento mínimo respectivamente para la secuencia A[0...i-1] a partir de la segunda iteración, ya que para que existan dos mínimos, debe haber como mínimo 2 elementos en el conjunto.
 
  * 2. Utilice el Invariante de Bucle para demostrar el algoritmo:
     - Inicialización: ¿El I.B. se cumple en la primera iteración?¿Cómo?
