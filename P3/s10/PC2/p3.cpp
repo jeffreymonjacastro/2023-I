@@ -36,7 +36,7 @@ int encontrarSegundoMinimo(vector<int>& A){
 
  * 2. Utilice el Invariante de Bucle para demostrar el algoritmo:
     - Inicialización: ¿El I.B. se cumple en la primera iteración?¿Cómo?
-        Answer: El I.B. se cumple en la primera y segunda iteración, ya que se necesitan como mínimo 2 elementos en el conjunto para que existan los dos menores. Además, el minimo1 y minimo2 son muy grandes, por lo que cualquier elemento de A[i] será menor que ellos.
+        Answer: El I.B. se cumple en la segunda iteración, ya que se necesitan como mínimo 2 elementos en el conjunto para que existan los dos menores. Además, el minimo1 y minimo2 son muy grandes, por lo que cualquier elemento de A[i] será menor que ellos.
 
     - Mantenimiento: Asumiendo que el I.B. se cumple al comenzar la iteración i, ¿Este se mantiene al terminar la iteración?¿Cómo?
         Answer: Como el I.B. se cumple al comenzar la iteración i, entonces el minimo1 y minimo2 son los dos menores elementos de A[0..i-1]. En cada iteración, si encuentra otro elemento mínimo A[i], el número que estaba almacenado en min1 pasa a ser el segundo mínimo (min2) y el min1 será denuevo el menor elemento A[i]. Por lo que el I.B se mantiene.
