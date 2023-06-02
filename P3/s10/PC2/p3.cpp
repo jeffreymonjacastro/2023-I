@@ -36,14 +36,13 @@ int encontrarSegundoMinimo(vector<int>& A){
 
  * 2. Utilice el Invariante de Bucle para demostrar el algoritmo:
     - Inicialización: ¿El I.B. se cumple en la primera iteración?¿Cómo?
-        Answer: El I.B. se cumple en la primera iteración porque el minimo1 y minimo2 son muy grandes, por lo que cualquier elemento de A[i] será menor que ellos.
+        Answer: El I.B. se cumple en la primera y segunda iteración, ya que se necesitan como mínimo 2 elementos en el conjunto para que existan los dos menores. Además, el minimo1 y minimo2 son muy grandes, por lo que cualquier elemento de A[i] será menor que ellos.
 
     - Mantenimiento: Asumiendo que el I.B. se cumple al comenzar la iteración i, ¿Este se mantiene al terminar la iteración?¿Cómo?
-        Answer: Si el I.B. se cumple al comenzar la iteración i, entonces el minimo1 y minimo2 son los dos menores elementos de A[0..i-1]. Al terminar la iteración, se compara el elemento A[i] con minimo1 y minimo2. Si A[i] es menor que minimo1, entonces el nuevo minimo1 es A[i] y el nuevo minimo2 es el antiguo minimo1. Si A[i] no es menor que minimo1, pero sí es menor que minimo2, entonces el nuevo minimo2 es A[i]. En ambos casos, el I.B. se mantiene.
+        Answer: Como el I.B. se cumple al comenzar la iteración i, entonces el minimo1 y minimo2 son los dos menores elementos de A[0..i-1]. En cada iteración, si encuentra otro elemento mínimo A[i], el número que estaba almacenado en min1 pasa a ser el segundo mínimo (min2) y el min1 será denuevo el menor elemento A[i]. Por lo que el I.B se mantiene.
 
     - Terminación: Al terminar el bucle, utilice el I.B. para demostrar el algoritmo.
-        Answer: Al terminar el bucle, el I.B. se cumple porque el minimo1 y minimo2 son los dos menores elementos de A[0..n-1], por lo que el algoritmo es correcto.
-
+        Answer: Al terminar el bucle, el I.B. se cumple porque el minimo1 y minimo2 son los dos menores elementos de el conjunto entero A[0..n-1], por lo que se confirma la correctitud del algoritmo.
 */
 
 
