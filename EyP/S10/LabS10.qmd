@@ -162,13 +162,76 @@ MisDados <- c(4,6,8,10,10,12,20)
 ```
 
 ```{r}
-
-```
-
-```{r}
 Omega_A <- data.frame(DadoUsado = unlist(Dados(MisDados)), Sale = unlist(Resultados(MisDados)))
 ```
 
 ```{r}
 Omega_A
+```
+
+Notar que podemos calcular algunas probabilidades ahora.
+
+```{r}
+P_A <- Omega_A
+```
+
+```{r}
+P_A$ProbAtomicaCondicional <- 1/P_A$DadoUsado
+```
+
+```{r}
+P_A$ProbabilidadAtomico <- P_A$ProbAtomicaCondicional * (1/7)
+```
+
+¿Cuál es la probabilidad de obtener un 11?
+
+```{r}
+sum(P_A$ProbabilidadAtomico[P_A$Sale == 11])
+```
+
+¿Cuánto vale la probabilidad de que el dado seleccionado sea el de 20 dado que sale 11?
+
+```{r}
+P_A$ProbabilidadAtomico[P_A$Sale == 20 & P_A$DadoUsado == 20]/sum(P_A$ProbabilidadAtomico[P_A$Sale == 11])
+```
+
+Esto ya es en el experimento 2.
+
+¿Cuánto es la probabilidad de que hayamos usado el dado de 20 dado que salió un 1?
+
+```{r}
+P_A$ProbabilidadAtomico[P_A$Sale == 1 & P_A$DadoUsado == 20]/sum(P_A$ProbabilidadAtomico[P_A$Sale == 1])
+```
+
+¿Cuánto es la probabilidad de que hayamos usado el dado de 4 dado que salió un 1?
+
+```{r}
+P_A$ProbabilidadAtomico[P_A$Sale == 1 & P_A$DadoUsado == 4]/sum(P_A$ProbabilidadAtomico[P_A$Sale == 1])
+```
+
+```{r}
+hist(Muestra, breaks = 1:21 - 0.5, prob = TRUE)
+abline(h = 1/8, col = "red", lty = 2)
+```
+
+¿Cuál es la probabilidad de que salga un número par?
+
+```{r}
+sum(P_A$ProbabilidadAtomico[P_A$Sale %% 2 == 0])
+```
+
+```{r}
+sum(P_A$ProbabilidadAtomico[P_A$Sale <= 4])
+```
+
+¿Cuál será la probabilidad de que tengamos un número par menor o igual a 4?
+
+```{r}
+sum(P_A$ProbabilidadAtomico[P_A$Sale <= 4 & P_A$Sale %% 2 == 0])
+```
+
+¿Cuánto es la probabilidad de que si sale un número impar, el dado seleccionado sea el de 8 caras?
+
+```{r}
+sum(P_A$ProbabilidadAtomico[P_A$Sale %% 2 == 1 & P_A$DadoUsado == 8])/sum(P_A$ProbabilidadAtomico[P_A$Sale %% 2 == 1])
 ```
