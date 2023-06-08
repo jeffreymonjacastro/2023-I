@@ -8,7 +8,7 @@ import { Index } from './components/Calculadora'
 function App() {
   
   return (
-    <div className="App">
+    <div className="App-header">
       Hello World
     
       <Index />
