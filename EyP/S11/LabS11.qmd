@@ -1,0 +1,271 @@
+---
+title: "LabS11"
+format: html
+editor: visual
+---
+
+## E1
+
+**Lanzamos una moneda justa, si sale cara lanzamos un dado justo, si sale sello lanzamos dos dados justos y los sumamos, en cualquier caso anotamos el resultado.**
+
+TAREA: Plantear un espacio de probabilidad apropiado para **E1**, encontrar todas las probabilidades atómicas.
+
+Verificar las respuestas empíricas que hallemos hoy.
+
+Si definimos los eventos $C: \text{sale cara en la moneda}$ y $R_i: \text{sale i en el dado}$ anotamos $i$ como resultado del experimento, podemos estar interesados en calcular la siguiente probabilidad:
+
+$$\mathbb{P}_1(C|R_3)$$
+
+Usando la definición de probabilidad condicional vemos que tenemos que calcular
+
+$$
+\mathbb{P}_1(C|R_3) = \frac{\mathbb{P}(C \cap R_3)}{\mathbb{P}(R_3)}
+$$
+
+¿Cómo calculamos $\mathbb{P}(R_3)$?
+
+$$
+\mathbb{P}(R_3) = \mathbb{P}(C \cap R_3) + \mathbb{P}(\bar{C} \cap R_3)
+$$
+
+¿Cómo calculamos $\mathbb{P}(C \cap R_3)$?
+
+Usando de nuevo la fórmula de probabilidad condicional, tenemos que:
+
+$$
+\mathbb{P}(C \cap R_3) = \mathbb{P}(R_3 | C) * \mathbb{P}(C)
+$$
+
+::: callout-note
+### Recuerden que:
+
+$$
+\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+$$
+
+notarán que podemos despejar $\mathbb{P}(A \cap B)$, siempre podemos escribir la intersección usando probabilidad condicional.
+:::
+
+Noten que $\mathbb{P}(C) = \frac{1}{2} = \mathbb{P}(\bar{C})$
+
+¿Cuánto vale $\mathbb{P}(R_3|C)$?
+
+$$
+\mathbb{P}(R_3|C)= \mathbb{P}(\text{Un dado justo sale 3} | C) = \mathbb{P}(\text{Un dado justo sale 3}) = \frac{1}{6}
+$$
+
+Donde estamos usando fuertemente la dea de independencia entre los eventos $\text{Un dado justo sale 3}$ y $C\text{: la moneda sale cara}$
+
+$$
+\mathbb{P}(C \cap R_3) = \mathbb{P}(R_3 | C) * \mathbb{P}(C) = \frac{1}{6} * \frac{1}{2} = \frac{1}{12}
+$$
+
+De manera similar:
+
+$$
+\mathbb{P}(\bar{C} \cap R_3) = \mathbb{P}(R_3 | \bar{C}) * \mathbb{P}(\bar{C}) = \left(\frac{1}{36} + \frac{1}{36}\right) * \frac{1}{2} = \frac{1}{36}
+$$
+
+Estamos listos para calcular la probabilidad `el resultado es 3`
+
+$$
+\mathbb{P}(R_3) = \frac{1}{12} + \frac{1}{36} = \frac{4}{36}
+$$
+
+Y
+
+$$
+\mathbb{P}(C|R_3) = \frac{\mathbb{P}(C \cap R_3)}{\mathbb{P}(R_3)} = \frac{\frac{3}{36}}{\frac{4}{36}} = \frac{3}{4}
+$$
+
+Es decir, la probabilidad de que la moneda sea cara dado que el resultado es 3 es `3/4`.
+
+Veamos si podemos hacer esto por simulación directa.
+
+Noten que como vamos a haber experimentos aleatorios, podría ser conveniente anotar la semilla con la que vamos a trabajar.
+
+```{r}
+set.seed(1245)
+```
+
+> Las *r* delante de las funciones representa que esa es una función de aletoriedad
+
+Creamos un generador de moneda:
+
+```{r}
+rMoneda <-function(){
+  return(sample(c("cara", "sello"), 1))
+}
+#rMoneda()
+```
+
+Hagamos lo mismo pero para un dado.
+
+```{r}
+rDado <- function(){
+  return(sample(1:6, 1))
+}
+#rDado()
+```
+
+Estamos listos para hacer el simulador de nuestro experimento
+
+```{r}
+rE1 <- function(){
+  if(rMoneda() == "cara"){
+    return(rDado())
+  } else {
+    return(rDado() + rDado())
+  }
+}
+
+#rE1()
+```
+
+Veamos una muestra de los resultados de **E1**
+
+```{r}
+X <- replicate(100, rE1())
+```
+
+```{r}
+table(X)
+```
+
+```{r}
+barplot(table(X)/length(X))
+```
+
+Vamos a ver qué pasas con un tamaño de muestra más grande
+
+```{r}
+X <- replicate(100000, rE1())
+```
+
+```{r}
+barplot(table(X)/length(X))
+```
+
+Comparemos la probabilidad empírica hallada con la probabilidad teórica que encontramos hace un rato.
+
+$$
+\mathbb{P}(R_3) = \frac{4}{36}
+$$
+
+```{r}
+barplot(table(X)/length(X))
+abline(h = 4/36, col = "red", lty = 2)
+```
+
+```{r}
+P3Emp <- sum(X == 3)/length(X)
+```
+
+```{r}
+P3Emp
+4/36
+```
+
+Nos falta encontrar el denominador de la fracción para obtener $\mathbb{P}(C|R_3)$...
+
+Descubrimos que no vamos a poder. La razón es que si bien nuestro experimento está bien simulado, no estamos guardando el valor de la moneda.
+
+Vamos a tratar de escribir un simulador que si guarde la información sobre la moneda para poder calcular de manera empírica la probabilidad deseada
+
+```{r}
+rE1A <- function(){
+  m <- rMoneda()
+  if(m == "cara"){
+    return(c(m, rDado()))
+  } else {
+    return(c(m, rDado() + rDado()))
+  }
+}
+
+rE1A()
+```
+
+```{r}
+Y <- replicate(1000000, rE1A())
+```
+
+```{r}
+dim(Y)
+```
+
+Las dimensiones de `Y` están mal, necesitamos una observación por fila y una variable por columna
+
+```{r}
+DFY <- as.data.frame(t(Y))
+```
+
+```{r}
+head(DFY)
+```
+
+Vamos a arreglar los nombres
+
+```{r}
+names(DFY) <- c("Moneda", "Resultado")
+```
+
+```{r}
+DFY$Resultado <- as.numeric(DFY$Resultado)
+```
+
+```{r}
+barplot(table(DFY$Resultado)/nrow(DFY))
+```
+
+Vamos a probar con una muestra más grande y controlando la semilla
+
+```{r}
+set.seed(8910)
+```
+
+```{r}
+B <- barplot(table(DFY$Resultado, DFY$Moneda)/nrow(DFY), beside = TRUE)
+axis(1, at = c(B[, 1], B[, 2]), labels = c(1:12, 1:12), cex.axis = 0.5)
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+DFY %>% group_by(Moneda, Resultado) %>% summarise(PAtomE = n()/nrow(DFY)) -> P1E
+```
+
+```{r}
+P1E
+```
+
+Veamos cuanto vale la probabilidad que calculemos al principio de manera teórica:
+
+```{r}
+P1E$PAtomE[P1E$Moneda == "cara" & P1E$Resultado == 3]/sum(P1E$PAtomE[P1E$Resultado == 3])
+```
+
+La probabilidad teórica es 3/4.
+
+## E2
+
+**Tenemos una bolsa con siete pelotas, 3 roas, 2 verdes, 1 azul, 1 negra. Extraemos dos a la vez y si son del mismo color lanzamos un dado justo de 6 caras, si son de colores distintos lanzamos un dado justo de 4 caras. Anotamos que sale.**
+
+**TAREA:**
+
+-   Plantear un espacio de probabilidad apropiado para responder todas las preguntas.
+
+-   Encontrar todas las probabilidades atómicas pertinentes.
+
+-   Responder las siguientes preguntas:
+
+    -   $\mathbb{P}(\text{El resultado es 3} | \text{Sale al menos una roja})$
+
+    -   $\mathbb{P}(\text{El resultado es 3} | \text{Sale al menos una negra})$
+
+    -   $\mathbb{P}(\text{Sale al menos una roja} | \text{El resultado es 3})$
+
+    -   $\mathbb{P}(\text{Sale al menos una negra} | \text{El resultado es 3})$
+
+Puede ser interesante que usen la función `combn`.
