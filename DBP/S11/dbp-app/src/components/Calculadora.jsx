@@ -3,12 +3,12 @@ import { Boton } from './Boton'
 
 export const Index = () => {
     return (
-        <div>
-            <h2>
+        <section>
+            <h3>
             calculadora
-            </h2>
+            </h3>
 
             <Boton />
-        </div>
+        </section>
     );
 }
