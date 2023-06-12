@@ -2,6 +2,8 @@
 
 using namespace std;
 
+/* PILAS DINÁMICASS */
+
 template <class T>
 struct Nodo{
     T valor;
@@ -30,30 +32,61 @@ public:
 template<typename T>
 class Pila {
 private:
-    int size_pila; 
-    Nodo<T>* nodo_top; 
+    int size_pila;
+    Nodo<T> *nodo_top;
 public:
-    Pila(): nodo_top(NULL), size_pila(0){}; 
-    ~Pila();
+    Pila() : nodo_top(NULL), size_pila(0) {};
 
-    bool empty(){ return nodo_top == NULL; };
-    int size(){ return size_pila; };
+    bool empty() { return nodo_top == NULL; };
 
-    void push(T elem){
-        Nodo<T>* nuevo_nodo = new Nodo<T>(elem, nodo_top);
+    int size() { return size_pila; };
+
+    /* El metodo push() agrega un nuevo nodo al inicio de la pila (nodo_top), el nodo 'nuevo' ahora apunta
+    al nodo que estaba en el tope de la pila (nodo_top). El elemento 'e' se guarda en el nodo 'nuevo'.
+    Esta operación tiene complejidad constante O(1)*/
+
+    void push(T elem) {
+        Nodo<T> *nuevo_nodo = new Nodo<T>(elem, nodo_top);
+        nodo_top = nuevo_nodo;
+        size_pila++;
     }
 
-    void pop(){
+    /* El metodo pop() elimina el nodo que esta en el tope de la pila (nodo_top) y libera la memoria del nodo
+    eliminado. El nuevo tope de la pila es el nodo que estaba apuntado por el nodo eliminado.
+    Esta operación tiene complejidad constante O(1) */
 
+    void pop() {
+        if (empty()) {
+            cout << "Error: Pila vacia" << endl;
+            return;
+        }
+        Nodo<T> *temp = nodo_top;
+        nodo_top = nodo_top->next;
+        delete temp;
+        size_pila--;
     }
 
-    T top(){
-
+    /*El método top() retorna el elemento que esta en el tope de la pila (nodo_top) sin eliminarlo.
+    Esta operación tiene complejidad O(1)*/
+    T top() {
+        if(empty()) {
+            cout << "Error: Pila vacia" << endl;
+            return T();
+        }
+        return nodo_top->valor;
     }
+
+    /* El destructor libera la memoria de todos los nodos de la pila usando el metodo pop()
+    hasta que la pila este vacia. Esta operación tiene complejidad lineal O(n) */
+    ~Pila(){
+        while(!empty()){
+            pop();
+        }
+    };
 };
 
 
-int main(){
+void nodos(){
     /* El primer nodo n1 tiene de valor el 3 y su next apunta a un null*/
     Nodo<int>* n1 = new Nodo<int>(3, NULL);
     cout << "valor = " << n1->valor << endl; // Salida: valor = 3
@@ -68,4 +101,20 @@ int main(){
     cout << "valor = " << n3->valor << endl; // Salida: valor = 7
     cout << "valor = " << n3->next->valor << endl; // Salida: valor = 5
     cout << "valor = " << n3->next->next->valor << endl; // Salida: valor = 3
+}
+
+int main(){
+    Pila<int> pila;
+    pila.push(2); // |2|
+    pila.push(4); // |2|4|
+    pila.push(3); // |2|4|3|
+    cout << pila.top() << endl; // 3
+
+    pila.pop();   // |2|4|
+    pila.push(9); // |2|4|9|
+    pila.pop();   // |2|4|
+    cout << "size = " << pila.size() << endl; // size = 2
+    cout << pila.top() << endl; // 4
+
+    return 0;
 }

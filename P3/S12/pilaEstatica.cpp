@@ -2,6 +2,8 @@
 
 using namespace std;
 
+/* PILAS ESTÁTICAS */
+
 template <class T>
 class PilaEstatica {
 private:
