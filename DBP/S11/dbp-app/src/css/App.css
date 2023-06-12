@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background-color: #282c34;
+  color: white;
+}
+
+.rojo {
+  background-color: #f00;
+}
+
+.verde {
+  background-color: #0f0;
+}

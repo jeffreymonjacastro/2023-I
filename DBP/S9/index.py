@@ -5,12 +5,16 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost:5432/flaskapp'
+app.config['SQLALCHEMY_DEFAULT_SCHEMA'] = 'dbpclasses'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 @dataclass
 class Person(db.Model):
+    __tablename__ = 'person'
+    __table_args__ = {'schema': 'dbpclasses'}
+
     id: int
     name: str
     email: str
@@ -48,8 +52,10 @@ def menu():
         for user in users:
             response += user.name + ";" + user.email
 
-        #print(response)
-        return response
+        print(response)
+
+        persons = Person.query.all()
+        return jsonify(persons)
 
     elif request.method == 'POST':
         person = request.get_json()
