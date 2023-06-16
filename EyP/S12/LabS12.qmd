@@ -1,0 +1,346 @@
+---
+title: "LabS12"
+format: html
+editor: visual
+---
+
+## Variables aleatorias
+
+Una variable aleatoria $\mathbb{x}$ es una función $\mathbb{x}:\omega \longrightarrow \mathbb{R}$ donde $(\omega,\mathcal{F}, \mathbb{P})$ es el espacio de probabilidad asociado a algún experimento aleatorio.
+
+Esta función induce un nuevo espacio de probabilidad $(\mathbb{R}, \mathcal{B}, \mathrm{p})$ donde el conjunto $\mathcal{B}$ es el conjunto de los borelianos y contiene a todos los intervalos, abiertos, cerrados o de cualquier tipo, acotados o no.
+
+## Variable aleatoria discreta
+
+Una variable aleatoria $\mathbb{X}$ es discreta si su **rango es contable**, es decir, debe existir una biyección total entre $\mathsf{Rango}(\mathbb{X})$ y algún subconjunto de los naturales $\mathbb{N}$.
+
+::: callout-note
+### Nota:
+
+Si el rango de la variable aleatoria es finito, la variable aleatoria es claramente discreta (ya que su rango es trivialmente contable )
+:::
+
+Hay variables aleatorias con rango infinito, pero contable que son discretas.
+
+### E1
+
+**Lanzo un dado justo y anoto que número sale.**
+
+Sea $\mathbb{X}$ la variable que registra ese número.
+
+Debería ser claro que $\mathbb{X}$ es una variable discreta, ya que $\mathsf{Rango}(\mathbb{X})=[6]=\{1,2,3,4,5,6\}$
+
+La función de masa de probabilidad de $\mathbb{X}$ es:
+
+$$
+\mathrm{p}(x)=\begin{cases}
+  \tfrac{1}{6} & \text{si } x\in [6] \\
+  0 & \text{en caso contrario}
+\end{cases}
+$$
+
+### E2
+
+Sea $\mathbb{Y}$ una variable aleatoria tal que $\mathbb{Rango}(\mathbb{Y})=\{\mathrm{e}, \pi, -1\}$ con función de masa de probabilidad:
+
+$$
+\mathrm{p}(y)=\begin{cases}
+  \tfrac{1}{3} & \text{si } y = \mathrm{e} \\
+  \tfrac{1}{2} & \text{si } y = \pi \\
+  \tfrac{1}{6} & \text{si } y = -1 \\
+  0 & \text{en caso contrario}
+\end{cases}
+$$
+
+Claramente $\mathbb{Y}$ es una variable aleatoria discreta pues solo toma tres valores diferente (es irrelevante si los valores tienen parte decimal o no. No importa si no es entero o no es positivo)
+
+### E3
+
+Sea $\mathbb{Z}$ la variable que cuenta cuantos intentos son necesarios para obtener una cara por primera vez al lanzar una moneda justa.
+
+Claramente el rango de $\mathbb{Z}$ es $\mathsf{Rango}(\mathbb{Z}) = \mathbb{N}$
+
+Por lo tanto, la variable aleatoria es claramente discreta, pues su rango consiste de todos los naturales
+
+### E4
+
+Sea $\mathbb{W}$ una variable aleatoria con rango $\mathsf{Rango}(\mathbb{W}) = [1,37) \subseteq \mathbb{R}$
+
+La variable $\mathbb{W}$ no es discreta, ya que su rango toma una cantidad incontable de valores; no podemos establecer una biyección total entre el rango de la variable y algún subconjunto de los naturales.
+
+Si el rango de una variable contiene "intervalos de números reales" entonces la variable aleatoria no puede ser discreta.
+
+## Gráficas
+
+La función de probabilidad y la función de probabilidad acumuladad se grafican de manera específica.
+
+### E1
+
+En este experimento, puede ser internaste ver las cosas en una tabla
+
+```{r}
+E1 <- data.frame(x = 1:6, p = rep(1/6, 6))
+E1
+```
+
+```{r}
+plot(E1$x, 
+     E1$p, 
+     type = "h", 
+     col="red",
+     main = "Función de masa de probabilidad para E1",
+     xlab = "Valor del dado",
+     ylab = "Probabilidad"
+     )
+```
+
+¿Cómo se grafica la función de probabilidad acumulada?
+
+**Tarea:** Hay un conjunto de funciones en R que sirven para graficar correctamente funciones de probabilidad acumulada. Busca en **Google** cuáles son y cómo se usan. Repitan los ejercicios usando esas funciones.
+
+```{r}
+E1$FF <- cumsum(E1$p)
+E1
+```
+
+De manera que la función de probabilidad acumulada $F(x) = \mathbb{P}(\mathbb{X}\leq x) = \sum_{y \in \mathsf{Rango}(\mathbb{X}) \\ y \leq x} \mathrm{p}(y)$
+
+Explícitamente, la función de probabilidad acumulada de $\mathbb{X}$ es:
+
+$$
+\mathrm{p}(x)=\begin{cases}
+  0 & \text{si } x < 1 \\
+  \tfrac{1}{6} & \text{si } 1 \leq x < 2 \\
+  \tfrac{2}{6} & \text{si } 2 \leq x < 3 \\
+  \tfrac{3}{6} & \text{si } 3 \leq x < 4 \\
+  \tfrac{4}{6} & \text{si } 4 \leq x < 5 \\
+  \tfrac{5}{6} & \text{si } 5 \leq x < 6 \\
+  \tfrac{6}{6} & \text{si } 6 \leq x \\
+\end{cases}
+$$
+
+Y su gráfica es:
+
+```{r}
+plot(c(0, E1$x, 7), 
+     c(0, E1$FF, 1),
+     type = "s",
+     col = "blue",
+     lty = 3,
+     main = "Función de masa de probabilidad acumulada para E1",
+     xlab = "Valor del dado",
+     ylab = "Probabilidad"
+     )
+
+lines(E1$x, 
+     E1$p, 
+     type = "h", 
+     col="red",
+     )
+
+points(E1$x, 
+     E1$p, 
+     pch = 20, 
+     col="red",
+     )
+
+legend("topleft",
+       legend = c("Función de probablididad",
+                  "Función de probabilidad acumulada"),
+       col = c("red", "blue"),
+       lty = c(1,3),
+       bty = "n"
+)
+```
+
+### E2
+
+**Tarea:** Hagan lo que hicimos para **E1**
+
+### E3
+
+¿Quién es la función de probabilidad en este caso?
+
+Recordemos que $\mathbb{Z}$ cuenta el número de intentos necesarios a la hora de lanzar una moneda justa, para lograr ver por primera vez una cara.
+
+La función de probabilidad en este caso es:
+
+$$
+\mathrm{p}(x)=\begin{cases}
+ \left(\tfrac{1}{2}\right)^x & \text{si } x \in \mathbb{N} \\
+ 0 & \text{en caso contrario } \\
+\end{cases}
+$$
+
+Para calcular esta función estamos usando fuertemente la independencia de los lanzamientos una vez que sabemos que ocurrió en los lanzamientos previos.
+
+A la hora de graficar, claramente no podremos graficar la función completa.
+
+Veamos por ejemplo qué ocurre entre 1 y 20:
+
+```{r}
+plot(c(-1, 1:20, 22), 
+     c(0, cumsum((1/2)^(1:20)), 1),
+     type = "s",
+     col = "blue",
+     lty = 3,
+     main = "Función de masa de probabilidad acumulada para E3",
+     xlab = "Número de intentos",
+     ylab = "Probabilidad"
+     )
+
+lines(1:20, 
+     (1/2)^(1:20), 
+     type = "h", 
+     col="red",
+     )
+
+#points(1:20, 
+#     (1/2)^(1:20), 
+#     pch = 20, 
+#     col="red",
+#     )
+
+legend("topright",
+       legend = c("Función de probablididad",
+                  "Función de probabilidad acumulada"),
+       col = c("red", "blue"),
+       lty = c(1,3),
+       bty = "n"
+)
+```
+
+## Esperanza, varianza y desviación estándar
+
+La esperanza de una variable aleatoria discreta se define mediante (siempre que exista):
+
+$$
+\mathsf{E}(\mathbb{X}) = \sum_{x \in \mathsf{Rango}(\mathbb{X})} x*\mathrm{p}
+(x)
+$$
+
+La esperanza de $\mathbb{X}$ es el valor teórico de el promedio muestral, se puede interpretar como el centro de masa de la función de masa de probabilidad vista como una colección de partículas con las masas ubicadas en los lugares que la función especifica
+
+La varianza de una variable aleatoria discreta se define mediante (siempre que exista):
+
+$$
+\mathsf{Var}(\mathbb{X}) = \sum_{x \in \mathsf{Rango}(\mathbb{X})} (x - \mathsf{E}(\mathbb{X}))^2 * \mathrm{p}(x)
+$$
+
+La varianza de $\mathbb{X}$ es el valor teórico de la varianza muestral
+
+La desviación estándar de $\mathbb{X}$ es el valor teórico de la desviación estándar muestral y se calcula como la raíz cuadrada de la varianza.
+
+$$
+\mathsf{sd}(x)=\sqrt{\mathsf{Var}(X)}
+$$
+
+### E1
+
+Veamos
+
+```{r}
+EX <- sum(E1$x*E1$p)
+VarX <- sum((E1$x- EX)^2 * E1$p)
+sdX <- sqrt(VarX)
+```
+
+```{r}
+EX
+VarX
+sdX
+```
+
+Noten que estos valores los podemos corroborar (en este caso) mediante simulación directa:
+
+```{r}
+X <- sample(1:6, 10000, replace = TRUE)
+```
+
+```{r}
+mean(X)
+var(X)
+sd(X)
+```
+
+### E2
+
+**Tarea**: calcule la esperanza, varianza y desviación estándar de la variable. Corroboren mediante una simulación si sus resultados teóricos son razonables
+
+### E3
+
+En el caso de E3 tenemos problemas ligados a las cuentas específicas que necesitamos hacer.
+
+$$
+\mathsf{E}(\mathbb{Z}) = \sum_{i=1}^\infty i*\mathrm{p}(i) = \sum_{i=1}^\infty i*\left(\frac{1}{2} \right)^i
+$$
+
+Esta serie se puede calcular de diversas maneras (por ejemplo, tal como sugiere Benjamín, podríamos trabajar con series telescópicas, o podríamos trabajar con la derivada de la serie geométrica), pero en R podemos aproximar algunos de estos valores
+
+```{r}
+EZaprox <- sum(1:100*(1/2)^(1:100))
+EZaprox
+```
+
+(El valor teórico es 2)
+
+```{r}
+EZaprox - 2
+```
+
+(Por cuestiones de redondeo, hemos atinado al valor exacto)
+
+La varianza, la podemos calcular de manera aproximada
+
+```{r}
+VarZaprox <- sum((1:100 - EZaprox)^2*(1/2)^(1:100))
+VarZaprox
+```
+
+¿Será que podemos ver esto por simulación directa?
+
+```{r}
+rMoneda <- function(){
+  return (sample(c("cara","sello"), 1))
+}
+```
+
+```{r}
+rE3 <- function(){
+  intentos <- 1
+
+  while (rMoneda() != "cara"){
+    intentos <- intentos + 1
+  }  
+  
+  return (intentos)
+}
+```
+
+```{r}
+rE3()
+```
+
+```{r}
+Z <- replicate(1000, rE3())
+```
+
+```{r}
+hist(Z,
+     breaks = (0:max(Z)) + 0.5,
+     prob = TRUE,
+     main = "Probabilidad empírica vs. probabilidad teórica"
+)
+
+lines(1:max(Z), 
+      (1/2)^(1:max(Z)), 
+      col="red", 
+      type = "h"
+)
+```
+
+```{r}
+mean(Z)
+var(Z)
+sd(Z)
+```
