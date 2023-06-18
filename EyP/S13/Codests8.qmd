@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## ts8
+
+Binomial
+
+k: numero de aciertos
+
+n: numero de experimentos de bernoulli
+
+p: probabilidad de asierto
+
+```{r}
+probabilidad <- 1 - pbinom(98, 103, 0.94)
+probabilidad
+```
+
+Binomial negativa
+
+```{r}
+pnbinom(4,99,0.94)
+```
