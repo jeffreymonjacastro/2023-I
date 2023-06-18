@@ -20,5 +20,5 @@ add_executable(vjudge CPC/Beginners_trainee/Contest_3/C.cpp)
 
 add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
-add_executable(mentoria Mentoria/sesion_9/teoria.cpp)
+add_executable(mentoria Mentoria/sesion_10/pc3.cpp)
 
