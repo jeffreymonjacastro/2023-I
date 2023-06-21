@@ -19,47 +19,43 @@ struct Nodo {
 class BST {
 private:
     Nodo* raiz;
-    Nodo* insertarNodoAux(Nodo* nodo, int dato);
-    Nodo* buscarNodoAux(Nodo* nodo, int dato);
+
+    // Función auxiliar para insertar un nodo en el árbol
+    Nodo* insertarNodoAux(Nodo* nodo, int dato){
+        if (nodo == nullptr)
+            return new Nodo(dato);
+
+        if (dato < nodo->dato)
+            nodo->left = insertarNodoAux(nodo->left, dato);
+        else if (dato > nodo->dato)
+            nodo->right = insertarNodoAux(nodo->right, dato);
+        return nodo;
+    }
+
+    // Función auxiliar para buscar un nodo en el árbol
+    Nodo* buscarNodoAux(Nodo* nodo, int dato){
+        if (nodo == nullptr || nodo->dato == dato)
+            return nodo;
+
+        if (dato < nodo->dato)
+            return buscarNodoAux(nodo->left, dato);
+        else
+            return buscarNodoAux(nodo->right, dato);
+    }
 
 public:
     BST(){};
-    void insertarNodo(int dato);
-    Nodo* buscarNodo(int dato);
+
+    // Insertar nodo
+    void insertarNodo(int dato){
+        raiz = insertarNodoAux(raiz, dato);
+    }
+
+    // Buscar nodo
+    Nodo* buscarNodo(int dato){
+        return buscarNodoAux(raiz, dato);
+    }
 };
-
-// Insertar nodo
-void BST::insertarNodo(int dato) {
-    raiz = insertarNodoAux(raiz, dato);
-}
-
-// Función auxiliar para insertar un nodo en el árbol
-Nodo* BST::insertarNodoAux(Nodo* nodo, int dato) {
-    if (nodo == nullptr)
-        return new Nodo(dato);
-
-    if (dato < nodo->dato)
-        nodo->left = insertarNodoAux(nodo->left, dato);
-    else if (dato > nodo->dato)
-        nodo->right = insertarNodoAux(nodo->right, dato);
-    return nodo;
-}
-
-// Buscar nodo
-Nodo* BST::buscarNodo(int dato) {
-    return buscarNodoAux(raiz, dato);
-}
-
-// Función auxiliar para buscar un nodo en el árbol
-Nodo* BST::buscarNodoAux(Nodo* nodo, int dato) {
-    if (nodo == nullptr || nodo->dato == dato)
-        return nodo;
-
-    if (dato < nodo->dato)
-        return buscarNodoAux(nodo->left, dato);
-    else
-        return buscarNodoAux(nodo->right, dato);
-}
 
 
 int main(){
@@ -73,7 +69,7 @@ int main(){
     arbol.insertarNodo(60);
 
     // Buscar un nodo en el árbol y luego verificar
-    Nodo* nodoBuscado = arbol.buscarNodo(70);
+    Nodo* nodoBuscado = arbol.buscarNodo(20);
 
     if (nodoBuscado != nullptr)
         cout << "Nodo encontrado: " << nodoBuscado->dato << endl;
