@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(.)
 
-add_executable(2023_I P3/S13/BinarySearchTree.cpp)
+add_executable(2023_I P3/S13/LabB/Ejercicio003.cpp)
 
 add_executable(tarea P3/s9/tarea2a/tarea/main.cpp P3/s9/tarea2a/tarea/foo.cpp)
 
