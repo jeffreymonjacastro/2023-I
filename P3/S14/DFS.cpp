@@ -4,32 +4,35 @@
 
 using namespace std;
 
-
-// La clase Grafo tiene como atributo un unordered_set para los nodo visitado y un unordered_map para crear las conexiones entre nodos.
 template<typename T>
 struct Grafo{
-    unordered_map<T,unordered_set<T>> g_map;
-    unordered_set<T> visitados;
+    unordered_map<T,unordered_set<T>> g_map; // Variable que contiene las conexiones entre nodos
+    unordered_set<T> visitados; // Variable que contiene los nodos visitados
 
-    void nueva_arista(T v1, T v2);
-    void DFS(T u);
+    // Funcion que crea una nueva arista entre dos nodos
+    void nueva_arista(T v1, T v2){
+        // Se crea una nueva arista entre v1 y v2
+        g_map[v1].insert(v2);
+        // Se crea una nueva arista entre v2 y v1
+        g_map[v2].insert(v1);
+    }
+
+    // Funcion que verifica si hay ciclos en el grafo
+    void DFS(T u){
+        // Si el nodo ya fue visitado, se retorna
+        if (visitados.find(u) != visitados.end())
+            return;
+
+        cout << "Visitando " << u << endl; // [A C E B D]
+
+        // Se marca el nodo como visitado
+        visitados.insert(u);
+
+        // Se recorren los nodos adyacentes al nodo actual
+        for(const T& next: g_map[u])
+            DFS(next);
+    }
 };
-
-template<typename T>
-void Grafo<T>::nueva_arista(T v1, T v2){
-    g_map[v1].insert(v2);
-    g_map[v2].insert(v1);
-}
-
-template<typename T>
-void Grafo<T>::DFS(T u){
-    if (visitados.find(u) != visitados.end())
-        return;
-    visitados.insert(u);
-    cout << "Visitando -> " << u << endl;
-    for(const T& next: g_map[u])
-        DFS(next);
-}
 
 int main(){
     Grafo<char> g;
