@@ -1,0 +1,273 @@
+---
+title: "LabS14"
+format: html
+editor: visual
+---
+
+## Variable aleatoria continua
+
+Una variable aleatoria $\mathbb{X}$ es una variable aleatoria cuya función de distribución $F_\mathbb{X}(x) = \mathbb{P}(\mathbb{X} \leq x )$debe ser continua en el sentido de Cálculo I.
+
+Tiene que quedar claro que podemos usar como candidatos a funciones de distribución a todas las funciones que:
+
+-   Son no decrecientes
+
+-   Están entre 0 y 1
+
+-   Su límite cuando $x$ tiende a $\infty$ es 1
+
+-   Su límite cuando $x$ tiende a $-\infty$ es 0
+
+-   **ES CONTINUA**
+
+Claramente una función de este tipo, que sea diferenciable no va a dar un buen candidato a densidad de esa variable aleatoria.
+
+SI vemos el problema desde el punto de vista de la densidad, deben cumplir \_
+
+-   La función debe ser integrable.
+
+-   La función debe integrar 1
+
+-   Los limites a ambos lados valen 0.
+
+-   La función debe ser no negativas
+
+## E1
+
+Sea $\mathbb{X}$ una variable aleatoria continua con densidad
+
+$$
+f_\mathbb{X}(x)=\begin{cases}
+    \frac{c}{x^5} & \text{si } x\leq -2 \\ 
+    0 & \text{en caso contrario} 
+\end{cases}
+$$
+
+¿Quién es el rango de la variable aleatoria?
+
+*El rango es el sitio donde la densidad es positiva*
+
+$$
+(-\infty, -2]
+$$
+
+¿Cuánto debe valer $c$?
+
+$$
+1 = \int_{-\infty}^{\infty} f\mathbb{x}(x)\mathrm{d}x =
+    \int_{-\infty}^{-2} f_\mathbb{x}(x)\mathrm{d}x + 
+    \int_{-2}^{\infty} f_\mathbb{x}(x)\mathrm{d}x =
+    \int_{-\infty}^{-2} \frac{c}{x^{-5}}\mathrm{d}x +
+    \int_{-2}^{\infty} 0{d}x =
+    \left.c\frac{x^{-4}}{-4}\right|_{-\infty}^{-2} + 0 =
+    c\frac{(-2)^{-4}}{-4}
+$$
+
+Ya que
+
+$$
+\lim_{a \rightarrow -\infty} \frac{a^{-4}}{-4} = 0
+$$
+
+Por lo tanto
+
+$$
+1 = \frac{c}{64} \rightarrow c = -64
+$$
+
+La densidad es:
+
+$$
+f_\mathbb{X}(x)=\begin{cases}
+    -\frac{64}{x^5} & \text{si } x\leq -2 \\ 
+    0 & \text{en caso contrario} 
+\end{cases}
+$$\
+
+Definiendo la función de densidad:
+
+```{r}
+f <- function(x){
+  return(ifelse(x <= -2, -64/(x^5), 0))
+}
+```
+
+La gráfica de la densidad es:
+
+```{r}
+Xs <- seq(-7, 0, by = 0.1)
+
+plot(Xs, f(Xs), type = 'l', col = 'blue')
+```
+
+Notar que esta función no es continua (y no importa), notar también que la función es mayor que 1 en algunos lugares (y eso tampoco importa).
+
+::: callout-important
+La función de distribución es la que debe ser continua, la función de densidad no
+:::
+
+Para resolver esta parte, tenemos que entender como funciona la función `integrate`.
+
+```{r}
+integrate(f, lower = -Inf, upper = -2)
+
+```
+
+```{r}
+integrate(function(x){x^(-5)}, lower = -Inf, upper = -2)
+```
+
+Recuerden que deben leer la ayuda.
+
+La función `integrate` es verbosa (conversadora)
+
+Para saber el valor de $c$ debemos trabajar cuidadosamente.
+
+```{r}
+1/integrate(function(x){x^(-5)}, lower = -Inf, upper = -2)$value
+```
+
+¿Quién es la función de distribución?
+
+$$
+f_\mathbb{X}(x)=\begin{cases}
+    \int_{-\infty}^{x} f_\mathbb{x}(t)\mathrm{d}x & \text{si } x\leq -2 \\ 
+    \int_{-\infty}^{-2} f_\mathbb{x}(t)\mathrm{d}x + \int_{-2}^{x} f_\mathbb{x}(t)\mathrm{d}x & \text{si } x > -2 
+\end{cases} 
+=
+\begin{cases}
+    \frac{16}{x^{-4}} & \text{si } x\leq -2 \\ 
+    1 + 0 & \text{si } x > -2 
+\end{cases}
+$$
+
+$$
+f_\mathbb{X}(x)=\begin{cases}
+    \frac{16}{x^4} & \text{si } x\leq -2 \\ 
+    1 & \text{si } x > -2 
+\end{cases}
+$$
+
+```{r}
+FF <- function(x){
+  return(integrate(f, lower = -Inf, upper = x)$value)
+}
+
+FF <- Vectorize(FF) # Para aceptar vectores
+```
+
+Con `DD` apropiadamente vectorizada podemos a graficarla (hemos vectorizado para evitar usar un bucle, quisiéramos que la función se comporte como regularmente se comportan las funciones en R)
+
+¿Cómo se ve la gráfica de la función de distribución?
+
+```{r}
+Xs <- seq(-30, 0, by = 0.1)
+
+plot(Xs, FF(Xs), type = 'l', col = "red")
+```
+
+¿Cuánto vale la probabilidad de que la variable valga menos de -4?
+
+```{r}
+FF(-4)
+```
+
+¿Cuánto vale la probabilidad de que la variable valga más de -3?
+
+```{r}
+1 -FF(-3)
+```
+
+¿Cuál es la probabilidad de que la variable valga un valor entre -4 y -3?
+
+```{r}
+FF(-3) - FF(-4)
+```
+
+¿Cuánto vale la mediana de la variable?
+
+Debemos encontrar el valor de $x$ donde se satisface:
+
+$$
+\frac{1}{2} = F_\mathbb{x}(x)
+$$
+
+Es decir:
+
+$$
+\frac{1}{2} = \frac{16}{x^4} \rightarrow x^4 = 32
+$$
+
+Queremos la (o las) raíces reales que estén en el rango de la variable.
+
+Es decir $x = -\sqrt[4]{32}$ ya que deben ser negativas para que estén dentro de la variable.
+
+```{r}
+-32^(1/4)
+```
+
+¿Cuánto vale la esperanza de la variable?
+
+```{r}
+integrate(function(x){x*(-64/x^5)}, -Inf, -2)$value # en 0 diverge
+integrate(function(x){x*f(x)}, -Inf, Inf)$value
+```
+
+## E2: Uniforme
+
+Una variable $\mathbb{Y} \sim \mathsf{Unif}(a,b)$ si su densidad es constante en el intervalo $[a,b]$
+
+¿Quién es el rango de la variable aleatoria?
+
+$$
+[a,b]
+$$
+
+*Para cualquier valor fuera de a y b, la variable vale 0*
+
+¿Cuánto vale al densidad?
+
+$$
+f_\mathbb{Y}(x) = 
+\begin{cases}
+    c & \text{si } x \in [a,b] \\
+    0 & \text{en caso contrario}
+\end{cases}
+$$
+
+```{r}
+a <- -1
+b <- 7
+
+Xs <- seq(a, b, 0.1)
+
+plot(c(-3, -1.0001, Xs, 7.0001, 8), dunif(c(-3, -1.0001, Xs, 7.0001, 8), a, b), col = "blue", type = "l")
+```
+
+¿Quién es la función de distribución?
+
+¿Cómo se ve la gráfica de la función de distribución?
+
+¿Cuánto vale la mediana de la variable?
+
+¿Cuánto vale la esperanza de la variable?
+
+¿Cuánto vale la varianza de la variable?
+
+## E3: Exponencial
+
+Una variable $\mathbb{Y} \sim \mathsf{Exp}(\lambda)$ si su densidad es proporcional a $\mathrm{e}^{-\lambda x}$ y su rango es $[0,\infty)$
+
+¿Quién es el rango de la variable aleatoria?
+
+¿Cuánto vale al densidad?
+
+¿Quién es la función de distribución?
+
+¿Cómo se ve la gráfica de la función de distribución?
+
+¿Cuánto vale la mediana de la variable?
+
+¿Cuánto vale la esperanza de la variable?
+
+¿Cuánto vale la varianza de la variable?
