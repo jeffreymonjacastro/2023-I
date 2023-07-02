@@ -1,0 +1,71 @@
+---
+title: "TS10"
+format: html
+editor: visual
+---
+
+## TS10
+
+```{r}
+b= 20000
+#Dure entre
+#P(a < X ≤ b)
+pexp(30000, 1/b) - pexp(10000, 1/b)
+```
+
+```{r}
+#X ∼ H(N = 35, M = 7, n = 6)
+dhyper(2, 7, 35-7, 6)
+
+# HIPERGEOMÉTRICA
+
+x = 2
+k = 7
+N = 35
+n = 6
+  
+(choose(k,x)*choose(N-k,n-x))/choose(N,n)
+```
+
+```{r}
+#X ∼ H(N = 15, M = 3, n = 2)
+phyper(0, 3, 15-3, 2,F)
+```
+
+```{r}
+dpois(0,0.5*10)
+```
+
+```{r}
+
+# EXPONENCIAL
+
+x = 17
+beta = 13
+
+pexp(x,1/beta)
+```
+
+```{r}
+
+# NORMAL
+
+u = 0.55
+ds = 0.05
+
+pnorm(0.6, u, ds) - pnorm(0.5, u, ds)
+```
+
+```{r}
+u = 0.4
+ds = 0.05
+
+pnorm(0.5, u, ds) - pnorm(0.4, u, ds)
+```
+
+```{r}
+u = 0.4
+ds = 0.05
+
+pnorm(0.5, u, ds, F)
+```

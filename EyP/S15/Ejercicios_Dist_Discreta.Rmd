@@ -1,0 +1,262 @@
+---
+title: "Distribuciones Discretas Especiales"
+output:
+  pdf_document: default
+  html_notebook: default
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Distribución Binomial
+
+Probabilidad de que se den de baja más de dos alumnos:
+$P(X>2)=1-P(X<=3)$
+
+```{r}
+1-pbinom(2,20,0.2)
+```
+
+Probabilidad de que permanezcan 12 alumnos todo el año $P(X=8)$
+
+```{r}
+dbinom(8,20,.2)
+```
+
+```{r}
+dbinom(0:5,5,0.4)
+```
+
+```{r}
+1-pbinom(2,5,0.4)
+```
+
+```{r}
+dbinom(3,5,0.4)+dbinom(4,5,0.4)+dbinom(5,5,0.4)
+```
+
+Generar número aleatorios que sigan una distribución binomial con
+parámetros $n=5$ y $\pi=0.4$
+
+```{r}
+x<-rbinom(10,5,0.4)
+barplot(table(x)/length(x))
+```
+
+```{r}
+dbinom(0:5,5,0.4)
+```
+
+## Distribución Hipergeométrica
+
+```{r}
+1-dhyper(0,2,13,3)
+```
+
+```{r}
+sum(dhyper(1:2,2,13,3))
+```
+
+```{r}
+z<-rhyper(200,2,13,3)
+barplot(table(z))
+```
+
+```{r}
+phyper(1,5,15,3)
+```
+
+```{r}
+sum(dhyper(0:1,5,15,3))
+```
+
+#### Ejemplo 3
+
+```{r}
+dhyper(0:5,8,7,5)
+```
+
+Media
+
+```{r}
+media<-5*(8/15)
+media
+```
+
+Varianza
+
+```{r}
+varianza<-media*(1-(8/15))*((15-5)/(15-1))
+varianza
+```
+
+Desviación Estandar
+
+```{r}
+DE<-sqrt(varianza)
+DE
+```
+
+Coeficiente de Variabilidad
+
+```{r}
+DE/media*100
+```
+
+## Distribución Geométrica
+
+Supongamos que la probabilidad de un componente informático defectuoso
+es de 0,02. Los componentes se seleccionan al azar. Calcule la
+probabilidad de que el primer defecto sea causado por el séptimo
+componente probado.
+
+```{r}
+dgeom(7,0.02)
+```
+
+¿Cuántos componentes espera probar hasta que se halle uno defectuoso?
+(1-p)/p
+
+```{r}
+(1-0.02)/0.02
+```
+
+En una línea de producción de bombillos se sabe que sólo el 1% de los
+bombillos son defectuosos. Una máquina automática toma un bombillo y lo
+prueba, si el bombillo enciende, se siguen probando los bombillos hasta
+que se encuentre un bombillo defectuoso, ahí se para la línea de
+producción y se toman los correctivos necesarios para mejorar el
+proceso.
+
+. Calcular la probabilidad de que se necesiten probar 125 bombillos para
+encontrar el primer bombillo defectuoso
+
+```{r}
+dgeom(125,0.01)
+```
+
+. Calcular $P(X\leq 8)$
+
+```{r}
+pgeom(8,0.01)
+```
+
+. Encontrar el cuantil $q$ tal que $P(X\leq q)=0.40$
+
+```{r}
+qgeom(0.4,0.01)
+```
+
+. Graficar la función de probabilidad si se repitieran 1000 veces el
+experimento
+
+```{r}
+barplot(table(rgeom(1000,0.01)))
+```
+
+## Distribución Binomial Negativa
+
+Se sabe que la probabilidad de que un niño expuesto a una enfermedad
+contagiosa la contraiga es de 0,4. Calcula la probabilidad de que el
+décimo niño estudiado sea el tercero en contraer la enfermedad.
+
+```{r}
+dnbinom(7,3,0.4)
+```
+
+Una familia desea tener hijos hasta conseguir 2 niñas, la probabilidad
+individual de obtener una niña es 0.5 y se supone que todos los
+nacimientos son individuales, es decir, un sólo bebé.
+
+Calcular la probabilidad de que se necesiten 4 hijos, es decir, 4
+nacimientos para consEguir las dos niñas.
+
+```{r}
+dnbinom(2,2,0.5)
+```
+
+## Distribución Poisson
+
+**Ejemplo 1**
+
+Los mensajes que llegan a una computadora, utilizada como servidor, lo
+hacen de acuerdo con una distribución Poisson con una tasa promedio de
+10 mensajes por hora.
+
+1.  Calcule la probabilidad de que lleguen 7 mensajes en 2 horas.
+
+Definimos primero el valor de $\lambda$. Sea la v.a $Y=$ El número de
+mensajes que llegan al servidor en 2 horas ($t=2$). Unidad de intervalo
+= 1 $v=$ promedio de sucesos por unidad de intervalo = 10
+$\lambda=vt=2\times 10=20$
+
+```{r}
+dpois(7,20)
+```
+
+2.  Encuentre el intervalo de tiempo necesario para que la probabilidad
+    de que no lleguen mensajes, durante ese lapso, sea 0.9.
+
+Consideremos la v.a.d. $Z=$ El número de mensajes que llegan al servidor
+en $k$ horas $(t=k)$ $Z\sim Pois(vt)=Pois(10k)$, entonces:
+
+$f(z)=P(Z=z)=\frac{e^{-10k}(10k)^z}{z!}$, con $z=0,1,2,...$
+
+$f(0)=P(Z=0)=\frac{e^{-10k}(10k)^0}{0!}=e^{-10k}=0.9$
+
+```{r}
+-(1/10)*log(0.9)
+```
+
+**Ejemplo 2**
+
+Se cree que el número promedio de individuos por cada 2 km2 de cierta
+especie de mamífero que habita en las alturas de cierta región es de
+1.2.
+
+1.  En una zona de 2.8 km2, ¿cuántos individuos esperaríamos en promedio
+    encontrar?.
+
+Sea la v.a.d. $X=$ Número de individuos en 2$km^2$. El número de
+individuos que habitan en promedio será:$\mu=2.8(1.2)/2$
+
+```{r}
+2.8*1.2/2
+```
+
+2.  Si se observa un área de 3 km2 en dicha región, ¿cuál es la
+    probabilidad que se encuentren más de 3 individuos de esta especie?
+
+Sea la v.a.d. $X=$ Número de individuos en 3$km^2$. Entonces
+$\mu=3(1.2)/3=1.8=\lambda$
+
+$P(X>3)=1-P(X\leq 3)=1-\sum_{x=0}^3{\frac{e^{1.8}1.8^x}{x!}}$
+
+```{r}
+1-sum(dpois(0:3,1.8))
+```
+
+```{r}
+1-ppois(3,1.8)
+```
+
+3.  Si se selecciona dos áreas independientemente de 3 km2 cada una.
+    ¿Cuál es la probabilidad que en cada una de estas áreas haya más de
+    2 individuos?
+
+Probabilidad que haya en un área de 3 $km^2$ más de 2 individuos:
+$P(X>2)=1-P(X\leq 2)=1-\sum_{x=0}^2{\frac{e^{1.8}1.8^x}{x!}}$
+
+```{r}
+solucion <- 1-ppois(2,1.8)
+solucion
+```
+
+Probabilidad que haya en un área de 3 $km^2$ más de dos individuos. $Y=$
+número de áreas con más de dos individuos. $Y=0,1,2$
+
+$P(Y=0)$
+
+```{r}
+(1-solucion)^2
+```

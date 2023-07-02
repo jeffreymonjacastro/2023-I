@@ -1,0 +1,161 @@
+---
+title: "Distribuciones Continuas Especiales"
+output: html_notebook
+---
+
+## Distribución Beta
+
+```{r}
+curve(dbeta(x, shape1=2, shape2=5), lwd=3, las=1,
+      ylab='Densidad')
+curve(dbeta(x, shape1=9, shape2=5), lwd=3, las=1,
+      ylab='Densidad')
+```
+
+```{r}
+curve(dbeta(x, shape1=4, shape2=2), lwd=3, las=1,
+      ylab='Densidad')
+```
+
+**Ejemplo 1**
+Un distribuidor mayorista de gasolina tiene tanques de almacenamiento de gran capacidad con un abastecimiento fijo, los cuales se llenan cada lunes. Él, desea saber el porcentaje de gasolina vendido durante la semana. Después de varias semanas de observación, el mayorista descubre que este porcentaje podría describirse mediante una distribución beta con $\alpha=4$ y $\beta=2$.
+
+1. Calcule la probabilidad de que venda, al menos, el 90% de sus existencias en una semana.
+
+$P(X\geq 0.9)=?$
+
+```{r}
+1-pbeta(0.9,4,2)
+```
+
+2. Calcule la probabilidad de que venda menos del 50% de sus existencias en una semana.
+
+$P(X<0.5)=?$
+
+```{r}
+pbeta(0.5,4,2)
+```
+
+3. Cuánto debe vender cómo máximo para que la probabilidad de que venda sea 0.2.
+
+Necesitamos calcular el valor de $k$ tal que $P(X<k)=0.2$
+
+```{r}
+qbeta(0.2,4,2)
+```
+Es decir, para una probabilidad de 0.2, hay que vender menos del 50.98077% de sus existencias de gasolina en una semana.
+
+4. Que porcentaje debe vender como mínimo para que la probabilidad de vender sea del 0.4.
+
+Necesitamos calcular el valor de $k$ tal que $P(X\geq k)=0.4$
+
+```{r}
+qbeta(0.4,4,2,lower.tail=F)
+```
+
+Otra forma de resolver el ejercicio, considerando el complemento de la probabilidad (0.6)
+
+```{r}
+qbeta(0.6,4,2)
+```
+
+
+5. Graficar la función
+
+```{r}
+curve(dbeta(x,4,2), lwd=3, las=1,
+      ylab='Densidad')
+```
+
+## Distribución Gamma
+
+**Ejemplo 1**
+
+Suponga que el tiempo, en horas, que toma reparar una bomba es una variable aleatoria x que tiene una distribución gamma con parámetros $\alpha = 2$ y $\theta = \frac{1}{2}$¿Cuál es la probabilidad de que en el siguiente servicio…
+
+```{r}
+curve(dgamma(x,2,0.5), lwd=3, las=1,
+      ylab='Densidad',
+      from = 0, to= 10 )
+```
+
+
+1. Tome cuando mucho 1 hora reparar la bomba?
+
+```{r}
+pgamma(1, shape=2, scale=1/2)
+```
+
+2. Al menos se requieren 2 horas para reparar la bomba?
+
+```{r}
+1-pgamma(2, shape=2, scale=1/2)
+```
+
+3. Que tarde entre 1 y 2
+
+```{r}
+pgamma(2, shape=2, scale=1/2) - pgamma(1, shape=2, scale=1/2)
+```
+
+4. ¿Cuanto tiempo como mucho tardará en reparar la bomba para una probabilidad acumulada de 0.5940
+
+```{r}
+ qgamma(0.5940, shape=2, scale=1/2)
+```
+
+**Ejemplo 2**
+
+En una ciudad el consumo de energía diario en millones de kilovatios hora puede considerarse como una variable con distribucion gamma con parámetros 𝛼=3 y 𝜃^(−1)=0.5
+
+
+
+```{r}
+curve(dgamma(x,3,2), lwd=3, las=1,
+      ylab='Densidad',
+      from = 0, to= 10 )
+```
+
+¿Qué probabilidad hay de que se consuma entre 3 y 8 mill de Kw/hora
+
+```{r}
+pgamma(8,3,2)-pgamma(3,3,2)
+```
+
+
+
+Si la planta cap 10 m /h .. ¿prob de que en un día sea insuficiente?
+
+```{r}
+1-pgamma(10,3,2)
+```
+
+
+# Distribución Uniforme
+
+Considere una variable aleatoria X que representa el tiempo de vuelo de un avión que viaja de Chicago a Nueva York. Suponga que el tiempo de vuelo es cualquier valor en el intervalo de 120 minutos a 140 minutos.
+Dado que la variable aleatoria X toma cualquier valor en este intervalo, X es una variable aleatoria continua y no una variable aleatoria discreta.
+Hay que razonar que se cuenta con datos suficientes como para concluir que la probabilidad de que el tiempo de vuelo esté en cualquier intervalo de 1 minuto es el mismo que la probabilidad de que el tiempo de vuelo esté en cualquier otro intervalo de 1 minuto dentro del intervalo que va de 120 a 140 minutos.
+Como cualquier intervalo de 1 minuto es igual de probable, se dice que la variable aleatoria X tiene una distribución de probabilidad uniforme
+
+```{r}
+curve(dunif(x,120,140), lwd=3, las=1,
+      ylab='Densidad',
+      from = 100, to= 150 )
+```
+
+
+¿Cuál es la probabilidad de que el tiempo de vuelo se encuentre entre 120 y 130 minutos?
+
+```{r}
+punif(q = 130, min = 120, max = 140) - punif(q = 120, min = 120, max = 140)
+```
+
+¿cuál es la probabilidad de un tiempo de vuelo entre 128 y 136 minutos?
+
+```{r}
+punif(q = 136, min = 120, max = 140) - punif(q = 128, min = 120, max = 140)
+
+```
+
+

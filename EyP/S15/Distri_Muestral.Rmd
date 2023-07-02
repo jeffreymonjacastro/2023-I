@@ -1,0 +1,188 @@
+---
+title: "Intérvalos de confianza"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+## Introducción
+
+### Población con distribución normal
+
+Generaremos aleatoriamente una población normal de tamaño $n=15000$ con media 100 y desviación estandar igual a 15. Para poder replicar esta simulación haremos uso del comando `set.seed()`
+
+```{r}
+set.seed(43)
+ejem1 <- rnorm(n = 15000, mean = 100, sd = 15)
+hist(ejem1)
+mean(ejem1)
+sd(ejem1)
+```
+
+Seleccionamos 200 muestras de tamaño 300 cada una a partir de la población generada anteriormente. Calculamos el promedio de cada una de las medias y graficamos estas medias para tener una idea de su distribución.
+
+```{r}
+medias <- NULL
+Simulaciones1 <- for (i in 1:200)
+  {
+  set.seed(i)
+  muestra = sample(ejem1, size=300, replace = TRUE)
+  media = mean(muestra)
+  medias[i] = media
+}
+
+hist(medias)
+```
+
+Calculamos la media y varianza de la media
+
+```{r}
+mean(medias)
+mean(ejem1)
+sd(medias)
+sd(ejem1)/sqrt(200)
+```
+
+### Población con distribución no normal
+
+Generaremos aleatoriamente una población exponencial de tamaño $n=15000$ con $\beta = 2$. Para poder replicar esta simulación haremos uso del comando `set.seed()`
+
+```{r}
+set.seed(43)
+ejem2 <- rexp(15000,2)
+hist(ejem2)
+mean(ejem2)
+sd(ejem2)
+```
+
+Seleccionamos 200 muestras de tamaño 300 cada una a partir de la población generada anteriormente. Calculamos el promedio de cada una de las medias y graficamos estas medias para tener una idea de su distribución.
+
+```{r}
+medias <- NULL
+Simulaciones1 <- for (i in 1:200)
+  {
+  set.seed(i)
+  muestra = sample(ejem2, size=300, replace = TRUE)
+  media = mean(muestra)
+  medias[i] = media
+}
+
+hist(medias)
+```
+
+Calculamos la media y varianza de la media
+
+```{r}
+mean(medias)
+mean(ejem2)
+sd(medias)
+sd(ejem2)/sqrt(200)
+```
+
+**Ejemplo 1**
+
+El tiempo que demora una rata de cierta subespecie seleccionada al azar, para que se duerma después de aplicársele un somnífero experimental, es una variable aleatoria distribuida con media 1.5 min y DE 0.35 min. a) Si el tiempo que demora una rata tiene distribución normal y $X_1, X_2,...,X_5$ es una muestra aleatoria de tamaño 5 de esa población. Calcule la probabilidad de que la media de la muestra sea a lo más 2 min.
+
+$E(\bar X)=\mu_{\bar X}=1.5$ $V(\bar X)=\sigma^2_{\bar X}= \frac{\sigma^2}{n}=\frac{0.35^2}{5}=0.0245$ $P(\bar X \leq 2)=P(\frac{\bar X - \mu_{\bar X}}{\sigma_{\bar X}} \leq \frac{2-1.5}{0.1565}) = P(Z \leq 3.19)$
+
+```{r}
+pnorm(3.19)
+```
+
+b)  Si el tiempo que demora una rata tiene distribución desconocida y $X_1, X_2,..., X_{40}$ es una muestra aleatoria de tamaño 40 de esa población. Calcule la probabilidad aproximada de que el tiempo de demora promedio esté entre 1.35 y 1.60 min.
+
+Dado que $n$ es "grande" por el teorema del límite central el tiempo promedio de la muestra tiene aproximadamente distribución normal con:
+
+$E(\bar X)=\mu_{\bar X}=1.5$ $V(\bar X)=\sigma^2_{\bar X}= \frac{\sigma^2}{n}=\frac{0.35^2}{40}=0.0030625$ $P(1.35 \leq T \leq 1.60)=P(\frac{1.35-1.5}{\sqrt{0.0030625}} \leq Z \leq \frac{1.60-1.5}{\sqrt{0.0030625}}) = P(-2.71 \leq Z \leq 1.81)$
+
+```{r}
+pnorm(1.81) - pnorm(-2.71)
+```
+
+## Distribución de la proporción (Ejemplo)
+
+En un proceso de producción el porcentaje de unidades defectuosas producidas es del 3%. Para controlar el proceso, se revisan periodicamente los artículos producios. Si el proceso de producción se para al encontrar al menos 5% de unidades defectuosas producidas al revisar una muestra aleatoria de 200 artículos cada vez. Halle la probabilidad aproximada de que el proceso continue.
+
+$P(P<0.05)$ Donde el P interno es: $N(\pi;\frac{\pi(1-\pi)}{n})$ $P(Z< \frac{0.05-0.03}{\sqrt{\frac{0.03(0.97)}{200}}}) = P (Z<)$
+
+```{r}
+x <- (0.05-0.03)/sqrt(0.03*0.97/200)
+x
+pnorm(x)
+```
+
+El 10% de las personas de cierta ciudad tienen sanfre tipo B. SI se selecciona una muestra aleatoria de 900 personas ¿Cuál es la probabilidad de que la proporción muestral de personas con sangre Tipo B...?
+
+-   
+
+    a)  Sea al menos 7.2%
+
+-   
+
+    b)  Sea a lo más 10.5%
+
+-   
+
+    C)  Valor minimo para que laprobabilidad de la proporción muestral de personas de tipo de sangre B sea mayor al 80%.
+
+$Z=\frac{x_i - \bar x}{s}$
+
+```{r}
+x <- (0.105-0.1)/sqrt(0.1*0.9/900)
+pnorm(0.5)
+```
+
+## Intervalos de Confianza
+
+```{r}
+set.seed(35)
+IQ <- rnorm(n = 1500, mean = 100, sd = 15)
+hist(IQ)
+mean(IQ)
+sd(IQ)
+```
+
+Hagamos la simulación de 90 muestras de tamaño 110 cada una y calculemos su intervalo de confianza para cada una
+
+```{r}
+LI <- NULL
+LS <- NULL
+medias <- NULL
+Simulaciones <- for (i in 1:90)
+  {
+  set.seed(i)
+  muestra = sample(IQ, size=110)
+  media = mean(muestra)
+  DE = sd(muestra)
+  t <- qt(0.975,109)
+  errorEstandar =(DE/sqrt(110))
+  LI[i]= media-(t*errorEstandar)
+  LS[i]= media+(t*errorEstandar)
+  medias[i] = media
+  inf = sum(LI  > mean(IQ))
+  sup = sum(LS  < mean(IQ))
+  }
+noContieneMedia <- (sup+inf)/110
+noContieneMedia*100
+siContieneMedia <- (1-noContieneMedia)
+siContieneMedia*100
+```
+
+Graficamos estos intervalos de confianza y vemos cuántos contienen al promedio de la población
+
+```{r}
+library(ggplot2)
+ejex <- c(1:90)
+ggplot(Simulaciones, aes(medias,ejex)) +
+  geom_point(size=0.5) +
+  geom_errorbar(aes(xmin = LI, xmax = LS), size=0.3)+
+  geom_vline(xintercept = mean(IQ), col = "red", size=0.5)+
+  scale_y_continuous(limits = c(0, 91), name = "Muestras") +
+  scale_x_continuous(limits = c(85, 115),name = "Coeficiente Intelectual") +
+  ggtitle("Coeficiente intelectual, n=110") + theme(plot.title = element_text(hjust = 0.5))+
+  scale_linewidth("Windspeed (mph)", range = c(0.5, 3))+
+  scale_linewidth("Windspeed (mph)", range = c(0.5, 3))
+
+```
