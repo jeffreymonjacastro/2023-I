@@ -1,0 +1,114 @@
+---
+title: "S16"
+format: html
+editor: visual
+---
+
+## S16
+
+Vamos a promedias `n` observaciones de una VA (Exponencial, por ejemplo)
+
+```{r}
+lambda <- 5
+```
+
+```{r}
+rE <- function(n){
+  X <- rexp(n, rate = lambda)
+  return(mean(X))
+}
+```
+
+Vamos a tomar un número grande de observaciones de este experimento
+
+```{r}
+Promedios <- replicate(10000, rE(1))
+```
+
+```{r}
+# Histograma de los rexp()
+hist(Promedios, prob = TRUE, breaks = 30, col = "lightblue")
+
+# Gráfica de la distribución exp teórica
+Xs <- seq(0, 2, 0.01)
+lines(Xs, dexp(Xs, lambda), col = "blue", lwd = 2)
+
+# Hallando la media
+mu <- 1/lambda
+sigma <- 1/lambda
+
+abline(v = mu, lty = 2, lwd = 2, col="red")
+
+```
+
+Veamos qué pasa con un `n` más grande (2)
+
+```{r}
+Promedios <- replicate(10000, rE(2))
+```
+
+```{r}
+# Histograma de los rexp()
+hist(Promedios, prob = TRUE, breaks = 30, col = "lightblue")
+
+# Gráfica de la distribución exp teórica
+Xs <- seq(0, 2, 0.01)
+lines(Xs, dexp(Xs, lambda), col = "blue", lwd = 2)
+
+# Hallando la media
+mu <- 1/lambda
+sigma <- 1/lambda
+
+abline(v = mu, lty = 2, lwd = 2, col="red")
+
+```
+
+Ahora con `n = 5`
+
+```{r}
+n <- 5
+Promedios <- replicate(10000, rE(n))
+```
+
+```{r}
+# Histograma de los rexp()
+hist(Promedios, prob = TRUE, breaks = 30, col = "lightblue")
+
+# Gráfica de la distribución exp teórica
+Xs <- seq(0, 2, 0.01)
+lines(Xs, dexp(Xs, lambda), col = "blue", lwd = 2)
+
+# Hallando la media
+mu <- 1/lambda
+sigma <- 1/lambda
+
+abline(v = mu, lty = 2, lwd = 2, col="red")
+
+# Comparando con la normal
+lines(Xs, dnorm(Xs, mu, sigma/sqrt(n)), col = "orange", lwd = 2)
+```
+
+Ahora `n = 20`
+
+```{r}
+n <- 200
+Promedios <- replicate(10000, rE(n))
+```
+
+```{r}
+# Histograma de los rexp()
+hist(Promedios, prob = TRUE, breaks = 30, col = "lightblue")
+
+# Gráfica de la distribución exp teórica
+Xs <- seq(0.15, 0.27, 0.001)
+lines(Xs, dexp(Xs, lambda), col = "blue", lwd = 2)
+
+# Hallando la media
+mu <- 1/lambda
+sigma <- 1/lambda
+
+abline(v = mu, lty = 2, lwd = 2, col="red")
+
+# Comparando con la normal
+lines(Xs, dnorm(Xs, mu, sigma/sqrt(n)), col = "orange", lwd = 2)
+```
