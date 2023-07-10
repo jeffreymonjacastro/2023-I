@@ -22,3 +22,5 @@ add_executable(Cf CPC/Codeforces/Watermelon.cpp)
 
 add_executable(mentoria Mentoria/sesion_11/PC3_2022_2_Lab102.cpp)
 
+add_executable(proyecto P3/Proyecto_maze/codes/main.cpp)
+

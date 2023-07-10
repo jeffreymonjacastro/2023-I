@@ -117,16 +117,14 @@ public:
 
     vector<pair<string, string>> encontrar_relaciones() {
         set<pair<string, string>> relaciones;
-        int filas = laberinto_.size();
-        int columnas = laberinto_[0].size();
 
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
+        for (int i = 0; i < filas_; i++) {
+            for (int j = 0; j < columnas_; j++) {
                 if (isdigit(laberinto_[i][j][0])) {
-                    if (i + 1 < filas && isdigit(laberinto_[i + 1][j][0])) {
+                    if (i + 1 < filas_ && isdigit(laberinto_[i + 1][j][0])) {
                         relaciones.insert(std::make_pair(laberinto_[i][j], laberinto_[i + 1][j]));
                     }
-                    if (j + 1 < columnas && isdigit(laberinto_[i][j + 1][0])) {
+                    if (j + 1 < columnas_ && isdigit(laberinto_[i][j + 1][0])) {
                         relaciones.insert(std::make_pair(laberinto_[i][j], laberinto_[i][j + 1]));
                     }
                 }
