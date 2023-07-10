@@ -143,9 +143,12 @@ public:
     void imprimirLaberinto() {
         for (int fila = 0; fila < filas_; ++fila) {
             for (int columna = 0; columna < columnas_; ++columna) {
-                if (laberinto_[fila][columna] == "###") cout << laberinto_[fila][columna] << ' ';
-                else if(laberinto_[fila][columna] == "001") cout << "EEE" << ' ';
-                else if(laberinto_[fila][columna] == "002") cout << "SSS" << ' ';
+                if (laberinto_[fila][columna] == "###")
+                    cout << laberinto_[fila][columna] << ' ';
+                else if(laberinto_[fila][columna] == "001")
+                    cout << "EEE" << ' ';
+                else if(laberinto_[fila][columna] == "002")
+                    cout << "SSS" << ' ';
                 else cout << "   " << ' ';
             }
             cout << endl;

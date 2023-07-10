@@ -7,10 +7,10 @@ private:
     vector<string> camino;
     unordered_set<string> visitas;
 
-    bool esNumerico(const std::string& str) const {
-        std::istringstream iss(str);
+    bool esNumerico(const string& str) const {
+        istringstream iss(str);
         int num;
-        return (iss >> num >> std::ws) && (iss.eof());
+        return (iss >> num >> ws) && (iss.eof());
     }
 
 public:
@@ -26,7 +26,7 @@ public:
                 else if (elemento == "002") {
                     elemento = "SSS";
                 }
-                else if (std::find(camino.begin(), camino.end(), elemento) != camino.end()) {
+                else if (find(camino.begin(), camino.end(), elemento) != camino.end()) {
                     elemento = " * ";
                 }
                 else if (visitas.find(elemento) != visitas.end()) {
