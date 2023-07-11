@@ -1,0 +1,164 @@
+---
+title: "Empresa"
+format: html
+editor: visual
+---
+
+## Hello
+
+```{r}
+library(wordcloud)
+library(dplyr)
+```
+
+### Colores
+
+```{r}
+degradado1 <- colorRampPalette(c("green", "darkgreen"))(max(df$Frecuencia)/2)
+degradado2 <- colorRampPalette(c("blue", "darkblue"))(max(df$Frecuencia)/2)
+degradado3 <- colorRampPalette(c("orange", "darkorange"))(max(tablaTotal$Frecuencia)/2)
+```
+
+### Primera entrevista Jeff
+
+```{r}
+texto <- readLines("Entrevista1jeff.txt")
+
+palabras <- character()
+
+conectores <- c("y", "o", "en", "la", "el", "los", "les")
+
+for (linea in texto) {
+  palabras_linea <- strsplit(linea, "\\W+")
+  palabras <- c(palabras, unlist(palabras_linea))
+}
+
+palabras <- tolower(palabras[!palabras %in% ""])
+
+palabras <- palabras[!(palabras %in% conectores | nchar(palabras) < 5)]
+
+frecuencia <- table(palabras)
+
+palabras_repetidas <- names(frecuencia[frecuencia >= 2])
+
+df1 <- data.frame(Frecuencia = frecuencia[palabras_repetidas])
+
+df1 %>% rename(Palabra = Frecuencia.palabras, Frecuencia = Frecuencia.Freq) -> df1
+```
+
+```{r}
+wordcloud(df1$Palabra, 
+          df1$Frecuencia, 
+          min.freq = 2, 
+          random.order = FALSE,
+          scale = c(3, 0.5), 
+          max.words = 50,
+          colors = degradado1)
+```
+
+Segunda entrevista Jeff
+
+```{r}
+texto <- readLines("Entrevista2jeff.txt")
+
+palabras <- character()
+
+conectores <- c("y", "o", "en", "la", "el", "los", "les")
+
+for (linea in texto) {
+  palabras_linea <- strsplit(linea, "\\W+")
+  palabras <- c(palabras, unlist(palabras_linea))
+}
+
+palabras <- tolower(palabras[!palabras %in% ""])
+
+palabras <- palabras[!(palabras %in% conectores | nchar(palabras) < 5)]
+
+frecuencia <- table(palabras)
+
+palabras_repetidas <- names(frecuencia[frecuencia >= 2])
+
+df2 <- data.frame(Frecuencia = frecuencia[palabras_repetidas])
+
+df2 %>% rename(Palabra = Frecuencia.palabras, Frecuencia = Frecuencia.Freq) -> df2
+```
+
+```{r}
+wordcloud(df2$Palabra, 
+          df2$Frecuencia, 
+          min.freq = 2, 
+          random.order = FALSE,
+          scale = c(3, 0.5), 
+          max.words = 50,
+          colors = degradado3)
+```
+
+Primera entrevista Jean P
+
+```{r}
+texto <- readLines("jean_piero_1.txt")
+
+palabras <- character()
+
+conectores <- c("y", "o", "en", "la", "el", "los", "les")
+
+for (linea in texto) {
+  palabras_linea <- strsplit(linea, "\\W+")
+  palabras <- c(palabras, unlist(palabras_linea))
+}
+
+palabras <- tolower(palabras[!palabras %in% ""])
+
+palabras <- palabras[!(palabras %in% conectores | nchar(palabras) < 5)]
+
+frecuencia <- table(palabras)
+
+palabras_repetidas <- names(frecuencia[frecuencia >= 2])
+
+df3 <- data.frame(Frecuencia = frecuencia[palabras_repetidas])
+
+df3 %>% rename(Palabra = Frecuencia.palabras, Frecuencia = Frecuencia.Freq) -> df3
+```
+
+```{r}
+wordcloud(df3$Palabra, 
+          df3$Frecuencia, 
+          min.freq = 2, 
+          random.order = FALSE,
+          scale = c(3, 0.5), 
+          max.words = 50,
+          colors = degradado2)
+```
+
+\
+
+### Tabla total
+
+```{r}
+DF_total <- function(data){
+  df_union <- data.frame(Palabra = character(), Frecuencia = numeric())
+  
+  for (i in seq_along(data)) {
+    table <- data[[i]]
+    df_union <- merge(df_union, table, by="Palabra", all = TRUE)
+    df_union$Frecuencia <- rowSums(df_union[, c("Frecuencia.x", "Frecuencia.y")], na.rm = TRUE)
+    df_union %>% select(Palabra, Frecuencia) -> df_union
+  }
+  
+  return(df_union)
+}
+```
+
+```{r}
+tablaTotal <- DF_total(dfs)
+```
+
+```{r}
+wordcloud(tablaTotal$Palabra, 
+          tablaTotal$Frecuencia, 
+          min.freq = 2, 
+          random.order = FALSE,
+          scale = c(3, 0.5), 
+          max.words = 50,
+          colors = degradado3)
+```
