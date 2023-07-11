@@ -130,8 +130,6 @@ wordcloud(df3$Palabra,
           colors = degradado2)
 ```
 
-\
-
 ### Tabla total
 
 ```{r}
