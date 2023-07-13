@@ -7,8 +7,8 @@
 //}
 
 int main() {
-    int filas = 5;
-    int columnas = 5;
+    int filas = 15;
+    int columnas = 19;
     cout << endl;
 
     Laberinto laberinto(filas, columnas);
