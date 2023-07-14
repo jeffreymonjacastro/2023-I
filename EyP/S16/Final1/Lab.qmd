@@ -106,4 +106,32 @@ mean(DF$Nota)
 DF %>% filter(Nota>= 55) %>% select(Nota) %>% count()/nrow(DF)
 ```
 
+### Pregunta 7
+```{r}
+DF %>% filter(Tipo == 'B' & Nota >= 55) -> DF8
+DF8
+```
+
+```{r}
+hist(DF8$Intento, prob=TRUE)
+lines(dpois(0:2, 0.96))
+
+# media teórica
+r(1/0.96)
+
+# promedio empírico
+r(mean(DF8$Intento))
+```
+### Pregunta 8
+
+```{r}
+hist(DF$Tiempo, breaks = 30, prob=TRUE)
+
+abline(v = mean(DF$Tiempo), col = 'blue')
+abline(v = median(DF$Tiempo), col = 'red')
+```
+```{r}
+nrow(DF[DF$Tiempo >= 7.75 & DF$Tiempo <= 8, ])/nrow(DF)
+
+```
 
