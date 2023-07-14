@@ -1,0 +1,150 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+DFA <- read_csv("~/Estadistica/DFA.csv")
+```
+
+
+```{r}
+View(DFA)
+```
+
+```{r}
+dim(DFA)
+```
+```{r}
+p_Sabe_A <- 81/100
+p_Sabe_B <- 62/100
+p_Sabe_C <- 51/100
+```
+
+
+```{r}
+p_A <- 0.22
+p_B <- 0.47
+p_C <- 1 
+
+
+#2
+
+
+
+
+
+```
+
+
+#pregunta 3
+```{r}
+DFA %>% filter(Tipo == 'B') -> DFA2
+```
+
+```{r}
+p <- sum(DFA2$Nota)/nrow(DFA2)
+p/100 -> p
+
+#valor esperado
+100*p
+
+#desviacion
+sqrt(100*p*(1-p))
+```
+
+#pregunta 4
+
+```{r}
+
+DFA %>% filter(Tipo == 'A' & Nota >= 55) -> DFA3
+DFA %>% filter(Tipo == 'A') -> DFA4 #nro total de personas en A
+
+DFA3
+
+#aprueba 
+249/249
+
+#jala
+1-1
+
+
+#mencion destacada
+
+DFA %>% filter(Tipo == 'A' & Nota > 75) -> DFA5
+
+234/249
+```
+
+
+
+#Pregunta 5
+
+```{r}
+p_A <- 0.22
+p_B <- 0.47
+p_C <- 0.31
+
+```
+
+```{r}
+DFA %>% filter(Nota == 55) -> DFA6
+p55 <- nrow(DFA6)/nrow(DFA)
+```
+
+
+```{r}
+DFA %>% filter(Nota == 55 & Tipo == 'B') -> DFA7
+p_B_inter_55 <- nrow(DFA7)/nrow(DFA)
+
+
+p_B_inter_55
+```
+
+
+#Pregunta 7
+```{r}
+DFA %>% filter(Nota >= 55 & Tipo == 'C') -> DFA8
+nrow(DFA8)
+
+
+#PROBABILIDAD DE QUE APRUEBE C
+nrow(DFA8)/nrow(DFA)
+
+
+#ES BINOMIAL
+#se ve geometrica(no)
+hist(DFA8$Nota)
+
+
+#media teorica ,promedio teorico (esperanza)
+#1/p(para geo)
+1/(nrow(DFA8)/nrow(DFA))
+
+#para bin
+nrow(DFA8)*(nrow(DFA8)/nrow(DFA))
+
+
+#promedio empirico, media empirica (lo saco con la funcion mean)
+mean(DFA8)
+
+
+
+
+```
+
+#Pregunta 10
+```{r}
+
+
+prob <- nrow(DFA[DFA$Tipo == 'A' & DFA$Duracion < 1,])/nrow(DFA)
+
+dbinom(100,nrow(DFA),prob)
+```
+
+
+
