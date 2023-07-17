@@ -1,0 +1,807 @@
+---
+title: "Estudio sobre la relación entre las tecnologías que usan los desarrolladores en su trabajo y su salud mental"
+author: '**Grupo 7** 
+  Integrantes: 
+    Isabella Romero, 
+    César Perales, 
+    Jeffrey Monja,
+    Edwid Pinto,
+    Sebastián Rodriguez'
+date: "7 de julio del 2023"
+output:
+  ioslides_presentation:
+    css: 'styles.css'
+    widescreen: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objetivos y datos
+
+### Objetivo principal
+
+> Demostrar que la salud mental del programador depende, en parte, del lenguaje de programación que escoja para trabajar.
+
+### Objetivos secundarios
+
+-   Demostrar que la popularidad de un lenguaje de programación no significa que trabajar con este brinde un mejor estado de salud mental.
+
+-   Encontrar una relación entre el acceso a información del lenguaje de programación escogido por el programador y su salud mental.
+
+-   Encontrar una relación entre el salario que brinda el lenguaje de programación que usan los desarrolladores con su salud mental.
+
+-   Demostrar la relación entre el sistema operativo utilizado en el ámbito profesional y la salud mental de los individuos, y encontrar una posible asociación entre los problemas mentales y el tipo de sistema operativo.
+
+### Bases de datos
+
+-   Programming language database (PLDB)
+
+-   Survey_results 2022 (Stack Overflow)
+
+```{r, include=FALSE}
+library(readr)
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+```
+
+```{r warning = FALSE, include=FALSE}
+languages = read_csv("Programming_languages.csv")
+encuesta = read_csv("survey_results_limpia.csv")
+```
+
+## Analisis Univariado.
+
+<div class="two-column">
+
+<div class="column">
+
+Salario.
+
+```{r echo=FALSE}
+encuesta %>%
+ ggplot() +
+  aes(x = Salary) +
+  geom_density(adjust = 1L, fill = "#B8FFB8") +
+  labs(
+    x = "Salario anual en dolares",
+    y = "Densidad",
+    title = "Densidad Salarial"
+  ) +
+  theme_minimal()
+```
+
+</div>
+
+<div class="column">
+
+Cantidad de usuarios por lenguaje.
+
+```{r echo=FALSE}
+language <- encuesta %>%
+  separate_rows(ProgLanguages, sep = ";") %>%
+  group_by(ProgLanguages) %>%
+  summarize() %>%
+  pull()
+
+CantUsers <- c()
+
+for (lang in language){
+  this <- encuesta[encuesta[lang] == TRUE,]
+	cantidad <- nrow(this)
+	CantUsers[lang] <- cantidad
+}
+
+CantUsers <- sort(CantUsers, decreasing = TRUE)
+
+df1 <- data.frame(CantUsers)
+
+barplot(df1$CantUsers, 
+  main="Cantidad de usuarios por lenguaje de programación", 
+  xlab="Lenguaje de programación", 
+  ylab="Cantidad de usuarios",
+  names.arg = row.names(df1),
+  col=colorRampPalette(c("darkred", "red"))(15),
+  xlim = c(0,50),
+  las=2,
+  cex.names=0.5,
+  cex.axis=0.5,
+  )
+```
+</div>
+
+</div>
+
+## Analisis bivariado (Salud mental, Lenguaje de programación)
+
+```{r echo=FALSE}
+memoria <- filter(encuesta, Memoria == TRUE)
+ansiedad <- filter(encuesta, Ansiedad == TRUE)
+emocional <- filter(encuesta, Emocional == TRUE)
+autismo <- filter(encuesta, Autismo == TRUE)
+aprendizaje <- filter(encuesta, Aprendizaje == TRUE)
+```
+
+<div class="two-column">
+
+
+<div class="column2">
+Memoria
+
+```{r echo=FALSE}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(memoria[memoria[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Memoria", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.22),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+</div>
+
+<div class="column2">
+
+Ansiedad
+
+```{r echo=FALSE}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(ansiedad[ansiedad[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Ansiedad", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.16),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+</div>
+
+
+<div class="column2">
+
+Emocional
+
+```{r echo=FALSE}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(emocional[emocional[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas emocionales", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.2),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+
+</div>
+
+
+<div class="column2">
+
+Autismo
+
+```{r echo=FALSE}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(autismo[autismo[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Autismo", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.15),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+</div>
+
+
+<div class="column2">
+
+Aprendizaje
+
+```{r echo=FALSE}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(aprendizaje[aprendizaje[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+
+
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Aprendizaje", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.1),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+</div>
+
+</div>
+
+Lenguajes **"problemáticos"**(los tres con más frecuencia en cada problema): [Lua, Crystal, Erlang] U [Lya, Ruby, SAS] U [LISP, Lua, Erlang] U [Rust, Lua, Crystal] U [Assembly, Lua, APL]
+
+> Lua, Crystal, Erlang, Lya, Ruby, SAS, Lisp, Rust, Assembly, APL
+
+## Analisis Bivariado (Salario asociado a un lenguaje, Estado mental)
+
+<div class="two-column">
+
+<div class="column3">
+
+Promedios
+
+```{r echo=FALSE}
+promedios <- c()
+
+for (current in language){
+  this <- encuesta[encuesta[current] == TRUE,]
+	promedio <- mean(this$Salary[language == current])
+	promedios[current] <- promedio
+}
+
+promedios <- sort(promedios, decreasing = TRUE)
+
+promedios <- data.frame(promedios)
+
+porcentajeshelper <- promedios$promedios[1:15]
+nombres <- rownames(promedios)[1:15]
+
+barplot(porcentajeshelper, 
+	main = "Promedio del Salario para cada Lenguaje de Programación", 
+	xlab = "Promedio de salarios", 
+	ylab = "Lenguaje de Programación",
+  col=colorRampPalette(c("darkgreen", "green"))(15),
+	horiz=TRUE,
+	xlim = c(0, 140000),
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+</div>
+
+
+<div class="column3">
+
+Medianas
+
+```{r echo=FALSE}
+medianas <- c()
+
+for (current in language){
+  this <- encuesta[encuesta[current] == TRUE,]
+	promedio <- median(this$Salary[language == current])
+	medianas[current] <- promedio
+}
+
+medianas <- sort(medianas, decreasing = TRUE)
+medianas <- data.frame(medianas)
+
+porcentajeshelper <- medianas$medianas[1:15]
+nombres <- rownames(medianas)[1:15]
+
+barplot(porcentajeshelper, 
+	main = "Mediana del Salario para cada Lenguaje de Programación", 
+	xlab = "Medianas del Salario",
+	ylab = "Lenguaje de Programación",
+  col=colorRampPalette(c("darkgreen", "green"))(15),
+	horiz=TRUE,
+	xlim = c(0, 140000),
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+</div>
+
+<div class="column3">
+
+Boxplot (Problemas Mentales \| Salario \| Enfermedad Mental)
+
+```{r echo=FALSE}
+encuesta %>%
+  select(Memoria, Emocional, Ansiedad, Autismo, Aprendizaje, Salary) %>%
+  pivot_longer(cols = -Salary, names_to = "Problemas Mentales", values_to = "Sufre") %>%
+  ggplot() +
+  aes(x = Salary, y = `Problemas Mentales`, fill = Sufre) +
+  geom_boxplot(alpha = 0.5) +
+  theme_minimal()
+```
+
+</div>
+
+</div>
+
+## Variables empíricas
+
+
+### Cantidad de lenguajes de programación que usa un usuario de Stack Overflow.
+
+<div class="two-column">
+
+<div class="column4">
+```{r echo=FALSE}
+encuesta %>% group_by(TotalLenguajes) %>% count() -> probTotalLenguajes
+probTotalLenguajes %>% rename(Frecuencia = n) -> probTotalLenguajes
+
+probTotalLenguajes$ProbabilidadAtomica <- probTotalLenguajes$Frecuencia / nrow(encuesta)
+
+plot(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica, 
+     type = "h", 
+     col="red",
+     main = "Función de masa de probabilidad",
+     xlab = "Cantidad de lenguajes usados",
+     ylab = "Probabilidad",
+     ylim = c(0,0.2)
+)
+
+points(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica,  
+     pch = 20, 
+     col="red",
+)
+```
+</div>
+
+<div class="column4">
+```{r echo=FALSE}
+probAcumulada <- ecdf(encuesta$TotalLenguajes)
+
+ecdf_datos <- probAcumulada(0:43)
+
+plot(ecdf_datos, 
+     main = "Función de masa de probabilidad acumulada", 
+     xlab = "Cantidad de lenguajes usados", 
+     ylab = "Probabilidad acumulada",
+     type = "s",
+     col = "blue",
+)
+```
+</div>
+</div>
+
+> Media: 4.989317 | Mediana: 5 | $\sum_{x = \Omega_3} \mathbb{P}(x) = 1$
+
+### Rangos de edad de un usuario (1 - 6)
+
+<div class="two-column">
+
+<div class="column4">
+```{r echo=FALSE}
+encuesta %>% group_by(ModifiedAge) %>% count() -> probModifiedAge
+probModifiedAge %>% rename(Frecuencia = n) -> probModifiedAge
+
+probModifiedAge$ProbabilidadAtomica <- probModifiedAge$Frecuencia / nrow(encuesta)
+
+plot(probModifiedAge$ModifiedAge, 
+     probModifiedAge$ProbabilidadAtomica,
+     type = "h",
+     col = "red",
+     lwd = 2
+)
+
+points(probModifiedAge$ModifiedAge, 
+     probModifiedAge$ProbabilidadAtomica,
+     pch = 20, 
+     col="red",
+)
+```
+</div>
+
+<div class="column4">
+```{r echo=FALSE}
+probAcumulada <- ecdf(encuesta$ModifiedAge)
+
+ecdf_datos <- probAcumulada(1:7)
+
+plot(ecdf_datos, 
+     main = "Función de masa de probabilidad acumulada", 
+     xlab = "Valores", 
+     ylab = "Probabilidad acumulada",
+     col = "blue",)
+```
+</div>
+</div>
+
+> Media: 2.399192 | Mediana: 2 | $\sum_{x = \Omega_3} \mathbb{P}(x) = 1$
+
+
+## Eventos Dependientes
+
+Seleccionamos los lenguajes que causan más problemas mentales de acuerdo a nuestras gráficas, ya que consideramos que podrían tener una relación interesante. (Lua, Crystal, Erlang, Lya, Ruby, SAS, Lisp, Rust, Assembly, APL)
+
+> E1: Escoger un programador que usa 1 o más de los lenguajes "problemáticos"
+> E2: Escoger un programador que sufre 1 o más problemas mentales
+
+<div class="two-column three-column">
+```{r echo=FALSE}
+list <- c('Crystal', 'Lua', 'Rust', 'APL', 'Assembly', 'Erlang', 'LISP', 'SAS')
+
+E1 <- encuesta$Crystal | encuesta$Lua | encuesta$Rust | encuesta$APL | encuesta$Assembly | encuesta$Erlang | encuesta$LISP | encuesta$SAS
+
+probE1 <- sum(E1)/nrow(encuesta)
+cat("P(E1):", probE1*100, "%")
+```
+
+```{r echo=FALSE}
+probE2 <- sum(encuesta$TotalMentalHealth > 0) / nrow(encuesta)
+cat("P(E2):", probE2*100, "%")
+```
+
+```{r echo=FALSE}
+total = data.frame(E1, encuesta$TotalMentalHealth)
+E1E2 = nrow(total[total$E1 == TRUE & total$encuesta.TotalMentalHealth > 0,])/nrow(total)
+cat("P(E1 ∩ E2):", E1E2*100, "%")
+```
+</div>
+
+Se comprueban que las condiciones de independencia no se cumplen, por lo que es dependiente.
+
+<div class="two-column four-column">
+
+```{r echo=FALSE}
+probE2dE1 <- E1E2/probE1
+probE1dE2 <- E1E2/probE2
+cat("P(E2|E1):", probE2dE1, "!=", probE2)
+cat("P(E1|E2):", probE1dE2, "!=", probE1)
+cat("P(E2)*P(E1) =",probE1 * probE2, "!=", E1E2, "= P(E1 ∩ E2)")
+```
+</div>
+
+<div class="graph50">
+```{r echo=FALSE}
+total$encuesta.TotalMentalHealth <- total$encuesta.TotalMentalHealth > 0
+
+mosaicplot(table(total$E1, total$encuesta.TotalMentalHealth), main = "Problemas mentales y lenguajes problemáticos", xlab="Usa un lenguaje 'problematico'", ylab="Sufre 1 o más problemas mentales")
+```
+
+</div>
+
+
+## Eventos Independientes
+
+Se quiere demostrar que nuestra salud mental no depende de si usamos un lenguaje popular o no. Para esto demostraremos que los eventos son independientes:
+
+> E1: Usa un lenguaje que está entre los 5 más populares.
+> E2: Sufre de 2 o más problemas mentales.
+
+<div class="two-column three-column">
+```{r echo=FALSE}
+evento1 = encuesta$Java | encuesta$JavaScript | encuesta$C | encuesta$Python | encuesta$SQL
+
+E1 = sum(evento1)/length(evento1)
+cat("P(E1):", E1*100, "%")
+```
+
+```{r echo=FALSE}
+cantProblemas = encuesta$Memoria + encuesta$Emocional +encuesta$Ansiedad + encuesta$Autismo +encuesta$Aprendizaje
+
+E2 = length(cantProblemas[cantProblemas >= 2])/length(cantProblemas)
+
+cat("P(E2):", E2*100, "%")
+```
+
+```{r echo=FALSE}
+total = data.frame(evento1, cantProblemas)
+
+E1E2 = nrow(total[total$evento1 == TRUE & total$cantProblemas >= 2,])/nrow(total)
+
+cat("P(E1 ∩ E2):", E1E2*100, "%")
+```
+</div>
+
+Se comprueban que las condiciones de independencia se cumplen:
+
+<div class="two-column four-column">
+
+```{r echo=FALSE}
+E2dadoE1 = E1E2/E1
+E1dadoE2 = E1E2/E2
+cat("P(E1|E2) =",E1dadoE2,"≈",E1,"= P(E1)")
+cat("P(E2|E1) =",E2dadoE1,"≈",E2,"= P(E2)")
+cat("P(E1yE2) =",E1E2,"≈",E1*E2,"= P(E1)*P(E2)")
+```
+</div>
+
+<div class="graph50">
+```{r echo=FALSE}
+total$cantProblemas <- total$cantProblemas >= 2
+
+mosaicplot(table(total$evento1, total$cantProblemas),
+	main = "Eventos independientes",
+	xlab = "Uno o más de los 5 lenguajes populares",
+	ylab = "2 o más problemas mentales")
+```
+
+</div>
+
+
+## Distribución Binomial
+
+> Evento: Escoger una muestra de 1000 programadores (con reemplazo) y contar el número de programadores que programen en JavaScript y que ganen mas del promedio.
+
+> Éxito: Que el programador escogido domine en JS y gane mas que el promedio
+
+La probabilidad de exito es del **27%** (p = 0.27, n = 100).
+
+Realizando el experimento obtenemos el siguiente gráfico:
+
+<div class="two-columns">
+
+<div class="column" id="grafico01">
+```{r echo=FALSE}
+
+p <- round( nrow(encuesta %>% filter(encuesta$JavaScript == TRUE & encuesta$Salary > promedio))/nrow(encuesta) ,2)
+
+n <- 1000
+
+list <- data.frame(
+  exitos = 1:1000,
+  probabilidad = 0
+)
+
+for (i in 1:1000) {
+  count <- 0
+  
+  indices <- sample(1:nrow(encuesta), 1000)
+  
+  for (index in indices) {
+    if (encuesta$JavaScript[index] == TRUE & encuesta$Salary[index] > promedio){
+      count = count + 1
+    }
+  }
+  
+  list$probabilidad[count] = list$probabilidad[count] + 1
+}
+
+list$probabilidad <- list$probabilidad/1000
+
+
+plot(list$exitos[100:400], list$probabilidad[100:400],
+     type = "h", 
+     col="red",
+     main = "",
+     xlab = "N° casos de éxito",
+     ylab = "Probabilidad",
+)
+lines(dbinom(1:1000, n, p), type = 'l', lwd = 1, lty = 2, col = "blue")
+legend("topright", 
+       legend = c("Experimento", "Distribución Binomial"), 
+       col = c("red", "blue"), 
+       lwd = 2,
+       lty = c(1,2)
+)
+```
+</div>
+</div>
+
+```{r echo=FALSE}
+count <- 0
+listexitos <- c()
+for (i in 1:nrow(list)) {
+  if (list$probabilidad[i] != 0){
+    count = count + 1
+    
+    listexitos = c(listexitos, list$exitos[i])
+  }
+}
+
+cat("media:",mean(listexitos),"|","moda:",list$exitos[list$probabilidad == max(list$probabilidad)], "|", "mediana:", median(listexitos))
+```
+
+Sabiendo que los eventos son independientes entre sí y que la mediana, la moda y la media están relativamente cerca. Podemos intuir el uso de un modelo de distribución binomial.
+
+Se puede comprobar el ajuste calculando la Esperanza.
+
+```{r echo=FALSE}
+cat("Esperanza =", n*p, "≈", mean(listexitos), "= Media")
+```
+
+## Distribución de Poisson
+
+$$
+\mathbb{X} = \text{Número de lenguajes mensuales que usa un desarrollador en un mes} \\
+Rango(\mathbb{X}) = \mathbb{N} - \{0\} \\
+\mathbb{X} \sim \mathcal{Poisson}(\lambda) = \mathcal{Poisson}(5)
+$$
+<div id="graph02">
+```{r echo=FALSE}
+encuesta %>% group_by(TotalLenguajes) %>% count() -> probTotalLenguajes
+probTotalLenguajes %>% rename(Frecuencia = n) -> probTotalLenguajes
+
+probTotalLenguajes$ProbabilidadAtomica <- probTotalLenguajes$Frecuencia / nrow(encuesta)
+
+
+plot(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica, 
+     type = "h", 
+     col="red",
+     main = "Comparación de la variable 'Total de lenguajes' y Poisson",
+     xlab = "Cantidad de lenguajes usados",
+     ylab = "Probabilidad",
+     ylim = c(0,0.2)
+)
+
+points(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica,  
+     pch = 20, 
+     col="red",
+)
+
+lines(dpois(1:50, mean(encuesta$TotalLenguajes)), col="blue", type="l", lwd = 2, lty = 2)
+
+legend("topright", 
+       legend = c("Función de probabilidad", "Distribución de Poisson"), 
+       col = c("red", "blue"), 
+       lwd = 2,
+       lty = c(1,2)
+)
+```
+</div>
+
+```{r echo=FALSE}
+cat("mediana:", median(encuesta$TotalLenguajes), "|", "media:", mean(encuesta$TotalLenguajes))
+cat("varianza:", var(encuesta$TotalLenguajes))
+
+    
+```
+
+
+
+## Variable Salario
+
+```{r echo=FALSE}
+encuesta %>% filter(Salary > 30000 & Salary < 70000) %>% count()/nrow(encuesta) -> SalaryUnif
+
+cat("mediana:",median(encuesta$Salary))
+pruebaSalary <- encuesta %>% filter(Salary > 30000 & Salary < 70000)
+
+```
+<div class="two-column" id="thirdGraph">
+```{r echo=FALSE}
+hist(pruebaSalary$Salary, 
+     prob = TRUE, 
+     breaks = 10,
+     main = "Histograma del Salario",
+     xlab = "salario anual en dólares",
+     ylab = "Frecuencia",
+     col = "skyblue"
+)
+Xs <- seq(0, 280000, by = 10)
+lines(Xs, dunif(Xs,30000,70000), col = "red", lwd = 2)
+```
+</div>
+
+
+<div>
+
+Es razonable que la mayor cantidad de datos esté concentrada alrededor de la mediana. Por lo que escogimos este rango en el cual "Salary" se aproxima significativamente a una distribución uniforme.
+
+Aproximación de la Esperanza:
+```{r echo=FALSE}
+Ez <- (70000 + 30000) / 2
+
+men = mean(pruebaSalary$Salary)
+
+cat("Media =", men, "≈", Ez, " = Esperanza")
+
+varz <- (70000 - 30000)^2/12
+
+realVar <- var(pruebaSalary$Salary)
+
+cat("Varianza Teórica =", varz, "≈", realVar, "= Varianza Real")
+
+
+cat("Desviación Estandar Teórica =", sqrt(varz), "≈", sd(pruebaSalary$Salary), "= Desviación Estándar Real")
+```
+
+</diV>
+
+
+## Conclusiones
+
+<div id="conclu">
+- El estudio muestra correlaciones entre la popularidad, facilidad de uso y remuneración de un lenguaje de programación y la salud mental de los programadores, pero sin una relación directa y determinante.
+
+- Los lenguajes populares y bien documentados no son los únicos factores que influyen en el equilibrio emocional de los programadores, también importan el ambiente laboral, salario y mercado.
+
+- Aunque las variables no se ajustan a distribuciones ideales, la distribución Uniforme puede aproximar el salario.
+
+- La salud mental de los programadores no debe atribuirse únicamente al lenguaje de programación, ya que otros factores externos son significativos y deben abordarse para promover un entorno de trabajo saludable.
+</div>

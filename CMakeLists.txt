@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(.)
 
-add_executable(2023_I P3/S14/LabA/Ejercicio002.cpp P3/S15/PC3/p3.cpp)
+add_executable(2023_I P3/S15/PC3/p3.cpp)
 
 add_executable(tarea P3/S13/Tarea2b/tarea/foo.cpp P3/S13/Tarea2b/tarea/main.cpp)
 

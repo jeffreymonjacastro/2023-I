@@ -1,0 +1,213 @@
+---
+title: "EF"
+format: html
+editor: visual
+---
+
+## Examen Final
+
+**Nombre**: Jeffrey Monja Castro
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+
+```{r}
+DF <- read_csv('DFB.csv')
+DF
+```
+
+### Pregunta 1
+
+```{r}
+p1 <- 6*5*4
+p2 <- 6*5*4*3*2
+
+N <- 6
+M <- 3
+n <- 3
+
+r(dhyper(3, N, N-M, N))
+```
+
+### Pregunta 2
+
+Por dato 0.61
+
+### Pregunta 3
+
+```{r}
+DF %>% filter(Tipo == 'B') -> DF2
+```
+
+```{r}
+p <- mean(DF2$Nota)
+p/100 -> p
+p
+
+#valor esperado
+100*p
+
+#desviación
+r(sqrt(100*p*(1-p)))
+```
+
+### Pregunta 4
+
+```{r}
+DF %>% filter(Tipo == 'A' & Nota >= 55) -> DF3
+DF %>% filter(Tipo == 'A') -> DF4
+
+# Jalar
+p1 <- nrow(DF3)/nrow(DF)
+
+p2 <- nrow(DF4)/nrow(DF)
+
+p1 - p2
+
+#Mención destacada
+DF %>% filter(Tipo == 'A' & Nota > 75) -> DF5
+
+r(nrow(DF5)/nrow(DF4))
+```
+
+### Pregunta 5
+
+```{r}
+# Exactamente 75 pts
+DF %>% filter(Nota == 75) -> DF6
+prob_75 <- nrow(DF6)/nrow(DF)
+r(prob_75)
+
+# Bayes
+DF %>% filter(Nota == 75 & Tipo == 'A') -> DF7
+p_A_itersec_75 <- nrow(DF7)/nrow(DF)
+
+p_A_itersec_75/prob_75
+
+```
+
+### Pregunta 6
+
+```{r}
+summary(DF$Nota)
+```
+
+```{r}
+hist(DF$Nota, breaks=30)
+mean(DF$Nota)
+```
+
+```{r}
+DF %>% filter(Nota>= 55) %>% select(Nota) %>% count()/nrow(DF)
+```
+
+### Pregunta 7
+
+```{r}
+DF %>% filter(Tipo == 'B' & Nota >= 55) -> DF8
+DF8
+```
+
+```{r}
+hist(DF8$Intento, prob=TRUE)
+lines(dpois(0:2, 0.96))
+
+# media teórica
+r(1/0.96)
+
+# promedio empírico
+r(mean(DF8$Intento))
+```
+
+### Pregunta 8
+
+```{r}
+hist(DF$Tiempo, breaks = 30, prob=TRUE)
+
+abline(v = mean(DF$Tiempo), col = 'blue')
+abline(v = median(DF$Tiempo), col = 'red')
+```
+
+```{r}
+nrow(DF[DF$Tiempo >= 7.75 & DF$Tiempo <= 8, ])/nrow(DF)
+
+```
+
+### Pregunta 9
+
+```{r}
+DF %>% filter(Tipo == 'B') -> DF9
+Xs <- seq(1, 100, by = 0.01)
+
+hist(DF9$Tiempo, breaks=10, prob=TRUE)
+lines(Xs, dnorm(Xs, 8.05, 0.29))
+```
+
+### Pregunta 10
+
+```{r}
+DF %>% filter(Tipo == 'A') -> DF10
+
+p <- nrow(DF[DF$Tipo == 'A' & DF$Duracion < 1,])/nrow(DF10)
+
+dbinom(1, 100, p)
+```
+
+## Keyli
+
+```{r}
+DF <- read_csv('../DFC.csv')
+```
+
+p3
+
+```{r}
+DF %>% filter(Tipo == 'C') -> DF1
+```
+
+```{r}
+DF1 %>% filter(Nota >= 55) %>% select(Nota) %>% count()/nrow(DF1)
+```
+
+```{r, warning=FALSE}
+Xs <- seq(30,70, by = 0.01)
+
+hist(DF1$Nota, breaks = 20, prob = TRUE)
+lines(Xs, dbinom(Xs, 100, 0.5155), col = 'red')
+
+```
+
+p4
+```{r}
+r(DF1 %>% filter(Nota < 55) %>% select(Nota) %>% count()/nrow(DF1))
+
+r(DF1 %>% filter(Nota >= 75) %>% select(Nota) %>% count()/nrow(DF1))
+
+```
+p6
+```{r}
+DF %>% filter(Nota >= 55) %>% select(Nota) %>% count()/nrow(DF)
+```
+```{r}
+DF %>% filter(Tipo == 'B') -> DF2
+```
+
+```{r}
+hist(DF2$Intento, prob = TRUE)
+```
+p9
+```{r, warning=FALSE}
+Xs <- seq(1, 100, by = 0.01)
+
+hist(DF$Tiempo, breaks=20, prob=TRUE)
+lines(Xs, dgeom(Xs,0.4))
+```
+

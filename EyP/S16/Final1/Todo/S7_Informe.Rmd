@@ -1,0 +1,1484 @@
+---
+title: "Estudio sobre la relación entre las tecnologías que usan los desarrolladores en su trabajo y su salud mental"
+author: "Grupo 7"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+---
+
+## Introducción
+
+Hablar del mundo de la programación es adentrarse en un universo inmenso, lleno de posibilidades y retos. Sin embargo, si nuestro objetivo es adentrarnos en este mundo, debemos tomar en cuenta nuestra salud por encima de todo.
+
+### Relevancia e importancia
+
+Actualmente, el uso de tecnologías de desarrollo ha aumentado significativamente en los últimos años. Han surgido carreras como Ciencia de la Computación, Ciencia de Datos, Sistemas de Información, entre otras, debido a la creciente tendencia de incorporar lenguajes de programación en la educación para formar nuevos desarrolladores interesados en STEM. Por lo tanto, si nos enfocamos en este campo, sería muy útil conocer cómo el lenguaje de programación influye en nuestra calidad de vida según la experiencia de los desarrolladores que trabajan en ello.
+
+### Planificación y Factibilidad
+
+Consideramos que el proyecto es viable ya que usamos bases de datos de fuentes confiables como Stack Overflow (la cual es una plataforma abierta y la base de datos resume información pública) y la otra de PLDB (un proyecto Open Source creado por desarrolladores para la recolección de datos sobre lenguajes de programación)
+
+#### Planificación (Diagrama de Gantt)
+
+**Diagrama de Gantt** con la planificación de las diferentes actividades y entregas del proyecto.
+
+```{r warning=FALSE, echo=FALSE}
+
+library(DiagrammeR)
+
+mermaid("
+gantt
+dateFormat  YYYY-MM-DD
+title Diagrama de Gantt
+
+section Main things
+Preparar PG01:first_1,2023-04-15, 3d
+Entrega PG01:first_2,2023-04-18, 2d
+Preparar PG02:first_3,2023-04-20, 11d
+Entrega PG02:first_4,2023-05-01, 2d
+Preparar PG03:first_5,2023-05-03, 21d
+Entrega PG03:first_6,2023-05-24, 2d
+Informe PG1:first_7,2023-05-26, 9d
+Entrega Informe 1:first_8, 2023-06-04,1d
+Preparar PG1.1: first_9, 2023-06-05,10d
+Entregar PG1.1: first_10, 2023-06-16,1d
+Preparar PG1.2: first_11, 2023-06-18,10d
+Entregar PG1.2: first_12, 2023-07-05, 2d
+Informe PG2: first_13, 2023-07-07, 1d
+
+section PG01
+Diagrama de Gantt:first_1, 2023-04-15, 12h
+Delimitar tema:first_2, after first_1, 12h
+Variables de analisis: first_3, after first_2, 6h
+Limpieza de la base de datos: first_4, after first_2, 12h
+Analizar la factibilidad: first_5, after first_3, 1d
+
+section PG02
+Replantear objetivos:first_6, 2023-04-20, 1d
+Limpieza de tablas:first_7, after first_6, 5d
+Corrección de variables:first_8, after first_7, 5d
+
+section PG03
+Análisis univariado:first_9, 2023-05-03, 12d
+Análisis bivariado:first_10, 2023-05-10, 10d
+Análisis multivariado:first_11, 2023-05-15, 7d
+Escribir análisis:first_12, after first_11, 2d
+
+section Informe PG1
+Correcciones:first_13, 2023-05-26, 3d
+Union de PG0x:first_14, after first_13, 2d
+Verificar ortografía:first_15, after first_14, 2d
+Informe prolijo:first_16, after first_15, 2d
+
+section Informe PG2
+Correcciones:first_17, 2023-06-04, 10d
+Probabilidades: first_18, after first_17, 10d
+Informe prolijo: first_19, 2023-06-24, 10d
+
+
+")
+```
+
+## Objetivos
+
+### Objetivo principal
+
+Demostrar que la salud mental del programador depende, en parte, del lenguaje de programación que escoja para trabajar.
+
+### Objetivos secundarios
+
+-   Demostrar que la popularidad de un lenguaje de programación no significa que trabajar con este brinde un mejor estado de salud mental.
+
+-   Encontrar una relación entre el acceso a información del lenguaje de programación escogido por el programador y su salud mental.
+
+-   Encontrar una relación entre el salario que brinda el lenguaje de programación que usan los desarrolladores con su salud mental.
+
+-   Demostrar la relación entre el sistema operativo utilizado en el ámbito profesional y la salud mental de los individuos, y encontrar una posible asociación entre los problemas mentales y el tipo de sistema operativo.
+
+## Datos
+
+### Recolección de datos
+
+Nuestros datos se basarán en dos bases de datos:
+
+-   Programming language database (PLDB):
+    -   Contiene información acerca de +4000 lenguajes de programación incluyendo su año de creación, el tipo (query, programación, etiquetado, etc.), cantidad de usuarios, cantidad de trabajadores, entre otros.
+-   Survey_results 2022 (Stack Overflow):
+    -   Contiene información de una encuesta realizada a desarrolladores de todo el mundo relacionados a la experiencia de programación. Incluyen demografía, educación, puesto de trabajo, lenguaje de programación, salud mental, entre otros.
+
+## Librerías
+
+### Carga de librerías
+
+```{r warning=FALSE, echo = TRUE}
+
+libraries <- c("dplyr", "readr", "ggplot2", "tidyverse", "stringr")
+
+for (lib in libraries) {
+  if (!(lib %in% installed.packages())) {
+    install.packages(lib)
+  }
+  library(lib, character.only = TRUE)
+}
+
+
+```
+
+### Carga de datos
+
+```{r warning=FALSE}
+planguages <- read_csv("programming_languages_limpia.csv")
+encuesta <- read_csv("limpia_survey_results.csv")
+```
+
+## Variables de estudio Finales
+
+Luego de la limpieza, decidimos mantenernos con `12` variables que se relacionan con nuestros objetivos de investigación.
+
+### Encuestas de Stakoverflow
+
+| Nombre de la variable | Tipo de variable   | Descripción                                               | Restricciones                                        |
+|------------------|------------------|-------------------|------------------|
+| Age                   | Categórica Ordinal | Edad                                                      | \-                                                   |
+| Gender                | Categórica Ordinal | Género                                                    | Man y Woman                                          |
+| Salary                | Numérica Contínua  | El salario anual en dólares del desarrollador             | [3600 - 249153]                                      |
+| MentalHealth          | Categórica Ordinal | Como considera que está su salud mental                   | Se omiten "*In your own words*" y "*Prefer not say*" |
+| ProfessionalOP        | Categórica Ordinal | Sistema operativo que usan para trabajar profesionalmente | Se separan en columnas de TRUE y FALSE               |
+| ProgrLanguages        | Categórica Ordinal | Lista de los lenguajes que han usado                      | Se separan en columnas de TRUE y FALSE               |
+
+### PLDB Lenguajes de Programación
+
+| Nombre de la variable | Tipo de variable   | Descripción                                                       | Restricciones                                                               |
+|------------------|------------------|------------------|-------------------|
+| Nombre                | Categórica Nominal | Nombre original del lenguaje de programación                      | Deben estar los mismos lenguajes de la encuesta de StackOverflow            |
+| Type                  | Categórica Ordinal | El tipo de lenguaje del que se trata                              | Debe ser "*pl*", "*queryLanguage*", "*textMarkup*" y "*stylesheetLanguage*" |
+| N_Trabajos            | Numérica Discreta  | Número de trabajos relacionados al lenguaje de programación       | Debe ser mayor a 0                                                          |
+| N_Usuarios            | Numérica Discreta  | Número de usuarios que usan el lenguaje                           | Debe ser mayor a 0                                                          |
+| Github_repos          | Numérica Discreta  | Cantidad de repositorios que existen en Github con ese lenguaje   | Mayor a 1                                                                   |
+| BigQuery_repos        | Numérica Discreta  | Cantidad de repositorios que existen en BigQuery con ese lenguaje | Mayor a 1                                                                   |
+
+## Preguntas e Hipótesis
+
+#### Pregunta 1:
+
+-   ¿Existe una relación entre el lenguaje de programación utilizado por un desarrollador y su salud mental?
+
+Hipótesis:
+
+-   La elección del lenguaje de programación utilizado por un desarrollador influye en su salud mental. Se espera que algunos lenguajes de programación estén asociados con niveles más altos de estrés o frustración, mientras que otros puedan promover una mayor satisfacción y bienestar.
+
+#### Pregunta 2:
+
+-   ¿Hay alguna relación entre la popularidad de un lenguaje de programación y la satisfacción laboral de los programadores que lo utilizan?
+
+Hipótesis:
+
+-   No existe una correlación significativa entre la popularidad de un lenguaje de programación y la satisfacción laboral de los programadores. Se espera que la satisfacción laboral esté influenciada por otros factores, como la dificultad del lenguaje, el acceso a información que este brinda, entre otros.
+
+#### Pregunta 3:
+
+-   ¿Existe una relación entre el acceso a información relevante sobre un lenguaje de programación y la salud mental de los programadores que lo utilizan?
+
+Hipótesis:
+
+-   El acceso a información adecuada sobre un lenguaje de programación está relacionado con una mejor salud mental de los programadores. Se espera que los desarrolladores que tienen un fácil acceso a recursos de aprendizaje y documentación de su lenguaje de programación experimenten mejores estados mentales.
+
+#### Pregunta 4:
+
+-   ¿Hay una relación entre el salario asociado a un lenguaje de programación y la salud mental de los programadores que lo utilizan?
+
+Hipótesis:
+
+-   El salario ofrecido por un lenguaje de programación no tiene una influencia directa en la salud mental de los programadores. Se espera que otros factores, como el ambiente laboral, tengan un impacto más significativo en la salud mental de los desarrolladores que el salario.
+
+#### Pregunta 5:
+
+-   ¿Existe una relación entre el sistema operativo utilizado en el trabajo y la salud mental de los individuos?
+
+Hipótesis:
+
+-   Se espera que sistema operativo utilizado en el ámbito profesional se relacione de forma débil con la salud mental de los individuos.
+
+## Análisis Descriptivo
+
+### Análisis Univariado
+
+#### Salario
+
+Veamos cómo se comporta el salario:
+
+```{r}
+summary(encuesta$Salary)
+```
+
+```{r}
+encuesta %>%
+ ggplot() +
+  aes(x = Salary) +
+  geom_density(adjust = 1L, fill = "#B8FFB8") +
+  labs(
+    x = "Salario anual en dolares",
+    y = "Densidad",
+    title = "Densidad Salarial"
+  ) +
+  theme_minimal()
+```
+
+El salario de los desarrolladores se concentra entre 50,000 y 60,000 dólares anuales, con un sesgo hacia salarios más altos debido a la presencia de personas que trabajan con múltiples lenguajes de programación.
+
+#### Lenguajes de programación
+
+```{r}
+language <- encuesta %>%
+  separate_rows(ProgLanguages, sep = ";") %>%
+  group_by(ProgLanguages) %>%
+  summarize() %>%
+  pull()
+
+CantUsers <- c()
+
+for (lang in language){
+  this <- encuesta[encuesta[lang] == TRUE,]
+	cantidad <- nrow(this)
+	CantUsers[lang] <- cantidad
+}
+
+CantUsers <- sort(CantUsers, decreasing = TRUE)
+
+df1 <- data.frame(CantUsers)
+
+barplot(df1$CantUsers, 
+  main="Cantidad de usuarios por lenguaje de programación", 
+  xlab="Lenguaje de programación", 
+  ylab="Cantidad de usuarios",
+  names.arg = row.names(df1),
+  col=colorRampPalette(c("darkred", "red"))(15),
+  xlim = c(0,50),
+  ylim = c(0,20000),
+  las=2,
+  cex.names=0.5,
+  cex.axis=0.5,
+  )
+```
+
+Se visualiza que en nuestra muestra los lenguajes más conocidos son `JavaScript`, `HTML/CSS`, `SQL` entre otros.
+
+```{r}
+planguages %>% arrange(desc(N_Usuarios)) -> OrdenUsuarios
+
+barplot(OrdenUsuarios$N_Usuarios, 
+        names.arg = OrdenUsuarios$Nombre,
+        col = "pink",
+        main = "Cantidad de usuarios por Lenguaje",
+        xlab = "Lenguajes de programación",
+        ylab = "N° usuarios",
+        cex.names = 0.6,
+        cex.axis = 0.7,
+        ylim = c(0,8000000),
+        las = 2
+        )
+```
+
+#### Total de lenguajes de programación
+
+```{r}
+encuesta$TotalLenguajes <- 0
+```
+
+```{r}
+for (i in 1:nrow(encuesta)) {
+  cont <- 0
+  for (pl in language) {
+    if (encuesta[i, pl] == TRUE){
+      cont <- cont + 1
+    }
+  }
+  encuesta[i, 'TotalLenguajes'] <- cont
+}
+```
+
+```{r}
+encuesta %>% group_by(TotalLenguajes) %>% count()
+```
+
+```{r}
+hist(encuesta$TotalLenguajes,
+     col = "skyblue",
+     main = "Histograma del total de lenguajes de Programación",
+     xlab = "Cantidad de lenguajes", 
+     ylab = "Frecuencia",
+     breaks = 20
+)
+
+abline(v= mean(encuesta$TotalLenguajes), col = "red", lty = 1)
+
+abline(v= median(encuesta$TotalLenguajes), col = "blue", lty = 2)
+
+legend("topright", legend = c("Media", "Mediana"), col = c("red", "blue"), lty = c(1, 2))
+```
+
+Donde la media es: `r mean(encuesta$TotalLenguages)` y la mediana es: `r median(encuesta$TotalLenguages)`. Se aprecia que hay una mayor tendencia por trabajar con menos de 5 lenguajes de programación a diferencia con trabajar más de 5 lenguajes
+
+#### Total de problemas de Salud Mental
+
+```{r}
+MentalHealth <- c("Memoria", "Ansiedad", "Aprendizaje", "Autismo", "Emocional")
+```
+
+```{r}
+encuesta$TotalMentalHealth <- 0
+
+for (i in 1:nrow(encuesta)) {
+  cont <- 0
+  for (problem in MentalHealth) {
+    if (encuesta[i, problem] == TRUE){
+      cont <- cont + 1
+    }
+  }
+  encuesta[i, 'TotalMentalHealth'] <- cont
+}
+```
+
+```{r}
+barplot(table(encuesta$TotalMentalHealth),
+     col = colorRampPalette(c("lightblue", "blue"))(6),
+     main = "Total de problemas de salud mental",
+     xlab = "Cantidad de problemass de salud mental", 
+     ylab = "Frecuencia",
+)
+```
+
+#### Variable Edad
+
+```{r}
+ages <- c("Under 18 years old", "18-24 years old", "25-34 years old", "45-54 years old", "55-64 years old", "65 years or older")
+
+encuesta$ModifiedAge <- 0
+
+encuesta$ModifiedAge <- ifelse(
+  encuesta$Age == "Under 18 years old", 0, 
+  ifelse(encuesta$Age == "18-24 years old", 1, 
+    ifelse(encuesta$Age == "25-34 years old", 2, 
+      ifelse(encuesta$Age == "35-44 years old", 3,
+        ifelse(encuesta$Age == "45-54 years old", 4,
+          ifelse(encuesta$Age == "55-64 years old", 5, 
+            ifelse(encuesta$Age == "65 years or older", 6, encuesta$ModifiedAge)))))))
+```
+
+```{r}
+barplot(table(encuesta$ModifiedAge), 
+     main = "Frecuencia de edades",
+     xlab = "Rango de edades",
+     ylab = "Frecuencia",
+     col="pink")
+```
+
+
+### ¿Existe una relación entre el lenguaje de programación utilizado por un desarrollador y su salud mental?
+
+Utilizaremos los siguientes descriptores gráficos:
+
+#### Salud mental vs. Tecnologías de desarrollo
+
+Vamos a crear un gráfico de barras por cada problema mental identificado. En el cuál pondremos una barra por cada lenguaje de programación
+
+Recordemos que nuestros datos principales se llaman "encuesta"
+
+> ##### Variables necesarias:
+
+```{r}
+memoria <- filter(encuesta, Memoria == TRUE)
+ansiedad <- filter(encuesta, Ansiedad == TRUE)
+emocional <- filter(encuesta, Emocional == TRUE)
+autismo <- filter(encuesta, Autismo == TRUE)
+aprendizaje <- filter(encuesta, Aprendizaje == TRUE)
+```
+
+#### Memoria:
+
+```{r}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(memoria[memoria[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes <- data.frame(porcentajes)
+
+```
+
+```{r}
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de memoria", 
+	xlab="Porcentaje de personas", 
+	ylab = "Lenguaje de programación",
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.25),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+porcentajeshelper <- porcentajes$porcentajes[25:40]
+nombres <- rownames(porcentajes)[25:40]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de memoria", 
+	xlab="Porcentaje de personas", 
+	ylab = "Lenguaje de programación",
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.25),
+	horiz = TRUE,
+	las=1,
+	names.arg = nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Se ve que los desarrolladores que usan el lenguaje de programación de `Erlang` sufren más de memoria, mientras que los desarrolladores que usan `Java` son los que menos sufren memoria.
+
+#### Ansiedad
+
+```{r}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(ansiedad[ansiedad[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+```
+
+```{r}
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Ansiedad", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.16),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+porcentajeshelper <- porcentajes$porcentajes[25:40]
+nombres <- rownames(porcentajes)[25:40]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Ansiedad", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.16),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Se ve que los desarrolladores que usan el lenguaje de programación de `SAS` sufren más de ansiedad, mientras que los desarrolladores que usan `Julia` son los que menos sufren ansiedad.
+
+#### Emocional:
+
+```{r}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(emocional[emocional[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+```
+
+```{r}
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas emocionales", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.2),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+porcentajeshelper <- porcentajes$porcentajes[25:40]
+nombres <- rownames(porcentajes)[25:40]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas emocionales", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.2),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Se ve que los desarrolladores que usan el lenguaje de programación de `Erlang` sufren más de problemas emocionales, mientras que los desarrolladores que usan `F#` son los que menos sufren problemas emocionales.
+
+#### Autismo
+
+```{r}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(autismo[autismo[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+```
+
+```{r}
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Autismo", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.15),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+porcentajeshelper <- porcentajes$porcentajes[25:40]
+nombres <- rownames(porcentajes)[25:40]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Autismo", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.15),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Se observa que los desarrolladores que usan el lenguaje de programación de `Crystal` sufren más de problemas de autismo, mientras que los desarrolladores que usan `MATLAB` son los que menos sufren problemas de autismo.
+
+#### Aprendizaje
+
+```{r}
+porcentajes <- c()
+
+for (current in language){
+	cantidad = nrow(aprendizaje[aprendizaje[[current]] == TRUE, ])
+	cantidadTotal = nrow(encuesta[encuesta[[current]] == TRUE, ])
+	porcentajes[current] <- cantidad/cantidadTotal
+}
+
+porcentajes <- sort(porcentajes, decreasing = TRUE)
+
+porcentajes = data.frame(porcentajes)
+```
+
+```{r}
+porcentajeshelper <- porcentajes$porcentajes[1:15]
+nombres <- rownames(porcentajes)[1:15]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Aprendizaje", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+	xlim = c(0,0.1),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+porcentajeshelper <- porcentajes$porcentajes[25:40]
+nombres <- rownames(porcentajes)[25:40]
+
+barplot(porcentajeshelper, 
+	main="% Personas que sufren de problemas de Aprendizaje", 
+	xlab="Porcentaje de personas", 
+  col=colorRampPalette(c("darkblue", "blue"))(15),
+  xlim = c(0,0.1),
+	horiz=TRUE,
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Se observa que los desarrolladores que usan el lenguaje de programación de `APL` sufren más de problemas de aprendizaje, mientras que los desarrolladores que usan `Delphi` son los que menos sufren problemas de aprendizaje.
+
+De estos gráficos podemos identificar distintos lenguajes que generan problemas a los desarrolladores.
+
+Tipos de problemas mentales:
+
+-   Aprendizaje
+
+    -   Entre las personas que sufren de problemas de aprendizaje, podemos identificar como principales a los siguientes lenguajes: **APL, SAS y LUA**.
+
+-   Autismo
+
+    -   Entre las personas que sufren problemas de autismo, podemos identificar como principales a los siguientes lenguajes: **Crystal, Lua, Julia y SAS.**
+
+-   Emocionales
+
+    -   Entre las personas que sufren problemas emocionales, podemos identificar como principales a **Erlang, Lua, SAS y Haskell.**
+
+-   Ansiedad
+
+    -   En cuanto a los problemas de ansiedad: **SAS, Lua y Ruby.**
+
+-   Memoria
+
+    -   Finalmente, en cuanto a las personas con problemas de memoria, podemos identificar a los siguientes lenguajes: **Erlang, Crystal y Lua.**
+
+Algunos lenguajes de programación, como SAS, Erlang, Crystal y Lua, se asocian con más problemas mentales, mientras que lenguajes como Java, C++ o MATLAB parecen tener menos incidencia de problemas mentales. Existe una relación entre el lenguaje de programación y el estado mental, pero se necesita más investigación para comprender las causas exactas.
+
+### ¿Hay alguna relación entre la popularidad de un lenguaje de programación y la satisfacción laboral de los programadores que lo utilizan?
+
+Para esto analizaremos los datos de los lenguajes de programación. Veremos entonces la lista de lenguajes más populares y compararemos.
+
+```{r}
+planguages %>% arrange(desc(N_Usuarios)) -> OrdenUsuarios
+
+barplot(OrdenUsuarios$N_Usuarios, 
+        names.arg = OrdenUsuarios$Nombre,
+        col = "pink",
+        main = "Cantidad de usuarios por Lenguaje",
+        xlab = "Lenguajes de programación",
+        ylab = "N° usuarios",
+        cex.names = 0.6,
+        cex.axis = 0.7,
+        ylim = c(0,8000000),
+        las = 2
+        )
+
+```
+
+Entonces busquemos nuestros lenguajes más "problemáticos" y los "poco problemáticos" en base a su popularidad.
+
+Rápidamente notaremos que son los lenguajes "poco problemáticos" los que gozan de los primeros puestos en cuanto a popularidad se trata, por otro lado a los que calificamos como "problemáticos" se encuentran en puestos bajos.
+
+Pero parémonos a analizar un momento y pensemos, ¿es la popularidad lo que está definiendo que un lenguaje sea "problemático", es decir, afecte negativamente en la salud mental de un desarrollador? O por otro lado, ¿es un lenguaje popular porque puede ser calificado como **"poco problemático"**?
+
+```{r}
+planguages %>% arrange(desc(N_Trabajos)) -> OrdenTrabajos
+
+barplot(OrdenTrabajos$N_Trabajos, 
+        names.arg = OrdenTrabajos$Nombre,
+        col = "blue",
+        main = "Cantidad de trabajados por Lenguaje",
+        xlab = "Lenguajes de programación",
+        ylab = "N° trabajados",
+        cex.names = 0.6,
+        ylim = c(0,250000),
+        las = 2
+        )
+```
+
+Si analizamos el número de trabajos por lenguaje notaremos la misma **tendencia** que se presentó en el de popularidad. Es natural puesto que si un lenguaje es más popular ha de tener mayor cantidad de trabajos y viceversa.
+
+Aún es demasiado temprano para sacar conclusiones sobre si existe una relación clara entre la popularidad del lenguaje y su efecto en la salud mental, faltarían analizar otros factores que veremos ahora mismo.
+
+### ¿Hay una relación entre el salario asociado a un lenguaje de programación y la salud mental de los programadores que lo utilizan?
+
+Pero no solo es la popularidad o la cantidad de información acerca del lenguaje los que pueden ser factores que afecten a la salud mental del desarrollador. También podemos analizar el salario medio de cada lenguaje y ver como este afecta a la salud mental del desarrollador.
+
+```{r}
+promedios <- c()
+
+for (current in language){
+  this <- encuesta[encuesta[current] == TRUE,]
+	promedio <- mean(this$Salary[language == current])
+	promedios[current] <- promedio
+}
+
+promedios <- sort(promedios, decreasing = TRUE)
+
+promedios <- data.frame(promedios)
+
+porcentajeshelper <- promedios$promedios[1:15]
+nombres <- rownames(promedios)[1:15]
+
+barplot(porcentajeshelper, 
+	main = "Promedio del Salario para cada Lenguaje de Programación", 
+	xlab = "Promedio de salarios", 
+	ylab = "Lenguaje de Programación",
+  col=colorRampPalette(c("darkgreen", "green"))(15),
+	horiz=TRUE,
+	xlim = c(0, 140000),
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+
+medianas <- c()
+
+for (current in language){
+  this <- encuesta[encuesta[current] == TRUE,]
+	promedio <- median(this$Salary[language == current])
+	medianas[current] <- promedio
+}
+
+medianas <- sort(medianas, decreasing = TRUE)
+medianas <- data.frame(medianas)
+
+porcentajeshelper <- medianas$medianas[1:15]
+nombres <- rownames(medianas)[1:15]
+
+barplot(porcentajeshelper, 
+	main = "Mediana del Salario para cada Lenguaje de Programación", 
+	xlab = "Medianas del Salario",
+	ylab = "Lenguaje de Programación",
+  col=colorRampPalette(c("darkgreen", "green"))(15),
+	horiz=TRUE,
+	xlim = c(0, 140000),
+	las=1,
+	names.arg=nombres,
+	cex.names=0.5,
+	cex.axis=0.5,
+	)
+```
+
+Es curioso ver como los lenguaje más populares tienen un salario promedio mucho menor que el de los pocos populares.
+
+Así mismo, parece ser que los lenguajes que identificamos como "problemáticos" tienen un mayor salario. Veamos como se comporta cada problema mental con respecto al salario.
+
+```{r}
+encuesta %>%
+  select(Memoria, Emocional, Ansiedad, Autismo, Aprendizaje, Salary) %>%
+  pivot_longer(cols = -Salary, names_to = "Problemas Mentales", values_to = "Sufre") %>%
+  ggplot() +
+  aes(x = Salary, y = `Problemas Mentales`, fill = Sufre) +
+  geom_boxplot(alpha = 0.5) +
+  theme_minimal()
+```
+
+Las personas con problemas mentales tienen salarios más altos, lo que sugiere que el salario no garantiza una buena salud mental. Esto podría ser debido a una mayor carga laboral que conlleva a un mayor ingreso, pero también a una falta de estabilidad mental.
+
+## Análisis Probabilístico
+
+## Probabilidad Empírica
+
+### Variable Total de lenguajes de Programación
+
+**Justificación:** Se escoge la variable `Total de lenguajes de programación` porque es nuestra variable principal de nuestro estudio. Además, determinar el espacio de probabilidad de algún evento relacionado a esta variable puede ser interesante para los objetivos.
+
+#### Definición del experimento aleatorio:
+
+`E1`: Selecciono un programador y observo la cantidad de lenguajes de programación que utiliza.
+
+-   Espacio de probabilidad de la variable: $(\Omega_1,\mathcal{F_1},\mathbb{P_1})$
+
+Donde:
+
+$$
+\Omega_1 = [42] - \{0\} =\{ \text{ cantidad de lenguajes de programación que usa } \} \\
+\mathcal{F_1} = 2^{|\Omega_1|} \\
+\mathbb{P_1}(n) = \{ \text{ probabilidad de que use n lenguajes de programación } \} 
+$$
+
+-   Cálculo de las probabilidades de los eventos atómicos:
+
+A1: Seleccionar un programador del estudio que utiliza 1 lenguaje de programación \\ A2: Seleccionar un programador del estudio que utiliza 2 lenguajes de programación \\ ...\\ A42: Seleccionar un programador del estudio que utiliza 42 lenguajes de programación \\
+
+```{r}
+encuesta %>% group_by(TotalLenguajes) %>% count() -> probTotalLenguajes
+probTotalLenguajes %>% rename(Frecuencia = n) -> probTotalLenguajes
+
+probTotalLenguajes$ProbabilidadAtomica <- probTotalLenguajes$Frecuencia / nrow(encuesta)
+
+probTotalLenguajes
+```
+
+Para verificar que la suma de las probabilidades de los eventos atómicos utilizaremos la fórmula: $\sum_{x = \Omega_1} \mathbb{P}(x) = 1$
+
+```{r}
+sum(probTotalLenguajes$ProbabilidadAtomica)
+```
+
+#### Función de masa de probabilidad
+
+```{r}
+plot(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica, 
+     type = "h", 
+     col="red",
+     main = "Función de masa de probabilidad",
+     xlab = "Cantidad de lenguajes usados",
+     ylab = "Probabilidad",
+     ylim = c(0,0.2)
+)
+
+points(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica,  
+     pch = 20, 
+     col="red",
+)
+```
+
+Al escoger al azar un programador es más probable que trabaje con 3 a 5 lenguajes de programación. Además la probabilidad de que un programador use más de 10 lenguajes es muy poco probable
+
+#### Función de masa de probabilidad acumulada
+
+```{r}
+probAcumulada <- ecdf(encuesta$TotalLenguajes)
+
+ecdf_datos <- probAcumulada(0:43)
+
+plot(ecdf_datos, 
+     main = "Función de masa de probabilidad acumulada", 
+     xlab = "Cantidad de lenguajes usados", 
+     ylab = "Probabilidad acumulada",
+     type = "s",
+     col = "blue",
+)
+```
+
+### Variable Total de problemas de Salud Mental
+
+**Justificación:** La variable `Total de problemas de Salud Mental` está relacionada con todos los objetivos. Asimismo, el espacio de probabilidad de la variable nos ayudará para analizar diferentes eventos.
+
+#### Definición del experimento aleatorio:
+
+`E2`: Selecciono un programador y observo la cantidad de problemas de salud mental que posee
+
+-   Espacio de probabilidad de la variable: $(\Omega_2,\mathcal{F_2},\mathbb{P_2})$
+
+Donde:
+
+$$
+\Omega_2 = [5] =\{ \text{ cantidad de problemas de salud mental } \} \\
+\mathcal{F_2} = 2^{|\Omega_2|} \\
+\mathbb{P_2}(n) = \{ \text{ probabilidad de que sufra n problemas de salud mental } \} 
+$$
+
+-   Cálculo de las probabilidades de los eventos atómicos:
+
+B1: Seleccionar un programador que sufra 0 problemas de salud mental \\ B2: Seleccionar un programador que sufra 1 problema de salud mental \\ ... \\ B6: Seleccionar un programador que sufra 5 problemas de salud mental \\
+
+```{r}
+encuesta %>% group_by(TotalMentalHealth) %>% count() -> probTotalMentalHealth
+probTotalMentalHealth %>% rename(Frecuencia = n) -> probTotalMentalHealth
+
+probTotalMentalHealth$ProbabilidadAtomica <- probTotalMentalHealth$Frecuencia / nrow(encuesta)
+
+probTotalMentalHealth
+```
+
+Para verificar que la suma de las probabilidades de los eventos atómicos utilizaremos la fórmula: $\sum_{x = \Omega_2} \mathbb{P}(x) = 1$
+
+```{r}
+sum(probTotalMentalHealth$ProbabilidadAtomica)
+```
+
+#### Función de masa de probabilidad
+
+```{r}
+plot(probTotalMentalHealth$TotalMentalHealth, 
+     probTotalMentalHealth$ProbabilidadAtomica, 
+     type = "h", 
+     col = "red",
+     main = "Función de masa de probabilidad",
+     ylab = "Probabilidad",
+     xlab = "Cantidad de problemas mentales",
+     ylim = c(0,0.8),
+)
+
+points(probTotalMentalHealth$TotalMentalHealth, 
+     probTotalMentalHealth$ProbabilidadAtomica,  
+     pch = 20, 
+     col="red",
+)
+```
+
+Al escoger al azar un programador es más probable que no cuente con ninguna enfermedad de salud mental. No obstante, existe cierta probabilidad que sí sufran alguna enfermedad de salud mental.
+
+#### Función de masa de probabilidad acumulada
+
+```{r}
+probAcumulada <- ecdf(encuesta$TotalMentalHealth)
+
+ecdf_datos <- probAcumulada(0:5)
+
+plot(ecdf_datos, 
+     main = "Función de masa de probabilidad acumulada", 
+     xlab = "Cantidad de problemas mentales", 
+     ylab = "Probabilidad acumulada",
+     type = "s",
+     col = "blue",)
+```
+
+### Variable edad
+
+**Justificación:** La variable `Edad` es interesante en nuestro estudio, ya que evidencia la probabilidad de extraer un programador según su edad.
+
+#### Definición del experimento aleatorio:
+
+`E3`: Selecciono un programador y observo la edad que posee
+
+-   Espacio de probabilidad de la variable: $(\Omega_3,\mathcal{F_3},\mathbb{P_3})$
+
+Donde:
+
+$$
+\Omega_3 = [6] =\{ \text{ Todas las edades del rango } \} \\
+\mathcal{F_3} = 2^{|\Omega_3|} \\
+\mathbb{P_3}(n) = \{ \text{ Probabilidad de que salga la edad n } \} 
+$$ + Cálculo de las probabilidades de los eventos atómicos:
+
+C1: Seleccionar un programador que tenga la edad 0 (menos de 18 años) \\ C2: Seleccionar un programador que tenga la edad 1 (entre 18 y 24 años) \\ C3: Seleccionar un programador que tenga la edad 2 (entre 25 y 34 años) \\ C4: Seleccionar un programador que tenga la edad 3 (entre 35 y 44 años) \\ C5: Seleccionar un programador que tenga la edad 4 (entre 45 y 54 años) \\ C6: Seleccionar un programador que tenga la edad 5 (entre 55 y 64 años) \\ C7: Seleccionar un programador que tenga la edad 5 (65 o más años) \\
+
+```{r}
+encuesta %>% group_by(ModifiedAge) %>% count() -> probModifiedAge
+probModifiedAge %>% rename(Frecuencia = n) -> probModifiedAge
+
+probModifiedAge$ProbabilidadAtomica <- probModifiedAge$Frecuencia / nrow(encuesta)
+
+probModifiedAge
+```
+
+Para verificar que la suma de las probabilidades de los eventos atómicos utilizaremos la fórmula: $\sum_{x = \Omega_3} \mathbb{P}(x) = 1$
+
+```{r}
+sum(probModifiedAge$ProbabilidadAtomica)
+```
+
+-   Función de masa de probabilidad
+
+```{r}
+plot(probModifiedAge$ModifiedAge, 
+     probModifiedAge$ProbabilidadAtomica,
+     main = "Función de masa de probabilidad",
+     xlab = "Rango de edad",
+     ylab = "Probabilidad",
+     type = "h",
+     col = "red",
+     lwd = 2
+)
+
+points(probModifiedAge$ModifiedAge, 
+     probModifiedAge$ProbabilidadAtomica,
+     pch = 20, 
+     col="red",
+)
+
+```
+
+Este gráfico muestra que hay mayor probabilidad que el programador escogido tenga entre 24 y 35 años.
+
+-   Función de masa de probabilidad acumulada
+
+```{r}
+probAcumulada <- ecdf(encuesta$ModifiedAge)
+
+ecdf_datos <- probAcumulada(1:7)
+
+plot(ecdf_datos, 
+     main = "Función de masa de probabilidad acumulada", 
+     xlab = "Rango de edad", 
+     ylab = "Probabilidad acumulada",
+     col = "blue",
+     type = "s")
+```
+
+## Eventos Dependientes e Independientes
+
+Usaremos el siguiente criterio:
+
+$|\mathbb{P}(A \cap B) - \mathbb{P}(A)*\mathbb{P}(B)| < 0.01$
+
+Es decir, si la diferencia de probabilidades es menor a 0.01, lo consideraremos eventos independientes.
+
+### Eventos Dependientes
+
+Seleccionamos los lenguajes que causan más problemas mentales de acuerdo a nuestras gráficas, ya que consideramos que podrían tener una relación interesante.
+
+-   Autismo: Crystal Lua Rust
+
+-   Aprendizaje: APL Lua Assembly
+
+-   Emocionales: Erlang Lua LISP
+
+-   Memoria: Erlang Crystal Lua
+
+-   Ansiedad: SAS Ruby Lua
+
+Entonces, identificamos 2 eventos: E1: Escoger un programador que usa 1 o más de los lenguajes "problemáticos" E2: Escoger un programador que sufre 1 o más problemas mentales
+
+```{r}
+list <- c('Crystal', 'Lua', 'Rust', 'APL', 'Assembly', 'Erlang', 'LISP', 'SAS')
+
+E1 <- encuesta$Crystal | encuesta$Lua | encuesta$Rust | encuesta$APL | encuesta$Assembly | encuesta$Erlang | encuesta$LISP | encuesta$SAS
+
+probE1 <- sum(E1)/nrow(encuesta)
+probE1
+```
+
+```{r}
+probE2 <- sum(encuesta$TotalMentalHealth > 0) / nrow(encuesta)
+probE2
+```
+
+Luego, hallamos la probabilidad de ambos eventos (E1 dado E2):
+
+```{r}
+total = data.frame(E1, encuesta$TotalMentalHealth)
+E1E2 = nrow(total[total$E1 == TRUE & total$encuesta.TotalMentalHealth > 0,])/nrow(total)
+
+total$encuesta.TotalMentalHealth <- total$encuesta.TotalMentalHealth > 0
+
+mosaicplot(table(total$E1, total$encuesta.TotalMentalHealth), main = "Problemas mentales y lenguajes problemáticos", xlab="Evento1", ylab="Evento2")
+```
+
+Luego de realizar el mosaicplot, notamos que ambos eventos son claramente dependientes, ya que se ven diferencias significativas en las proporciones de las categorías en las combinaciones de las variables. Pero, para comprobar esto de manera definitiva utilizamos algunas fórmulas.
+
+Comprobamos con las fórmulas de probabilidades: [La inversa]
+
+```{r}
+probE2dE1 <- E1E2/probE1
+cat("P(E2|E1): ", probE2dE1)
+cat("\nP(E2): ", probE2)
+cat("\nP(E2|E1)-P(E2)",  probE2 - probE1)
+
+cat("\nP(E1 ∩ E2)", E1E2)
+cat("\nP(E2)*P(E1)",probE1 * probE2)
+```
+
+Notamos que la probabilidad del E1 y la probabilidad del E2 difieren en 0,11 aproximadamente. Lo suficiente como para afirmar que son eventos dependientes. Luego corroboramos nuevamente, ya que probabilidad de la intersección del E1 y E2 es distinta a la probabilidad del E1 multiplicado por la probabilidad del E2.
+
+### Eventos Independientes
+
+Identificamos dos eventos. - E1: Usa un lenguaje que está entre los 5 más populares. - E2: Sufre de 2 o más problemas mentales.
+
+Justificación: Se quiere demostrar que nuestra salud mental no depende de si usamos un lenguaje popular o no. Para esto demostraremos que los eventos son independientes:
+
+$$
+\mathbb{P}(E1|E2) - \mathbb{P}(E1) \approx 0 \\
+\mathbb{P}(E2|E1) - \mathbb{P}(E2) \approx 0 \\
+\mathbb{P}(E1 \cap E2) \approx \mathbb{P}(E1)* \mathbb{P}(E2) \\
+$$
+
+#### Probabilidad de E1
+
+```{r}
+evento1 = encuesta$Java | encuesta$JavaScript | encuesta$C | encuesta$Python | encuesta$SQL
+
+E1 = sum(evento1)/length(evento1)
+
+cat("la probabilidad del evento 1 es: ", E1)
+```
+
+#### Probabilidad de E2
+
+```{r}
+cantProblemas = encuesta$Memoria + encuesta$Emocional +encuesta$Ansiedad + encuesta$Autismo +encuesta$Aprendizaje
+
+E2 = length(cantProblemas[cantProblemas >= 2])/length(cantProblemas)
+
+cat("Probabilidad del evento 2 es: ",E2)
+```
+
+#### Probabilidad de E1 y E2
+
+```{r}
+total <- data.frame(evento1, cantProblemas)
+
+E1E2 <- nrow(total[total$evento1 == TRUE & total$cantProblemas >= 2,])/nrow(total)
+
+cat("Prbabilidad del evento 1 y evento 2: ",E1E2)
+```
+
+#### Comprobando la independencia
+
+```{r}
+E2dadoE1 <- E1E2/E1
+E2dadoE1
+
+E1dadoE2 <- E1E2/E2
+cat("P(E1|E2) =", E1dadoE2, "≈",E1,"= P(E1)")
+cat("\nP(E2|E1) =", E2dadoE1,"≈",E2,"= P(E2)")
+cat("\nP(E1yE2) =", E1E2,"≈", E1*E2,"= P(E1)*P(E2)")
+```
+
+#### Y graficando el mosaic plot
+
+```{r}
+total$cantProblemas <- total$cantProblemas >= 2
+
+mosaicplot(table(total$evento1, total$cantProblemas),
+	main = "Eventos independientes",
+	xlab = "Uno o más de los 5 lenguajes populares",
+	ylab = "2 o más problemas mentales")
+```
+
+Entonces podemos decir que los eventos son muy **APROXIMADAMENTE** independientes.
+
+## Variables Aleatorias Discretas
+
+### Variable Cantidad de Lenguajes
+
+`E1`: Los desarrolladores de software de Stack Overflow utilizan en promedio 5 lenguajes de programación todos los meses del 2022. Asumiendo que el promedio del total de lenguajes de programación que utiliza un programador se mantiene a lo largo de todos los meses de 2022. ¿Cuál es un buen modelo para el número de lenguajes si sabemos que mensualmente es 5?
+
+Consideramos que nuestra variable aleatoria sigue una distribución de `Poisson`
+
+$$
+\mathbb{X} = \text{Número de lenguajes mensuales que usa un desarrollador en un mes} \\
+Rango(\mathbb{X}) = \mathbb{N} - \{0\} \\
+\mathbb{X} \sim \mathcal{Poisson}(\lambda) = \mathcal{Poisson}(5)
+$$ 
+
+Ya que cumple con las siguientes condiciones: \\
++ Los eventos deben ser independientes entre sí.\\
++ La tasa media de eventos debe ser constante en cualquier intervalo de tiempo.
+
+Entonces:
+
+$$
+\mathbb{P}(\mathbb{X} = x) = \mathcal{Poisson}(5) =   
+\begin{cases} 
+  \frac{\mathrm{e^{-5}5^x}}{x!}, & \forall~x > 0; \\
+  0, & \text{en caso contrario}
+\end{cases}
+$$ 
+
+Consideramos que la distribución de `Poisson` tome valores a partir de 1, ya que en la variable `Total de Lenguajes` no existe desarrollador que utilice 0 lenguajes.
+
+Modelamos la variable `Total de lenguajes` y la distribución de Poisson:
+
+```{r}
+plot(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica, 
+     type = "h", 
+     col="red",
+     main = "Comparación de la variable 'Total de lenguajes' y Poisson",
+     xlab = "Cantidad de lenguajes usados",
+     ylab = "Probabilidad",
+     ylim = c(0,0.2)
+)
+
+points(probTotalLenguajes$TotalLenguajes, 
+     probTotalLenguajes$ProbabilidadAtomica,  
+     pch = 20, 
+     col="red",
+)
+
+lines(dpois(1:50, mean(encuesta$TotalLenguajes)), col="blue", type="l", lwd = 2, lty = 2)
+
+legend("topright", 
+       legend = c("Función de probabilidad", "Distribución de Poisson"), 
+       col = c("red", "blue"), 
+       lwd = 2,
+       lty = c(1,2)
+)
+```
+
+Visualmente, se aprecia que se aproxima a la distribución de Poisson.Vamos a confirmar con los descriptores de la variable:
+
+#### Esperanza
+
+$$
+E(\mathbb{X}) = \lambda
+$$
+
+```{r}
+lambda <- 5
+
+media <- mean(encuesta$TotalLenguajes)
+
+lambda
+media
+```
+
+Se puede ver que la media de la variable `Total de lenguajes` se aproxima a la esperanza de la variable aleatoria.
+
+#### Varianza
+
+$$
+Var(\mathbb{X}) = \lambda
+$$
+
+```{r}
+lambda
+var(encuesta$TotalLenguajes)
+```
+
+La varianza de `Total de lenguajes` se aleja parcialmente de la varianza de la variable aleatoria.
+
+Por lo tanto, a pesar de aproximarse en cierta medida a la distribución de Poisson, no logra modelarse mayormente con esta variable aleatoria.
+
+### Variable JavaScript y Salario
+
+`E2`: Escoger una muestra de 1000 programadores (con reemplazo) y contar el número de programadores que programen en JavaScript y que ganen mas del promedio.
+
+Éxito: Que el programador escogido domine en JS y gane mas que el promedio.
+
+Consideramos que nuestra variable aleatoria sigue una distribución `Binomial`.
+
+Calculamos la probabilidad de éxito asumiendo que nuestra muestra es representativa:
+
+```{r}
+promedio <- mean(encuesta$Salary)
+```
+
+```{r}
+p <- round( nrow(encuesta %>% filter(encuesta$JavaScript == TRUE & encuesta$Salary > promedio))/nrow(encuesta) ,2)
+p
+```
+
+```{r}
+n <- 1000
+```
+
+$$
+\mathbb{Y} = \text{Número de desarrolladores que programen en JavaScript} \\ \text{y ganan mas que el promedio en una muestra de 1000 programadores} \\
+
+Rango(\mathbb{Y}) = [1000] \\
+
+\mathbb{Y} \sim \mathcal{Bin}(n,p) = \mathcal{Bin}(1000,0.27)
+$$
+Entonces:
+
+$$
+\mathbb{P}(\mathbb{Y} = x) = \mathcal{Bin}(1000, 0.27) = 
+\binom{1000}{x} \cdot 0.27^x \cdot (1-0.27)^{1000-x}
+$$ 
+
+Modelamos la variable `Usa JavaScript y gana más que el promedio` y la distribución Binomial:
+
+```{r}
+list <- data.frame(
+  exitos = 1:1000,
+  probabilidad = 0
+)
+
+for (i in 1:1000) {
+  count <- 0
+  
+  indices <- sample(1:nrow(encuesta), 1000)
+  
+  for (index in indices) {
+    if (encuesta$JavaScript[index] == TRUE & encuesta$Salary[index] > promedio){
+      count = count + 1
+    }
+  }
+  
+  list$probabilidad[count] = list$probabilidad[count] + 1
+}
+
+list$probabilidad <- list$probabilidad/1000
+```
+
+```{r}
+plot(list$exitos[200:350], list$probabilidad[200:350],
+     type = "h", 
+     col="red",
+     main = "Función de masa de probabilidad",
+     xlab = "Cantidad de lenguajes usados",
+     ylab = "Probabilidad",
+)
+
+lines(dbinom(0:1000, n, p), type = 'h', lwd = 1, lty = 2, col = "blue")
+
+legend("topright",
+       legend = c("Variable", "Distribución Binomial"), 
+       col = c("red", "blue"), 
+       lwd = 2,
+       lty = c(1,2)
+)
+```
+
+Visualmente se aproxima a una distribución binomial. Se redujo la escala del eje x ya que entre 200 y 350 se concentran la mayoría de los resultados.
+
+#### Esperanza
+
+$$
+E(\mathbb{X}) = n \cdot p
+$$
+
+```{r}
+count <- 0
+listexitos <- c()
+for (i in 1:nrow(list)) {
+  if (list$probabilidad[i] != 0){
+    count = count + 1
+    
+    listexitos = c(listexitos, list$exitos[i])
+  }
+}
+
+media <- mean(listexitos)
+media
+```
+
+```{r}
+Ey <- n*p
+Ey
+```
+
+Se aprecia que el promedio de los datos se aproxima a la esperanza de la variable aleatoria. No obstante, sigue habiendo irregularidades.
+
+#### Varianza
+$$
+Var(\mathbb{X}) = n \cdot p \cdot (1 - p)
+$$
+
+```{r}
+vary <- n*p*(1-p)
+vary
+
+var(listexitos)
+```
+
+La varianza se aleja sustancialmente de la varianza de la variable aleatoria, por lo que concluímos que a pesar de aproximarse, no logra ajustarse correctamente a la distribución Binomial.
+
+## Variables Aleatorias Continuas
+
+### Variable Salario
+
+`E3`: Los desarrolladores de software de Stack Overflow ganan generalmente entre 30 mil y 70 mil dólares anuales ejerciendo su trabajo. Si un junior developer quisiera integrarse a la comunidad de Stack Overflow, ¿Cuál es la probabilidad de gane menos de 60 mil?
+
+Consideramos que nuestra variable aleatoria sigue una distribución `Uniforme`
+
+$$
+\mathbb{Z} = \text{ Salario que gana un desarrollador } \\
+Rango(\mathbb{Z}) = [30000, 70000] \\
+\mathbb{Z} \sim \mathcal{Unif}(a,b) = \mathcal{Unif}(30000,70000)
+$$ 
+
+Escogimos el rango de 30 - 70 mil puesto que gran parte de nuestras observaciones se encuentran en ese rango:
+
+```{r}
+encuesta %>% filter(Salary > 30000 & Salary < 70000) %>% count()/nrow(encuesta) -> SalaryUnif
+SalaryUnif$n
+```
+
+Exactamente, el 34% de las observaciones se encuentran en el rango. Además, la mediana de la variable también pertenece a ese rango, por lo que es significativo analizarla.
+
+```{r}
+median(encuesta$Salary)
+```
+
+Entonces:
+
+$$
+\mathbb{P}(\mathbb{Z} \leq x) = \frac{x - 30000}{70000 - 30000} = \frac{x - 30000}{40000}
+$$ 
+
+Modelamos la variable `Salary` acotada condicionalmente y la distribución Uniforme:
+
+```{r}
+pruebaSalary <- encuesta %>% filter(Salary > 30000 & Salary < 70000)
+```
+
+```{r}
+hist(pruebaSalary$Salary, 
+     prob = TRUE, 
+     breaks = 10,
+     main = "Histograma del Salario",
+     xlab = "salario anual en dólares",
+     ylab = "Frecuencia",
+     col = "skyblue"
+)
+Xs <- seq(0, 280000, by = 10)
+lines(Xs, dunif(Xs,30000,70000), col = "red", lwd = 2)
+```
+
+Como se puede apreciar, la variable `Salary` se aproxima significativamente a una distribución Uniforme. Veamos las medidas de la variable aleatoria.
+
+#### Esperanza
+$$
+E(\mathbb{Z}) = \frac{b + a}{2}
+$$
+```{r}
+Ez <- (70000 + 30000) / 2
+Ez
+
+mean(pruebaSalary$Salary)
+```
+
+Como se puede apreciar, la media de la variable `Salary` se aproxima mucho a la esperanza de la variable aleatoria.
+
+#### Varianza
+
+$$
+Var(\mathbb{Z}) = \frac{(b - a)^2}{12}
+$$
+```{r}
+varz <- (70000 - 30000)^2/12
+varz
+
+var(pruebaSalary$Salary)
+```
+
+Como son valores muy grandes, veamos si la desviación puede ayudarnos a verificar si se asemejan:
+
+```{r}
+sqrt(varz)
+
+sd(pruebaSalary$Salary)
+```
+
+Se aprecia que los datos varian similarmente tanto para la varable `Salary` como para la variable aleatoria.
+
+Por lo tanto, a pesar de no ajustarse perfectamente a la distribución, consideramos que se aproxima en gran medida a comparación del resto de nuestras variables. Esto sugiere, que la probabilidad de que un junior developer gane menos de 60 mil dólares anuales es `3/4`
+
+
+### Conclusiones
+
+En síntesis, refiriéndose al análisis descriptivo, el estudio muestra correlaciones entre la popularidad, facilidad de uso y remuneración de un lenguaje de programación y la salud mental de los programadores. Sin embargo, no se puede establecer una relación directa y determinante entre dichos factores y el estado mental.
+
+Aunque los lenguajes populares y bien documentados pueden proporcionar más recursos y apoyo a los desarrolladores, no son los únicos factores que influyen en el equilibrio emocional de una persona. Otros factores externos, como el ambiente laboral, el salario y el mercado, también desempeñan un papel importante en la salud mental de los programadores, independientemente del lenguaje de programación que utilicen.
+
+Refiriéndose al análisis probabilístico, podemos concluir que nuestras variables, a pesar de aproximarse a ciertas distribuciones como la de Poisson y la Binomial, no son modelos ideales para nuestras variables, ya que nuestras observaciones se desvían de estos. No obstante, consideramos que la distribución Uniforme sí logra modelar en cierta medida nuestra variable continua `Salario`. Con este análisis, podemos ayudar a futuros programadores a tener una idea del campo laboral existente, los lenguajes de programación que necesitan saber, el salario que pueden ganar y los problemas de salud mental que están probables a sufrir.
+
+En conclusión, el estudio destaca la importancia de considerar múltiples factores externos en lugar de atribuir el estado de salud mental de los programadores únicamente al lenguaje de programación utilizado. Los resultados muestran que los factores externos tienen un impacto significativo en el bienestar general de los desarrolladores, y es fundamental abordar estos factores para promover un entorno de trabajo saludable y apoyar la salud mental de los profesionales de la programación.
+
+## Bibliografías
+
+Stack Overflow (2022). *Stack Overflow Annual Developer Survey.* <https://insights.stackoverflow.com/survey>
+
+PLDB (2023). *Programming Language Data Base.* <https://github.com/breck7/pldb>

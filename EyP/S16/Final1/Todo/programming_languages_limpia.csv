@@ -1,0 +1,41 @@
+"Nombre","Año","Tipo","Rank","N_Trabajos","N_Usuarios","País","Github_repos","BigQuery_repos"
+"Java",1995,"pl",1,85206,5550123,"United States",11529980,369548
+"JavaScript",1995,"pl",2,63993,5962666,"United States",16046489,1099879
+"C",1972,"pl",3,59919,3793768,"United States",2160271,292876
+"Python",1991,"pl",4,46976,2818037,"Netherlands",9300725,550171
+"SQL",1974,"queryLanguage",5,219617,7179119,"United States",1222,641
+"C++",1985,"pl",6,61098,4128238,"United States",2161625,277733
+"HTML",1991,"textMarkup",7,69531,5570873,"Switzerland",12648584,777550
+"PHP",1995,"pl",10,30349,2356101,"Canada",3479326,339509
+"Perl",1987,"pl",11,13482,491984,"United States",169830,101542
+"MATLAB",1984,"pl",12,32228,2661579,"United States",311901,2791
+"Ruby",1995,"pl",13,11438,357730,"Japan",2659551,374367
+"C#",2000,"pl",14,19747,217261,"United States",2161625,133078
+"Fortran",1957,"pl",17,1931,165151,"United States",29127,2820
+"CSS",1996,"stylesheetLanguage",18,45617,2881846,"Switzerland",4446834,808537
+"R",1993,"pl",19,14173,1075613,"United States",689533,29347
+"Go",2009,"pl",22,6403,525179,NA,1083789,91470
+"Scala",2004,"pl",23,4525,139471,"Switzerland",219084,34541
+"Swift",2014,"pl",24,3754,362590,NA,1044892,42531
+"COBOL",1959,"pl",26,2616,187188,"United States",3411,667
+"Rust",2010,"pl",27,141,302193,NA,356891,15753
+"Kotlin",2011,"pl",29,5276,130094,NA,901474,7829
+"PowerShell",2006,"pl",31,19576,208708,NA,161144,33120
+"Haskell",1990,"pl",33,495,37628,"United States and United Kingdom",126924,29991
+"TypeScript",2012,"pl",34,1542,216959,NA,3281749,47650
+"SAS",1976,"pl",35,4682,361103,"United States",8407,1350
+"Lua",1993,"pl",38,1106,58860,"Brazil",243541,34346
+"Julia",2012,"pl",39,85,81911,"Various",53507,5895
+"Objective-C",1984,"pl",43,4276,12380,"United States",535667,167113
+"Clojure",2007,"pl",44,469,44933,"United States",82125,25889
+"Erlang",1986,"pl",47,308,27148,"Sweden",28645,14920
+"Bash",1989,"pl",48,4774,61747,"United States",1579442,640005
+"Elixir",2011,"pl",52,214,55882,"United States",89242,6816
+"Dart",2011,"pl",54,208,38325,NA,737948,5727
+"VBA",1993,"pl",61,511,3650,NA,28503,200
+"Delphi",1995,"pl",68,181,7084,"United States",NA,240
+"F#",2005,"pl",72,NA,4316,"United Kingdom",NA,5877
+"OCaml",1996,"pl",74,NA,3341,"France",27376,5622
+"Crystal",2014,"pl",77,NA,27065,"Argentina and Germany and Turkey",7522,1197
+"Groovy",2003,"pl",84,NA,6056,"United States and Spain and France",76001,27223
+"APL",1964,"pl",95,NA,3670,"United States",416,95
