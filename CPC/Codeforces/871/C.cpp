@@ -15,7 +15,7 @@ void solve(){
 
   vector<pair<int, string>> a(n);
   vector<int> flag(3,0); 
-  vector<int> sol(3);
+  vector<int> sol(3, 1e9);
 
   for (size_t i = 0; i < n; i++){
     cin>>a[i].first>>a[i].second;

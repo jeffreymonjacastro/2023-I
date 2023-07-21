@@ -18,7 +18,7 @@ add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
 add_executable(vjudge CPC/Beginners_trainee/Contest_3/C.cpp)
 
-add_executable(Cf CPC/Codeforces/Watermelon.cpp)
+add_executable(Cf CPC/Codeforces/871/C.cpp)
 
 add_executable(mentoria Mentoria/sesion_11/PC3_2022_2_Lab102.cpp)
 
