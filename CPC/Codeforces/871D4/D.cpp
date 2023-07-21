@@ -11,7 +11,7 @@ typedef vector<int> vi;
 typedef pair<int, int> pi;
 
 #define FOR(i, a, b) for (int i=a; i<b; i++)
-#define F0R(i, a) for (int i=0; i<a; i++)
+#define FOR(i, a) for (int i=0; i<a; i++)
 #define mp make_pair
 #define pb push_back
 #define f first
@@ -21,6 +21,13 @@ typedef pair<int, int> pi;
 
 
 void solve(){
+  int n,m;
+  cin>>n>>m;
+
+  vi a = {n};
+
+  
+
 
 }
 
