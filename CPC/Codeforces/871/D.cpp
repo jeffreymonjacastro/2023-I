@@ -1,3 +1,5 @@
+// Gold Rush
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -17,8 +19,6 @@ typedef pair<int, int> pi;
 #define lb lower_bound
 #define ub upper_bound
 
-const int MAX = 1e9 + 7;
-const int MIN = -1e9 - 7;
 
 void solve(){
 
