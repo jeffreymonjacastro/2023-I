@@ -1,3 +1,5 @@
+// Rudolf_and_cut_the_rope
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -21,6 +23,19 @@ const int MAX = 1e9 + 7;
 const int MIN = -1e9 - 7;
 
 void solve(){
+  int n, count = 0;
+  cin>>n;
+
+  vector<pi> v(n);
+
+  FOR(i, n){
+    cin>>v[i].f>>v[i].s;
+
+    if (v[i].s < v[i].f)
+      count++;
+  }
+
+  cout << count << endl;
 
 }
 
