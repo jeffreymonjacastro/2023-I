@@ -21,7 +21,7 @@ const int MAX = 1e9 + 7;
 const int MIN = -1e9 - 7;
 
 void solve(){
-
+  cout << "Hello World" << endl;
 }
 
 int main(){

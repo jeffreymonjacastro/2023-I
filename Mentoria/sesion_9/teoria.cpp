@@ -22,14 +22,14 @@ public:
         cout << base << " " << altura << endl;
     }
 
-//    friend void print(Poligono* p);
+    friend void print(Poligono* p   );
 
     virtual ~Poligono(){}
 };
 
-//void print(Poligono* p){
-//    cout << p->base << " " << p->altura << endl;
-//}
+void print(Poligono* p){
+    cout << p->base << " " << p->altura << endl;
+}
 
 
 class Triangulo: public Poligono {

@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(.)
 
-add_executable(2023_I P3/S15/PC3/p3.cpp)
+add_executable(2023_I Others/Hackerrank.cpp)
 
 add_executable(tarea P3/S13/Tarea2b/tarea/foo.cpp P3/S13/Tarea2b/tarea/main.cpp)
 
@@ -18,7 +18,7 @@ add_executable(clasescpc CPC/Beginners_trainee/Sesions/codes1.cpp)
 
 add_executable(vjudge CPC/Beginners_trainee/Contest_3/C.cpp)
 
-add_executable(Cf CPC/Codeforces/871/C.cpp)
+#add_executable(Cf CPC/Codeforces/871/C.cpp)
 
 add_executable(mentoria Mentoria/sesion_11/PC3_2022_2_Lab102.cpp)
 
